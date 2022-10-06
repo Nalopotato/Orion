@@ -1,0 +1,311 @@
+//#include AutoAttack.oajs
+//#include HealSelf.oajs
+//#include Recall.oajs
+//#include z_Helpers.oajs
+//#include z_Paths.oajs
+
+var lootBag = '0x4E0D4DB8';
+
+function KillSolen()
+{
+	while (!Player.Dead())
+	{
+		if (Orion.ScriptRunning('AutoAttack') < 1) { Orion.ToggleScript('AutoAttack'); }
+		if (Orion.ScriptRunning('HealSelf') < 1) { Orion.ToggleScript('HealSelf'); }
+		var runeIndex = 17;
+		UseRunebook(runeIndex, '0x40C01DBE');
+		
+		//Orion.MoveItemType('0x26B7', any, backpack, 0, lootBag);
+		//Orion.Wait(600);
+		
+		while (Orion.Count('0x26B7', any, lootBag) < 199) //Fungi in loot bag
+		{
+			Orion.SetTimer('RecallTimer');
+			Orion.SetTimer('KillTimer');
+			
+			var mobList = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+			Orion.Wait(100);
+			//Orion.Print('76', 'INIT mob length: ' + mobList.length);
+			
+			//Attack until the mob is dead
+			if (mobList.length > 0)
+			{
+				var mobSerial = mobList[0];
+				var mobObj = Orion.FindObject(mobSerial);
+				
+				while (mobList.length > 0)
+				{
+					Orion.Wait(100);
+				
+					Orion.Attack(mobSerial);
+					if (mobObj)
+						WalkToTarget(mobObj.X(), mobObj.Y());
+					
+					if (Orion.Timer('KillTimer') > 25000)
+					{
+						Orion.Print('BREAK');
+						break;
+					}
+					mobList = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+					mobSerial = mobList[0];
+					mobObj = Orion.FindObject(mobSerial);
+					
+					Orion.Print('76', 'Mob length: ' + mobList.length);
+				}
+			}
+			//Orion.Wait(4000); //Wait for looting
+			
+			ClaimCorpses();
+			
+			while (Orion.Timer('RecallTimer') < 4100) {
+				Orion.Wait(100);
+			}
+			runeIndex += 10;
+			UseRunebook(runeIndex, '0x40C01DBE'); //Recall to next spawn
+			
+			if (runeIndex >= 117)
+			{
+				runeIndex = 17;
+			}
+			
+			//Orion.Print('Stack items and store gold');
+			if (Orion.Count('0x0EED', any, backpack) > 0) {
+				Orion.MoveItemType('0x0EED', any, backpack, 0, lootBag);
+				Orion.Wait(600);
+			}
+			if (Orion.Count('0x26B7', any, backpack) > 0) {
+				Orion.MoveItemType('0x26B7', any, backpack, 0, lootBag);
+				Orion.Wait(600);
+			}
+			StoreGold();
+		}
+		
+		//Orion.Print('StoreZoogi'); StoreZoogi();
+		Orion.Print('BankSolen'); BankSolen();
+		Orion.Print('GetWater'); GetWater();
+		
+		Orion.ToggleScript('AutoAttack');
+		Orion.Print('RunToVat'); RunToVat();
+		Orion.Print('PourWater'); PourWater();
+		Orion.Print('TurnInQuest'); TurnInQuest();
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function WalkToTarget(x, y) {	
+	Orion.WalkTo(x, y, Player.Z(), 1, 255, 0, 2, 10000);
+	//Orion.Print(x + ', ' + y);
+	Orion.Wait(200);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function ClaimCorpses() {
+	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself|inlos', 5);
+	
+	if (corpseList && corpseList.length > 0)
+	{
+		for (var i = 0; i < corpseList.length; i++)
+		{
+			while (Orion.Dragging()) { 
+				Orion.Wait(100);
+			}
+			
+			var corpse = Orion.FindObject(corpseList[i]);
+			var itemcount = corpseList[i] && Orion.FindTypeEx(any, any, corpseList[i]);
+			Orion.Print('26', 'Corpse Item Count: ' + itemcount.length);
+			
+			if (itemcount.length > 1 && corpse) //Bad to loop here, since the corpse might not be ours
+			{
+				WalkToTarget(corpse.X(), corpse.Y());
+				Orion.Wait(itemcount.length * 800); //Multiply the item count by 800ms
+			}
+
+			Orion.Say('[claim');
+			Orion.WaitForTarget();
+			Orion.TargetObject(corpseList[i]);
+			Orion.Wait(500);
+			Orion.CancelTarget();
+		}
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function StoreZoogi() {
+	Orion.Print('26', 'Zoogi');
+	StoreItemWithKeys('0x466B92BD', '0x0EBCD833', 60030, '0x26B7', 100);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function BankSolen() {
+	Recall('0x40C01DBE', 147);
+	Orion.Wait(3500);
+	
+	if (Player.X() != 1450)
+	{
+		BankSolen();
+	}
+	
+	Orion.Say('faxon sell');
+	Orion.Wait(5000);
+
+	Orion.Say('bank');
+	Orion.Wait(300);
+	OrganizeGoldGems(backpack);
+	OrganizeGoldGems(lootBag);
+	
+	GetGold(100); //Get money for Water
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function GetWater() {
+	var vendors = ['Saloman', 'Fleta', 'Kenton', 'Fuller', 'Oriole', 'Carroll'];
+	var tavern = 1;
+
+	RecallBuyWater(tavern);
+	Orion.Wait(3000);
+	
+	for (var i = 0; i < vendors.length; i++) {
+		if (Orion.Count('0x1F9D', 0, backpack) > 7)
+			break;
+
+		Orion.ClearJournal();
+
+		if (Orion.InJournal('must wait to perform') || Orion.InJournal('book needs time'))
+		{
+			Orion.Print('26', 'Recall again');
+			Orion.Wait(5000);
+			RecallBuyWater(tavern);
+			Orion.ClearJournal();
+			Orion.Wait(3000);
+		}
+		
+		Orion.Say(vendors[i] + ' buy');
+		Orion.Wait(3000);
+		Orion.Print('26', 'Number of waters in pack: ' + Orion.Count('0x1F9D', any, backpack));
+		
+		if (i == 2) //Move to next Tavern, if we've gone thru 3 NPCs
+		{
+			tavern ++;
+			RecallBuyWater(tavern);
+			Orion.Wait(3000);
+		}
+	}
+	
+	if (Orion.Count('0x1F9D', 0, backpack) < 8)
+		KillSolen();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function RunToVat() 
+{
+	while (Player.X() != '2609')
+	{
+		RecallRunSolen();
+	}
+	
+	Orion.UseObject('0x40010254');
+	Orion.Wait(200);
+
+	//Floor 1
+	if (Player.X() != 5921) { RunToVat() }
+	
+	PathTo(SolenPath1());
+	Orion.UseObject('0x40010277');
+	Orion.Wait(200);
+	
+	//Floor 2
+	if (Player.X() != 5874) { RunToVat() }
+	
+	PathTo(SolenPath2());
+	Orion.UseObject('0x4001028C');
+	Orion.Wait(200);
+	
+	//Floor 3
+	if (Player.X() != 5774) { RunToVat() }
+
+	PathTo(SolenPath3());
+	Orion.Wait(300);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function PourWater()
+{
+	var breakOut = 0;
+	while (Orion.Count('0x1F9D', any, backpack) > 0)
+	{
+		Orion.UseType('0x1F9D');
+		Orion.WaitForTarget(5000);
+		Orion.TargetObject('0x400077B3');
+		Orion.Wait(600);
+		
+		breakOut++;
+		if (breakOut > 10) {break;}
+	}
+	
+	while (Orion.Count('0x0FF6', any, backpack) > 0)
+	{
+		Orion.MoveItemType('0x0FF6', 0, backpack, 0, 0x45E995AD);
+		Orion.Wait(600);
+		
+		breakOut++;
+		if (breakOut > 20) {break;}
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function TurnInQuest()
+{
+	PathTo(SolenPath4());
+
+	var matriarch = Orion.FindObject('0x001D0274');
+	if (matriarch)
+	{
+		Orion.Print('Walking to Matriarch: ' + matriarch.x + matriarch.y);
+		WalkToTarget(matriarch.X(), matriarch.Y());
+	}
+		
+	GetZoogi();
+	
+	//Turn in Kill quest, and get new quest
+	Orion.RequestContextMenu('0x001D0274');
+	Orion.WaitContextMenuID('0x001D0274', 0);
+	
+	GumpAction('0x08DB94B0', 60000, 100, false);
+	GumpAction('0x23C255E7', 60007, 100, false);
+	GumpAction('0x23C255E7', 60007, 100, false);
+	GumpAction('0x23C255E7', 60007, 100, false);
+	
+	Orion.RequestContextMenu('0x001D0274');
+	Orion.WaitContextMenuID('0x001D0274', 0);
+	
+	GumpAction('0x08DB94B0', 60000, 100, false);
+	GumpAction('0x23C255E7', 60006, 100, false);
+
+	//Turn in Fungi quest, and get new quest
+	Orion.RequestContextMenu('0x001D0274');
+	Orion.WaitContextMenuID('0x001D0274', 0);
+	
+	GumpAction('0x08DB94B0', 60001, 100, false);
+	GumpAction('0x23C255E7', 60006, 100, false);
+	GumpAction('0x23C255E7', 60006, 100, false);
+
+	Orion.RequestContextMenu('0x001D0274');
+	Orion.WaitContextMenuID('0x001D0274', 0);
+	
+	GumpAction('0x08DB94B0', 60001, 100, false);
+	GumpAction('0x23C255E7', 60007, 100, false);
+	
+	if (Orion.Count('0x26B8') < 1)
+	{
+		Orion.Print('26', '*** FAILED ***');
+		TurnInQuest();
+	}
+	
+	//Store Transloc
+	Orion.Print('26', 'Store Transloc');
+	StoreItemWithKeys('0x466B92BD', '0x0EBCD833', 60030, '0x26B8', 0);
+	
+	Orion.Wait(2000);
+}
+
+

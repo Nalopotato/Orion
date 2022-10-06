@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data version="1">
+    <macro key_id="6" alt="true" ctrl="false" shift="false">
+        <action code="6" sub_code="0"/>
+        <action code="0" sub_code="0"/>
+    </macro>
+    <macro key_id="19" alt="true" ctrl="false" shift="false">
+        <action code="8" sub_code="10"/>
+        <action code="0" sub_code="0"/>
+    </macro>
+    <macro key_id="14" alt="true" ctrl="false" shift="false">
+        <action code="8" sub_code="13"/>
+        <action code="0" sub_code="0"/>
+    </macro>
+    <macro key_id="13" alt="true" ctrl="false" shift="false">
+        <action code="8" sub_code="12"/>
+        <action code="0" sub_code="0"/>
+    </macro>
+    <macro key_id="21" alt="true" ctrl="false" shift="false">
+        <action code="8" sub_code="17"/>
+        <action code="0" sub_code="0"/>
+    </macro>
+    <macro key_id="58" alt="false" ctrl="false" shift="false">
+        <action code="17" sub_code="0"/>
+        <action code="22" sub_code="0"/>
+        <action code="0" sub_code="0"/>
+    </macro>
+</data>

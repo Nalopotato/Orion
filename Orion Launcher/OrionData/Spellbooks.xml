@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data version="1">
+    <mage>
+        <spell id="0" name="Clumsy"/>
+        <spell id="1" name="Create Food"/>
+        <spell id="2" name="Feeblemind"/>
+        <spell id="3" name="Heal"/>
+        <spell id="4" name="Magic Arrow"/>
+        <spell id="5" name="Night Sight"/>
+        <spell id="6" name="Reactive Armor"/>
+        <spell id="7" name="Weaken"/>
+        <spell id="8" name="Agility"/>
+        <spell id="9" name="Cunning"/>
+        <spell id="10" name="Cure"/>
+        <spell id="11" name="Harm"/>
+        <spell id="12" name="Magic Trap"/>
+        <spell id="13" name="Magic Untrap"/>
+        <spell id="14" name="Protection"/>
+        <spell id="15" name="Strength"/>
+        <spell id="16" name="Bless"/>
+        <spell id="17" name="Fireball"/>
+        <spell id="18" name="Magic Lock"/>
+        <spell id="19" name="Poison"/>
+        <spell id="20" name="Telekinesis"/>
+        <spell id="21" name="Teleport"/>
+        <spell id="22" name="Unlock"/>
+        <spell id="23" name="Wall of Stone"/>
+        <spell id="24" name="Arch Cure"/>
+        <spell id="25" name="Arch Protection"/>
+        <spell id="26" name="Curse"/>
+        <spell id="27" name="Fire Field"/>
+        <spell id="28" name="Greater Heal"/>
+        <spell id="29" name="Lightning"/>
+        <spell id="30" name="Mana Drain"/>
+        <spell id="31" name="Recall"/>
+        <spell id="32" name="Blade Spirits"/>
+        <spell id="33" name="Dispel Field"/>
+        <spell id="34" name="Incognito"/>
+        <spell id="35" name="Magic Reflection"/>
+        <spell id="36" name="Mind Blast"/>
+        <spell id="37" name="Paralyze"/>
+        <spell id="38" name="Poison Field"/>
+        <spell id="39" name="Summ. Creature"/>
+        <spell id="40" name="Dispel"/>
+        <spell id="41" name="Energy Bolt"/>
+        <spell id="42" name="Explosion"/>
+        <spell id="43" name="Invisibility"/>
+        <spell id="44" name="Mark"/>
+        <spell id="45" name="Mass Curse"/>
+        <spell id="46" name="Paralyze Field"/>
+        <spell id="47" name="Reveal"/>
+        <spell id="48" name="Chain Lightning"/>
+        <spell id="49" name="Energy Field"/>
+        <spell id="50" name="Flame Strike"/>
+        <spell id="51" name="Gate Travel"/>
+        <spell id="52" name="Mana Vampire"/>
+        <spell id="53" name="Mass Dispel"/>
+        <spell id="54" name="Meteor Swarm"/>
+        <spell id="55" name="Polymorph"/>
+        <spell id="56" name="Earthquake"/>
+        <spell id="57" name="Energy Vortex"/>
+        <spell id="58" name="Resurrection"/>
+        <spell id="59" name="Air Elemental"/>
+        <spell id="60" name="Summon Daemon"/>
+        <spell id="61" name="Earth Elemental"/>
+        <spell id="62" name="Fire Elemental"/>
+        <spell id="63" name="Water Elemental"/>
+    </mage>
+    <necromancy>
+        <spell id="0" name="Animate Dead"/>
+        <spell id="1" name="Blood Oath"/>
+        <spell id="2" name="Corpse Skin"/>
+        <spell id="3" name="Curse Weapon"/>
+        <spell id="4" name="Evil Omen"/>
+        <spell id="5" name="Horrific Beast"/>
+        <spell id="6" name="Lich Form"/>
+        <spell id="7" name="Mind Rot"/>
+        <spell id="8" name="Pain Spike"/>
+        <spell id="9" name="Poison Strike"/>
+        <spell id="10" name="Strangle"/>
+        <spell id="11" name="Summon Familiar"/>
+        <spell id="12" name="Vampiric Embrace"/>
+        <spell id="13" name="Vengeful Spirit"/>
+        <spell id="14" name="Wither"/>
+        <spell id="15" name="Wraith Form"/>
+        <spell id="16" name="Exorcism"/>
+    </necromancy>
+    <paladin>
+        <spell id="0" name="Cleanse by Fire"/>
+        <spell id="1" name="Close Wounds"/>
+        <spell id="2" name="Consecrate Weapon"/>
+        <spell id="3" name="Dispel Evil"/>
+        <spell id="4" name="Divine Fury"/>
+        <spell id="5" name="Enemy of One"/>
+        <spell id="6" name="Holy Light"/>
+        <spell id="7" name="Noble Sacrifice"/>
+        <spell id="8" name="Remove Curse"/>
+        <spell id="9" name="Sacred Journey"/>
+    </paladin>
+    <bushido>
+        <spell id="0" name="Honorable Execution"/>
+        <spell id="1" name="Confidence"/>
+        <spell id="2" name="Evasion"/>
+        <spell id="3" name="Counter Attack"/>
+        <spell id="4" name="Lightning Strike"/>
+        <spell id="5" name="Momentum Strike"/>
+    </bushido>
+    <ninjitsu>
+        <spell id="0" name="Focus Attack"/>
+        <spell id="1" name="Death Strike"/>
+        <spell id="2" name="Animal Form"/>
+        <spell id="3" name="Ki Attack"/>
+        <spell id="4" name="Surprise Attack"/>
+        <spell id="5" name="Backstab"/>
+        <spell id="6" name="Shadowjump"/>
+        <spell id="7" name="Mirror Image"/>
+    </ninjitsu>
+    <spell_weaving>
+        <spell id="0" name="Arcane Circle"/>
+        <spell id="1" name="Gift of Renewal"/>
+        <spell id="2" name="Immolating Weapon"/>
+        <spell id="3" name="Attunement"/>
+        <spell id="4" name="Thunderstorm"/>
+        <spell id="5" name="Nature's Fury"/>
+        <spell id="6" name="Summon Fey"/>
+        <spell id="7" name="Summon Fiend"/>
+        <spell id="8" name="Reaper Form"/>
+        <spell id="9" name="Wildfire"/>
+        <spell id="10" name="Essence of Wind"/>
+        <spell id="11" name="Dryad Allure"/>
+        <spell id="12" name="Ethereal Voyage"/>
+        <spell id="13" name="Word of Death"/>
+        <spell id="14" name="Gift of Life"/>
+        <spell id="15" name="Arcane Empowerment"/>
+    </spell_weaving>
+    <mysticism>
+        <spell id="0" name="Nether Bolt"/>
+        <spell id="1" name="Healing Stone"/>
+        <spell id="2" name="Purge Magic"/>
+        <spell id="3" name="Enchant"/>
+        <spell id="4" name="Sleep"/>
+        <spell id="5" name="Eagle Strike"/>
+        <spell id="6" name="Animated Weapon"/>
+        <spell id="7" name="Stone Form"/>
+        <spell id="8" name="Spell Trigger"/>
+        <spell id="9" name="Mass Sleep"/>
+        <spell id="10" name="Cleansing Winds"/>
+        <spell id="11" name="Bombard"/>
+        <spell id="12" name="Spell Plague"/>
+        <spell id="13" name="Hail Storm"/>
+        <spell id="14" name="Nether Cyclone"/>
+        <spell id="15" name="Rising Colossus"/>
+    </mysticism>
+    <masteries>
+        <spell id="0" name="Inspire"/>
+        <spell id="1" name="Invigorate"/>
+        <spell id="2" name="Resilience"/>
+        <spell id="3" name="Perseverance"/>
+        <spell id="4" name="Tribulation"/>
+        <spell id="5" name="Despair"/>
+        <spell id="6" name="Death Ray"/>
+        <spell id="7" name="Ethereal Burst"/>
+        <spell id="8" name="Nether Blast"/>
+        <spell id="9" name="Mystic Weapon"/>
+        <spell id="10" name="Command Undead"/>
+        <spell id="11" name="Conduit"/>
+        <spell id="12" name="Mana Shield"/>
+        <spell id="13" name="Summon Reaper"/>
+        <spell id="14" name="Enchanted Summoning"/>
+        <spell id="15" name="Anticipate Hit"/>
+        <spell id="16" name="Warcry"/>
+        <spell id="17" name="Intuition"/>
+        <spell id="18" name="Rejuvenate"/>
+        <spell id="19" name="Holy Fist"/>
+        <spell id="20" name="Shadow"/>
+        <spell id="21" name="White Tiger Form"/>
+        <spell id="22" name="Flaming Shot"/>
+        <spell id="23" name="Playing The Odds"/>
+        <spell id="24" name="Thrust"/>
+        <spell id="25" name="Pierce"/>
+        <spell id="26" name="Stagger"/>
+        <spell id="27" name="Toughness"/>
+        <spell id="28" name="Onslaught"/>
+        <spell id="29" name="Focused Eye"/>
+        <spell id="30" name="Elemental Fury"/>
+        <spell id="31" name="Called Shot"/>
+        <spell id="32" name="Warrior's Gifts"/>
+        <spell id="33" name="Shield Bash"/>
+        <spell id="34" name="Bodyguard"/>
+        <spell id="35" name="Heighten Senses"/>
+        <spell id="36" name="Tolerance"/>
+        <spell id="37" name="Injected Strike"/>
+        <spell id="38" name="Potency"/>
+        <spell id="39" name="Rampage"/>
+        <spell id="40" name="Fists of Fury"/>
+        <spell id="41" name="Knockout"/>
+        <spell id="42" name="Whispering"/>
+        <spell id="43" name="Combat Training"/>
+        <spell id="44" name="Boarding"/>
+    </masteries>
+</data>

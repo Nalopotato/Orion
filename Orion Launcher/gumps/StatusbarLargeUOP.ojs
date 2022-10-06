@@ -1,0 +1,199 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+var obj = null;
+
+Gump.AddGumpPic(0, 0x2A6C, 0, 0, 0);
+
+Gump.AddText('ID_TEXT_NAME', 90, 50, Player.Name(), 0, false, 1, 0x0386, 420, 'Center');
+
+if (Orion.ProtocolVersion() >= Orion.MakeProtocolVersion('5.0.2'))
+{
+	obj = Gump.AddButton('ID_BUFF_GUMP', 0x7538, 0x7538, 0x7538, 40, 50);
+	obj.SetTooltip(0, 'Open buff window', 80);
+}
+
+if (Gump.DrawStatLockers())
+{
+	//Str
+	var status = Player.LockStr();
+	var graphic = 0x0984; //Up
+
+	if (status == 1)
+		graphic = 0x0986; //Down
+	else if (status == 2)
+		graphic = 0x082C; //Lock
+
+	obj = Gump.AddButton('ID_LOCKER_STR', graphic, graphic, graphic, 28, 76);
+	obj.SetTooltip(0, 'Change strength state', 80);
+
+
+
+	//Dex
+	status = Player.LockDex();
+
+	if (status == 1)
+		graphic = 0x0986; //Down
+	else if (status == 2)
+		graphic = 0x082C; //Lock
+	else
+		graphic = 0x0984; //Up
+
+	obj = Gump.AddButton('ID_LOCKER_DEX', graphic, graphic, graphic, 28, 102);
+	obj.SetTooltip(0, 'Change dexterity state', 80);
+
+
+
+	//Int
+	status = Player.LockInt();
+
+	if (status == 1)
+		graphic = 0x0986; //Down
+	else if (status == 2)
+		graphic = 0x082C; //Lock
+	else
+		graphic = 0x0984; //Up
+
+	obj = Gump.AddButton('ID_LOCKER_INT', graphic, graphic, graphic, 28, 132);
+	obj.SetTooltip(0, 'Change intelligence state', 80);
+}
+
+Gump.AddText('ID_TEXT_STR', 80, 77, Player.Str(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_DEX', 80, 105, Player.Dex(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_INT', 80, 133, Player.Int(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_HIT_CHANCE', 80, 161, Player.AttackChance(), 0, false, 1, 0x0386);
+
+var obj = Gump.AddHitBox('ID_TEXT_STR', 44, 70, 78, 24);
+obj.SetTooltip(0, 'Strength', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_DEX', 44, 98, 78, 24);
+obj.SetTooltip(0, 'Dexterity', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_INT', 44, 126, 78, 24);
+obj.SetTooltip(0, 'Intelligence', 80);
+
+var obj = Gump.AddHitBox('ID_TEXT_HIT_CHANCE', 44, 154, 78, 24);
+obj.SetTooltip(0, 'Hit Chance Increase', 80);
+
+
+
+Gump.AddText('ID_TEXT_HITS', 150, 70, Player.Hits(), 0, false, 1, 0x0386, 40, 'Center');
+Gump.AddLine(0, 150, 82, 185, 82, 0xFF383838);
+Gump.AddText('ID_TEXT_MAX_HITS', 150, 83, Player.MaxHits(), 0, false, 1, 0x0386, 40, 'Center');
+
+Gump.AddText('ID_TEXT_STAM', 150, 98, Player.Stam(), 0, false, 1, 0x0386, 40, 'Center');
+Gump.AddLine(0, 150, 110, 185, 110, 0xFF383838);
+Gump.AddText('ID_TEXT_MAX_STAM', 150, 111, Player.MaxStam(), 0, false, 1, 0x0386, 40, 'Center');
+
+Gump.AddText('ID_TEXT_MANA', 150, 126, Player.Mana(), 0, false, 1, 0x0386, 40, 'Center');
+Gump.AddLine(0, 150, 138, 185, 138, 0xFF383838);
+Gump.AddText('ID_TEXT_MAX_MANA', 150, 139, Player.MaxMana(), 0, false, 1, 0x0386, 40, 'Center');
+
+Gump.AddText('ID_TEXT_DEFENCE_CHANCE', 150, 161, Player.DefenceChance() + '/' + Player.MaxDefenceChance(), 0, false, 1, 0x0386);
+
+obj = Gump.AddHitBox('ID_TEXT_HITS', 124, 70, 80, 24);
+obj.SetTooltip(0, 'Hit Points', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_STAM', 124, 98, 80, 24);
+obj.SetTooltip(0, 'Stamina', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_MANA', 124, 126, 80, 24);
+obj.SetTooltip(0, 'Mana', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_DEFENCE_CHANCE', 124, 154, 80, 24);
+obj.SetTooltip(0, 'Defense Chance Increase', 80);
+
+
+
+Gump.AddText('ID_TEXT_MAX_STATS', 240, 77, Player.StatsCap(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_LUCK', 240, 105, Player.Luck(), 0, false, 1, 0x0386);
+
+Gump.AddText('ID_TEXT_WEIGHT', 240, 126, Player.Weight(), 0, false, 1, 0x0386, 40, 'Center');
+Gump.AddLine(0, 236, 138, 270, 138, 0xFF383838);
+Gump.AddText('ID_TEXT_MAX_WEIGHT', 240, 139, Player.MaxWeight(), 0, false, 1, 0x0386, 40, 'Center');
+
+Gump.AddText('ID_TEXT_LOWER_MANA', 240, 161, Player.LowerManaCost(), 0, false, 1, 0x0386);
+
+obj = Gump.AddHitBox('ID_TEXT_MAX_STATS', 207, 70, 80, 24);
+obj.SetTooltip(0, 'Maximum Stats', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_LUCK', 207, 98, 80, 24);
+obj.SetTooltip(0, 'Luck', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_WEIGHT', 207, 126, 80, 24);
+obj.SetTooltip(0, 'Weight', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_LOWER_MANA', 207, 154, 80, 24);
+obj.SetTooltip(0, 'Lower Mana Cost', 80);
+
+
+
+Gump.AddText('ID_TEXT_DAMAGE', 320, 77, Player.MinDamage() + '-' + Player.MaxDamage(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_WEAPON_DAMAGE', 320, 105, Player.WeaponDamage(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_FOLLOWERS', 320, 133, Player.Followers() + '/' + Player.MaxFollowers(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_SWING_SPEED', 320, 161, Player.WeaponSpeed(), 0, false, 1, 0x0386);
+
+obj = Gump.AddHitBox('ID_TEXT_DAMAGE', 290, 70, 78, 24);
+obj.SetTooltip(0, 'Damage', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_WEAPON_DAMAGE', 290, 98, 78, 24);
+obj.SetTooltip(0, 'Weapon Damage Increase', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_FOLLOWERS', 290, 126, 78, 24);
+obj.SetTooltip(0, 'Followers', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_SWING_SPEED', 290, 154, 78, 24);
+obj.SetTooltip(0, 'Swing Speed Increase', 80);
+
+
+
+Gump.AddText('ID_TEXT_LOWER_REAGENT_COST', 400, 77, Player.LowerReagentCost(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_SPELL_DAMAGE', 400, 105, Player.SpellDamage(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_FASTER_CASTING', 400, 133, Player.CastSpeed(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_CAST_RECOVERY', 400, 161, Player.CastRecovery(), 0, false, 1, 0x0386);
+
+obj = Gump.AddHitBox('ID_TEXT_LOWER_REAGENT_COST', 372, 70, 78, 24);
+obj.SetTooltip(0, 'Lower Reagent Cost', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_SPELL_DAMAGE', 372, 98, 78, 24);
+obj.SetTooltip(0, 'Spell Damage Increase', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_FASTER_CASTING', 372, 126, 78, 24);
+obj.SetTooltip(0, 'Faster Casting', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_CAST_RECOVERY', 372, 154, 78, 24);
+obj.SetTooltip(0, 'Faster Cast Recovery', 80);
+
+
+
+Gump.AddText('ID_TEXT_RESISTANCE_PHYSICAL', 475, 74, Player.Armor() + '/' + Player.MaxPhysicalResistance(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_RESISTANCE_FIRE', 475, 92, Player.FireResistance() + '/' + Player.MaxFireResistance(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_RESISTANCE_COLD', 475, 106, Player.ColdResistance() + '/' + Player.MaxColdResistance(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_RESISTANCE_POISON', 475, 120, Player.PoisonResistance() + '/' + Player.MaxPoisonResistance(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_RESISTANCE_ENERGY', 475, 134, Player.EnergyResistance() + '/' + Player.MaxEnergyResistance(), 0, false, 1, 0x0386);
+
+Gump.AddText('ID_TEXT_GOLD', 480, 161, Gump.GetGoldText(Player.Gold()), 0, false, 1, 0x0386);
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_PHYSICAL', 454, 76, 76, 14);
+obj.SetTooltip(0, 'Physical Resistance', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_FIRE', 454, 92, 76, 14);
+obj.SetTooltip(0, 'Fire Resistance', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_COLD', 454, 106, 76, 14);
+obj.SetTooltip(0, 'Cold Resistance', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_POISON', 454, 120, 76, 14);
+obj.SetTooltip(0, 'Poison Resistance', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_ENERGY', 454, 134, 76, 14);
+obj.SetTooltip(0, 'Energy Resistance', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_GOLD', 454, 154, 76, 24);
+obj.SetTooltip(0, 'Gold', 80);
+
+
+
+obj = Gump.AddHitBox('ID_MINIMIZE', 540, 180, 16, 16, true);
+obj.SetTooltip(0, 'Minimize the statusbar gump', 140);

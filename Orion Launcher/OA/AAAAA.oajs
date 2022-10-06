@@ -1,0 +1,70 @@
+//#include Recall.oajs
+//#include z_Helpers.oajs
+//#include Solen Farm.oajs
+
+function random()
+{
+	Orion.Say('faxon sell');
+	Orion.Wait(5000);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function StoreRune()
+{
+	while (Orion.FindType('0x1F14') > '')
+	{
+		var gump0 = Orion.GetGump('last');
+		gump0.Select(Orion.CreateGumpHook(60030));
+		Orion.Wait(300);
+
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetType('0x1F14');
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function GetProperties()
+{
+	var props = Orion.FindObject('0x423892B0').Properties();
+	var result = '';
+	
+	Orion.Print('PROPS: ' + props + ' ...END PROPS');
+	
+	for (var i = props.length - 3; i < props.length; i++)
+	{
+		if (parseInt(props[i]))
+			result += props[i];
+		Orion.Print(result);
+	}
+	
+	return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function test2()
+{
+	Orion.Print('Test 2');
+	
+	//Orion.Buy('Water', 'Saloman');
+	//Orion.KeyPress('A');
+	//Orion.Wait(500);
+	//Orion.TargetObject('0x00005550');
+	//Orion.Wait(1000);
+	
+	PourWater();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

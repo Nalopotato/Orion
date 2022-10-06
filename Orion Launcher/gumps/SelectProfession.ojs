@@ -1,0 +1,28 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+Gump.SetX(0);
+Gump.SetY(0);
+Gump.SetNoMove(true);
+Gump.SetNoClose(true);
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+var obj = Gump.AddButton('ID_QUIT', 0x1589, 0x158A, 0x158B, 555, 4);
+obj.SetTooltip(100011, 'Quit Ultima Online', 80);
+
+obj = Gump.AddButton('ID_ARROW_PREV', 0x15A1, 0x15A2, 0x15A3, 586, 445);
+obj.SetTooltip(100007, 'Previous screen');
+
+obj = Gump.AddButton('ID_ARROW_NEXT', 0x15A4, 0x15A5, 0x15A6, 610, 445);
+obj.SetTooltip(100008, 'Next screen');
+
+Gump.AddResizePic(0, 0x0A28, 80, 80, 546, 352);
+Gump.AddGumpPic(0, 0x058B, 0, 145, 57);
+Gump.AddGumpPic(0, 0x0589, 0, 222, 44);
+
+obj = Gump.AddButton('ID_ARROW_BACK_PROFESSION', 0x119C, 0x119D, 0x119E, 200, 356);
+obj.SetTooltip(0, 'Back to select profession category', 150);
+
+Gump.AddScrolledArea('ID_HTMLGUMP', 0x0BB8, 120, 137, 221, 214);

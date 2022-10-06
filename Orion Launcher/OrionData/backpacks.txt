@@ -1,0 +1,2 @@
+#Format: maximized_gump minimized_gump
+0x003C 0x0050

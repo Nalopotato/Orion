@@ -1,0 +1,56 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+Gump.AddPage(1);
+
+Gump.AddResizePic(0, 0x13BE, 0, 0, 30, 27);
+
+var obj = Gump.AddButton('ID_MINIMIZE', 0x15A1, 0x15A1, 0x15A1, 5, 3);
+obj.SetTooltip(0, 'Maximize the menubar gump');
+
+
+Gump.AddPage(2);
+
+var extraButtons = (Orion.ProtocolVersion() >= Orion.MakeProtocolVersion('7.0.63.2'));
+
+if (extraButtons)
+    Gump.AddResizePic(0, 0x13BE, 0, 0, 1041, 27);
+else
+    Gump.AddResizePic(0, 0x13BE, 0, 0, 826, 27);
+
+obj = Gump.AddButton('ID_MINIMIZE', 0x15A4, 0x15A4, 0x15A4, 5, 3);
+obj.SetTooltip(0, 'Minimize the menubar gump');
+
+var buttons = 
+[
+	//Graphic,  X,    TextX, Width,  ButtonID,        Name,          Tooltip
+	[ 0x098B,   30,   32,    63,    'ID_MAP',         "Map",         "Open the minimap gump" ],
+	[ 0x098D,   93,   96,    108,   'ID_PAPERDOLL',   "Paperdoll",   "Open the paperdoll gump" ],
+	[ 0x098D,   201,  204,   108,   'ID_INVENTORY',   "Inventory",   "Open backpack" ],
+	[ 0x098D,   309,  312,   108,   'ID_JOURNAL',     "Journal",     "Open the journal gump" ],
+	[ 0x098B,   417,  422,   63,    'ID_CHAT',        "Chat",        "Open the chat gump" ],
+	[ 0x098B,   480,  482,   63,    'ID_HELP',        "Help",        "Open server's help menu gump" ],
+	[ 0x098D,   543,  546,   108,   'ID_PROFILES',    "Profiles",    "Open profiles gump" ],
+	[ 0x098D,   651,  654,   108,   'ID_WORLD_MAP',   "World Map",   "Open Orion's world map gump" ],
+	[ 0x098B,   759,  762,   63,    'ID_INFO',        "< ? >",       "This option is not work now" ],
+	[ 0x098D,   822,  825,   108,   'ID_UO_STORE',    "UO Store",    "Open UO Store" ],
+	[ 0x098D,   930,  933,   108,   'ID_GLOBAL_CHAT', "Global Chat", "Open a Global chat" ]
+];
+
+var maxCount = buttons.length;
+
+if (!extraButtons)
+    maxCount -= 2;
+
+for (var i = 0; i < maxCount; i++)
+{
+	obj = Gump.AddButton(buttons[i][4], buttons[i][0], buttons[i][0], buttons[i][0], buttons[i][1], 2);
+	obj.SetTooltip(0, buttons[i][6]);
+
+	obj = Gump.AddTextEntry(buttons[i][4], buttons[i][2], 3, buttons[i][5], true, 1, 0, 0x0036, 0x0036, buttons[i][3], 'Center');
+	obj.SetCheckOnSerial(true);
+	obj.SetReadOnly(true);
+	obj.SetFocusedOffsetY(2);
+	obj.SetTooltip(0, buttons[i][6]);
+}

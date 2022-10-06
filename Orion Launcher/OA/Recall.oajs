@@ -1,0 +1,57 @@
+//#include Equip.oajs
+//#include AutoAttack.oajs
+//#include HealSelf.oajs
+//#include z_Helpers.oajs
+
+function UseRunebook(runeIndex, bookSerial)
+{
+	Orion.Print('Book Number: ' + (runeIndex + 3) / 10);
+	
+	Orion.UseObject(bookSerial);
+	Orion.Wait(300);
+
+	while (Orion.InJournal('needs time to recharge', 'sys') || Orion.InJournal('You must wait to', 'sys'))
+	{
+		Orion.ClearJournal();
+		Orion.Wait(500);
+	    Orion.UseObject(bookSerial);
+	    Orion.Wait(300);
+    }
+
+	GumpAction('0x554B87F3', runeIndex, 600, false);
+	GumpAction('0x554B87F3', 0, 200, true);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function Recall(book, runeNum) {
+	Orion.UseObject(book);
+	Orion.Wait(200);
+	GumpAction('0x554B87F3', runeNum, 200, false);
+}
+
+function RecallToBank()
+{
+	Recall('0x41059D8B', 7);
+}
+
+function RecallHome()
+{
+	Recall('0x41059D8B', 47);
+}
+
+function RecallSoT()
+{
+	Recall('0x41059D8B', 97);
+}
+
+function RecallBuyWater(tavern) {
+	if (tavern == 1) {
+		Recall('0x40C01DBE', 7); //Brit
+	} else {
+		Recall('0x40C01DBE', 137); //Minoc
+	}
+}
+
+function RecallRunSolen() {
+	Recall('0x40C01DBE', 127);
+}

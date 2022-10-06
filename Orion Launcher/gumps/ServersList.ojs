@@ -1,0 +1,50 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+Gump.SetX(0);
+Gump.SetY(0);
+Gump.SetNoMove(true);
+Gump.SetNoClose(true);
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+var obj = Gump.AddButton('ID_QUIT', 0x1589, 0x158A, 0x158B, 555, 4);
+obj.SetTooltip(100011, 'Quit Ultima Online', 80);
+
+obj = Gump.AddButton('ID_ARROW_PREV', 0x15A1, 0x15A2, 0x15A3, 586, 445);
+obj.SetTooltip(100018, 'Back to main menu');
+
+obj = Gump.AddButton('ID_ARROW_NEXT', 0x15A4, 0x15A5, 0x15A6, 610, 445);
+obj.SetTooltip(100019, 'Play UO on selected shard');
+
+if (Orion.ProtocolVersion() >= Orion.MakeProtocolVersion('5.0.0a'))
+{
+	Gump.AddText(0, 155, 70, 'Select which shard to play on:', 1044579, true, 0, 0xFFFF);
+	Gump.AddText(0, 400, 70, 'Latency:', 1044577, true, 0, 0xFFFF);
+	Gump.AddText(0, 470, 70, 'Packet Loss:', 1044578, true, 0, 0xFFFF);
+	Gump.AddText(0, 153, 368, 'Sort by:', 1044580, true, 0, 0xFFFF);
+	Gump.AddText('ID_LAST_SERVER_NAME', 243, 420, '-', 0, true, 0, 0xFFFF);
+}
+else
+{
+	Gump.AddText(0, 155, 70, 'Select which shard to play on:', 0, false, 9, 0x0481);
+	Gump.AddText(0, 400, 70, 'Latency:', 0, false, 9, 0x0481);
+	Gump.AddText(0, 470, 70, 'Packet Loss:', 0, false, 9, 0x0481);
+	Gump.AddText(0, 153, 368, 'Sort by:', 0, false, 9, 0x0481);
+	Gump.AddText('ID_LAST_SERVER_NAME', 243, 420, '-', 0, false, 9, 0x0481);
+}
+
+Gump.AddScrolledArea('ID_SERVER_LIST', 0x0DAC, 150, 90, 393, 271);
+
+obj = Gump.AddButton('ID_TIME_ZONE', 0x093B, 0x093D, 0x093C, 230, 366);
+obj.SetTooltip(100060, 'Sort by Time Zone');
+obj = Gump.AddButton('ID_FULL', 0x093E, 0x0940, 0x093F, 338, 366);
+obj.SetTooltip(100059, 'Sort by % Full');
+obj = Gump.AddButton('ID_CONNECTION', 0x0941, 0x0943, 0x0942, 446, 366);
+obj.SetTooltip(100058, 'Sort by Connection');
+
+Gump.AddGumpPic(0, 0x0589, 0, 150, 390);
+
+obj = Gump.AddButton('ID_LAST_SERVER', 0x15E8, 0x15E9, 0x15EA, 160, 400);
+obj.SetTooltip(100015, 'Select last visited shard', 100);

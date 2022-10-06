@@ -1,0 +1,32 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+Gump.SetX(0);
+Gump.SetY(0);
+Gump.SetNoMove(true);
+Gump.SetNoClose(true);
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+var obj = Gump.AddButton('ID_QUIT', 0x1589, 0x158A, 0x158B, 555, 4);
+obj.SetTooltip(100011, 'Quit Ultima Online', 80);
+
+obj = Gump.AddButton('ID_ARROW_PREV', 0x15A1, 0x15A2, 0x15A3, 586, 445);
+obj.SetTooltip(100044, 'Back to character generation screen');
+
+obj = Gump.AddButton('ID_ARROW_NEXT', 0x15A4, 0x15A5, 0x15A6, 610, 445);
+obj.SetTooltip(100045, 'Accept this character');
+
+Gump.AddResizePic(0, 0x0E10, 82, 125, 151, 310);
+Gump.AddGumpPic(0, 0x0709, 0, 280, 53);
+Gump.AddGumpPic(0, 0x070A, 0, 240, 73);
+Gump.AddGumpPic(0, 0x070B, 0, 248, 73, 215, 0);
+Gump.AddGumpPic(0, 0x070C, 0, 463, 73);
+
+obj = Gump.AddTextEntry('ID_NAME_FIELD', 257, 65, "Character's name", false, 5, 1, 1, 1, 300, 'Left', '', 30);
+obj.SetTooltip(100043, 'Click here to enter your character name', 150);
+obj.SetCheckOnSerial(true);
+
+Gump.AddGumpPic(0, 0x0708, 0, 238, 98);
+Gump.AddResizePic(0, 0x0E10, 475, 125, 151, 310);

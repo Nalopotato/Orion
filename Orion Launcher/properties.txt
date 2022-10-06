@@ -1,0 +1,22 @@
+Player: 
+Strength Bonus: 0
+Intelligence Bonus: 0
+Dexterity Bonus: 0
+Faster Casting: 0
+Faster Cast Recovery: 0
+Hit Point Increase: 0
+Hit Point Regeneration: 0
+Mana Increase: 0
+Mana Regeneration: 0
+Stamina Increase: 0
+Stamina Regeneration: 0
+Lower Reagent Cost: 0
+Lower Mana Cost: 0
+Damage Increase: 0
+Swing Speed Increase: 0
+Defense Chance Increase: 0
+Hit Chance Increase: 0
+Spell Damage Increase: 0
+Reflect Physical Damage: 0
+Enhance Potions: 0
+Luck: 0

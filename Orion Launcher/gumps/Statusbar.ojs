@@ -1,0 +1,55 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+Gump.SetLineWidth(109);
+var color = 0;
+var hitsColor = 0x0386;
+var textColor = 0x0386;
+var canChangeName = false;
+
+var character = Orion.FindObject(Gump.Serial());
+
+if (character.IsValid())
+{
+	hitsColor = 0;
+	color = character.ColorByNotoriety();
+
+	if (character.Notoriety() == 3 || character.Notoriety() == 4) //Orion::NT_CRIMINAL or Orion::NT_SOMEONE_GRAY
+		color = 0;
+
+	if (character.CanChangeName())
+	{
+		textColor = 0x000E;
+		canChangeName = true;
+	}
+}
+
+Gump.AddGumpPic('ID_BODY', 0x0804, color, 0, 0);
+
+//Hits
+Gump.AddGumpPic('ID_HITS_BODY', 0x0805, hitsColor, 34, 38);
+
+var percents = CalculatePercents(character.MaxHits(), character.Hits(), 109);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+{
+	//Character status line (blue)
+	var graphic = 0x0806;
+
+	if (character.Poisoned())
+		graphic = 0x0808; //Character status line (green)
+	else if (character.YellowHits())
+		graphic = 0x0809; //Character status line (yellow)
+
+	Gump.AddGumpPic('ID_HITS_VALUE', graphic, 0, 34, 38, percents, 0);
+}
+
+Gump.AddHitBox('ID_TEXT_FIELD', 16, 14, 109, 16);
+
+var obj = Gump.AddTextEntry('ID_TEXT_FIELD', 16, 14, 'name', false, 1, textColor, textColor, textColor, 130, 'Left', 'Fixed');
+obj.SetCheckOnSerial(true);
+obj.SetReadOnly(!canChangeName);

@@ -1,0 +1,58 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+
+var headerHeight = 21;
+
+var backgroundColor = 0xAA101010;
+var backgroundScopeColor = [ 0x7F00FF00, 0x7F00FF00, 0x7FFF7F27 ];
+var barsGroupName = ['↓ Party ↓', '↓ Friends ↓', '↓ Enemies ↓'];
+var barsGroupColor = ['0x0044', '0x0044', '0x0031'];
+var barHeightList = [ 54, 34, 34 ];
+var barWidth = 120;
+
+var maxBarsInColumn = 16;
+
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+
+// Gump mode, 0 - party, 1 - friends, 2 - enemies
+var mode = parseInt(Gump.Serial(), 16) % 3;
+
+var barHeight = barHeightList[mode];
+
+// Header
+Gump.AddPolygone(0, 0, 0, 0, barWidth, headerHeight, backgroundColor);
+Gump.AddPolygone(0, 0, 1, 1, barWidth - 1, headerHeight - 1, backgroundScopeColor[mode], true);
+
+Gump.AddText(0, 0, 0, barsGroupName[mode], 0, true, 0, barsGroupColor[mode], barWidth, 'Center');
+
+
+// Body
+var serials = Gump.GetGroupSerials();
+var tileX = 0;
+var tileY = 0;
+
+for (var i = 0; i < serials.length; i++)
+{
+	var x = tileX * barWidth;
+	var y = headerHeight + tileY * barHeight;
+
+	// See file StatusbarsGroupBarModel.ojs
+	var model = Gump.AddDataBox(serials[i], x, y);
+	model.SetDrawOnly(true);
+	model.SetMoveOnDrag(true);
+
+	var hitBox = Gump.AddHitBox(serials[i], x, y, barWidth, barHeight);
+	hitBox.SetMoveOnDrag(true);
+
+	tileY++;
+
+	if (tileY >= maxBarsInColumn)
+	{
+		tileY = 0;
+		tileX++;
+	}
+}

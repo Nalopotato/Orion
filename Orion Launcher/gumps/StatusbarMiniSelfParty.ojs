@@ -1,0 +1,55 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+Gump.SetLineWidth(96);
+var obj = Gump.AddGumpPic(0, 0x0803, 0, 0, 0);
+obj.SetSelectOnly(true);
+
+Gump.AddText(0, 16, -2, '[* SELF *]', 0, false, 3, 0x0386);
+
+Gump.AddButton('ID_BUTTON_HEAL_1', 0x0938, 0x093A, 0x093A, 16, 20);
+Gump.AddButton('ID_BUTTON_HEAL_2', 0x0939, 0x093A, 0x093A, 16, 33);
+
+//Hits
+Gump.AddGumpPic(0, 0x0028, 0, 34, 20);
+
+var percents = CalculatePercents(Player.MaxHits(), Player.Hits(), 96);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+{
+	//Player status line (blue)
+	var color = 0;
+
+	if (Player.Poisoned())
+		color = 0x003F; //Player status line (green)
+	else if (Player.YellowHits())
+		color = 0x0161; //Player status line (yellow)
+
+	Gump.AddGumpPic('ID_HITS_VALUE', 0x0029, color, 34, 20, percents, 0);
+}
+
+//Mana
+Gump.AddGumpPic(0, 0x0028, 0, 34, 33);
+
+percents = CalculatePercents(Player.MaxMana(), Player.Mana(), 96);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+	Gump.AddGumpPic('ID_MANA_VALUE', 0x0029, 0x0482, 34, 33, percents, 0);
+
+//Stam
+Gump.AddGumpPic(0, 0x0028, 0, 34, 45);
+
+percents = CalculatePercents(Player.MaxStam(), Player.Stam(), 96);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+	Gump.AddGumpPic('ID_STAM_VALUE', 0x0029, 0x0075, 34, 45, percents, 0);

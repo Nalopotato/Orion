@@ -1,0 +1,154 @@
+//#include z_Helpers.oajs
+//#include Recall.oajs
+
+// ********************************************************************
+var keysSerial = '0x447CBF38'; //Serial of your Wood Worker's Keys
+var metalKeys = '0x45CDBF39'; //Metal Worker's Keys
+var toolType = '0x0F43'; //Graphic of your Axe type
+var autoMove = true;  //Change to false if you want to run around manually
+//
+// *************************** Craft tool config ****************************
+var createNewTools = true;
+var toolAmt = 2; //Amount of tools to create per iteration
+var hookID = 30; //The Gump ID of the tool you want to create.  Pickaxe is 114.  Hatchet is 30
+// ********************************************************************
+
+function Lumberjacking() 
+{
+	if (autoMove)
+	{
+		Orion.WaitForAddObject('Runebook', 20000);
+		var bookSerial = Orion.GetSerial('Runebook');
+	}
+	
+	var runeIndex = 7;
+
+	while (!Player.Dead())
+	{
+		Orion.ClearJournal();
+		var tool = Orion.FindType(toolType, any, self);
+		
+		if (autoMove && tool > '')
+		{
+			UseRunebook(runeIndex, bookSerial);
+			runeIndex += 10;
+		}
+
+		if (tool <= '')
+		{
+			tool = Orion.FindType(toolType);
+			if (tool <= '')
+			{
+				Orion.Print('No more axes...');
+				if (createNewTools)
+					CreateNewTools(toolType, toolAmt, metalKeys, hookID);
+			}
+				
+			EquipTool(tool);
+		}
+
+		if 	(Orion.ObjAtLayer(2) == null) 
+			EquipTool(tool);
+
+		//Chop Tree
+		while (!Orion.InJournal('not enough wood here') && 
+				!Orion.InJournal('use an axe on that') && 
+				!Orion.InJournal('broke your axe'))
+		{
+			//Orion.Print('Chop');
+			Orion.UseObject(tool);
+			Orion.Wait('200');
+			Orion.TargetTileRelative('any', -1, 0, 0);
+			
+			if (!Orion.InJournal('not enough wood here'))
+				Orion.Wait('3500');
+			
+			if (Orion.InJournal('axe must be equipped'))
+				EquipTool(tool);
+			if (Player.Weight() > Player.MaxWeight() * 0.8)
+				CutLogs(tool);
+		}
+		
+		if (createNewTools)
+			CreateNewTools(toolType, toolAmt, metalKeys, hookID);
+		CutLogs(tool);
+		StoreBoards(keysSerial);
+		
+		//Wait until player moves or Runebook is done.  157 is rune #16
+		if (runeIndex >= 167)
+		{
+			Orion.Print('Get new Runebook');
+			
+			runeIndex = 7;
+			Orion.WaitForAddObject('Runebook');
+			Orion.Wait(100);
+			bookSerial = Orion.GetSerial('Runebook');
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function CutLogs(axe)
+{
+	//While there are logs, and left hand is equipped
+	while (Orion.FindType('0x1BDD') > '' && Orion.ObjAtLayer(2) != null)
+	{
+		//Orion.Print('Cut Logs');
+		Orion.UseObject(axe);
+		Orion.Wait('500');
+		Orion.TargetType('0x1BDD');
+		Orion.Wait('600');
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function StoreBoards(k)
+{
+	//Boards
+	while (Orion.FindType('0x1BD7') > '')
+	{
+		Orion.Print('Store Boards');
+		UseKeys(k, '0x1BD7');
+	}
+	//Bark Fragments
+	UseKeys(k, '0x318F');
+	
+	//Switches
+	UseKeys(k, '0x2F5F');
+	
+	//Fungi
+	UseKeys(k, '0x3191');
+	
+	//Parasitic Plants
+	UseKeys(k, '0x3190');
+	
+	//Close Gump
+	GumpAction('0x554B87F3', 0, 200, true);
+	Orion.CancelTarget();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function UseKeys(serial, item)
+{
+	Orion.Print('Use Keys: ' + Orion.Count(item, any, backpack, 0, false));
+	if (Orion.Count(item, any, backpack, 0, false) > 0)
+	{
+		Orion.UseObject(serial); //Use Keys
+		Orion.Wait('300');
+		
+		GumpAction('0x0A57934D', 60023, 200, false);
+		
+		//Orion.WaitForTarget(1000)
+		Orion.TargetType(item);
+		Orion.Wait('600');
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function EquipTool(serial)
+{
+	Orion.Disarm();
+	Orion.Wait('300');
+	Orion.Equip(serial);
+	Orion.Wait('500');
+}

@@ -1,0 +1,48 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+
+// Turn off optimizations, update full target system statusbar content always
+//Gump.SetUpdateWithoutOptimizations(true);
+
+var dataBox = null;
+var obj = null;
+
+if (Gump.IsEmpty())
+{
+	obj = Gump.AddGumpPic(0, 0x0804, 0, 0, 0);
+	obj.SetSelectOnly(true);
+	dataBox = Gump.AddDataBox();
+	dataBox.SetDrawOnly(true);
+}
+else
+	dataBox = Gump.FindControl('DataBox');
+
+var character = Orion.FindNewTargetSystemTarget();
+var color = (character.IsValid() ? 0 : 0x0386);
+
+dataBox.AddGumpPic('ID_BODY', 0x0804, color, 0, 0);
+
+dataBox.AddText('ID_NAME', 16, 14, 'name', 0, false, 1, 0x0386, 150, 'Left', 'Fixed');
+
+dataBox.AddGumpPic(0, 0x0805, color, 34, 38);
+
+var percents = CalculatePercents(character.MaxHits(), character.Hits(), 109);
+
+if (percents < 1)
+    percents = 1;
+
+//
+if (percents > 0)
+{
+	//Character status line (blue)
+	var graphic = 0x0806;
+
+	if (character.Poisoned())
+		graphic = 0x0808; //Character status line (green)
+	else if (character.YellowHits())
+		graphic = 0x0809; //Character status line (yellow)
+
+	dataBox.AddGumpPic('ID_HITS_VALUE', graphic, 0, 34, 38, percents, 0);
+}

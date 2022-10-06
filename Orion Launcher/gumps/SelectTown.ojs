@@ -1,0 +1,33 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+Gump.SetX(0);
+Gump.SetY(0);
+Gump.SetNoMove(true);
+Gump.SetNoClose(true);
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+if (Orion.ProtocolVersion() >= Orion.MakeProtocolVersion('7.0.13.0'))
+{
+	Gump.AddGumpPic('ID_MAP_GUMP', 0x15D9, 0, 62, 54);
+	Gump.AddGumpPic(0, 0x15DF, 0, 57, 49);
+	Gump.AddText('ID_MAP_TEXT', 240, 440, 'Current map name', 0, true, 0, 0x0481, 0, 'Left', 'BlackBorder');
+
+	Gump.AddButton('ID_PREV_MAP', 0x15A1, 0x15A2, 0x15A3, 65, 440);
+	Gump.AddButton('ID_NEXT_MAP', 0x15A4, 0x15A5, 0x15A6, 50, 440);
+}
+else
+	Gump.AddGumpPic(0, 0x1598, 0, 57, 49);
+
+var obj = Gump.AddButton('ID_QUIT', 0x1589, 0x158A, 0x158B, 555, 4);
+obj.SetTooltip(100011, 'Quit Ultima Online', 80);
+
+obj = Gump.AddButton('ID_ARROW_PREV', 0x15A1, 0x15A2, 0x15A3, 586, 445);
+obj.SetTooltip(100044, 'Back to character generation screen');
+
+obj = Gump.AddButton('ID_ARROW_NEXT', 0x15A4, 0x15A5, 0x15A6, 610, 445);
+obj.SetTooltip(0, 'Create character');
+
+Gump.AddScrolledArea('ID_HTML_GUMP', 0x0BB8, 452, 60, 175, 367);

@@ -1,0 +1,58 @@
+var TwoHmelee = '0x4DD16CBB';
+var OneHmelee = '0x497553F8';
+var shield = '0x42D93B6E';
+var bow = '0x401CEA7F';
+var playerContainerID = '0x005CFF32';
+
+function Equip2HMelee()
+{
+	//Orion.Print(Orion.FindObject('0x42464720').Container());
+	if (Orion.ObjAtLayer(2) == null || (Orion.ObjAtLayer(2) != null && Orion.FindObject(TwoHmelee).Container() != playerContainerID))
+	{
+		Orion.Disarm();
+		Orion.Wait('200');
+	}
+	
+	if (Orion.ObjAtLayer(2) == null && Orion.ObjAtLayer(1) == null)
+	{
+		Orion.Equip(TwoHmelee);
+		Orion.Wait('200');
+	}
+}
+
+function Equip1HMelee()
+{	
+	if (Orion.ObjAtLayer(2) == null || (Orion.ObjAtLayer(2) != null && 
+		Orion.FindObject(OneHmelee).Container() != playerContainerID))
+	{
+		Orion.Disarm();
+		Orion.Wait('200');
+		Orion.Equip(OneHmelee);
+	}
+	
+	//Shield
+	if (Orion.FindObject(shield).Container() != playerContainerID)
+	{
+		if (Orion.ObjAtLayer(1) != null)
+			Orion.Disarm();
+		Orion.Wait('620');
+		Orion.Equip(shield);
+	}
+	
+	Orion.Wait('200');
+}
+
+function EquipBow()
+{
+	if ((Orion.ObjAtLayer(2) != null && Orion.FindObject(bow).Container() != playerContainerID))
+	{
+		Orion.Disarm();
+		Orion.Wait('200');
+	}
+	
+	if (Orion.ObjAtLayer(2) == null)
+	{
+		Orion.Equip(bow);
+		Orion.Wait('200');
+	}
+}

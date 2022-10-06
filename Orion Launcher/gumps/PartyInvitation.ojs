@@ -1,0 +1,16 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+Gump.AddGumpPic(0, 0x080C, 0, 0, 0);
+
+Gump.AddText('ID_NAME_TEXT', 32, 24, '...', 0, true, 1, 0x0481);
+
+Gump.AddGumpPic(0, 0x080D, 0, 35, 59);
+Gump.AddGumpPic('ID_TIME_LINE', 0x080E, 0, 35, 59);
+
+Gump.AddPolygone(0, 0, 143, 58, 30, 18, 0xBB010101);
+Gump.AddText('ID_TIME_TEXT', 145, 57, '30.0', 0, true, 1, 0x0481);
+
+Gump.AddButton('ID_BUTTON_OKAY', 0x081A, 0x081C, 0x081B, 32, 80);
+Gump.AddButton('ID_BUTTON_CANCEL', 0x0817, 0x0819, 0x0818, 96, 80);

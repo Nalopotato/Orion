@@ -1,0 +1,38 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+Gump.SetX(0);
+Gump.SetY(0);
+Gump.SetNoMove(true);
+Gump.SetNoClose(true);
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+var obj = Gump.AddButton('ID_QUIT', 0x1589, 0x158A, 0x158B, 555, 4);
+obj.SetTooltip(100011, 'Quit Ultima Online', 80);
+
+obj = Gump.AddButton('ID_ARROW_PREV', 0x15A1, 0x15A2, 0x15A3, 586, 445);
+obj.SetTooltip(100026, 'Back to shard selection screen');
+
+obj = Gump.AddButton('ID_ARROW_NEXT', 0x15A4, 0x15A5, 0x15A6, 610, 445);
+obj.SetTooltip(100027, 'Play UO with selected character');
+
+var offsetY = 0;
+var textOffsetY = 0;
+
+if (Orion.ProtocolVersion() >= Orion.MakeProtocolVersion('6.0.4.0'))
+{
+	offsetY = 45;
+	textOffsetY = 10;
+}
+
+Gump.AddResizePic(0, 0x0A28, 160, 70, 408, 345 + offsetY);
+
+Gump.AddText(0, 267, 106 - textOffsetY, 'Character Selection', 3000050, false, 2, 0x0386);
+
+obj = Gump.AddButton('ID_NEW', 0x159D, 0x159E, 0x159F, 224, 350 + offsetY);
+obj.SetTooltip(100025, 'Create new character');
+
+obj = Gump.AddButton('ID_DELETE', 0x159A, 0x159B, 0x159C, 442, 350 + offsetY);
+obj.SetTooltip(100024, 'Delete this character');

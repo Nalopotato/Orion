@@ -1,0 +1,68 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+//Statusbar width
+var barWidth = 130;
+
+//Hits line height
+var linesHeight = 7;
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+var hitsColor = 0x0386;
+var textColor = 0x0386;
+
+var character = Orion.FindObject(Gump.Serial());
+
+if (character.IsValid())
+{
+	hitsColor = 0;
+	textColor = character.ColorByNotoriety();
+
+	if (character.Notoriety() == 3 || character.Notoriety() == 4) //Orion::NT_CRIMINAL or Orion::NT_SOMEONE_GRAY
+		textColor = 0x0481;
+}
+
+if (barWidth < 60)
+    barWidth = 60;
+
+if (linesHeight < 4)
+    linesHeight = 4;
+
+var barHeight = 28 + linesHeight;
+
+Gump.AddPolygone(0, 0, 0, 0, barWidth, barHeight, 0xAA101010);
+Gump.AddPolygone(0, 0, 1, 1, barWidth - 1, barHeight - 1, 0, true);
+
+Gump.AddHitBox('ID_TEXT_FIELD', 4, 0, barWidth - 8, 16);
+
+var obj = Gump.AddTextEntry('ID_TEXT_FIELD', 4, 0, 'name', false, 3, textColor, textColor, textColor, barWidth - 8, 'Center', 'Cropped');
+obj.SetCheckOnSerial(true);
+obj.SetReadOnly(true);
+
+var y = 24;
+var lineWidth = barWidth - 10;
+Gump.SetLineWidth(lineWidth);
+
+var percents = CalculatePercents(character.MaxHits(), character.Hits(), lineWidth);
+
+if (percents < 1)
+    percents = 1;
+
+//Red background
+Gump.AddPolygone(0, 0, 4, y, lineWidth, linesHeight, 0xFFC40000);
+
+//Character status line (blue)
+var hitsLineColor = 0xFF00C4C4;
+
+if (character.Poisoned())
+	hitsLineColor = 0xFF00C400; //Character status line (green)
+else if (character.YellowHits())
+	hitsLineColor = 0xFFC4C400; //Character status line (yellow)
+
+//Real hits line
+Gump.AddPolygone('ID_HITS_VALUE', 0, 4, y, percents, linesHeight, hitsLineColor);
+
+//Black scope
+Gump.AddPolygone(0, 0, 4, y, lineWidth + 1, linesHeight + 1, 0, true);

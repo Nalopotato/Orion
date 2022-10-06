@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data version="1">
+    <land_spring_tiles>
+        <tile graphic="0x0000" replace="0x0000"/>
+    </land_spring_tiles>
+    <land_summer_tiles>
+        <tile graphic="0x0000" replace="0x0000"/>
+    </land_summer_tiles>
+    <land_fall_tiles>
+        <tile graphic="0x0000" replace="0x0000"/>
+    </land_fall_tiles>
+    <land_winter_tiles>
+        <tile graphic="0x00C4" replace="0x011A"/>
+        <tile graphic="0x00C5" replace="0x011B"/>
+        <tile graphic="0x00C6" replace="0x011C"/>
+        <tile graphic="0x00C7" replace="0x011D"/>
+        <tile graphic="0x00CE" replace="0x05C0"/>
+        <tile graphic="0x00F8" replace="0x011A"/>
+        <tile graphic="0x00F9" replace="0x011B"/>
+        <tile graphic="0x00FA" replace="0x011C"/>
+        <tile graphic="0x00FB" replace="0x011D"/>
+        <tile graphic="0x0324" replace="0x0391"/>
+        <tile graphic="0x0325" replace="0x0392"/>
+        <tile graphic="0x0326" replace="0x0393"/>
+        <tile graphic="0x0327" replace="0x0394"/>
+        <tile graphic="0x0328" replace="0x0395"/>
+        <tile graphic="0x0329" replace="0x0396"/>
+        <tile graphic="0x05F1" replace="0x011A"/>
+        <tile graphic="0x05F2" replace="0x011B"/>
+        <tile graphic="0x05F3" replace="0x011C"/>
+        <tile graphic="0x05F4" replace="0x011D"/>
+        <tile graphic="0x05F9" replace="0x011A"/>
+        <tile graphic="0x05FA" replace="0x011B"/>
+        <tile graphic="0x05FB" replace="0x011C"/>
+        <tile graphic="0x05FC" replace="0x011D"/>
+        <tile graphic="0x05FD" replace="0x011B"/>
+        <tile graphic="0x05FE" replace="0x011C"/>
+        <tile graphic="0x05FF" replace="0x011D"/>
+        <tile graphic="0x0600" replace="0x011B"/>
+        <tile graphic="0x0601" replace="0x011C"/>
+        <tile graphic="0x0602" replace="0x011D"/>
+        <tile graphic="0x0603" replace="0x011C"/>
+        <tile graphic="0x0604" replace="0x011D"/>
+    </land_winter_tiles>
+    <land_desolation_tiles>
+        <tile graphic="0x0000" replace="0x0000"/>
+    </land_desolation_tiles>
+    <static_spring_tiles>
+        <tile graphic="0x0CA7" replace="0x0C84"/>
+        <tile graphic="0x0CAC" replace="0x0C46"/>
+        <tile graphic="0x0CAD" replace="0x0C48"/>
+        <tile graphic="0x0CAE" replace="0x0C4A"/>
+        <tile graphic="0x0CAF" replace="0x0C4E"/>
+        <tile graphic="0x0CB0" replace="0x0C4D"/>
+        <tile graphic="0x0CB5" replace="0x0C4A"/>
+        <tile graphic="0x0CB6" replace="0x0D2B"/>
+        <tile graphic="0x0D0C" replace="0x0D29"/>
+        <tile graphic="0x0D0D" replace="0x0D2B"/>
+        <tile graphic="0x0D0E" replace="0x0CBE"/>
+        <tile graphic="0x0D0F" replace="0x0CBF"/>
+        <tile graphic="0x0D10" replace="0x0CC0"/>
+        <tile graphic="0x0D11" replace="0x0C87"/>
+        <tile graphic="0x0D12" replace="0x0C38"/>
+        <tile graphic="0x0D13" replace="0x0D2F"/>
+        <tile graphic="0x0D14" replace="0x0D2B"/>
+    </static_spring_tiles>
+    <static_summer_tiles>
+        <tile graphic="0x0000" replace="0x0000"/>
+    </static_summer_tiles>
+    <static_fall_tiles>
+        <tile graphic="0x0C84" replace="0x1B22"/>
+        <tile graphic="0x0C8B" replace="0x0CC6"/>
+        <tile graphic="0x0C8C" replace="0x0CC6"/>
+        <tile graphic="0x0C8D" replace="0x0CC6"/>
+        <tile graphic="0x0C8E" replace="0x0CC6"/>
+        <tile graphic="0x0C9E" replace="0x0D3F"/>
+        <tile graphic="0x0CA7" replace="0x0C48"/>
+        <tile graphic="0x0CAC" replace="0x1B1F"/>
+        <tile graphic="0x0CAD" replace="0x1B20"/>
+        <tile graphic="0x0CAE" replace="0x1B21"/>
+        <tile graphic="0x0CAF" replace="0x0D0D"/>
+        <tile graphic="0x0CB0" replace="0x1B22"/>
+        <tile graphic="0x0CB5" replace="0x0D10"/>
+        <tile graphic="0x0CB6" replace="0x0D2B"/>
+        <tile graphic="0x0CC7" replace="0x0C4E"/>
+        <tile graphic="0x0CCE" replace="0x0CCF"/>
+        <tile graphic="0x0CD1" replace="0x0CD2"/>
+        <tile graphic="0x0CD4" replace="0x0CD5"/>
+        <tile graphic="0x0CDB" replace="0x0CDC"/>
+        <tile graphic="0x0CDE" replace="0x0CDF"/>
+        <tile graphic="0x0CE1" replace="0x0CE2"/>
+        <tile graphic="0x0CE4" replace="0x0CE5"/>
+        <tile graphic="0x0CE7" replace="0x0CE8"/>
+        <tile graphic="0x0CE9" replace="0x0D3F"/>
+        <tile graphic="0x0CEA" replace="0x0D40"/>
+        <tile graphic="0x0D95" replace="0x0D97"/>
+        <tile graphic="0x0D99" replace="0x0D9B"/>
+    </static_fall_tiles>
+    <static_winter_tiles>
+        <tile graphic="0x0000" replace="0x0000"/>
+    </static_winter_tiles>
+    <static_desolation_tiles>
+        <tile graphic="0x0C37" replace="0x1BAE"/>
+        <tile graphic="0x0C38" replace="0x1BAE"/>
+        <tile graphic="0x0C45" replace="0x1B9C"/>
+        <tile graphic="0x0C46" replace="0x1B9D"/>
+        <tile graphic="0x0C47" replace="0x1BAE"/>
+        <tile graphic="0x0C48" replace="0x1B9C"/>
+        <tile graphic="0x0C49" replace="0x1B9D"/>
+        <tile graphic="0x0C4A" replace="0x1BAE"/>
+        <tile graphic="0x0C4B" replace="0x1BAE"/>
+        <tile graphic="0x0C4C" replace="0x1B16"/>
+        <tile graphic="0x0C4D" replace="0x1BAE"/>
+        <tile graphic="0x0C4E" replace="0x1B9C"/>
+        <tile graphic="0x0C84" replace="0x1B84"/>
+        <tile graphic="0x0C85" replace="0x1B9C"/>
+        <tile graphic="0x0C8B" replace="0x1B84"/>
+        <tile graphic="0x0C8C" replace="0x1BAE"/>
+        <tile graphic="0x0C8D" replace="0x1BAE"/>
+        <tile graphic="0x0C8E" replace="0x1B8D"/>
+        <tile graphic="0x0C93" replace="0x1BAE"/>
+        <tile graphic="0x0C94" replace="0x1BAE"/>
+        <tile graphic="0x0C98" replace="0x1BAE"/>
+        <tile graphic="0x0C99" replace="0x1B8D"/>
+        <tile graphic="0x0C9E" replace="0x1182"/>
+        <tile graphic="0x0C9F" replace="0x1BAE"/>
+        <tile graphic="0x0CA0" replace="0x1BAE"/>
+        <tile graphic="0x0CA1" replace="0x1BAE"/>
+        <tile graphic="0x0CA2" replace="0x1BAE"/>
+        <tile graphic="0x0CA3" replace="0x1BAE"/>
+        <tile graphic="0x0CA4" replace="0x1BAE"/>
+        <tile graphic="0x0CA7" replace="0x1B9C"/>
+        <tile graphic="0x0CAC" replace="0x1B8D"/>
+        <tile graphic="0x0CAD" replace="0x1AE1"/>
+        <tile graphic="0x0CAE" replace="0x1B9C"/>
+        <tile graphic="0x0CAF" replace="0x1B9C"/>
+        <tile graphic="0x0CB0" replace="0x1BAE"/>
+        <tile graphic="0x0CB1" replace="0x1BAE"/>
+        <tile graphic="0x0CB2" replace="0x1BAE"/>
+        <tile graphic="0x0CB3" replace="0x1BAE"/>
+        <tile graphic="0x0CB4" replace="0x1BAE"/>
+        <tile graphic="0x0CB5" replace="0x1B9C"/>
+        <tile graphic="0x0CB6" replace="0x1B9D"/>
+        <tile graphic="0x0CB7" replace="0x1BAE"/>
+        <tile graphic="0x0CB8" replace="0x1CEA"/>
+        <tile graphic="0x0CB9" replace="0x1B8D"/>
+        <tile graphic="0x0CBA" replace="0x1B8D"/>
+        <tile graphic="0x0CBB" replace="0x1B8D"/>
+        <tile graphic="0x0CBC" replace="0x1B8D"/>
+        <tile graphic="0x0CBD" replace="0x1B8D"/>
+        <tile graphic="0x0CBE" replace="0x1B8D"/>
+        <tile graphic="0x0CC5" replace="0x1BAE"/>
+        <tile graphic="0x0CC7" replace="0x1B0D"/>
+        <tile graphic="0x0CE9" replace="0x0ED7"/>
+        <tile graphic="0x0CEA" replace="0x0D3F"/>
+        <tile graphic="0x0D0C" replace="0x1BAE"/>
+        <tile graphic="0x0D0D" replace="0x1BAE"/>
+        <tile graphic="0x0D0E" replace="0x1BAE"/>
+        <tile graphic="0x0D0F" replace="0x1B1C"/>
+        <tile graphic="0x0D10" replace="0x1BAE"/>
+        <tile graphic="0x0D11" replace="0x122B"/>
+        <tile graphic="0x0D12" replace="0x1BAE"/>
+        <tile graphic="0x0D13" replace="0x1BAE"/>
+        <tile graphic="0x0D14" replace="0x122B"/>
+        <tile graphic="0x0D15" replace="0x1B9C"/>
+        <tile graphic="0x0D16" replace="0x1B8D"/>
+        <tile graphic="0x0D17" replace="0x122B"/>
+        <tile graphic="0x0D18" replace="0x1BAE"/>
+        <tile graphic="0x0D19" replace="0x1BAE"/>
+        <tile graphic="0x0D29" replace="0x1B9C"/>
+        <tile graphic="0x0D2B" replace="0x1B15"/>
+        <tile graphic="0x0D2D" replace="0x1BAE"/>
+        <tile graphic="0x0D2F" replace="0x1BAE"/>
+        <tile graphic="0x1B7E" replace="0x1E34"/>
+    </static_desolation_tiles>
+</data>

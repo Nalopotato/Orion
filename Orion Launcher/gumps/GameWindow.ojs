@@ -1,0 +1,15 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+Gump.SetNoClose(true);
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+Gump.AddGumpPic('ID_SCOPE_LEFT', 0x0A8D, 0, 0, 0);
+Gump.AddGumpPic('ID_SCOPE_RIGHT', 0x0A8D, 0, 0, 0);
+Gump.AddGumpPic('ID_SCOPE_TOP', 0x0A8C, 0, 0, 0);
+Gump.AddGumpPic('ID_SCOPE_BOTTOM', 0x0A8C, 0, 0, 0);
+
+var obj = Gump.AddResizeButton('ID_RESIZER', 0x0837, 0x0838, 0x0838, 0, 0);
+obj.SetTooltip(0, 'Resize game window', 100);

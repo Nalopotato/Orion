@@ -1,0 +1,201 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+Gump.SetLineWidth(109);
+var obj = null;
+
+Gump.AddGumpPic(0, 0x2A6C, 0, 0, 0);
+
+Gump.AddText('ID_TEXT_NAME', 182, 12, Player.Name(), 0, false, 1, 0x0386, 180, 'Center');
+
+if (Orion.ProtocolVersion() >= Orion.MakeProtocolVersion('5.0.2'))
+{
+	obj = Gump.AddButton('ID_BUFF_GUMP', 0x7539, 0x7539, 0x7539, 154, 12);
+	obj.SetTooltip(0, 'Open buff window', 80);
+}
+
+//Hits
+Gump.AddGumpPic(0, 0x0805, 0, 34, 12);
+
+var percents = CalculatePercents(Player.MaxHits(), Player.Hits(), 109);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+{
+	//Player status line (blue)
+	var graphic = 0x0806;
+
+	if (Player.Poisoned())
+		graphic = 0x0808; //Player status line (green)
+	else if (Player.YellowHits())
+		graphic = 0x0809; //Player status line (yellow)
+
+	Gump.AddGumpPic('ID_HITS_VALUE', graphic, 0, 34, 12, percents, 0);
+}
+
+//Mana
+Gump.AddGumpPic(0, 0x0805, 0, 34, 25);
+
+percents = CalculatePercents(Player.MaxMana(), Player.Mana(), 109);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+	Gump.AddGumpPic('ID_MANA_VALUE', 0x0806, 0, 34, 25, percents, 0);
+
+//Stam
+Gump.AddGumpPic(0, 0x0805, 0, 34, 38);
+
+percents = CalculatePercents(Player.MaxStam(), Player.Stam(), 109);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+	Gump.AddGumpPic('ID_STAM_VALUE', 0x0806, 0, 34, 38, percents, 0);
+
+if (Gump.DrawStatLockers())
+{
+	//Str
+	var status = Player.LockStr();
+	var graphic = 0x0984; //Up
+
+	if (status == 1)
+		graphic = 0x0986; //Down
+	else if (status == 2)
+		graphic = 0x082C; //Lock
+
+	obj = Gump.AddButton('ID_LOCKER_STR', graphic, graphic, graphic, 9, 76);
+	obj.SetTooltip(0, 'Change strength state', 80);
+
+
+
+	//Dex
+	status = Player.LockDex();
+
+	if (status == 1)
+		graphic = 0x0986; //Down
+	else if (status == 2)
+		graphic = 0x082C; //Lock
+	else
+		graphic = 0x0984; //Up
+
+	obj = Gump.AddButton('ID_LOCKER_DEX', graphic, graphic, graphic, 9, 102);
+	obj.SetTooltip(0, 'Change dexterity state', 80);
+
+
+
+	//Int
+	status = Player.LockInt();
+
+	if (status == 1)
+		graphic = 0x0986; //Down
+	else if (status == 2)
+		graphic = 0x082C; //Lock
+	else
+		graphic = 0x0984; //Up
+
+	obj = Gump.AddButton('ID_LOCKER_INT', graphic, graphic, graphic, 9, 132);
+	obj.SetTooltip(0, 'Change intelligence state', 80);
+}
+
+Gump.AddText('ID_TEXT_STR', 56, 73, Player.Str(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_DEX', 56, 101, Player.Dex(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_INT', 56, 129, Player.Int(), 0, false, 1, 0x0386);
+
+var obj = Gump.AddHitBox('ID_TEXT_STR', 22, 65, 68, 26);
+obj.SetTooltip(0, 'Strength', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_DEX', 22, 94, 68, 26);
+obj.SetTooltip(0, 'Dexterity', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_INT', 22, 123, 68, 26);
+obj.SetTooltip(0, 'Intelligence', 80);
+
+
+
+Gump.AddText('ID_TEXT_HITS', 116, 65, Player.Hits(), 0, false, 1, 0x0386, 40, 'Center');
+Gump.AddLine(0, 116, 78, 150, 78, 0xFF383838);
+Gump.AddText('ID_TEXT_MAX_HITS', 116, 79, Player.MaxHits(), 0, false, 1, 0x0386, 40, 'Center');
+
+Gump.AddText('ID_TEXT_STAM', 116, 95, Player.Stam(), 0, false, 1, 0x0386, 40, 'Center');
+Gump.AddLine(0, 116, 108, 150, 108, 0xFF383838);
+Gump.AddText('ID_TEXT_MAX_STAM', 116, 108, Player.MaxStam(), 0, false, 1, 0x0386, 40, 'Center');
+
+Gump.AddText('ID_TEXT_MANA', 116, 124, Player.Mana(), 0, false, 1, 0x0386, 40, 'Center');
+Gump.AddLine(0, 116, 138, 150, 138, 0xFF383838);
+Gump.AddText('ID_TEXT_MAX_MANA', 116, 138, Player.MaxMana(), 0, false, 1, 0x0386, 40, 'Center');
+
+obj = Gump.AddHitBox('ID_TEXT_HITS', 92, 65, 66, 26);
+obj.SetTooltip(0, 'Hit Points', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_STAM', 92, 94, 66, 26);
+obj.SetTooltip(0, 'Stamina', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_MANA', 92, 123, 66, 26);
+obj.SetTooltip(0, 'Mana', 80);
+
+
+
+Gump.AddText('ID_TEXT_FOLLOWERS', 189, 73, Player.Followers() + '/' + Player.MaxFollowers(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_RESISTANCE_PHYSICAL', 189, 101, Player.Armor(), 0, false, 1, 0x0386);
+
+Gump.AddText('ID_TEXT_WEIGHT', 189, 124, Player.Weight(), 0, false, 1, 0x0386, 34, 'Center');
+Gump.AddLine(0, 185, 138, 219, 138, 0xFF383838);
+Gump.AddText('ID_TEXT_MAX_WEIGHT', 189, 138, Player.MaxWeight(), 0, false, 1, 0x0386, 34, 'Center');
+
+obj = Gump.AddHitBox('ID_TEXT_FOLLOWERS', 160, 64, 63, 26);
+obj.SetTooltip(0, 'Followers', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_PHYSICAL', 160, 94, 63, 26);
+obj.SetTooltip(0, 'Physical Resistance', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_WEIGHT', 160, 123, 63, 26);
+obj.SetTooltip(0, 'Carrying Capacity', 80);
+
+
+
+Gump.AddText('ID_TEXT_LUCK', 278, 44, Player.Luck(), 0, false, 1, 0x0386); //HungerSatisfactionMinutesRemaining
+Gump.AddText('ID_TEXT_MAX_STATS', 256, 73, Player.StatsCap(), 0, false, 1, 0x0386); //MurderCounts
+Gump.AddText('ID_TEXT_DAMAGE', 256, 101, Player.MinDamage() + '-' + Player.MaxDamage(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_GOLD', 249, 129, Gump.GetGoldText(Player.Gold()), 0, false, 1, 0x0386);
+
+obj = Gump.AddHitBox('ID_TEXT_LUCK', 225, 36, 77, 26);
+obj.SetTooltip(0, 'Hunger Satisfaction Remaining', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_MAX_STATS', 225, 64, 77, 26);
+obj.SetTooltip(0, 'Murder counts', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_DAMAGE', 225, 94, 77, 26);
+obj.SetTooltip(0, 'Damage', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_GOLD', 225, 123, 77, 26);
+obj.SetTooltip(0, 'Gold', 80);
+
+
+
+Gump.AddText('ID_TEXT_RESISTANCE_COLD', 350, 44, Player.ColdResistance(), 0, false, 1, 0x0386); //CriminalTimerSecondsRemaining
+Gump.AddText('ID_TEXT_RESISTANCE_FIRE', 350, 72, Player.FireResistance(), 0, false, 1, 0x0386); //MurderCountDecayHoursRemaining
+Gump.AddText('ID_TEXT_RESISTANCE_POISON', 350, 102, Player.PoisonResistance(), 0, false, 1, 0x0386); //PlayervsPlayerCooldownSecondsRemaining
+Gump.AddText('ID_TEXT_RESISTANCE_ENERGY', 350, 131, Player.EnergyResistance(), 0, false, 1, 0x0386); //BandageTimerSecondsRemaining
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_COLD', 304, 36, 80, 26);
+obj.SetTooltip(0, 'Criminal Time Remaining', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_FIRE', 304, 64, 80, 26);
+obj.SetTooltip(0, 'Hours Remaining Until Murder Counts Removed', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_POISON', 304, 94, 80, 26);
+obj.SetTooltip(0, 'Player Vs. Player Time Remaining', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_RESISTANCE_ENERGY', 304, 123, 80, 26);
+obj.SetTooltip(0, 'Bandage Timer', 80);
+
+
+
+obj = Gump.AddHitBox('ID_MINIMIZE', 385, 145, 20, 20, true);
+obj.SetTooltip(0, 'Minimize the statusbar gump', 140);

@@ -1,0 +1,53 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+
+// Turn off optimizations, update full statusbar content always
+//Gump.SetUpdateWithoutOptimizations(true);
+
+Gump.SetLineWidth(109);
+Gump.AddGumpPic('ID_BODY', (Player.InWarMode() ? 0x0807 : 0x0803), 0, 0, 0);
+
+//Hits
+Gump.AddGumpPic(0, 0x0805, 0, 34, 12);
+
+var percents = CalculatePercents(Player.MaxHits(), Player.Hits(), 109);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+{
+	//Player status line (blue)
+	var graphic = 0x0806;
+
+	if (Player.Poisoned())
+		graphic = 0x0808; //Player status line (green)
+	else if (Player.YellowHits())
+		graphic = 0x0809; //Player status line (yellow)
+
+	Gump.AddGumpPic('ID_HITS_VALUE', graphic, 0, 34, 12, percents, 0);
+}
+
+//Mana
+Gump.AddGumpPic(0, 0x0805, 0, 34, 25);
+
+percents = CalculatePercents(Player.MaxMana(), Player.Mana(), 109);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+	Gump.AddGumpPic('ID_MANA_VALUE', 0x0806, 0, 34, 25, percents, 0);
+
+//Stam
+Gump.AddGumpPic(0, 0x0805, 0, 34, 38);
+
+percents = CalculatePercents(Player.MaxStam(), Player.Stam(), 109);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+	Gump.AddGumpPic('ID_STAM_VALUE', 0x0806, 0, 34, 38, percents, 0);

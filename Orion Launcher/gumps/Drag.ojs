@@ -1,0 +1,16 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+Gump.AddGumpPic(0, 0x085C, 0, 0, 0);
+
+Gump.AddSlider('ID_SCROLL',  0x0845, 0x0846, 0x0846, 0, 29, 16, false, false, 105, 0, 1, 1);
+
+Gump.AddHitBox('ID_TEXT_FIELD', 28, 40, 60, 16);
+
+var obj = Gump.AddTextEntry('ID_TEXT_FIELD', 29, 42, '1', false, 1, 0x0386, 0x0386, 0x0386, 0, 'Left', '', 2);
+obj.SetCheckOnSerial(true);
+obj.SetNumbersOnly(true);
+obj.SetFocus();
+
+Gump.AddButton('ID_OKAY', 0x081A, 0x081C, 0x081B, 102, 37);

@@ -1,0 +1,58 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+Gump.SetX(0);
+Gump.SetY(0);
+Gump.SetNoMove(true);
+Gump.SetNoClose(true);
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+if (Orion.ProtocolVersion() >= Orion.MakeProtocolVersion('5.0.0a'))
+	Gump.AddGumpPic(0, 0x2329, 0, 0, 0);
+
+Gump.AddGumpPic(0, 0x15A0, 0, 0, 4);
+Gump.AddResizePic(0, 0x13BE, 128, 288, 451, 157);
+
+if (Orion.ProtocolVersion() < Orion.MakeProtocolVersion('5.0.0a'))
+	Gump.AddGumpPic(0, 0x058A, 0, 286, 45);
+
+var obj = Gump.AddButton('ID_QUIT', 0x1589, 0x158A, 0x158B, 555, 4);
+obj.SetTooltip(100011, 'Quit Ultima Online', 80);
+
+obj = Gump.AddButton('ID_ARROW_NEXT', 0x15A4, 0x15A5, 0x15A6, 610, 445);
+obj.SetTooltip(100008, 'Next screen');
+
+obj = Gump.AddResizePic('ID_ACCOUNT', 0x0BB8, 328, 343, 210, 30);
+obj.SetTooltip(100009, 'Click here to enter your user name', 150);
+
+obj = Gump.AddTextEntry('ID_ACCOUNT', 335, 343, 'account', false, 5, 0x034F, 0x03E3, 0x0021, 190, 'Left', '', 31);
+obj.SetTooltip(100009, 'Click here to enter your user name', 150);
+obj.SetCheckOnSerial(true);
+
+obj = Gump.AddResizePic('ID_PASSWORD', 0x0BB8, 328, 383, 210, 30);
+obj.SetTooltip(100010, 'Click here to enter your password', 150);
+
+obj = Gump.AddTextEntry('ID_PASSWORD', 335, 385, 'password', false, 5, 0x034F, 0x03E3, 0x0021, 190, 'Left', '', 31);
+obj.SetTooltip(100010, 'Click here to enter your password', 150);
+obj.SetCheckOnSerial(true);
+obj.SetFocus();
+obj.SetMask('*');
+
+obj = Gump.AddCheckBox('ID_AUTOLOGIN', 0x00D2, 0x00D2, 0x00D3, 0x00D2, 183, 417, false);
+obj.SetTooltip(0, 'Auto LogIn (without server and character selection screens)', 150);
+obj.SetTextLabel(0, 'Auto Login', 'RightCenter', false);
+
+obj = Gump.AddCheckBox('ID_SAVE_PASSWORD', 0x00D2, 0x00D2, 0x00D3, 0x00D2, 328, 417, false);
+obj.SetTooltip(0, 'Save your password in config file', 150);
+obj.SetTextLabel(0, 'Save Password', 'RightCenter', false);
+
+Gump.AddText(0, 253, 305, 'Log in to Ultima Online', 0, false, 2, 0x0386);
+Gump.AddText(0, 183, 345, 'Account Name', 0, false, 2, 0x0386);
+Gump.AddText(0, 183, 385, 'Password', 0, false, 2, 0x0386);
+//Gump.AddText(0, 286, 455, 'UO Version ~client_version~.', 0, false, 9, 0x034E);
+Gump.AddText(0, 286, 455, 'UO Version ' + Orion.ClientVersion() + '.', 0, false, 9, 0x034E);
+
+//Gump.AddText(0, 286, 467, 'Orion v~orion_version~', 0, false, 9, 0x034E);
+Gump.AddText(0, 286, 467, 'Orion v' + Orion.OrionVersion(), 0, false, 9, 0x034E);

@@ -1,0 +1,91 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+var minimizerX = 243;
+var minimizerY = 150;
+
+if (Orion.ProtocolVersion() >= Orion.MakeProtocolVersion('3.0.8d') && !Orion.OldStyleStatusbar())
+	Gump.AddGumpPic(0, 0x2A6C, 0, 0, 0);
+else
+{
+	minimizerX = 244;
+	minimizerY = 112;
+
+	Gump.AddGumpPic(0, 0x0802, 0, 0, 0);
+}
+
+Gump.AddText('ID_TEXT_NAME', 86, 42, Player.Name(), 0, false, 1, 0x0386);
+
+Gump.AddText('ID_TEXT_STR', 86, 61, Player.Str(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_DEX', 86, 73, Player.Dex(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_INT', 86, 85, Player.Int(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_SEX', 86, 97, (Player.Female() ? 'F' : 'M'), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_ARMOR', 86, 109, Player.Armor(), 0, false, 1, 0x0386);
+
+Gump.AddText('ID_TEXT_HITS', 171, 61, Player.Hits() + '/' + Player.MaxHits(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_MANA', 171, 73, Player.Mana() + '/' + Player.MaxMana(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_STAM', 171, 85, Player.Stam() + '/' + Player.MaxStam(), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_GOLD', 171, 97, Gump.GetGoldText(Player.Gold()), 0, false, 1, 0x0386);
+Gump.AddText('ID_TEXT_WEIGHT', 171, 109, Player.Weight(), 0, false, 1, 0x0386);
+
+
+
+var obj = Gump.AddHitBox('ID_TEXT_STR', 86, 61, 34, 12);
+obj.SetTooltip(0, 'Strength', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_DEX', 86, 73, 34, 12);
+obj.SetTooltip(0, 'Dexterity', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_INT', 86, 85, 34, 12);
+obj.SetTooltip(0, 'Intelligence', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_SEX', 86, 97, 34, 12);
+obj.SetTooltip(0, 'Sex', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_ARMOR', 86, 109, 34, 12);
+obj.SetTooltip(0, 'Armor', 80);
+
+
+
+obj = Gump.AddHitBox('ID_TEXT_HITS', 171, 61, 66, 12);
+obj.SetTooltip(0, 'Hit Points', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_MANA', 171, 73, 66, 12);
+obj.SetTooltip(0, 'Mana', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_STAM', 171, 85, 66, 12);
+obj.SetTooltip(0, 'Stamina', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_GOLD', 171, 97, 66, 12);
+obj.SetTooltip(0, 'Gold', 80);
+
+obj = Gump.AddHitBox('ID_TEXT_WEIGHT', 171, 109, 66, 12);
+obj.SetTooltip(0, 'Weight', 80);
+
+
+
+if (!Orion.OldStyleStatusbar())
+{
+	if (Orion.ProtocolVersion() == Orion.MakeProtocolVersion('3.0.8d'))
+	{
+		Gump.AddText('ID_TEXT_MAX_STATS', 171, 124, Player.StatsCap(), 0, false, 1, 0x0386);
+
+		obj = Gump.AddHitBox('ID_TEXT_MAX_STATS', 171, 124, 34, 12);
+		obj.SetTooltip(0, 'Maximum stats', 80);
+	}
+	else if (Orion.ProtocolVersion() == Orion.MakeProtocolVersion('3.0.8j'))
+	{
+		Gump.AddText('ID_TEXT_MAX_STATS', 180, 131, Player.StatsCap(), 0, false, 1, 0x0386);
+		Gump.AddText('ID_TEXT_FOLLOWERS', 180, 144, Player.Followers() + '/' + Player.MaxFollowers(), 0, false, 1, 0x0386);
+
+		obj = Gump.AddHitBox('ID_TEXT_MAX_STATS', 180, 131, 34, 12);
+		obj.SetTooltip(0, 'Maximum stats', 80);
+
+		obj = Gump.AddHitBox('ID_TEXT_FOLLOWERS', 171, 144, 34, 12);
+		obj.SetTooltip(0, 'Followers', 80);
+	}
+}
+
+obj = Gump.AddHitBox('ID_MINIMIZE', minimizerX, minimizerY, 16, 16, true);
+obj.SetTooltip(0, 'Minimize the statusbar gump', 140);

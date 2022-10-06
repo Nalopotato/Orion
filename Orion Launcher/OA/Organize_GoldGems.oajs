@@ -1,0 +1,7 @@
+//#include z_Helpers.oajs
+
+function Organize_GoldGems()
+{
+	OrganizeGoldGems(backpack);
+	OrganizeGoldGems('0x4E0D4DB8');
+}

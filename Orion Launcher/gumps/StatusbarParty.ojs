@@ -1,0 +1,80 @@
+//See _README.txt file for details
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+Gump.SetLineWidth(96);
+var obj = Gump.AddGumpPic(0, 0x0803, 0, 0, 0);
+obj.SetSelectOnly(true);
+
+var character = Orion.FindObject(Gump.Serial());
+
+var outOfRange = character.OutOfRange();
+
+var textColor = (outOfRange ? 0x0390 : character.ColorByNotoriety());
+
+Gump.AddHitBox('ID_TEXT_FIELD', 16, -2, 109, 16);
+
+obj = Gump.AddTextEntry('ID_TEXT_FIELD', 16, -2, 'name', false, 3, textColor, textColor, textColor, 130, 'Left', 'Fixed');
+obj.SetCheckOnSerial(true);
+obj.SetReadOnly(!character.CanChangeName());
+
+if (!outOfRange)
+{
+	Gump.AddButton('ID_BUTTON_HEAL_1', 0x0938, 0x093A, 0x093A, 16, 20);
+	Gump.AddButton('ID_BUTTON_HEAL_2', 0x0939, 0x093A, 0x093A, 16, 33);
+}
+
+var color = (outOfRange ? 0x0390 : 0);
+
+//Hits
+Gump.AddGumpPic(0, 0x0028, color, 34, 20);
+
+var percents = CalculatePercents(character.MaxHits(), character.Hits(), 96);
+
+if (percents < 1)
+    percents = 1;
+
+//if (percents > 0)
+{
+	if (!outOfRange)
+	{
+		if (character.Poisoned())
+			color = 0x003F; //Character status line (green)
+		else if (character.YellowHits())
+			color = 0x0161; //Character status line (yellow)
+	}
+
+	Gump.AddGumpPic('ID_HITS_VALUE', 0x0029, color, 34, 20, percents, 0);
+}
+
+color = (outOfRange ? 0x0390 : 0);
+
+//Mana
+Gump.AddGumpPic(0, 0x0028, color, 34, 33);
+
+if (!character.MaxMana())
+    percents = 96;
+else
+{
+    percents = CalculatePercents(character.MaxMana(), character.Mana(), 96);
+
+    if (percents < 1)
+        percents = 1;
+}
+
+Gump.AddGumpPic('ID_MANA_VALUE', 0x0029, (color ? color : 0x0482), 34, 33, percents, 0);
+
+//Stam
+Gump.AddGumpPic(0, 0x0028, color, 34, 45);
+
+if (!character.MaxStam())
+    percents = 96;
+else
+{
+    percents = CalculatePercents(character.MaxStam(), character.Stam(), 96);
+
+    if (percents < 1)
+        percents = 1;
+}
+
+Gump.AddGumpPic('ID_STAM_VALUE', 0x0029, (color ? color : 0x0075), 34, 45, percents, 0);

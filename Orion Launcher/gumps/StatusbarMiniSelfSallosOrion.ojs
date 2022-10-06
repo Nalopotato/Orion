@@ -1,0 +1,109 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Gump configuration=======================
+//==================================================================
+//Statusbar width
+var barWidth = 130;
+
+//Hits/Mana/Stam lines height
+var linesHeight = 7;
+
+//Indentation between the lines
+var linesIndentations = 2;
+//==================================================================
+//==========================Gump's content==========================
+//==================================================================
+if (barWidth < 60)
+    barWidth = 60;
+
+if (linesHeight < 4)
+    linesHeight = 4;
+
+if (linesIndentations < 1)
+    linesIndentations = 1;
+
+var textColor = 0x0481;
+
+var character = Orion.FindObject(Gump.Serial());
+
+if (character.IsValid())
+{
+	if (character.Notoriety() == 3 || character.Notoriety() == 4) //Orion::NT_CRIMINAL or Orion::NT_SOMEONE_GRAY
+		textColor = 0x0481;
+	else
+		textColor = character.ColorByNotoriety();
+}
+
+var barHeight = 28 + (linesHeight * 3) + (linesIndentations * 2);
+
+Gump.AddPolygone(0, 0, 0, 0, barWidth, barHeight, 0xAA101010);
+Gump.AddPolygone(0, 0, 1, 1, barWidth - 1, barHeight - 1, 0, true);
+
+Gump.AddText(0, 4, 0, character.Name(), 0, false, 3, textColor, barWidth - 8, 'Center', 'Cropped');
+
+var y = 24;
+var lineWidth = barWidth - 10;
+Gump.SetLineWidth(lineWidth);
+
+
+
+var percents = CalculatePercents(character.MaxHits(), character.Hits(), lineWidth);
+
+if (percents < 1)
+    percents = 1;
+
+//Red background
+Gump.AddPolygone(0, 0, 4, y, lineWidth, linesHeight, 0xFFC40000);
+
+//Character status line (blue)
+var hitsLineColor = 0xFF00C4C4;
+
+if (character.Poisoned())
+	hitsLineColor = 0xFF00C400; //Character status line (green)
+else if (character.YellowHits())
+	hitsLineColor = 0xFFC4C400; //Character status line (yellow)
+
+//Real hits line
+Gump.AddPolygone('ID_HITS_VALUE', 0, 4, y, percents, linesHeight, hitsLineColor);
+
+//Black scope
+Gump.AddPolygone(0, 0, 4, y, lineWidth + 1, linesHeight + 1, 0, true);
+
+y += linesHeight + linesIndentations;
+
+
+
+percents = CalculatePercents(character.MaxMana(), character.Mana(), lineWidth);
+
+if (percents < 1)
+    percents = 1;
+
+//Red background
+Gump.AddPolygone(0, 0, 4, y, lineWidth, linesHeight, 0xFFC40000);
+
+//Real mana line
+Gump.AddPolygone('ID_MANA_VALUE', 0, 4, y, percents, linesHeight, 0xFF00C4C4);
+
+//Black scope
+Gump.AddPolygone(0, 0, 4, y, lineWidth + 1, linesHeight + 1, 0, true);
+
+y += linesHeight + linesIndentations;
+
+
+
+
+percents = CalculatePercents(character.MaxStam(), character.Stam(), lineWidth);
+
+if (percents < 1)
+    percents = 1;
+
+//Red background
+Gump.AddPolygone(0, 0, 4, y, lineWidth, linesHeight, 0xFFC40000);
+
+//Real stam line
+Gump.AddPolygone('ID_STAM_VALUE', 0, 4, y, percents, linesHeight, 0xFF00C4C4);
+
+//Black scope
+Gump.AddPolygone(0, 0, 4, y, lineWidth + 1, linesHeight + 1, 0, true);
+
+y += linesHeight + linesIndentations;

@@ -1,0 +1,24 @@
+//#include Equip.oajs
+//#include Recall.oajs
+//#include AutoAttack.oajs
+
+function HealSelf() {
+	while (!Player.Dead()) 
+	{
+		//Orion.Print('Hits/Max: ' + Player.Hits() + '/' + Player.MaxHits());
+
+		//Calculate the bandage speed based on player dex
+		var waitTime = (8000 - (Math.ceil((Player.Dex() - 80) / 20)) * 1000);
+		if (Orion.Timer('Heal') == -1) { Orion.SetTimer('Heal'); }
+
+		if (Player.Hits() < (Player.MaxHits() * 0.9) && Orion.Timer('Heal') > waitTime)
+		{
+			//Orion.Print('Heal');
+			Orion.Say('[bandself');
+			Orion.SetTimer('Heal');
+			Orion.Wait(waitTime);
+		}
+		
+		Orion.Wait(100);
+	}
+}

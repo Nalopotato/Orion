@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data version="1">
+    <settings color_good="0x0042" color_harmic="0x0028" color_neutral="0x0389" wait_for_target_time="5000" validate_by_power="false"/>
+    <spell_area id="23" range="3" mass="false" type="1" active="true" magery_bonus_divisor="0" name="Wall of Stone"/>
+    <spell_area id="53" range="15" mass="true" type="2" active="false" magery_bonus_divisor="0" name="Mass Dispel"/>
+    <spell_area id="25" range="5" mass="true" type="0" active="false" magery_bonus_divisor="0" name="Arch Protection"/>
+    <spell_area id="54" range="4" mass="true" type="1" active="true" magery_bonus_divisor="0" name="Meteor Swarm"/>
+    <spell_area id="24" range="5" mass="true" type="0" active="false" magery_bonus_divisor="0" name="Arch Cure"/>
+    <spell_area id="38" range="3" mass="false" type="1" active="true" magery_bonus_divisor="0" name="Poison Field"/>
+    <spell_area id="27" range="3" mass="false" type="1" active="true" magery_bonus_divisor="0" name="Fire Field"/>
+    <spell_area id="56" range="12" mass="true" type="1" active="false" magery_bonus_divisor="0" name="Earthquake"/>
+    <spell_area id="45" range="5" mass="true" type="1" active="false" magery_bonus_divisor="0" name="Mass Curse"/>
+    <spell_area id="47" range="12" mass="true" type="0" active="false" magery_bonus_divisor="0" name="Reveal"/>
+    <spell_area id="49" range="3" mass="false" type="1" active="true" magery_bonus_divisor="0" name="Energy Field"/>
+    <spell_area id="46" range="3" mass="false" type="1" active="true" magery_bonus_divisor="0" name="Paralyze Field"/>
+    <spell_area id="48" range="5" mass="true" type="1" active="true" magery_bonus_divisor="0" name="Chain Lightning"/>
+</data>

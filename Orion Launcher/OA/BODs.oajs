@@ -1,0 +1,102 @@
+//#include z_Helpers.oajs
+//#include Recall.oajs
+
+function CollectBODs()
+{
+	UseRunebook(127, '0x41059D8B');
+	
+	//Tailor
+	Orion.RequestContextMenu('0x0024B98F');
+	Orion.WaitContextMenuID('0x0024B98F', 3);
+	
+	GumpAction('0xBE0DAD1E', 3747, 500, false);
+	Orion.Wait(500);
+
+	//Blacksmith
+	Orion.RequestContextMenu('0x0005EC21');
+	Orion.WaitContextMenuID('0x0005EC21', 3);
+	
+	GumpAction('0x9BADE6EA', 7266, 500, false);
+	Orion.Wait(500);
+	
+	//Bowyer
+	Orion.RequestContextMenu('0x00066686');
+	Orion.WaitContextMenuID('0x00066686', 3);
+	
+	GumpAction('0x9BADE6EA', 6384, 500, false);
+	Orion.Wait(500);
+	
+	//Carpenter
+	Orion.RequestContextMenu('0x000AB38F');
+	Orion.WaitContextMenuID('0x000AB38F', 3);
+	
+	GumpAction('0xBE0DAD1E', 9794, 500, false);
+	Orion.Wait(500);
+	
+	//Tamer
+	Orion.RequestContextMenu('0x00014D58');
+	Orion.WaitContextMenuID('0x00014D58', 5);
+	
+	GumpAction('0x15BC9AA4', 9374, 500, false);
+	Orion.Wait(500);
+	
+	//Orion.Print(Orion.Count('0x2258'));
+	
+	//Get BOD books
+	Orion.Say('bank');
+	Orion.Wait(200);
+	Orion.DragItem('0x450B96DB', 1);
+	Orion.Wait('500');
+	Orion.DropDraggedItem(backpack, 44, 114);
+	Orion.Wait('500');
+	
+	Orion.FindType('0x2258', any, backpack).forEach(function(serial)
+	{
+		if (Orion.FindObject(serial).Color() === '0x0483') //Tailoring
+		{
+			Orion.DragItem(serial, 1);
+			Orion.Wait('300');
+			Orion.DropDraggedItem('0x41636DE5');
+			Orion.Wait('600');
+			return;
+		}
+		if (Orion.FindObject(serial).Color() === '0x044E') //Blacksmithy
+		{
+			Orion.DragItem(serial, 1);
+			Orion.Wait('300');
+			Orion.DropDraggedItem('0x432DEA06');
+			Orion.Wait('600');
+			return;
+		}
+		if (Orion.FindObject(serial).Color() === '0x0058') //Bowcraft
+		{
+			Orion.DragItem(serial, 1);
+			Orion.Wait('300');
+			Orion.DropDraggedItem('0x432E3090');
+			Orion.Wait('600');
+			return;
+		}
+		if( Orion.FindObject(serial).Color() === '0x0030') //Carpentry
+		{
+			Orion.DragItem(serial, 1);
+			Orion.Wait('300');
+			Orion.DropDraggedItem('0x432DCDB8');
+			Orion.Wait('600');
+			return;
+		}
+		if (Orion.FindObject(serial).Color() === '0x01CA') //Taming
+		{
+			Orion.DragItem(serial, 1);
+			Orion.Wait('300');
+			Orion.DropDraggedItem('0x416393ED');
+			Orion.Wait('600');
+			return;
+		}
+	});
+	
+	//Drag BOD books back to bank
+	Orion.DragItem('0x450B96DB', 1);
+	Orion.Wait('500');
+	Orion.DropDraggedItem('0x45E995BF', 100, 151);
+	Orion.Wait('500');
+}

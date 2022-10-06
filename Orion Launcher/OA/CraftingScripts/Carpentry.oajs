@@ -1,0 +1,164 @@
+//#include z_Helpers.oajs
+
+var metalKeys = '0x45CDBF39'; //Serial of your metal keys, loaded with Iron
+var woodKeys = '0x447CBF38'; //Serial of Wood Workers keys
+var toolKit = '0x1EB8';
+var iron = '0x1BF2';
+var boards = '0x1BD7';
+var tool = '0x1034';
+var item = '';
+//
+var mediumCrate = '0x0E3F';
+var ballotBox = '0x14F0';
+var bokuto = '0x27A8';
+var quarterStaff = '0x0E89';
+var gnarledStaff = '0x13F8';
+var tetsubo = '0x27A6';
+var ornateChest = '0x280D';
+var decorativeBox = '0x2DF3';
+
+function Carpentry()
+{
+	while (!Player.Dead())
+	{
+		Orion.ClearJournal();
+		
+		if (Orion.Count(boards) > 20 && Orion.Count(tool) > 0)
+		{
+			Orion.UseType(tool);
+			
+			if (Orion.SkillValue('Carpentry') <= 480)
+			{
+				item = mediumCrate;
+				
+				GumpAction('0x38920ABD', 15, 100, false);
+				GumpAction('0x38920ABD', 15, 100, false);
+				GumpAction('0x38920ABD', 16, 1500, false);
+			}
+			else if (Orion.SkillValue('Carpentry') < 700)
+			{
+				item = ballotBox;
+				
+				GumpAction('0x38920ABD', 43, 100, false);
+				GumpAction('0x38920ABD', 43, 100, false);
+				GumpAction('0x38920ABD', 79, 1500, false);
+			}
+			else if (Orion.SkillValue('Carpentry') < 736)
+			{
+				item = bokuto;
+				
+				GumpAction('0x38920ABD', 22, 100, false);
+				GumpAction('0x38920ABD', 22, 100, false);
+				GumpAction('0x38920ABD', 30, 1500, false);
+			}
+			else if (Orion.SkillValue('Carpentry') < 789)
+			{
+				item = quarterStaff;
+				
+				GumpAction('0x38920ABD', 22, 100, false);
+				GumpAction('0x38920ABD', 22, 100, false);
+				GumpAction('0x38920ABD', 16, 1500, false);
+			}
+			else if (Orion.SkillValue('Carpentry') < 1039) //1039
+			{
+				item = gnarledStaff;
+				
+				GumpAction('0x38920ABD', 22, 100, false);
+				GumpAction('0x38920ABD', 22, 100, false);
+				GumpAction('0x38920ABD', 23, 1500, false);
+			}
+			else if (Orion.SkillValue('Carpentry') < 1100)
+			{
+				item = tetsubo;
+				
+				GumpAction('0x38920ABD', 22, 100, false);
+				GumpAction('0x38920ABD', 22, 100, false);
+				GumpAction('0x38920ABD', 44, 1500, false);
+			}
+			else if (Orion.SkillValue('Carpentry') < 1150)
+			{
+				item = ornateChest;
+				
+				GumpAction('0x38920ABD', 15, 100, false);
+				GumpAction('0x38920ABD', 15, 100, false);
+				GumpAction('0x38920ABD', 65, 1500, false);
+			}
+			else if (Orion.SkillValue('Carpentry') < 1200)
+			{
+				item = decorativeBox;
+				
+				GumpAction('0x38920ABD', 15, 100, false);
+				GumpAction('0x38920ABD', 15, 100, false);
+				GumpAction('0x38920ABD', 191, 1500, false);
+			}
+			else
+				return;
+			
+			//Recyle Item
+			for (var i = 0; i <= Orion.Count(item); i++)
+			{
+				if (Orion.InJournal('worn out your tool') || item === ballotBox)
+					break;
+					
+				GumpAction('0x38920ABD', 14, 200, false);
+				
+				Orion.WaitForTarget(1000)
+				Orion.TargetType(item, 0, backpack, '', false);
+				Orion.Wait(300);
+			}
+
+			// Trash Item
+			if (item === ballotBox && Orion.Count(item, any, backpack, 0, false) > 5)
+			{
+				Orion.FindType(ballotBox, any, backpack).forEach(function(serial)
+				{
+					if (Orion.FindObject(serial).Properties() === 'Ballot Box')
+					{
+						Orion.DragItem(serial);
+						Orion.Wait('100');
+						Orion.DropDraggedItem('0x45E995AD');
+						Orion.Wait('500');
+					}
+				});
+			}
+		}
+		
+		RefillBoards();
+		CreateNewTools(tool, 4, metalKeys, 51);
+		
+		if (Orion.Count(boards) < 20)
+		{
+			return;
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function RefillBoards()
+{
+	if (Orion.Count(boards) <= 35)
+	{
+		Orion.Print('Getting Wood');
+		while (Orion.Count(boards) < 300)
+		{
+			Orion.UseObject(woodKeys);
+ 			Orion.Wait(300);
+
+			GumpAction('0x0A57934D', 60000, 200, false);
+		}
+	}
+	if (item === tetsubo && Orion.Count(iron) < 10)
+	{
+		Orion.Print('Getting Iron');
+		while (Orion.Count(iron) < 100)
+		{
+			Orion.UseObject(metalKeys);
+ 			Orion.Wait(300);
+
+			GumpAction('0xFB1E68CB', 60000, 200, true);
+		}
+	}
+}
+
+
+

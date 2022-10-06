@@ -1,0 +1,23 @@
+//See _README.txt file for details
+//==================================================================
+// CalculatePercents - calculate value in percents
+//   max - number, maximum value
+//   current - number, current value
+//   maxValue - number, maximum output value
+//   return-value - number, calculated value
+//==================================================================
+function CalculatePercents(max, current, maxValue)
+{
+	if (max > 0)
+	{
+		max = (current * 100) / max;
+
+		if (max > 100)
+			max = 100;
+
+		if (max > 1)
+			max = (maxValue * max) / 100;
+	}
+
+	return max;
+}

@@ -1,0 +1,9 @@
+function PrintTextColors()
+{
+	var count = 100;
+	
+	for (var i = 1; i <= count; i++)
+	{
+		Orion.Print(i, i);
+	}
+}

@@ -1,0 +1,153 @@
+//#include Recall.oajs
+//#include HealSelf.oajs
+//#include Looting.oajs
+//#include z_Helpers.oajs
+
+var autoSkin = false;
+
+function AutoAttack()
+{	
+	while(!Player.Dead())
+	{
+		//Orion.Print('Buffs: ' + Player.BuffsCount);
+		
+		if (Orion.Timer('Consecrate') == -1) { Orion.SetTimer('Consecrate'); }
+		if (Orion.Timer('EoO') == -1) { Orion.SetTimer('EoO'); }
+		if (Orion.Timer('DF') == -1) { Orion.SetTimer('DF'); }
+		if (Orion.Timer('Ninjitsu') == -1) { Orion.SetTimer('Ninjitsu'); }
+		
+		//Stay mounted
+		if (!Orion.ObjAtLayer('Mount')) 
+		{
+			Orion.UseObject('0x40E9C89E');
+			Orion.Wait(300);
+		}
+		
+		if (Player.Stam() < (Player.MaxStam() * 0.8) && Orion.Timer('DF') > 1000 && Player.Mana() > 30) {
+			Orion.Say('[cs divinefury');
+			Orion.SetTimer('DF');
+			Orion.Wait(300);
+		}
+
+		var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '12', 'gray|criminal|orange|red');
+		Orion.Wait(50);
+		
+		if (mob.length > 0)
+		{
+			Orion.Attack(mob);
+
+			if (Orion.Timer('Consecrate') > 8000 && Player.Mana() > 40) {
+				Orion.Say('[cs consecrateweapon');
+			    Orion.SetTimer('Consecrate');
+			    Orion.Wait(300);
+			}
+			if (mob.length == 1 && Orion.Timer('EoO') > 200000 && Player.Mana() > 40) {
+				Orion.Say('[cs enemyofone');
+				Orion.SetTimer('EoO');
+				Orion.Wait(300);
+			}
+			
+			if (Player.Mana() > (Player.MaxMana() * 0.6))
+			{
+				//if (Orion.Timer('Ninjitsu') > 3000) {Orion.Cast('502');Orion.SetTimer('Ninjitsu');Orion.Wait(100);}
+				if (!Orion.AbilityStatus('primary'))
+					Orion.UseAbility('primary');
+				Orion.Wait(100);
+			}
+		}
+		else //Chill - no enemies
+		{
+			//Vampiric Embrace
+			if (Player.Color() != '0x847E')
+			{
+				Orion.Print('Vampiric Embrace');
+				Orion.Say('[cs vampiricembrace');
+				Orion.SetTimer('DF');
+				Orion.Wait(2500);
+			}
+			
+			Orion.Wait(300);
+		}
+		
+		if (autoSkin)
+			LootWool();
+		StoreItems();
+	}
+}
+
+
+function StoreItems() 
+{
+	StoreGold();
+	
+	//Refill Bandages
+	if (Orion.Count('0x0E21', 'any', backpack) < 10)
+	{
+		Orion.Print('26', 'Cutting Cloth');
+		if (Orion.Count('0x1766', 'any', backpack) < 25)
+		{
+			Orion.UseObject('0x474E827D');
+			GumpAction('0x41F8FC19', 60020, 500, false);
+			GumpAction('0x41F8FC19', 0, 500, true);
+		}
+		
+		Orion.UseObject('0x4672D08D');
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetType('0x1766');
+			
+		Orion.Wait(500);
+	}
+	
+	//Refill Arrows
+	if (Orion.Count('0x0F3F', 'any', backpack) < 5 && Player.Weight() < (Player.MaxWeight() * 0.75))
+	{
+		Orion.Print('Arrows');
+		Orion.UseObject('0x447CBF38');
+		GumpAction('0x0A57934D', 60013, 500, false);
+		GumpAction('0x0A57934D', 0, 500, true);
+	}
+	
+	//Daemon Bones
+	if (Player.Weight() > (Player.MaxWeight() * 0.6))
+	{
+		Orion.Print('26', 'Daemon Bones');
+		StoreItemWithKeys('0x466B92BD', '0x0EBCD833', 60030, '0x0F80', 40);
+	}
+	
+	//Zoogi
+	//StoreZoogi();
+	
+	//Store Wool
+	if (Orion.Count('0x0DF8', 'any', backpack) > 30 || (Orion.Count('0x0DF8', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.7)))
+	{
+		Orion.Print('26', 'Wool');		
+		StoreItemWithKeys('0x474E827D', '0x41F8FC19', 60029, '0x0DF8', 5);
+	}
+	
+	//Store Feathers
+	if (Orion.Count('0x1BD1', 'any', backpack) > 50 || (Orion.Count('0x1BD1', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.7)))
+	{
+		Orion.Print('26', 'Feathers');		
+		StoreItemWithKeys('0x447CBF38', '0x0A57934D', 60023, '0x1BD1', 5);
+	}
+	
+	//Store Leather
+	if (Orion.Count('0x1081', 'any', backpack) > 40 || (Orion.Count('0x1081', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.65)))
+	{
+		while (Orion.Count('0x1081', 'any', backpack) > 1)
+		{
+			Orion.Print('26', 'Leather');
+			StoreItemWithKeys('0x474E827D', '0x41F8FC19', 60029, '0x1081', 5);
+		}
+	}
+	
+	//Store Scales
+	if (Orion.Count('0x26B4', 'any', backpack) > 25 || (Orion.Count('0x26B4', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.7)))
+	{
+		while (Orion.Count('0x26B4', 'any', backpack) > 1)
+		{
+			Orion.Print('26', 'Scales');		
+			StoreItemWithKeys('0x474E827D', '0x41F8FC19', 60029, '0x26B4', 5);
+		}
+	}
+}

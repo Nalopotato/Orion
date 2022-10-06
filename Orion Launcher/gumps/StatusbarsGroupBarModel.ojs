@@ -1,0 +1,102 @@
+//See _README.txt file for details
+//==================================================================
+//=========================Model configuration======================
+//==================================================================
+
+var backgroundColor = 0xAA101010;
+var backgroundScopeColor = [ 0x7F00FF00, 0x7F00FF00, 0x7FFF7F27 ];
+var barHeightList = [ 54, 34, 34 ];
+var barWidth = 120;
+
+var linesHeight = 8;
+
+//==================================================================
+//==========================Model's content=========================
+//==================================================================
+
+// Gump mode, 0 - party, 1 - friends, 2 - enemies
+var mode = parseInt(Gump.Serial(), 16) % 3;
+
+var barHeight = barHeightList[mode];
+var lineWidth = barWidth - 10;
+
+Model.AddPolygone(0, 0, 0, 0, barWidth, barHeight, backgroundColor);
+Model.AddPolygone(0, 0, 1, 1, barWidth - 1, barHeight - 1, backgroundScopeColor[mode], true);
+
+var character = Orion.FindObject(Model.Serial());
+
+var textColor = 0x0386;
+var name = character.Name();
+
+if (character.IsValid())
+{
+	textColor = character.ColorByNotoriety();
+
+	if (character.Notoriety() == 3 || character.Notoriety() == 4) //Orion::NT_CRIMINAL or Orion::NT_SOMEONE_GRAY
+		textColor = 0x0481;
+}
+else
+	name = Gump.GetCachedName(Model.Serial());
+
+Model.AddText(0, 4, 0, name, 0, true, 0, textColor, barWidth - 8, 'Center', 'Cropped');
+
+if (character.IsValid())
+{
+	var percents = CalculatePercents(character.MaxHits(), character.Hits(), lineWidth);
+
+	if (percents < 1)
+		percents = 1;
+
+	//Red background
+	Model.AddPolygone(0, 0, 4, 22, lineWidth, linesHeight, 0xFFC40000);
+
+	//Character status line (blue)
+	var hitsLineColor = 0xFF00C4C4;
+
+	if (character.Poisoned())
+		hitsLineColor = 0xFF00C400; //Character status line (green)
+	else if (character.YellowHits())
+		hitsLineColor = 0xFFC4C400; //Character status line (yellow)
+
+	//Real hits line
+	Model.AddPolygone(0, 0, 4, 22, percents, linesHeight, hitsLineColor);
+
+	// Draw all lines for party
+	if (mode == 0)
+	{
+		//Red background
+		Model.AddPolygone(0, 0, 4, 32, lineWidth, linesHeight, 0xFFC40000);
+
+		percents = CalculatePercents(character.MaxMana(), character.Mana(), lineWidth);
+
+		//Real mana line
+		if (percents > 0)
+			Model.AddPolygone(0, 0, 4, 32, percents, linesHeight, hitsLineColor);
+
+
+
+		//Red background
+		Model.AddPolygone(0, 0, 4, 42, lineWidth, linesHeight, 0xFFC40000);
+
+		percents = CalculatePercents(character.MaxStam(), character.Stam(), lineWidth);
+
+		//Real mana line
+		if (percents > 0)
+			Model.AddPolygone(0, 0, 4, 42, percents, linesHeight, hitsLineColor);
+	}
+}
+else
+{
+	//Gray background
+	Model.AddPolygone(0, 0, 4, 22, lineWidth, linesHeight, 0xFF444444);
+
+	// Draw all lines for party
+	if (mode == 0)
+	{
+		Model.AddPolygone(0, 0, 4, 32, lineWidth, linesHeight, 0xFF444444);
+		Model.AddPolygone(0, 0, 4, 42, lineWidth, linesHeight, 0xFF444444);
+	}
+}
+
+//Black scope
+Model.AddPolygone(0, 0, 4, 22, lineWidth + 1, linesHeight + 1, 0, true);

@@ -28,3 +28,6 @@ Orion.cfg
 crashlogs/
 OrionLocalProfiles/
 OrionGlobalProfiles/
+*.ini
+Orion Launcher/OA/Config/Default/Window.ini
+Orion Launcher/OA/Config/Default/Hotkeys.xml

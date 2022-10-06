@@ -46,8 +46,10 @@ function RecallSoT()
 
 function RecallBuyWater(tavern) {
 	if (tavern == 1) {
+		Orion.Print('26', 'Recalling to Brit');
 		Recall('0x40C01DBE', 7); //Brit
 	} else {
+		Orion.Print('26', 'Recalling to Minoc');
 		Recall('0x40C01DBE', 137); //Minoc
 	}
 }

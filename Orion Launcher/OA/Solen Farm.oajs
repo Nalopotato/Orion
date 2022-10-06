@@ -117,7 +117,11 @@ function ClaimCorpses() {
 			if (itemcount.length > 1 && corpse) //Bad to loop here, since the corpse might not be ours
 			{
 				WalkToTarget(corpse.X(), corpse.Y());
-				Orion.Wait(itemcount.length * 800); //Multiply the item count by 800ms
+				Orion.Wait(200);
+				Orion.UseObject(corpseList[i]); //Make sure the corpse is open, first
+				Orion.Print('26', 'Opening corpse');
+				Orion.Wait(200);
+				Orion.Wait(itemcount.length * 800); //Multiply the item count by 800ms to wait for looting
 			}
 
 			Orion.Say('[claim');
@@ -170,17 +174,20 @@ function GetWater() {
 
 		Orion.ClearJournal();
 
-		if (Orion.InJournal('must wait to perform') || Orion.InJournal('book needs time'))
+		if (Orion.InJournal('must wait to perform') || 
+			Orion.InJournal('book needs time') ||
+			(tavern == 1 && Player.X() != 1426) ||
+			(tavern == 2 && Player.X() != 2475))
 		{
 			Orion.Print('26', 'Recall again');
 			Orion.Wait(5000);
-			RecallBuyWater(tavern);
 			Orion.ClearJournal();
+			RecallBuyWater(tavern);
 			Orion.Wait(3000);
 		}
 		
-		Orion.BuyRestock('Water', vendors[i]);
-		//Orion.Say(vendors[i] + ' buy');
+		//Orion.BuyRestock('Water', vendors[i]);
+		Orion.Say(vendors[i] + ' buy');
 		Orion.Wait(3000);
 		Orion.Print('26', 'Number of waters in pack: ' + Orion.Count('0x1F9D', any, backpack));
 		

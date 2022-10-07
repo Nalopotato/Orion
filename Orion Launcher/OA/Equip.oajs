@@ -10,13 +10,13 @@ function Equip2HMelee()
 	if (Orion.ObjAtLayer(2) == null || (Orion.ObjAtLayer(2) != null && Orion.FindObject(TwoHmelee).Container() != playerContainerID))
 	{
 		Orion.Disarm();
-		Orion.Wait('200');
+		Orion.Wait('100');
 	}
 	
 	if (Orion.ObjAtLayer(2) == null && Orion.ObjAtLayer(1) == null)
 	{
 		Orion.Equip(TwoHmelee);
-		Orion.Wait('200');
+		Orion.Wait('100');
 	}
 }
 
@@ -26,7 +26,7 @@ function Equip1HMelee()
 		Orion.FindObject(OneHmelee).Container() != playerContainerID))
 	{
 		Orion.Disarm();
-		Orion.Wait('200');
+		Orion.Wait('100');
 		Orion.Equip(OneHmelee);
 	}
 	
@@ -39,7 +39,7 @@ function Equip1HMelee()
 		Orion.Equip(shield);
 	}
 	
-	Orion.Wait('200');
+	Orion.Wait('100');
 }
 
 function EquipBow()
@@ -47,12 +47,12 @@ function EquipBow()
 	if ((Orion.ObjAtLayer(2) != null && Orion.FindObject(bow).Container() != playerContainerID))
 	{
 		Orion.Disarm();
-		Orion.Wait('200');
+		Orion.Wait('100');
 	}
 	
 	if (Orion.ObjAtLayer(2) == null)
 	{
 		Orion.Equip(bow);
-		Orion.Wait('200');
+		Orion.Wait('100');
 	}
 }

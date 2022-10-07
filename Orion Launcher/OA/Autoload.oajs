@@ -2,7 +2,7 @@
 //#include Recall.oajs
 //#include AutoAttack.oajs
 //#include HealSelf.oajs
-//#include GetStats.oajs
+//#include Helpers/GetStats.oajs
 //#include Lumberjacking.oajs
 //#include Mining.oajs
 //#include Organize_GoldGems.oajs

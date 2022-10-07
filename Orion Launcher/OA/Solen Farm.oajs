@@ -6,7 +6,8 @@
 
 //Asante sana, squash banana
 
-var lootBag = '0x4E0D4DB8';
+var lootBagID = '0x4E0D4DB8';
+var runeBookID = '0x40C01DBE';
 
 function KillSolen()
 {
@@ -14,17 +15,17 @@ function KillSolen()
 	{
 		if (Orion.ScriptRunning('AutoAttack') < 1) { Orion.ToggleScript('AutoAttack'); }
 		if (Orion.ScriptRunning('HealSelf') < 1) { Orion.ToggleScript('HealSelf'); }
-		var runeIndex = 17;
-		UseRunebook(runeIndex, '0x40C01DBE');
 		
-		while (Orion.Count('0x26B7', any, lootBag) < 205) //Fungi in loot bag
+		var runeIndex = 17;
+		UseRunebook(runeIndex, runeBookID);
+		
+		while (Orion.Count('0x26B7', any, lootBagID) < 205) //Fungi in loot bag
 		{
 			Orion.SetTimer('RecallTimer');
 			Orion.SetTimer('KillTimer');
 			
 			var mobList = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
 			Orion.Wait(100);
-			//Orion.Print('76', 'INIT mob length: ' + mobList.length);
 			
 			//Attack until the mob is dead
 			if (mobList.length > 0)
@@ -52,7 +53,6 @@ function KillSolen()
 					Orion.Print('76', 'Mob length: ' + mobList.length);
 				}
 			}
-			//Orion.Wait(4000); //Wait for looting
 			
 			ClaimCorpses();
 			
@@ -60,7 +60,7 @@ function KillSolen()
 				Orion.Wait(100);
 			}
 			runeIndex += 10;
-			UseRunebook(runeIndex, '0x40C01DBE'); //Recall to next spawn
+			UseRunebook(runeIndex, runeBookID); //Recall to next spawn
 			
 			if (runeIndex >= 117)
 			{
@@ -69,24 +69,24 @@ function KillSolen()
 			
 			//Orion.Print('Stack items and store gold');
 			if (Orion.Count('0x0EED', any, backpack, any, false) > 0) {
-				Orion.MoveItemType('0x0EED', any, backpack, 0, lootBag);
+				Orion.MoveItemType('0x0EED', any, backpack, 0, lootBagID);
 				Orion.Wait(600);
 			}
 			if (Orion.Count('0x26B7', any, backpack, any, false) > 0) {
-				Orion.MoveItemType('0x26B7', any, backpack, 0, lootBag);
+				Orion.MoveItemType('0x26B7', any, backpack, 0, lootBagID);
 				Orion.Wait(600);
 			}
 			StoreGold();
 		}
 		
 		//Orion.Print('StoreZoogi'); StoreZoogi();
-		Orion.Print('BankSolen'); BankSolen();
-		Orion.Print('GetWater'); GetWater();
+		Orion.Print('33', 'BankSolen'); BankSolen();
+		Orion.Print('33', 'GetWater'); GetWater();
 		
 		Orion.ToggleScript('AutoAttack');
-		Orion.Print('RunToVat'); RunToVat();
-		Orion.Print('PourWater'); PourWater();
-		Orion.Print('TurnInQuest'); TurnInQuest();
+		Orion.Print('33', 'RunToVat'); RunToVat();
+		Orion.Print('33', 'PourWater'); PourWater();
+		Orion.Print('33', 'TurnInQuest'); TurnInQuest();
 	}
 }
 
@@ -140,7 +140,7 @@ function StoreZoogi() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function BankSolen() {
-	Recall('0x40C01DBE', 147);
+	Recall(runeBookID, 147);
 	Orion.Wait(3500);
 	
 	if (Player.X() != 1450)
@@ -154,7 +154,7 @@ function BankSolen() {
 	Orion.Say('bank');
 	Orion.Wait(300);
 	OrganizeGoldGems(backpack);
-	OrganizeGoldGems(lootBag);
+	OrganizeGoldGems(lootBagID);
 	
 	GetGold(100); //Get money for Water
 }
@@ -164,7 +164,7 @@ function GetWater() {
 	var vendors = ['Saloman', 'Fleta', 'Kenton', 'Fuller', 'Oriole', 'Carroll'];
 	var tavern = 1;
 
-	RecallBuyWater(tavern);
+	RecallBuyWater(tavern, runeBookID);
 	Orion.Wait(3000);
 	
 	for (var i = 0; i < vendors.length; i++) {
@@ -181,7 +181,7 @@ function GetWater() {
 			Orion.Print('26', 'Recall again');
 			Orion.Wait(5000);
 			Orion.ClearJournal();
-			RecallBuyWater(tavern);
+			RecallBuyWater(tavern, runeBookID);
 			Orion.Wait(3000);
 		}
 		
@@ -193,7 +193,7 @@ function GetWater() {
 		if (i == 2) //Move to next Tavern, if we've gone thru 3 NPCs
 		{
 			tavern ++;
-			RecallBuyWater(tavern);
+			RecallBuyWater(tavern, runeBookID);
 			Orion.Wait(3000);
 		}
 	}
@@ -207,7 +207,7 @@ function RunToVat()
 {
 	while (Player.X() != '2609')
 	{
-		RecallRunSolen();
+		RecallRunSolen(runeBookID);
 	}
 	
 	Orion.UseObject('0x40010254');

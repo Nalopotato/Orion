@@ -3,18 +3,18 @@
 //#include HealSelf.oajs
 //#include z_Helpers.oajs
 
-function UseRunebook(runeIndex, bookSerial)
+function UseRunebook(runeIndex, bookID)
 {
 	Orion.Print('Book Number: ' + (runeIndex + 3) / 10);
 	
-	Orion.UseObject(bookSerial);
+	Orion.UseObject(bookID);
 	Orion.Wait(300);
 
 	while (Orion.InJournal('needs time to recharge', 'sys') || Orion.InJournal('You must wait to', 'sys'))
 	{
 		Orion.ClearJournal();
 		Orion.Wait(500);
-	    Orion.UseObject(bookSerial);
+	    Orion.UseObject(bookID);
 	    Orion.Wait(300);
     }
 
@@ -23,8 +23,8 @@ function UseRunebook(runeIndex, bookSerial)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function Recall(book, runeNum) {
-	Orion.UseObject(book);
+function Recall(bookID, runeNum) {
+	Orion.UseObject(bookID);
 	Orion.Wait(200);
 	GumpAction('0x554B87F3', runeNum, 200, false);
 }
@@ -44,16 +44,16 @@ function RecallSoT()
 	Recall('0x41059D8B', 97);
 }
 
-function RecallBuyWater(tavern) {
+function RecallBuyWater(tavern, bookID) {
 	if (tavern == 1) {
 		Orion.Print('26', 'Recalling to Brit');
-		Recall('0x40C01DBE', 7); //Brit
+		Recall(bookID, 7); //Brit
 	} else {
 		Orion.Print('26', 'Recalling to Minoc');
-		Recall('0x40C01DBE', 137); //Minoc
+		Recall(bookID, 137); //Minoc
 	}
 }
 
-function RecallRunSolen() {
-	Recall('0x40C01DBE', 127);
+function RecallRunSolen(bookID) {
+	Recall(bookID, 127);
 }

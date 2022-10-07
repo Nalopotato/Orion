@@ -4,6 +4,8 @@
 //#include z_Helpers.oajs
 //#include z_Paths.oajs
 
+//Asante sana, squash banana
+
 var lootBag = '0x4E0D4DB8';
 
 function KillSolen()
@@ -15,10 +17,7 @@ function KillSolen()
 		var runeIndex = 17;
 		UseRunebook(runeIndex, '0x40C01DBE');
 		
-		//Orion.MoveItemType('0x26B7', any, backpack, 0, lootBag);
-		//Orion.Wait(600);
-		
-		while (Orion.Count('0x26B7', any, lootBag) < 199) //Fungi in loot bag
+		while (Orion.Count('0x26B7', any, lootBag) < 205) //Fungi in loot bag
 		{
 			Orion.SetTimer('RecallTimer');
 			Orion.SetTimer('KillTimer');
@@ -69,11 +68,11 @@ function KillSolen()
 			}
 			
 			//Orion.Print('Stack items and store gold');
-			if (Orion.Count('0x0EED', any, backpack) > 0) {
+			if (Orion.Count('0x0EED', any, backpack, any, false) > 0) {
 				Orion.MoveItemType('0x0EED', any, backpack, 0, lootBag);
 				Orion.Wait(600);
 			}
-			if (Orion.Count('0x26B7', any, backpack) > 0) {
+			if (Orion.Count('0x26B7', any, backpack, any, false) > 0) {
 				Orion.MoveItemType('0x26B7', any, backpack, 0, lootBag);
 				Orion.Wait(600);
 			}

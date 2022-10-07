@@ -6,9 +6,10 @@
 var autoSkin = false;
 
 function AutoAttack()
-{	
+{
 	while(!Player.Dead())
 	{
+		if (Orion.ScriptRunning('HealSelf') < 1) { Orion.ToggleScript('HealSelf'); }
 		//Orion.Print('Buffs: ' + Player.BuffsCount);
 		
 		if (Orion.Timer('Consecrate') == -1) { Orion.SetTimer('Consecrate'); }

@@ -1,6 +1,4 @@
-//#include Equip.oajs
-//#include Recall.oajs
-//#include AutoAttack.oajs
+//#include Autoload.oajs
 
 function HealSelf() {
 	while (!Player.Dead()) 

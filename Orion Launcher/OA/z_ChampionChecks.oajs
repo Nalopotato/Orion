@@ -1,0 +1,38 @@
+//#include Autoload.oajs
+
+//https://www.uoex.net/wiki/Champion_spawns
+
+function Xroads()
+{
+	
+}
+
+function Destard() //Run this during Xroads?
+{
+	
+}
+
+function Forget()
+{
+	
+}
+
+function Baracoon() //Run this during Forget()
+{
+	
+}
+
+function Doom()
+{
+	
+}
+
+function Tokuno() //Serado
+{
+	
+}
+
+function Kronus()
+{
+	
+}

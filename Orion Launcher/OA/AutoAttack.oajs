@@ -1,7 +1,4 @@
-//#include Recall.oajs
-//#include HealSelf.oajs
-//#include Looting.oajs
-//#include z_Helpers.oajs
+//#include Autoload.oajs
 
 //TODO:  Do a mob check, targetting check, and dragging check before storing items
 

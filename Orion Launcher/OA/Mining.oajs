@@ -1,5 +1,4 @@
-//#include z_Helpers.oajs
-//#include Recall.oajs
+//#include Autoload.oajs
 
 function Mining() 
 {

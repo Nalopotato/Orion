@@ -1,3 +1,5 @@
+//#include Autoload.oajs
+
 function LootWool()
 {
 	var foundList = Orion.FindType('0x2006', any, ground, 'ignoreself|inlos', 1);

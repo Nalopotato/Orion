@@ -1,3 +1,24 @@
+//#include Autoload.oajs
+
+function PathTo(pathList, startX)
+{
+	if (Player.X() != startX) //If the player isn't where they should be to start, return
+		return false;
+
+	for (var i = 0; i < pathList.length; i++)
+	{
+		Orion.WalkTo(pathList[i].x, pathList[i].y, any, 0, 255, 1, 2, 10000);
+	}
+	
+	var last = pathList[pathList.length-1];
+	if (Player.X() != last.x && Player.Y() != last.y)
+	{
+		Orion.WalkTo(last.x, last.y, any, 0, 255, 1, 2, 10000);
+	}
+
+	return true;
+}
+
 function FeluccaPortalPath() {
 	var init = {'x': '5306', 'y': '1859'}
 

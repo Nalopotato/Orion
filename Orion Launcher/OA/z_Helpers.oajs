@@ -1,7 +1,4 @@
-//#include AutoAttack.oajs
-//#include HealSelf.oajs
-//#include Recall.oajs
-//#include z_Paths.oajs
+//#include Autoload.oajs
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 function GumpAction(gumpID, hookID, waitTime, closeGump)
@@ -181,23 +178,6 @@ function GetZoogi()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function PathTo(pathList)
-{
-	for (var i = 0; i < pathList.length; i++)
-	{
-		Orion.WalkTo(pathList[i].x, pathList[i].y, any, 0, 255, 1, 2, 10000);
-		//Orion.Print(Player.X()); Orion.Print(Player.Y());
-	}
-	
-	var last = pathList[pathList.length-1];
-	//Orion.Print('Last: ' + last.x + ', ' + last.y);
-	//Orion.Print(Player.X()); Orion.Print(Player.Y());
-	
-	if (Player.X() != last.x && Player.Y() != last.y)
-	{
-		Orion.WalkTo(last.x, last.y, any, 0, 255, 1, 2, 10000);
-	}
-}
 
 
 

@@ -1,3 +1,5 @@
+//#include Autoload.oajs
+
 var TwoHmelee = '0x4DD16CBB';
 var OneHmelee = '0x497553F8';
 var shield = '0x42D93B6E';

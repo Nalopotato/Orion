@@ -1,8 +1,4 @@
-//#include AutoAttack.oajs
-//#include HealSelf.oajs
-//#include Recall.oajs
-//#include z_Helpers.oajs
-//#include z_Paths.oajs
+//#include Autoload.oajs
 
 //Asante sana, squash banana
 
@@ -214,24 +210,21 @@ function RunToVat()
 	Orion.UseObject('0x40010254');
 	Orion.Wait(200);
 
-	//Floor 1
-	if (Player.X() != 5921) { RunToVat() }
-	
-	PathTo(SolenPath1());
+	//Floor 1	
+	if (!PathTo(SolenPath1(), 5921))
+		RunToVat();
 	Orion.UseObject('0x40010277');
 	Orion.Wait(200);
 	
 	//Floor 2
-	if (Player.X() != 5874) { RunToVat() }
-	
-	PathTo(SolenPath2());
+	if (!PathTo(SolenPath2(), 5874))
+		RunToVat();
 	Orion.UseObject('0x4001028C');
 	Orion.Wait(200);
 	
 	//Floor 3
-	if (Player.X() != 5774) { RunToVat() }
-
-	PathTo(SolenPath3());
+	if (!PathTo(SolenPath3(), 5774))
+		RunToVat();
 	Orion.Wait(300);
 }
 
@@ -263,7 +256,7 @@ function PourWater()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function TurnInQuest()
 {
-	PathTo(SolenPath4());
+	PathTo(SolenPath4(), 5805);
 
 	var matriarch = Orion.FindObject('0x001D0274');
 	if (matriarch)

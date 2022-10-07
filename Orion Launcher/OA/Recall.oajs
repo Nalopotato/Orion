@@ -1,7 +1,4 @@
-//#include Equip.oajs
-//#include AutoAttack.oajs
-//#include HealSelf.oajs
-//#include z_Helpers.oajs
+//#include Autoload.oajs
 
 function UseRunebook(runeIndex, bookID)
 {

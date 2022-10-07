@@ -3,7 +3,14 @@
 //#include Looting.oajs
 //#include z_Helpers.oajs
 
-var autoSkin = false;
+//TODO:  Do a mob check, targetting check, and dragging check before storing items
+
+var autoSkin = false; //Set true if you want to skin mobs and loot leather/wool/etc.
+
+var ethMountID = '0x40E9C89E';
+var casterKeys = '0x466B92BD';
+var tailorKeys = '0x474E827D';
+var woodWorkerKeys = '0x447CBF38';
 
 function AutoAttack()
 {
@@ -13,7 +20,7 @@ function AutoAttack()
 	{
 		//Orion.Print('Buffs: ' + Player.BuffsCount);
 		
-		if (Orion.Timer('Consecrate') == -1) { Orion.SetTimer('Consecrate'); }
+		if (Orion.Timer('CW') == -1) { Orion.SetTimer('CW'); }
 		if (Orion.Timer('EoO') == -1) { Orion.SetTimer('EoO'); }
 		if (Orion.Timer('DF') == -1) { Orion.SetTimer('DF'); }
 		if (Orion.Timer('Ninjitsu') == -1) { Orion.SetTimer('Ninjitsu'); }
@@ -21,7 +28,7 @@ function AutoAttack()
 		//Stay mounted
 		if (!Orion.ObjAtLayer('Mount')) 
 		{
-			Orion.UseObject('0x40E9C89E');
+			Orion.UseObject(ethMountID);
 			Orion.Wait(300);
 		}
 		
@@ -32,15 +39,15 @@ function AutoAttack()
 		}
 
 		var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '12', 'gray|criminal|orange|red');
-		Orion.Wait(50);
+		//Orion.Wait(50);
 		
 		if (mob.length > 0)
 		{
 			Orion.Attack(mob);
 
-			if (Orion.Timer('Consecrate') > 8000 && Player.Mana() > 40) {
+			if (Orion.Timer('CW') > 8000 && Player.Mana() > 40) {
 				Orion.Say('[cs consecrateweapon');
-			    Orion.SetTimer('Consecrate');
+			    Orion.SetTimer('CW');
 			    Orion.Wait(300);
 			}
 			if (mob.length == 1 && Orion.Timer('EoO') > 200000 && Player.Mana() > 40) {
@@ -88,7 +95,7 @@ function StoreItems()
 		Orion.Print('26', 'Cutting Cloth');
 		if (Orion.Count('0x1766', 'any', backpack) < 25)
 		{
-			Orion.UseObject('0x474E827D');
+			Orion.UseObject(tailorKeys);
 			GumpAction('0x41F8FC19', 60020, 500, false);
 			GumpAction('0x41F8FC19', 0, 500, true);
 		}
@@ -104,7 +111,7 @@ function StoreItems()
 	if (Orion.Count('0x0F3F', 'any', backpack) < 5 && Player.Weight() < (Player.MaxWeight() * 0.75))
 	{
 		Orion.Print('Arrows');
-		Orion.UseObject('0x447CBF38');
+		Orion.UseObject(woodWorkerKeys);
 		GumpAction('0x0A57934D', 60013, 500, false);
 		GumpAction('0x0A57934D', 0, 500, true);
 	}
@@ -113,7 +120,7 @@ function StoreItems()
 	if (Player.Weight() > (Player.MaxWeight() * 0.6))
 	{
 		Orion.Print('26', 'Daemon Bones');
-		StoreItemWithKeys('0x466B92BD', '0x0EBCD833', 60030, '0x0F80', 40);
+		StoreItemWithKeys(casterKeys, '0x0EBCD833', 60030, '0x0F80', 40);
 	}
 	
 	//Zoogi
@@ -123,14 +130,14 @@ function StoreItems()
 	if (Orion.Count('0x0DF8', 'any', backpack) > 30 || (Orion.Count('0x0DF8', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.7)))
 	{
 		Orion.Print('26', 'Wool');		
-		StoreItemWithKeys('0x474E827D', '0x41F8FC19', 60029, '0x0DF8', 5);
+		StoreItemWithKeys(tailorKeys, '0x41F8FC19', 60029, '0x0DF8', 5);
 	}
 	
 	//Store Feathers
 	if (Orion.Count('0x1BD1', 'any', backpack) > 50 || (Orion.Count('0x1BD1', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.7)))
 	{
 		Orion.Print('26', 'Feathers');		
-		StoreItemWithKeys('0x447CBF38', '0x0A57934D', 60023, '0x1BD1', 5);
+		StoreItemWithKeys(woodWorkerKeys, '0x0A57934D', 60023, '0x1BD1', 5);
 	}
 	
 	//Store Leather
@@ -139,7 +146,7 @@ function StoreItems()
 		while (Orion.Count('0x1081', 'any', backpack) > 1)
 		{
 			Orion.Print('26', 'Leather');
-			StoreItemWithKeys('0x474E827D', '0x41F8FC19', 60029, '0x1081', 5);
+			StoreItemWithKeys(tailorKeys, '0x41F8FC19', 60029, '0x1081', 5);
 		}
 	}
 	
@@ -149,7 +156,7 @@ function StoreItems()
 		while (Orion.Count('0x26B4', 'any', backpack) > 1)
 		{
 			Orion.Print('26', 'Scales');		
-			StoreItemWithKeys('0x474E827D', '0x41F8FC19', 60029, '0x26B4', 5);
+			StoreItemWithKeys(tailorKeys, '0x41F8FC19', 60029, '0x26B4', 5);
 		}
 	}
 }

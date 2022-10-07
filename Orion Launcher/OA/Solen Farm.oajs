@@ -8,6 +8,7 @@
 
 var lootBagID = '0x4E0D4DB8';
 var runeBookID = '0x40C01DBE';
+var casterKeysID = '0x466B92BD';
 
 function KillSolen()
 {
@@ -135,7 +136,7 @@ function ClaimCorpses() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function StoreZoogi() {
 	Orion.Print('26', 'Zoogi');
-	StoreItemWithKeys('0x466B92BD', '0x0EBCD833', 60030, '0x26B7', 100);
+	StoreItemWithKeys(casterKeysID, '0x0EBCD833', 60030, '0x26B7', 100);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -310,7 +311,7 @@ function TurnInQuest()
 	
 	//Store Transloc
 	Orion.Print('26', 'Store Transloc');
-	StoreItemWithKeys('0x466B92BD', '0x0EBCD833', 60030, '0x26B8', 0);
+	StoreItemWithKeys(casterKeysID, '0x0EBCD833', 60030, '0x26B8', 0);
 	
 	Orion.Wait(2000);
 }

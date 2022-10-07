@@ -113,12 +113,12 @@ function StoreGold()
 }
 
 ////
-function StoreItemWithKeys(keySerial, gumpID, gumpButtonID, itemGfx, amt)
+function StoreItemWithKeys(casterKeysID, gumpID, gumpButtonID, itemGfx, amt)
 {
 	if (Orion.Count(itemGfx, 'any', backpack) > amt)
 	{
 		//Orion.Print('26', 'Store Transloc');
-		Orion.UseObject(keySerial); 					//Spellcaster's Keys
+		Orion.UseObject(casterKeysID); 					//Spellcaster's Keys
 		GumpAction(gumpID, gumpButtonID, 500, false); //Click the "Add resource" button
 		
 		if (Orion.WaitForTarget(1000))
@@ -140,7 +140,7 @@ function OrganizeGoldGems(fromContainer)
 	
 	while (found)
 	{
-		found = Orion.MoveItemList('Gold+Gems', fromContainer, 0, '0x4652DA38');
+		found = Orion.MoveItemList('Gold+Gems', fromContainer, 0, '0x4652DA38'); //ID of the bag in your bank box
 		Orion.Wait(600);
 		
 		if (Orion.InJournal('place it there, item remains'))

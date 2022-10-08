@@ -16,12 +16,12 @@ function KillSolen()
 		var runeIndex = 17;
 		UseRunebook(runeIndex, runeBookID);
 		
-		while (Orion.Count('0x26B7', any, lootBagID) < 205) //Fungi in loot bag
+		while (Orion.Count('0x26B7', any, lootBagID) < 200) //Fungi in loot bag
 		{
 			Orion.SetTimer('RecallTimer');
 			Orion.SetTimer('KillTimer');
 			
-			var mobList = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+			var mobList = Orion.FindType(any, any, ground, 'near|mobile|ignorefriends|ignoreself|inlos', '10', 'gray|criminal|orange|red');
 			Orion.Wait(100);
 			
 			//Attack until the mob is dead
@@ -43,7 +43,7 @@ function KillSolen()
 						Orion.Print('BREAK');
 						break;
 					}
-					mobList = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+					mobList = Orion.FindType(any, any, ground, 'near|mobile|ignorefriends|ignoreself|inlos', '10', 'gray|criminal|orange|red');
 					mobSerial = mobList[0];
 					mobObj = Orion.FindObject(mobSerial);
 					
@@ -260,7 +260,7 @@ function TurnInQuest()
 	var matriarch = Orion.FindObject('0x001D0274');
 	if (matriarch)
 	{
-		Orion.Print('Walking to Matriarch: ' + matriarch.x + matriarch.y);
+		Orion.Print('Walking to Matriarch: ' + matriarch.X() + matriarch.Y());
 		WalkToTarget(matriarch.X(), matriarch.Y());
 	}
 		

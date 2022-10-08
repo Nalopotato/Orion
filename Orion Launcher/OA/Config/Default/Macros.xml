@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data cast_spells_from_book_if_not_scrolls="false">
     <macro name="AAAAA" looped="true" delay="2.5">
-        <action type="16" convert_type="0" waiting_time="1000" serial="0x001D0274" graphic="0x0000" color="0x0000"/>
-        <action type="17" convert_type="0" waiting_time="1000" serial="0x001D0274" graphic="0x0000" color="0x0000"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x03686098" id="0x08DB94B0" button="60000"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x036860DE" id="0x23C255E7" button="60007"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x0368610A" id="0x23C255E7" button="60007"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x03686132" id="0x23C255E7" button="60007"/>
-        <action type="16" convert_type="0" waiting_time="1000" serial="0x001D0274" graphic="0x0000" color="0x0000"/>
-        <action type="17" convert_type="0" waiting_time="1000" serial="0x001D0274" graphic="0x0000" color="0x0000"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x03686217" id="0x08DB94B0" button="60000"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x03686286" id="0x23C255E7" button="60006"/>
-        <action type="16" convert_type="0" waiting_time="1000" serial="0x001D0274" graphic="0x0000" color="0x0000"/>
-        <action type="17" convert_type="0" waiting_time="1000" serial="0x001D0274" graphic="0x0000" color="0x0000"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x03686309" id="0x08DB94B0" button="60001"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x0368633E" id="0x23C255E7" button="60006"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x0368635C" id="0x23C255E7" button="60006"/>
-        <action type="16" convert_type="0" waiting_time="1000" serial="0x001D0274" graphic="0x0000" color="0x0000"/>
-        <action type="17" convert_type="0" waiting_time="1000" serial="0x001D0274" graphic="0x0000" color="0x0000"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x036863B3" id="0x08DB94B0" button="60001"/>
-        <action type="15" convert_type="0" waiting_time="1000" serial="0x036863D6" id="0x23C255E7" button="60007"/>
+        <action type="26" convert_type="28" waiting_time="1000"/>
+        <action type="26" convert_type="28" waiting_time="1000"/>
+        <action type="26" convert_type="28" waiting_time="1000"/>
+        <action type="16" convert_type="0" waiting_time="1000" serial="0x411D5A9F" graphic="0x0000" color="0x0000"/>
+        <action type="26" convert_type="28" waiting_time="1000"/>
+        <action type="16" convert_type="0" waiting_time="1000" serial="0x411D5182" graphic="0x0000" color="0x0000"/>
     </macro>
     <macro name="Spell Heal" looped="false" delay="1">
         <action type="9" convert_type="0" waiting_time="1000" value="[cs touchoflife"/>

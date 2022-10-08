@@ -4,7 +4,7 @@
     <gump text_identifier="CGumpSystemChat" type="46" x="0" y="0" minimized="false" minimized_x="0" minimized_y="0" lock_moving="false" height="600"/>
     <gump text_identifier="CGumpRunningScripts" type="67" x="20" y="40" minimized="false" minimized_x="0" minimized_y="0" lock_moving="false" visible="false" width="150" height="200"/>
     <gump text_identifier="CGumpBuff" type="29" x="560" y="640" minimized="false" minimized_x="0" minimized_y="0" lock_moving="false" graphic="30081"/>
-    <gump text_identifier="CGumpWorldMap" type="33" x="0" y="757" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" width="353" height="241" last_center_x="1821" last_center_y="2816"/>
+    <gump text_identifier="CGumpWorldMap" type="33" x="0" y="757" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" width="353" height="241" last_center_x="1823" last_center_y="2820"/>
     <gump text_identifier="CGumpPropertyIcon" type="45" x="1864" y="71" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true"/>
     <gump text_identifier="CGumpCounter" type="61" x="1612" y="7" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" width="305" height="99" background_type="0" icon_size_type="1" font="1" use_big_statusbar_icon="true" mini_view="false"/>
     <gump text_identifier="CGumpSpell" type="16" x="1546" y="382" minimized="false" minimized_x="0" minimized_y="0" lock_moving="false" serial="99" graphic="21281" spell_type="5"/>

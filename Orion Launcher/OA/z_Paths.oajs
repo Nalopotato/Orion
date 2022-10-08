@@ -2,7 +2,7 @@
 
 function PathTo(pathList, startX)
 {
-	if (Player.X() != startX) //If the player isn't where they should be to start, return
+	if (startX > 0 && Player.X() != startX) //If the player isn't where they should be to start, return
 		return false;
 
 	for (var i = 0; i < pathList.length; i++)

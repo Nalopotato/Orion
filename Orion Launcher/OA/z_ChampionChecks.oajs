@@ -4,7 +4,8 @@
 
 function Xroads()
 {
-	
+	PathTo(FeluccaPortalPath(), 0);
+	PathTo(FromFeluccaPortalToXroads(), 1336);
 }
 
 function Destard() //Run this during Xroads?

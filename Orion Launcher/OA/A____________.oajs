@@ -2,8 +2,11 @@
 
 function random()
 {
-	Orion.Say('faxon sell');
-	Orion.Wait(5000);
+	Orion.UseObject('0x42F17930');
+	if (Orion.WaitForTarget(1000))
+		Orion.TargetObject('0x0076DF87');
+
+	Orion.Say('[cs touchoflife');
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -114,7 +114,7 @@ function StoreItemWithKeys(casterKeysID, gumpID, gumpButtonID, itemGfx, amt)
 {
 	if (Orion.Count(itemGfx, 'any', backpack) > amt)
 	{
-		//Orion.Print('26', 'Store Transloc');
+		Orion.Print('26', 'Store Item');
 		Orion.UseObject(casterKeysID); 					//Spellcaster's Keys
 		GumpAction(gumpID, gumpButtonID, 500, false); //Click the "Add resource" button
 		

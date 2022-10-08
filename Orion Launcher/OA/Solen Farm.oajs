@@ -53,7 +53,7 @@ function KillSolen()
 			
 			ClaimCorpses();
 			
-			while (Orion.Timer('RecallTimer') < 4100) {
+			while (Orion.Timer('RecallTimer') < 5000) {
 				Orion.Wait(100);
 			}
 			runeIndex += 10;
@@ -109,14 +109,13 @@ function ClaimCorpses() {
 			var corpse = Orion.FindObject(corpseList[i]);
 			var itemcount = corpseList[i] && Orion.FindTypeEx(any, any, corpseList[i]);
 			Orion.Print('26', 'Corpse Item Count: ' + itemcount.length);
+
+			WalkToTarget(corpse.X(), corpse.Y());
+			Orion.Wait(200);
+			Orion.UseObject(corpseList[i]); //Make sure the corpse is open, first
 			
 			if (itemcount.length > 1 && corpse) //Bad to loop here, since the corpse might not be ours
 			{
-				WalkToTarget(corpse.X(), corpse.Y());
-				Orion.Wait(200);
-				Orion.UseObject(corpseList[i]); //Make sure the corpse is open, first
-				Orion.Print('26', 'Opening corpse');
-				Orion.Wait(200);
 				Orion.Wait(itemcount.length * 800); //Multiply the item count by 800ms to wait for looting
 			}
 

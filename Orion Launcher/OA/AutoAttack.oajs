@@ -15,8 +15,6 @@ function AutoAttack()
 	
 	while(!Player.Dead())
 	{
-		//Orion.Print('Buffs: ' + Player.BuffsCount);
-		
 		if (Orion.Timer('CW') == -1) { Orion.SetTimer('CW'); }
 		if (Orion.Timer('EoO') == -1) { Orion.SetTimer('EoO'); }
 		if (Orion.Timer('DF') == -1) { Orion.SetTimer('DF'); }
@@ -114,10 +112,10 @@ function StoreItems()
 	}
 	
 	//Daemon Bones
-	if (Player.Weight() > (Player.MaxWeight() * 0.6))
+	if (Orion.Count('0x0DF8', 'any', backpack) > 30 && Player.Weight() > (Player.MaxWeight() * 0.6))
 	{
 		Orion.Print('26', 'Daemon Bones');
-		StoreItemWithKeys(casterKeys, '0x0EBCD833', 60030, '0x0F80', 40);
+		StoreItemWithKeys(casterKeys, '0x0EBCD833', 60030, '0x0DF8', 40);
 	}
 	
 	//Zoogi

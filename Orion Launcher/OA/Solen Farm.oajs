@@ -141,6 +141,7 @@ function BankSolen() {
 	
 	if (Player.X() != 1450)
 	{
+		Orion.Print('26', 'Player X: ' + Player.X());
 		BankSolen();
 	}
 	
@@ -153,6 +154,7 @@ function BankSolen() {
 	OrganizeGoldGems(lootBagID);
 	
 	GetGold(100); //Get money for Water
+	return; //For some reason this method kept looping...ghostly
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,8 +183,8 @@ function GetWater() {
 			Orion.Wait(3000);
 		}
 		
-		//Orion.BuyRestock('Water', vendors[i]);
-		Orion.Say(vendors[i] + ' buy');
+		Orion.BuyRestock('Water', vendors[i]);
+		//Orion.Say(vendors[i] + ' buy');
 		Orion.Wait(3000);
 		Orion.Print('26', 'Number of waters in pack: ' + Orion.Count('0x1F9D', any, backpack));
 		

@@ -2,6 +2,15 @@
 
 //Asante sana, squash banana
 
+//Get a list of mobs
+//Walk to the closest target and kill it
+//Repeat this until all mobs are dead - no looting in this time
+//Continuously check, until no more mobs
+//Now loot the closest corpse - Check to make sure we own the corpse/kill
+//Claim the corpse
+//Repeat
+//Finally, when no corpses are left, break.
+
 var lootBagID = '0x4E0D4DB8';
 var runeBookID = '0x40C01DBE';
 var casterKeysID = '0x466B92BD';
@@ -141,8 +150,7 @@ function BankSolen() {
 	
 	if (Player.X() != 1450)
 	{
-		Orion.Print('26', 'Player X: ' + Player.X());
-		BankSolen();
+		return BankSolen();
 	}
 	
 	Orion.Say('faxon sell');
@@ -154,7 +162,6 @@ function BankSolen() {
 	OrganizeGoldGems(lootBagID);
 	
 	GetGold(100); //Get money for Water
-	return; //For some reason this method kept looping...ghostly
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////

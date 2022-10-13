@@ -1,22 +1,22 @@
-Player: 
-Strength Bonus: 0
-Intelligence Bonus: 0
-Dexterity Bonus: 0
-Faster Casting: 0
-Faster Cast Recovery: 0
-Hit Point Increase: 0
-Hit Point Regeneration: 0
-Mana Increase: 0
-Mana Regeneration: 0
-Stamina Increase: 0
-Stamina Regeneration: 0
-Lower Reagent Cost: 0
-Lower Mana Cost: 0
-Damage Increase: 0
-Swing Speed Increase: 0
-Defense Chance Increase: 0
-Hit Chance Increase: 0
-Spell Damage Increase: 0
-Reflect Physical Damage: 0
+Player: Nalo
+Strength Bonus: 46
+Intelligence Bonus: 30
+Dexterity Bonus: 73
+Faster Casting: 3
+Faster Cast Recovery: 8
+Hit Point Increase: 28
+Hit Point Regeneration: 9
+Mana Increase: 28
+Mana Regeneration: 6
+Stamina Increase: 16
+Stamina Regeneration: 1
+Lower Reagent Cost: 112
+Lower Mana Cost: 18
+Damage Increase: 50
+Swing Speed Increase: 25
+Defense Chance Increase: 16
+Hit Chance Increase: 46
+Spell Damage Increase: 40
+Reflect Physical Damage: 38
 Enhance Potions: 0
-Luck: 0
+Luck: 519

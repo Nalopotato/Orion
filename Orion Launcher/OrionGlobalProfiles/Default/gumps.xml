@@ -4,24 +4,15 @@
     <gump text_identifier="CGumpSystemChat" type="46" x="0" y="0" minimized="false" minimized_x="0" minimized_y="0" lock_moving="false" height="600"/>
     <gump text_identifier="CGumpRunningScripts" type="67" x="20" y="40" minimized="false" minimized_x="0" minimized_y="0" lock_moving="false" visible="false" width="150" height="200"/>
     <gump text_identifier="CGumpBuff" type="29" x="560" y="640" minimized="false" minimized_x="0" minimized_y="0" lock_moving="false" graphic="30081"/>
-    <gump text_identifier="CGumpWorldMap" type="33" x="0" y="757" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" width="353" height="241" last_center_x="1823" last_center_y="2820"/>
     <gump text_identifier="CGumpPropertyIcon" type="45" x="1864" y="71" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true"/>
     <gump text_identifier="CGumpCounter" type="61" x="1612" y="7" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" width="305" height="99" background_type="0" icon_size_type="1" font="1" use_big_statusbar_icon="true" mini_view="false"/>
-    <gump text_identifier="CGumpSpell" type="16" x="1546" y="382" minimized="false" minimized_x="0" minimized_y="0" lock_moving="false" serial="99" graphic="21281" spell_type="5"/>
     <gump text_identifier="CGumpSkills" type="12" x="344" y="750" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" height="258"/>
+    <gump text_identifier="CGumpSpell" type="16" x="1523" y="365" minimized="false" minimized_x="0" minimized_y="0" lock_moving="false" serial="99" graphic="21281" spell_type="5"/>
     <gump text_identifier="CGumpJournal" type="13" x="1599" y="116" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" height="872" show_system="true" show_objects="true" show_client="true"/>
+    <gump text_identifier="CGumpWorldMap" type="33" x="0" y="757" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" width="353" height="241" last_center_x="675" last_center_y="939"/>
     <gumps_group>
         <gump text_identifier="CGumpSpell" type="16" x="1311" y="328" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="86" graphic="20740" spell_type="2"/>
         <gump text_identifier="CGumpSpell" type="16" x="1355" y="328" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="2" graphic="2241" spell_type="0"/>
-    </gumps_group>
-    <gumps_group>
-        <gump text_identifier="CGumpSpell" type="16" x="1237" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="17" graphic="2256" spell_type="0"/>
-        <gump text_identifier="CGumpSpell" type="16" x="1281" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="16" graphic="2255" spell_type="0"/>
-        <gump text_identifier="CGumpSpell" type="16" x="1193" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="48" graphic="2287" spell_type="0"/>
-        <gump text_identifier="CGumpSpell" type="16" x="1325" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="22" graphic="2261" spell_type="0"/>
-        <gump text_identifier="CGumpSpell" type="16" x="1369" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="15" graphic="2254" spell_type="0"/>
-        <gump text_identifier="CGumpSpell" type="16" x="1149" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="5" graphic="2244" spell_type="0"/>
-        <gump text_identifier="CGumpSpell" type="16" x="1413" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="21" graphic="2260" spell_type="0"/>
     </gumps_group>
     <gumps_group>
         <gump text_identifier="CGumpAbility" type="40" x="1105" y="318" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="0"/>
@@ -35,6 +26,15 @@
         <gump text_identifier="CGumpSpell" type="16" x="1457" y="280" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="66" graphic="20481" spell_type="1"/>
         <gump text_identifier="CGumpSpell" type="16" x="1457" y="236" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="69" graphic="20484" spell_type="1"/>
         <gump text_identifier="CGumpSpell" type="16" x="1457" y="192" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="95" graphic="21539" spell_type="4"/>
+    </gumps_group>
+    <gumps_group>
+        <gump text_identifier="CGumpSpell" type="16" x="1237" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="17" graphic="2256" spell_type="0"/>
+        <gump text_identifier="CGumpSpell" type="16" x="1281" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="16" graphic="2255" spell_type="0"/>
+        <gump text_identifier="CGumpSpell" type="16" x="1193" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="48" graphic="2287" spell_type="0"/>
+        <gump text_identifier="CGumpSpell" type="16" x="1325" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="22" graphic="2261" spell_type="0"/>
+        <gump text_identifier="CGumpSpell" type="16" x="1369" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="15" graphic="2254" spell_type="0"/>
+        <gump text_identifier="CGumpSpell" type="16" x="1149" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="5" graphic="2244" spell_type="0"/>
+        <gump text_identifier="CGumpSpell" type="16" x="1413" y="381" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="21" graphic="2260" spell_type="0"/>
     </gumps_group>
     <gumps_group>
         <gump text_identifier="CGumpSpell" type="16" x="1266" y="635" minimized="false" minimized_x="0" minimized_y="0" lock_moving="true" serial="24" graphic="2263" spell_type="0"/>

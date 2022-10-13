@@ -15,7 +15,7 @@ function UseRunebook(runeIndex, bookID)
 	    Orion.Wait(300);
     }
 
-	GumpAction('0x554B87F3', runeIndex, 600, false);
+	GumpAction('0x554B87F3', runeIndex, 200, false);
 	GumpAction('0x554B87F3', 0, 200, true);
 }
 
@@ -36,12 +36,12 @@ function RecallToBank()
 
 function RecallHome()
 {
-	Recall('0x41059D8B', 47);
+	Recall('0x41059D8B', 27);
 }
 
 function RecallSoT()
 {
-	Recall('0x41059D8B', 97);
+	Recall('0x41059D8B', 47);
 }
 
 function RecallBuyWater(tavern, bookID) {

@@ -2,12 +2,7 @@
 
 function random()
 {
-	while (!Player.Dead()) {
-		Orion.UseType('0x0E21', any);
-		Orion.WaitForTarget(1000);
-		Orion.TargetObject('0x0076DF83');
-		Orion.Wait(2100);
-	}
+	UseRunebook(7, '0x41059D8B');
 }
 
 function HealPet() {

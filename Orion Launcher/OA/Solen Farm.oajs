@@ -46,7 +46,7 @@ function KillSolen()
 				{
 					Orion.Attack(mobSerial);
 					if (mobObj)
-						WalkToTarget(mobObj.X(), mobObj.Y());
+						PathTo('any', mobObj.X(), mobObj.Y());
 					
 					if (Orion.Timer('KillTimer') > 25000) {
 						Orion.Print('BREAK');
@@ -84,6 +84,7 @@ function KillSolen()
 				Orion.MoveItemType('0x26B7', any, backpack, 0, lootBagID);
 				Orion.Wait(600);
 			}
+
 			StoreGold();
 		}
 		
@@ -96,12 +97,6 @@ function KillSolen()
 		Orion.Print('33', 'PourWater'); PourWater();
 		Orion.Print('33', 'TurnInQuest'); TurnInQuest();
 	}
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function WalkToTarget(x, y) {	
-	Orion.WalkTo(x, y, Player.Z(), 1, 255, 0, 2, 10000);
-	Orion.Wait(200);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +114,7 @@ function ClaimCorpses() {
 			var corpse = Orion.FindObject(corpseList[i]);
 			if (corpse) //Bad to loop here, since the corpse might not be ours
 			{
-				WalkToTarget(corpse.X(), corpse.Y());
+				PathTo('any', corpse.X(), corpse.Y());
 				Orion.Wait(200);
 				Orion.UseObject(corpseList[i]); //Make sure the corpse is open, first
 				Orion.Wait(200);
@@ -219,19 +214,19 @@ function RunToVat()
 	Orion.Wait(300);
 
 	//Floor 1	
-	if (!PathTo(SolenPath1(), 5921))
+	if (!PathTo(5921, 5900, 1876))
 		RunToVat();
 	Orion.UseObject('0x40010277');
 	Orion.Wait(300);
 	
 	//Floor 2
-	if (!PathTo(SolenPath2(), 5874))
+	if (!PathTo(5874, 5855, 1851))
 		RunToVat();
 	Orion.UseObject('0x4001028C');
 	Orion.Wait(300);
 	
 	//Floor 3
-	if (!PathTo(SolenPath3(), 5774))
+	if (!PathTo(5774, 5805, 1919))
 		RunToVat();
 	Orion.Wait(300);
 }
@@ -264,13 +259,13 @@ function PourWater()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function TurnInQuest()
 {
-	PathTo(SolenPath4(), 5805);
+	PathTo(5805, 5776, 1899);
 
 	var matriarch = Orion.FindObject('0x001D0274');
 	if (matriarch)
 	{
 		//Orion.Print('Walking to Matriarch: ' + matriarch.X() + matriarch.Y());
-		WalkToTarget(matriarch.X(), matriarch.Y());
+		PathTo('any', matriarch.X(), matriarch.Y());
 	}
 		
 	GetZoogi();

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data cast_spells_from_book_if_not_scrolls="false">
     <macro name="AAAAA" looped="true" delay="2.5">
-        <action type="26" convert_type="28" waiting_time="1000"/>
-        <action type="26" convert_type="28" waiting_time="1000"/>
-        <action type="26" convert_type="28" waiting_time="1000"/>
-        <action type="16" convert_type="0" waiting_time="1000" serial="0x411D5A9F" graphic="0x0000" color="0x0000"/>
-        <action type="26" convert_type="28" waiting_time="1000"/>
-        <action type="16" convert_type="0" waiting_time="1000" serial="0x411D5182" graphic="0x0000" color="0x0000"/>
+        <action type="1" convert_type="1" waiting_time="1000" serial="0x42F17930" graphic="0x0E21" color="0x0000"/>
+        <action type="3" convert_type="0" waiting_time="1000" serial="0x0076DF69" graphic="0x00C8" color="0x0485"/>
     </macro>
     <macro name="Spell Heal" looped="false" delay="1">
         <action type="9" convert_type="0" waiting_time="1000" value="[cs touchoflife"/>
@@ -29,6 +25,6 @@
         <action type="1" convert_type="0" waiting_time="1000" serial="0x4672D08D" graphic="0x0F9F" color="0x0000"/>
     </macro>
     <macro name="Dagger" looped="false" delay="1">
-        <action type="1" convert_type="0" waiting_time="1000" serial="0x45E995A8" graphic="0x0F52" color="0x0000"/>
+        <action type="1" convert_type="0" waiting_time="1000" serial="0x42F19D03" graphic="0x0EC4" color="0x0000"/>
     </macro>
 </data>

@@ -5,3 +5,26 @@ function Organize_GoldGems()
 	OrganizeGoldGems(backpack);
 	OrganizeGoldGems('0x4E0D4DB8');
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function OrganizeGoldGems(fromContainer)
+{
+	Orion.SetTimer('BreakTimer');
+	var found = true;
+	
+	if (Orion.FindObject('0x4652DA38')) {
+		while (found)
+		{
+			found = Orion.MoveItemList('Gold+Gems', fromContainer, 0, '0x4652DA38'); //ID of the bag in your bank box
+			Orion.Wait(600);
+			
+			if (Orion.InJournal('place it there, item remains'))
+			{
+				Orion.ClearJournal();
+				Orion.Say('bank');
+			}
+			if (Orion.Timer('BreakTimer') > 30000)
+				break;
+	}
+	}
+}

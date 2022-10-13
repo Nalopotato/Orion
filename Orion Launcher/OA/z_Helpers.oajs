@@ -130,27 +130,6 @@ function StoreItemWithKeys(casterKeysID, gumpID, gumpButtonID, itemGfx, amt)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function OrganizeGoldGems(fromContainer)
-{
-	Orion.SetTimer('BreakTimer');
-	var found = true;
-	
-	while (found)
-	{
-		found = Orion.MoveItemList('Gold+Gems', fromContainer, 0, '0x4652DA38'); //ID of the bag in your bank box
-		Orion.Wait(600);
-		
-		if (Orion.InJournal('place it there, item remains'))
-		{
-			Orion.ClearJournal();
-			Orion.Say('bank');
-		}
-		if (Orion.Timer('BreakTimer') > 30000)
-			break;
-	}
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
 function GetGold(amt)
 {
 	if (Orion.Count('0x0EED', any, backpack) < amt)

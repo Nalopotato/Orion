@@ -14,6 +14,7 @@
 var lootBagID = '0x4E0D4DB8';
 var runeBookID = '0x40C01DBE';
 var casterKeysID = '0x466B92BD';
+var bagOfSendingID = '0x40FCB38E';
 
 function KillSolen()
 {
@@ -30,7 +31,7 @@ function KillSolen()
 			Orion.SetTimer('RecallTimer');
 			Orion.SetTimer('KillTimer');
 			
-			var mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself|inlos', '10', 'gray|criminal|orange|red');
+			var mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself|inlos', '12', 'gray|criminal|orange|red');
 			Orion.Wait(100);
 			
 			//Attack until the mob is dead
@@ -53,11 +54,12 @@ function KillSolen()
 						break;
 					}
 
-					mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself|inlos', '10', 'gray|criminal|orange|red');
+					mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself|inlos', '12', 'gray|criminal|orange|red');
 					mobSerial = mobList[0];
 					mobObj = Orion.FindObject(mobSerial);
 					
-					Orion.Print('76', 'Mob length: ' + mobList.length);
+					//Orion.Print('76', 'Mob length: ' + mobList.length);
+					Orion.Wait(50);
 				}
 			}
 
@@ -85,7 +87,7 @@ function KillSolen()
 				Orion.Wait(600);
 			}
 
-			StoreGold();
+			SendGold(bagOfSendingID);
 		}
 		
 		//Orion.Print('StoreZoogi'); StoreZoogi();
@@ -268,7 +270,7 @@ function TurnInQuest()
 		PathTo('any', matriarch.X(), matriarch.Y());
 	}
 		
-	GetZoogi();
+	GetZoogi(casterKeysID);
 	
 	//Turn in Kill quest, and get new quest
 	Orion.RequestContextMenu('0x001D0274');

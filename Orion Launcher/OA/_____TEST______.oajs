@@ -1,0 +1,47 @@
+//#include Autoload.oajs
+
+function TEST()
+{
+	UseRunebook(7, '0x41059D8B');
+}
+
+function HealPet() {
+	while (!Player.Dead()) {
+		Orion.UseType('0x0E21', any);
+		Orion.WaitForTarget(1000);
+		Orion.TargetObject('0x0076DF83');
+		Orion.Wait(2100);
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function GetProperties()
+{
+	var props = Orion.FindObject('0x423892B0').Properties();
+	var result = '';
+	
+	Orion.Print('PROPS: ' + props + ' ...END PROPS');
+	
+	for (var i = props.length - 3; i < props.length; i++)
+	{
+		if (parseInt(props[i]))
+			result += props[i];
+		Orion.Print(result);
+	}
+	
+	return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

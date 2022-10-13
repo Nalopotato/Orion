@@ -1,0 +1,62 @@
+//#include C:/Orion Launcher/OA/Autoload.oajs
+
+//https://www.uoex.net/wiki/Champion_spawns
+
+function RedPortal()
+{
+	UseRunebook(7, '0x41059D8B'); //Go Trinsic
+	PathTo('any', 1828, 2815); //Walk to pad
+
+	//Gump Responses to Fel
+	GumpAction('0x0180A162', 60002, 100, false);
+	GumpAction('0x0180A162', 60010, 100, true);
+	Orion.Wait(1000);
+
+	PathTo('any', 5327, 1816); //Run to portal
+}
+
+//////////////////////////////////////////////////////////////////
+
+function Xroads()
+{
+	//Orion.WalkTo(896, 1874, Player.Z(), 0, 255, 1, 1);
+	PathTo('any', 896, 1874);
+}
+
+function Destard() //Run this during Xroads?
+{
+	Orion.WalkTo(1176, 2635, Player.Z(), 0, 255, 1, 1);
+}
+
+function Forget()
+{
+	UseRunebook(17, '0x41059D8B');
+	PathTo('any', 2368, 823); //Run to sparkles
+	Orion.Say('forget');
+	Orion.Wait(300);
+
+	PathTo(2322, 2218, 844); //Run to Forget Champ
+	//Check for mobs and send alerts?
+
+	Baracoon();
+}
+
+function Baracoon() //Run this during Forget()
+{
+	PathTo(2322, 1322, 973);
+}
+
+function Doom()
+{
+	
+}
+
+function Tokuno() //Serado
+{
+	
+}
+
+function Kronus()
+{
+	
+}

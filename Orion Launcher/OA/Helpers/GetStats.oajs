@@ -59,14 +59,9 @@ function GetStats()
 
 function getSingleProperties(serialPerson, layer, stats, sumStats)
 {
-    var archive = Orion.NewFile();
-    archive.Open('propsArchive.txt');
-    archive.Append('propsArchive.txt', true);
-
     var obj = Orion.ObjAtLayer(layer, serialPerson);
     if (obj)
     {
-        archive.WriteLine(layer);
         obj = obj.Properties();
         var objLine = Orion.Split(obj, '\n');
         
@@ -81,12 +76,9 @@ function getSingleProperties(serialPerson, layer, stats, sumStats)
 	                if (idx >= 0)
 	                {
 	                    sumStats[idx] += parseInt(matches[j+1]);
-	                    archive.WriteLine(matches[j].trim());
 	                }
             	}
             }
         }
     }
-    
-    archive.Remove();
 }

@@ -1,3 +1,5 @@
+//This file is no long needed, but good for reference
+
 //For other mobiles, this is proximity based.  Make sure you are close enough to the other player!
 function PrintPlayerCoords()
 {

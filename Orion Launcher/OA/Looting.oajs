@@ -40,9 +40,10 @@ function SkinCorpse()
 				Orion.Wait(600);
 				
 				//Open Corpse and Loot
-				//Orion.Print('26', 'Opening Corpse');
+				Orion.Print('26', 'Opening Corpse');
 				Orion.UseObject(corpseList[i]);
 				Orion.Wait(600);
+				Orion.Print('26', 'Opening Corpse 2');
 				
 				Orion.FindType(any, any, corpseList[i]).forEach(function(serial)
 				{
@@ -69,6 +70,7 @@ function SkinCorpse()
 						Orion.Print('26', 'Found Wool!');
 						Orion.MoveItem(serial, 0, lootBagID);
 						Orion.Wait(800);
+						Orion.Print('26', 'Found Wool! 2');
 					}
 				});
 				

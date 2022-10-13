@@ -1,16 +1,16 @@
 //#include AutoAttack.oajs
 //#include Equip.oajs
 //#include HealSelf.oajs
+//#include Helpers/All.oajs
+//#include Helpers/ChampionChecks.oajs
 //#include Helpers/GetStats.oajs
+//#include Helpers/Paths.oajs
 //#include Looting.oajs
 //#include Lumberjacking.oajs
 //#include Mining.oajs
 //#include Organize_GoldGems.oajs
 //#include Recall.oajs
 //#include Solen Farm.oajs
-//#include z_ChampionChecks.oajs
-//#include z_Helpers.oajs
-//#include z_Paths.oajs
 
 function AutoStart()
 {

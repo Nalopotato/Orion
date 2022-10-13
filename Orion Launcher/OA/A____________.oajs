@@ -2,11 +2,21 @@
 
 function random()
 {
-	Orion.UseObject('0x42F17930');
-	if (Orion.WaitForTarget(1000))
-		Orion.TargetObject('0x0076DF87');
+	while (!Player.Dead()) {
+		Orion.UseType('0x0E21', any);
+		Orion.WaitForTarget(1000);
+		Orion.TargetObject('0x0076DF83');
+		Orion.Wait(2100);
+	}
+}
 
-	Orion.Say('[cs touchoflife');
+function HealPet() {
+	while (!Player.Dead()) {
+		Orion.UseType('0x0E21', any);
+		Orion.WaitForTarget(1000);
+		Orion.TargetObject('0x0076DF83');
+		Orion.Wait(2100);
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -2,7 +2,7 @@
 
 //TODO:  Do a mob check, targetting check, and dragging check before storing items
 
-var autoSkin = false; //Set true if you want to skin mobs and loot leather/wool/etc.
+var autoSkin = true; //Set true if you want to skin mobs and loot leather/wool/etc.
 
 var ethMountID = '0x40E9C89E';
 var casterKeys = '0x466B92BD';
@@ -12,6 +12,7 @@ var woodWorkerKeys = '0x447CBF38';
 function AutoAttack()
 {
 	if (Orion.ScriptRunning('HealSelf') < 1) { Orion.ToggleScript('HealSelf'); }
+	if (!Orion.CheckAgent('autoloot', 'Main')) {Orion.ControlAgent('autoloot', 'Main', 'stop');}
 	
 	while(!Player.Dead())
 	{
@@ -74,7 +75,7 @@ function AutoAttack()
 		}
 		
 		if (autoSkin)
-			LootWool();
+			SkinCorpse();
 		StoreItems();
 	}
 }
@@ -138,7 +139,7 @@ function StoreItems()
 	//Store Leather
 	if (Orion.Count('0x1081', 'any', backpack) > 40 || (Orion.Count('0x1081', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.65)))
 	{
-		while (Orion.Count('0x1081', 'any', backpack) > 1)
+		while (Orion.Count('0x1081', 'any', backpack) > 0)
 		{
 			Orion.Print('26', 'Leather');
 			StoreItemWithKeys(tailorKeys, '0x41F8FC19', 60029, '0x1081', 5);
@@ -148,7 +149,7 @@ function StoreItems()
 	//Store Scales
 	if (Orion.Count('0x26B4', 'any', backpack) > 25 || (Orion.Count('0x26B4', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.7)))
 	{
-		while (Orion.Count('0x26B4', 'any', backpack) > 1)
+		while (Orion.Count('0x26B4', 'any', backpack) > 0)
 		{
 			Orion.Print('26', 'Scales');		
 			StoreItemWithKeys(tailorKeys, '0x41F8FC19', 60029, '0x26B4', 5);

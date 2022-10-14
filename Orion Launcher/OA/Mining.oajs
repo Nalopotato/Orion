@@ -3,7 +3,7 @@
 function Mining() 
 {
 	// ***************************** Main Config *****************************
-	var keys = '0x45CDBF39'; //Serial of your Metal Worker's Keys
+	var metalKeys = '0x45CDBF39'; //Serial of your Metal Worker's Keys
 	var toolType = '0x0E86'; //Graphic of your tool
 	var autoMove = true;  //Change to false if you want to move manually
 	var forge = '0x4290B27D';  //Serial of your Mobile Forge
@@ -40,7 +40,7 @@ function Mining()
 			{
 				Orion.Print('No more axes...');
 				if (createNewTools)
-					CreateNewTools(toolType, toolAmt, keys, hookID);
+					CreateNewTools(toolType, toolAmt, metalKeys, hookID);
 			}
 				
 			EquipTool(tool);
@@ -76,8 +76,8 @@ function Mining()
 		
 		SmeltOre(tool, forge);
 		if (createNewTools)
-			CreateNewTools(toolType, toolAmt, keys, hookID);
-		StoreIngots(keys);
+			CreateNewTools(toolType, toolAmt, metalKeys, hookID);
+		StoreIngots(metalKeys);
 		
 		//Wait until player moves or Runebook is done.  157 is rune #16
 		if (runeIndex >= 167)

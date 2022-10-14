@@ -1,7 +1,7 @@
 //#include Autoload.oajs
 
 // ********************************************************************
-var keysSerial = '0x447CBF38'; //Serial of your Wood Worker's Keys
+var woodKeys = '0x447CBF38'; //Serial of your Wood Worker's Keys
 var metalKeys = '0x45CDBF39'; //Metal Worker's Keys
 var toolType = '0x0F43'; //Graphic of your Axe type
 var autoMove = true;  //Change to false if you want to run around manually
@@ -71,7 +71,7 @@ function Lumberjacking()
 		if (createNewTools)
 			CreateNewTools(toolType, toolAmt, metalKeys, hookID);
 		CutLogs(tool);
-		StoreBoards(keysSerial);
+		StoreBoards(woodKeys);
 		
 		//Wait until player moves or Runebook is done.  157 is rune #16
 		if (runeIndex >= 167)
@@ -127,12 +127,12 @@ function StoreBoards(k)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function UseKeys(serial, item)
+function UseKeys(keys, item)
 {
 	Orion.Print('Use Keys: ' + Orion.Count(item, any, backpack, 0, false));
 	if (Orion.Count(item, any, backpack, 0, false) > 0)
 	{
-		Orion.UseObject(serial); //Use Keys
+		Orion.UseObject(keys);
 		Orion.Wait('300');
 		
 		GumpAction('0x0A57934D', 60023, 200, false);

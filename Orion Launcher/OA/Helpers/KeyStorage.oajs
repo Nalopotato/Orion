@@ -7,10 +7,10 @@ var tailorKeys = '0x474E827D';
 
 function KeyStorage()
 {
-    StoreReagents();
-    StoreMetals();
-    StoreWood();
-    StoreTailoring();
+    UseKeys(regList, casterKeys, '0x0EBCD833', 60030, 20);
+    UseKeys(metalsList, metalKeys, '0xFB1E68CB', 60015, 20);
+    UseKeys(woodList, woodKeys, '0x0A57934D', 60023, 20);
+    UseKeys(tailoringList, tailorKeys, '0x41F8FC19', 60029, 20);
 }
 
 var regList = [
@@ -60,87 +60,18 @@ var tailoringList = [
     '0x0DF8', //Wool
 ];
 
-function StoreReagents() 
+function UseKeys(list, keySerial, gumpID, gumpHookID, amt)
 {
-     //Check no mobs before looping
-     var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+    var mobSerials = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
 
-     if (mob && mob.length < 2)
-     {
-         for (var i = 0; i <= regList.length; i++)
-         {
-             //while (Orion.FindType(regList[i], any, backpack))
-             //{
-                 //Orion.Print('StoreReagents');
-                 if (Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
-                 {
-                     StoreItemWithKeys(casterKeys, '0x0EBCD833', 60030, regList[i], 20);
-                 }
-             //}
-         }
-     }
-}
+    if (mobSerials && mobSerials.length < 2 && Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
+    {
+        for (var i = 0; i <= list.length; i++)
+        {
+            if (list[i] == '0x0F3F') //Arrows - Don't store unless we have a lot
+                amt = 300;
 
-function StoreMetals()
-{
-     //Check no mobs before looping
-     var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
-
-     if (mob && mob.length < 2)
-     {
-         for (var i = 0; i <= metalsList.length; i++)
-         {
-             //while (Orion.FindType(metalsList[i], any, backpack))
-             //{
-                 if (Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
-                 {
-                     StoreItemWithKeys(metalKeys, '0xFB1E68CB', 60015, metalsList[i], 20);
-                 }
-             //}
-         }
-     }
-}
-
-function StoreWood()
-{
-     //Check no mobs before looping
-     var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
-
-     if (mob && mob.length < 2)
-     {
-         for (var i = 0; i <= woodList.length; i++)
-         {
-             //while (Orion.FindType(woodList[i], any, backpack))
-             //{
-                 var amt = 20;
-                 if (woodList[i] == '0x0F3F' || woodList[i] == '0x1BFB') //Don't store arrows/bolts unless we have a lot
-                     amt = 300
-
-                 if (Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
-                 {
-                     StoreItemWithKeys(woodKeys, '0x0A57934D', 60023, woodList[i], amt);
-                 }
-             //}
-         }
-     }
-}
-
-function StoreTailoring()
-{
-     //Check no mobs before looping
-     var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
-
-     if (mob && mob.length < 2)
-     {
-         for (var i = 0; i <= tailoringList.length; i++)
-         {
-             //while (Orion.FindType(tailoringList[i], any, backpack))
-             //{
-                 if (Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
-                 {
-                     StoreItemWithKeys(woodKeys, '0x41F8FC19', 60029, tailoringList[i], 20);
-                 }
-             //}
-         }
-     }
+            StoreItemWithKeys(keySerial, gumpID, gumpHookID, list[i], amt);
+        }
+    }
 }

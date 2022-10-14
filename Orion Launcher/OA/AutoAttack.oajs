@@ -10,7 +10,7 @@ var bagOfSendingID = '0x40FCB38E';
 
 function AutoAttack()
 {
-	if (Orion.ScriptRunning('HealSelf') < 1) { Orion.ToggleScript('HealSelf'); }
+	if (Orion.ScriptRunning('HealSelf') < 1) { Orion.ToggleScript('HealSelf', true); }
 	if (!Orion.CheckAgent('autoloot', 'Main')) {Orion.ControlAgent('autoloot', 'Main', 'stop');}
 	
 	while(!Player.Dead())

@@ -1,10 +1,8 @@
 //#include Autoload.oajs
 
-//TODO:  Do a mob check, targetting check, and dragging check before storing items
+var autoSkin = true; //Set true if you want to skin mobs and loot leather/wool/etc.
 
-var autoSkin = false; //Set true if you want to skin mobs and loot leather/wool/etc.
-
-var ethMountID = '0x40E9C89E';
+var ethMountID = '0x467FC830';
 var casterKeys = '0x466B92BD';
 var tailorKeys = '0x474E827D';
 var woodWorkerKeys = '0x447CBF38';
@@ -79,14 +77,15 @@ function AutoAttack()
 		
 		if (autoSkin)
 			SkinCorpse();
-		StoreItems();
+
+		ItemManagement();
 	}
 }
 
-
-function StoreItems() 
+function ItemManagement() 
 {
 	SendGold(bagOfSendingID);
+	KeyStorage();
 	
 	//Refill Bandages
 	if (Orion.Count('0x0E21', 'any', backpack) < 10)
@@ -113,49 +112,5 @@ function StoreItems()
 		Orion.UseObject(woodWorkerKeys);
 		GumpAction('0x0A57934D', 60013, 500, false);
 		GumpAction('0x0A57934D', 0, 500, true);
-	}
-	
-	//Daemon Bones
-	if (Orion.Count('0x0F80', 'any', backpack) > 30 && Player.Weight() > (Player.MaxWeight() * 0.6))
-	{
-		Orion.Print('26', 'Daemon Bones');
-		StoreItemWithKeys(casterKeys, '0x0EBCD833', 60030, '0x0F80', 40);
-	}
-	
-	//Zoogi
-	//StoreZoogi();
-	
-	//Store Wool
-	if (Orion.Count('0x0DF8', 'any', backpack) > 30 || (Orion.Count('0x0DF8', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.7)))
-	{
-		Orion.Print('26', 'Wool');		
-		StoreItemWithKeys(tailorKeys, '0x41F8FC19', 60029, '0x0DF8', 5);
-	}
-	
-	//Store Feathers
-	if (Orion.Count('0x1BD1', 'any', backpack) > 50 || (Orion.Count('0x1BD1', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.7)))
-	{
-		Orion.Print('26', 'Feathers');		
-		StoreItemWithKeys(woodWorkerKeys, '0x0A57934D', 60023, '0x1BD1', 5);
-	}
-	
-	//Store Leather
-	if (Orion.Count('0x1081', 'any', backpack) > 40 || (Orion.Count('0x1081', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.65)))
-	{
-		while (Orion.Count('0x1081', 'any', backpack) > 0)
-		{
-			Orion.Print('26', 'Leather');
-			StoreItemWithKeys(tailorKeys, '0x41F8FC19', 60029, '0x1081', 5);
-		}
-	}
-	
-	//Store Scales
-	if (Orion.Count('0x26B4', 'any', backpack) > 25 || (Orion.Count('0x26B4', 'any', backpack) > 5 && Player.Weight() > (Player.MaxWeight() * 0.7)))
-	{
-		while (Orion.Count('0x26B4', 'any', backpack) > 0)
-		{
-			Orion.Print('26', 'Scales');		
-			StoreItemWithKeys(tailorKeys, '0x41F8FC19', 60029, '0x26B4', 5);
-		}
 	}
 }

@@ -6,7 +6,7 @@
 // 2. Make sure you have at least 1 Tinker's Tools in your pack
 // 3. Stand near a Forge/Anvil
 
-var keys = '0x45CDBF39'; //Serial of your metal keys, loaded with Iron
+var metalKeys = '0x45CDBF39'; //Serial of your metal keys, loaded with Iron
 var hammer = '0x13E4';
 var toolKit = '0x1EB8';
 var iron = '0x1BF2';
@@ -111,7 +111,7 @@ function Blacksmithy()
 		
 		//Get Iron
 		RefillIron();
-		CreateNewTools(hammer, 4, keys, 100);
+		CreateNewTools(hammer, 4, metalKeys, 100);
 		
 		if (Orion.Count(iron) < 6)
 		{
@@ -129,7 +129,7 @@ function RefillIron()
 		Orion.Print('Getting Iron');
 		while (Orion.Count(iron) < 300)
 		{
-			Orion.UseObject(keys);
+			Orion.UseObject(metalKeys);
  			Orion.Wait(300);
 
 			GumpAction('0xFB1E68CB', 60000, 300, true);

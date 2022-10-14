@@ -1,0 +1,146 @@
+//#include C:/Orion Launcher/OA/Autoload.oajs
+
+var casterKeys = '0x466B92BD';
+var metalKeys = '0x45CDBF39';
+var woodKeys = '0x447CBF38';
+var tailorKeys = '0x474E827D';
+
+function KeyStorage()
+{
+    StoreReagents();
+    StoreMetals();
+    StoreWood();
+    StoreTailoring();
+}
+
+var regList = [
+    '0x0F7B', //BM
+    '0x0F7A', //BP
+    '0x0F84', //GA
+    '0x0F85', //GS
+    '0x0F86', //MR
+    '0x0F88', //NS
+    '0x0F8C', //SA
+    '0x0F8D', //SS
+
+    '0x0F78', //Batwing
+    '0x0F8A', //Pig Iron
+    '0x0F7D', //Daemon Blood
+    '0x0F8F', //Grave Dust
+    '0x0F8E', //Nox
+
+    '0x0E24', //Spring Water
+    '0x097A', //Petrified Wood
+    '0x0E1F', //Destroying Angel
+
+    '0x0F80', //Daemon Bone
+    '0x0EF3', //Blank Scroll
+    '0x0F0E', //Empty Bottle
+    '0x0F8F', //Ethereal Powder
+    '0x0F81', //Fertile Dirt
+    '0x26B7', //Zoogi Fungus
+];
+
+var metalsList = ['0x1BF2']; //Ingots
+
+var woodList = [
+    '0x1BD7', //Boards
+    '0x0F3F', //Arrows
+    '0x1BFB', //Bolts
+    '0x1BD1', //Feather
+    '0x318F', //Bark Fragment
+    '0x3191', //Luminescent Fungi
+    '0x2F5F', //Switch
+    '0x3190', //Parasitic Plant
+];
+
+var tailoringList = [
+    '0x1081', //Leather
+    '0x26B4', //Scales
+    '0x0DF8', //Wool
+];
+
+function StoreReagents() 
+{
+     //Check no mobs before looping
+     var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+
+     if (mob && mob.length < 2)
+     {
+         for (var i = 0; i <= regList.length; i++)
+         {
+             //while (Orion.FindType(regList[i], any, backpack))
+             //{
+                 //Orion.Print('StoreReagents');
+                 if (Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
+                 {
+                     StoreItemWithKeys(casterKeys, '0x0EBCD833', 60030, regList[i], 20);
+                 }
+             //}
+         }
+     }
+}
+
+function StoreMetals()
+{
+     //Check no mobs before looping
+     var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+
+     if (mob && mob.length < 2)
+     {
+         for (var i = 0; i <= metalsList.length; i++)
+         {
+             //while (Orion.FindType(metalsList[i], any, backpack))
+             //{
+                 if (Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
+                 {
+                     StoreItemWithKeys(metalKeys, '0xFB1E68CB', 60015, metalsList[i], 20);
+                 }
+             //}
+         }
+     }
+}
+
+function StoreWood()
+{
+     //Check no mobs before looping
+     var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+
+     if (mob && mob.length < 2)
+     {
+         for (var i = 0; i <= woodList.length; i++)
+         {
+             //while (Orion.FindType(woodList[i], any, backpack))
+             //{
+                 var amt = 20;
+                 if (woodList[i] == '0x0F3F' || woodList[i] == '0x1BFB') //Don't store arrows/bolts unless we have a lot
+                     amt = 300
+
+                 if (Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
+                 {
+                     StoreItemWithKeys(woodKeys, '0x0A57934D', 60023, woodList[i], amt);
+                 }
+             //}
+         }
+     }
+}
+
+function StoreTailoring()
+{
+     //Check no mobs before looping
+     var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+
+     if (mob && mob.length < 2)
+     {
+         for (var i = 0; i <= tailoringList.length; i++)
+         {
+             //while (Orion.FindType(tailoringList[i], any, backpack))
+             //{
+                 if (Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
+                 {
+                     StoreItemWithKeys(woodKeys, '0x41F8FC19', 60029, tailoringList[i], 20);
+                 }
+             //}
+         }
+     }
+}

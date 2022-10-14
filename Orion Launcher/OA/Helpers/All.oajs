@@ -111,13 +111,13 @@ function SendGold(bagOfSendingID)
 }
 
 ////
-function StoreItemWithKeys(keysID, gumpID, gumpButtonID, itemGfx, amt)
+function StoreItemWithKeys(keysID, gumpID, gumpHookID, itemGfx, amt)
 {
-	if (Orion.Count(itemGfx, 'any', backpack) > amt)
+	if (Orion.Count(itemGfx, any, backpack) > amt)
 	{
-		Orion.Print('26', 'Store Item');
-		Orion.UseObject(keysID); 						//Spellcaster's Keys
-		GumpAction(gumpID, gumpButtonID, 500, false); 	//Clicking "Add resource" button
+		Orion.Print('26', 'Storing: ' + itemGfx);
+		Orion.UseObject(keysID);
+		GumpAction(gumpID, gumpHookID, 500, false); 	//Clicking "Add resource" button
 		
 		if (Orion.WaitForTarget(1000))
 			Orion.TargetType(itemGfx, 'any', backpack);

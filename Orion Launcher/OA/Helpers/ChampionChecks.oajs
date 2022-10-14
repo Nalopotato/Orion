@@ -19,7 +19,6 @@ function RedPortal()
 
 function Xroads()
 {
-	//Orion.WalkTo(896, 1874, Player.Z(), 0, 255, 1, 1);
 	PathTo('any', 896, 1874);
 }
 

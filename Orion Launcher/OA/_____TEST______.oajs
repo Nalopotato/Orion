@@ -5,11 +5,13 @@ function TEST()
 	UseRunebook(7, '0x41059D8B');
 }
 
-function HealPet() {
+function HealPet()
+{
+	var derp = '0x0076DF69';
 	while (!Player.Dead()) {
 		Orion.UseType('0x0E21', any);
 		Orion.WaitForTarget(1000);
-		Orion.TargetObject('0x0076DF83');
+		Orion.TargetObject('0x0076DF69');
 		Orion.Wait(2100);
 	}
 }

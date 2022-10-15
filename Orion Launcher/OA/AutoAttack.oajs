@@ -36,7 +36,7 @@ function AutoAttack()
 		var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '12', 'gray|criminal|orange|red');
 		//Orion.Wait(50);
 		
-		if (mob && mob.length > 0)
+		if (mob.length > 0)
 		{
 			Orion.Attack(mob);
 
@@ -63,7 +63,6 @@ function AutoAttack()
 		}
 		else //Chill - no enemies
 		{
-			//Vampiric Embrace
 			if (Player.Color() != '0x847E')
 			{
 				Orion.Print('Vampiric Embrace');
@@ -72,7 +71,7 @@ function AutoAttack()
 				Orion.Wait(2500);
 			}
 			
-			Orion.Wait(300);
+			Orion.Wait(200);
 		}
 		
 		if (autoSkin)

@@ -2,7 +2,16 @@
 
 function TEST()
 {
-	UseRunebook(7, '0x41059D8B');
+	while (!Player.Dead())
+	{
+		var target = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '12', 'gray|criminal|orange|red');
+	    if (target && target.length > 0)
+	    {
+	        Orion.TargetSystemSerial(target);
+	        Orion.Attack(target);
+	    }
+	    Orion.Wait(100);
+    }
 }
 
 function HealPet()

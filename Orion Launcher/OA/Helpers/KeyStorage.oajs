@@ -7,10 +7,10 @@ var tailorKeys = '0x474E827D';
 
 function KeyStorage()
 {
-    UseKeys(regList, casterKeys, '0x0EBCD833', 60030, 20);
-    UseKeys(metalsList, metalKeys, '0xFB1E68CB', 60015, 20);
-    UseKeys(woodList, woodKeys, '0x0A57934D', 60023, 20);
-    UseKeys(tailoringList, tailorKeys, '0x41F8FC19', 60029, 20);
+    StoreWithKeys(regList, casterKeys, '0x0EBCD833', 60030, 20);
+    StoreWithKeys(metalsList, metalKeys, '0xFB1E68CB', 60015, 20);
+    StoreWithKeys(woodList, woodKeys, '0x0A57934D', 60023, 20);
+    StoreWithKeys(tailoringList, tailorKeys, '0x41F8FC19', 60029, 10);
 }
 
 var regList = [
@@ -60,11 +60,11 @@ var tailoringList = [
     '0x0DF8', //Wool
 ];
 
-function UseKeys(list, keySerial, gumpID, gumpHookID, amt)
+function StoreWithKeys(list, keySerial, gumpID, gumpHookID, amt)
 {
     var mobSerials = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
 
-    if (mobSerials && mobSerials.length < 2 && Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
+    if (mobSerials.length < 2 && Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
     {
         for (var i = 0; i <= list.length; i++)
         {

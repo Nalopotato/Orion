@@ -2,6 +2,7 @@
 //#include Equip.oajs
 //#include HealSelf.oajs
 //#include Helpers/All.oajs
+//#include Helpers/GetStats.oajs
 //#include Helpers/KeyStorage.oajs
 //#include Helpers/Paths.oajs
 //#include Looting.oajs

@@ -24,7 +24,7 @@ function Xroads()
 
 function Destard() //Run this during Xroads?
 {
-	Orion.WalkTo(1176, 2635, Player.Z(), 0, 255, 1, 1);
+	PathTo('any', 1176, 2635);
 }
 
 function Forget()

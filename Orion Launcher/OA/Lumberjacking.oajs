@@ -107,19 +107,19 @@ function StoreBoards(k)
 	while (Orion.FindType('0x1BD7') > '')
 	{
 		Orion.Print('Store Boards');
-		UseKeys(k, '0x1BD7');
+		UseKeysForWood(k, '0x1BD7');
 	}
 	//Bark Fragments
-	UseKeys(k, '0x318F');
+	UseKeysForWood(k, '0x318F');
 	
 	//Switches
-	UseKeys(k, '0x2F5F');
+	UseKeysForWood(k, '0x2F5F');
 	
 	//Fungi
-	UseKeys(k, '0x3191');
+	UseKeysForWood(k, '0x3191');
 	
 	//Parasitic Plants
-	UseKeys(k, '0x3190');
+	UseKeysForWood(k, '0x3190');
 	
 	//Close Gump
 	GumpAction('0x554B87F3', 0, 200, true);
@@ -127,7 +127,7 @@ function StoreBoards(k)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function UseKeys(keys, item)
+function UseKeysForWood(keys, item)
 {
 	Orion.Print('Use Keys: ' + Orion.Count(item, any, backpack, 0, false));
 	if (Orion.Count(item, any, backpack, 0, false) > 0)

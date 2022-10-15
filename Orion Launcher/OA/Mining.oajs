@@ -110,7 +110,7 @@ function StoreIngots(k)
 	//Boards
 	while (Orion.FindType('0x1BF2') > '')
 	{
-		UseKeys(k, '0x1BF2');
+		UseKeysForIngots(k, '0x1BF2');
 	}
 
 	//Close Gump
@@ -118,7 +118,7 @@ function StoreIngots(k)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function UseKeys(serial, item)
+function UseKeysForIngots(serial, item)
 {
 	if (Orion.FindType(item) > '')
 	{

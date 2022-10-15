@@ -74,42 +74,11 @@ function AutoAttack()
 			Orion.Wait(200);
 		}
 		
-		if (autoSkin)
-			SkinCorpse();
-
-		ItemManagement();
-	}
-}
-
-function ItemManagement() 
-{
-	SendGold(bagOfSendingID);
-	KeyStorage();
-	
-	//Refill Bandages
-	if (Orion.Count('0x0E21', 'any', backpack) < 10)
-	{
-		Orion.Print('26', 'Cutting Cloth');
-		if (Orion.Count('0x1766', 'any', backpack) < 25)
-		{
-			Orion.UseObject(tailorKeys);
-			GumpAction('0x41F8FC19', 60020, 500, false);
-			GumpAction('0x41F8FC19', 0, 500, true);
+		if (autoSkin && !Orion.ScriptRunning('Looting')) { 
+			Orion.Exec('SkinCorpse', true);
 		}
-		
-		Orion.UseObject('0x4672D08D');
-		if (Orion.WaitForTarget(1000))
-			Orion.TargetType('0x1766');
-			
-		Orion.Wait(500);
-	}
-	
-	//Refill Arrows
-	if (Orion.Count('0x0F3F', 'any', backpack) < 5 && Player.Weight() < (Player.MaxWeight() * 0.75))
-	{
-		Orion.Print('Arrows');
-		Orion.UseObject(woodWorkerKeys);
-		GumpAction('0x0A57934D', 60013, 500, false);
-		GumpAction('0x0A57934D', 0, 500, true);
+
+		SendGold(bagOfSendingID);
+		KeyStorage();
 	}
 }

@@ -5,7 +5,7 @@ function UseRunebook(runeIndex, bookID)
 	Orion.Print('Book Number: ' + (runeIndex + 3) / 10);
 	
 	Orion.UseObject(bookID);
-	Orion.Wait(300);
+	Orion.Wait(100);
 
 	while (Orion.InJournal('needs time to recharge', 'sys') || Orion.InJournal('You must wait to', 'sys'))
 	{

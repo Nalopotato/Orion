@@ -64,7 +64,7 @@ function StoreWithKeys(list, keySerial, gumpID, gumpHookID, amt)
 {
     var mobSerials = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
 
-    if (mobSerials.length < 2 && Player.Weight() > (Player.MaxWeight() * 0.6) && !Orion.Dragging())
+    if (mobSerials.length < 2 && Player.Weight() > (Player.MaxWeight() * 0.5) && !Orion.Dragging())
     {
         for (var i = 0; i <= list.length; i++)
         {

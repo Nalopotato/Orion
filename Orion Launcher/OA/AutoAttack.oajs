@@ -1,12 +1,13 @@
 //#include Autoload.oajs
 
-var autoSkin = true; //Set true if you want to skin mobs and loot leather/wool/etc.
+var autoSkin = false; //Set true if you want to skin mobs and loot leather/wool/etc.
 
 var ethMountID = '0x467FC830';
 var casterKeys = '0x466B92BD';
 var tailorKeys = '0x474E827D';
 var woodWorkerKeys = '0x447CBF38';
 var bagOfSendingID = '0x40FCB38E';
+var vamp = true;
 
 function AutoAttack()
 {
@@ -53,9 +54,13 @@ function AutoAttack()
 			
 			if (Player.Mana() > (Player.MaxMana() * 0.6))
 			{
-				//if (Orion.Timer('Ninjitsu') > 3000) {Orion.Cast('502');Orion.SetTimer('Ninjitsu');Orion.Wait(100);}
-				if (!Orion.AbilityStatus('primary'))
-					Orion.UseAbility('primary');
+				if (Orion.Timer('Ninjitsu') > 3000) {
+					Orion.Cast('502');
+					Orion.SetTimer('Ninjitsu');
+					Orion.Wait(100);
+				}
+				//if (!Orion.AbilityStatus('primary'))
+					//Orion.UseAbility('primary');
 				//if (!Orion.AbilityStatus('secondary'))
 					//Orion.UseAbility('secondary');
 				Orion.Wait(100);
@@ -63,7 +68,7 @@ function AutoAttack()
 		}
 		else //Chill - no enemies
 		{
-			if (Player.Color() != '0x847E')
+			if (Player.Color() != '0x847E' && vamp)
 			{
 				Orion.Print('Vampiric Embrace');
 				Orion.Say('[cs vampiricembrace');

@@ -2,16 +2,8 @@
 
 function TEST()
 {
-	while (!Player.Dead())
-	{
-		var target = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '12', 'gray|criminal|orange|red');
-	    if (target && target.length > 0)
-	    {
-	        Orion.TargetSystemSerial(target);
-	        Orion.Attack(target);
-	    }
-	    Orion.Wait(100);
-    }
+	var obj = Orion.GetStatus('0x005CFF32');
+	Orion.Print(obj);
 }
 
 function HealPet()

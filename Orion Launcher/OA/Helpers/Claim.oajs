@@ -1,0 +1,21 @@
+//#include Autoload.oajs
+
+function Claim() {
+	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself', 12);
+	
+	if (corpseList.length > 0)
+	{
+		for (var i = 0; i < corpseList.length; i++)
+		{
+			while (Orion.Dragging()) { 
+				Orion.Wait(100);
+			}
+
+			Orion.Say('[claim');
+			Orion.WaitForTarget(2000);
+			Orion.TargetObject(corpseList[i]);
+			Orion.Wait(300);
+		}
+	}
+	Orion.CancelTarget();
+}

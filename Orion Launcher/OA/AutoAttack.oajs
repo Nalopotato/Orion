@@ -2,6 +2,7 @@
 
 var autoSkin = true; //Set true if you want to skin mobs and loot leather/wool/etc.
 
+var lootBagID = '0x44DBAC77';
 var ethMountID = '0x467FC830';
 var casterKeys = '0x466B92BD';
 var tailorKeys = '0x474E827D';
@@ -83,7 +84,7 @@ function AutoAttack()
 			Orion.Exec('SkinCorpse', true);
 		}
 
-		SendGold(bagOfSendingID);
+		SendGold(bagOfSendingID, lootBagID);
 		KeyStorage();
 	}
 }

@@ -97,14 +97,14 @@ function GetToolUsesRemaining()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function SendGold(bagOfSendingID)
+function SendGold(bagOfSendingID, lootBagID)
 {
-	if (Orion.Count('0x0EED', 'any', backpack) > 12000 || (Orion.Count('0x0EED', 'any', backpack) > 3000 && Player.Weight() > (Player.MaxWeight() * 0.7)))
+	if (Orion.Count(0x0EED, any, lootBagID) > 12000 || (Orion.Count(0x0EED, any, lootBagID) > 3000 && Player.Weight() > (Player.MaxWeight() * 0.7)))
 	{
 		Orion.Print('26', 'Sending Gold...');
 		Orion.UseObject(bagOfSendingID);
 		if (Orion.WaitForTarget(1000))
-			Orion.TargetType('0x0EED', 'any', backpack);
+			Orion.TargetType(0x0EED, any, lootBagID);
 		Orion.Wait(100);
 		Orion.CancelTarget();
 	}

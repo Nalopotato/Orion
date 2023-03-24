@@ -2,8 +2,8 @@
 
 function SkinCorpse()
 {
-	var lootBagID = '0x4E0D4DB8';
-	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself|inlos', 1);
+	var lootBagID = '0x44DBAC77';
+	var corpseList = Orion.FindType(0x2006, any, ground, 'ignoreself|inlos', 1);
 	//Orion.Print('Props: ' + Orion.FindObject(foundList[0]).Properties());
 	
 	if (corpseList && corpseList.length > 0)

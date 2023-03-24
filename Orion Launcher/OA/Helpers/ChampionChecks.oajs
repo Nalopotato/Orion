@@ -42,7 +42,7 @@ function Forget()
 
 function Baracoon() //Run this during Forget()
 {
-	PathTo(2322, 1322, 973);
+	PathTo(any, 1322, 973);
 }
 
 function Doom()

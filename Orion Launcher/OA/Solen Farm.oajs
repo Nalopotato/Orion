@@ -11,10 +11,10 @@
 //Repeat
 //Finally, when no corpses are left, break.
 
-var lootBagID = '0x4E0D4DB8';
+var lootBagID = '0x44DBAC77';
 var runeBookID = '0x40C01DBE';
 var casterKeysID = '0x466B92BD';
-var bagOfSendingID = '0x40FCB38E';
+var bagOfSendingID = '0x40D1225F';
 
 function KillSolen()
 {
@@ -130,9 +130,9 @@ function ClaimCorpses() {
 			Orion.WaitForTarget(5000);
 			Orion.TargetObject(corpseList[i]);
 			Orion.Wait(500);
-			Orion.CancelTarget();
 		}
 	}
+	Orion.CancelTarget();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////

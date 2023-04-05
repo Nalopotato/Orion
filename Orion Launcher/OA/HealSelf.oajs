@@ -11,7 +11,7 @@ function HealSelf()
 		var waitTime = (8000 - (Math.ceil((Player.Dex() - 80) / 20)) * 1000);
 		if (Orion.Timer('Heal') == -1) { Orion.SetTimer('Heal'); }
 
-		if (Player.Hits() < (Player.MaxHits() * 0.9) && Orion.Timer('Heal') > waitTime)
+		if (Player.Hits() < (Player.MaxHits() * 0.82) && Orion.Timer('Heal') > waitTime)
 		{
 			Orion.Say('[bandself');
 			Orion.SetTimer('Heal');

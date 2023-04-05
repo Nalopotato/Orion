@@ -31,3 +31,8 @@ OrionGlobalProfiles/
 *.ini
 Orion Launcher/OA/Config/Default/Window.ini
 Orion Launcher/OA/Config/Default/Hotkeys.xml
+Orion Launcher/OA/.vscode/settings.json
+Orion Launcher/OA/Config/Default/Window.ini
+*.ini
+*.dll
+Orion Launcher/OA/OrionAssistant64.dll

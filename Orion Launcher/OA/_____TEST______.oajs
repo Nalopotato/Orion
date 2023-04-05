@@ -1,9 +1,15 @@
-//#include Autoload.oajs
 
 function TEST()
 {
-	var obj = Orion.GetStatus('0x005CFF32');
-	Orion.Print(obj);
+	var runeBooks = [
+		['0x40C01DBE', 17, 117], //Solen
+		['0x40D17D00', 7, 157],  //XP Farm
+		['0x47A8D815', 7, 27]    //Sheep
+	];
+
+	Orion.Print(runeBooks[0][1]);
+	Orion.Print(runeBooks[1]);
+	Orion.Print(runeBooks[2]);
 }
 
 function HealPet()

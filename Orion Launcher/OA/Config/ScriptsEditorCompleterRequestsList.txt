@@ -1,3 +1,4 @@
+FindType
 AbilityStatus
 Abyss
 Acquire
@@ -63,6 +64,7 @@ BankSerial
 BlockMoving
 BloodyBandageSelf
 Boxhack
+BuffDescription
 BuffExists
 BuffTimeRemaining
 BuffsCount
@@ -190,7 +192,6 @@ FindListEx
 FindListItem
 FindObject
 FindTextID
-FindType
 FindTypeEx
 FindWand
 FireResistance
@@ -230,6 +231,7 @@ GetLastGump
 GetLastTargetPosition
 GetMenu
 GetMousePosition
+GetMultisRect
 GetPathArray
 GetPathArrayEx
 GetPing
@@ -253,6 +255,9 @@ GridIndex
 GuildGump
 GumpCount
 GumpExists
+GumpId
+GumpSerial
+GumpType
 GumppicList
 HaveCancel
 HaveTarget
@@ -564,6 +569,7 @@ Timer
 TimerExists
 TithingPoints
 Title
+ToString
 ToggleGargoyleFlying
 ToggleScript
 TradeCheck
@@ -681,3 +687,11 @@ true
 undefined
 var
 while
+JournalSaveName
+AddHighlightArea
+CurrentScriptDirPath
+GetContextMenu
+HighlightAreaTimer
+ItemClilocID
+ItemText
+RemoveHighlightArea

@@ -115,7 +115,7 @@ function StoreItemWithKeys(keysID, gumpID, gumpHookID, itemGfx, amt)
 {
 	if (Orion.Count(itemGfx, any, backpack) > amt)
 	{
-		Orion.Print('26', 'Storing: ' + itemGfx);
+		//Orion.Print('26', 'Storing: ' + itemGfx);
 		Orion.UseObject(keysID);
 		GumpAction(gumpID, gumpHookID, 500, false); 	//Clicking "Add resource" button
 		

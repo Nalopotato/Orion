@@ -10,6 +10,22 @@ function KeyStorage()
     StoreWithKeys(regList, casterKeys, '0x0EBCD833', 60030, 20);
     StoreWithKeys(metalsList, metalKeys, '0xFB1E68CB', 60015, 20);
     StoreWithKeys(woodList, woodKeys, '0x0A57934D', 60023, 20);
+
+    var itemList = Orion.FindType('0x1079', any, backpack);
+    if (itemList != null && itemList.length > 0) {
+        for (var i = 0; i <= itemList.length; i++)
+        {
+            var item = Orion.FindObject(itemList[i]);
+            if (item && item.Graphic() == '0x1079') { //Hide
+                Orion.UseType('0x0F9F', any, backpack); //Scissors
+                Orion.WaitForTarget(2000);
+                
+                Orion.TargetObject(item.Serial());
+                Orion.Wait(500);
+            }
+        }
+    }
+
     StoreWithKeys(tailoringList, tailorKeys, '0x41F8FC19', 60029, 10);
 }
 
@@ -38,7 +54,7 @@ var regList = [
     '0x0F0E', //Empty Bottle
     '0x0F8F', //Ethereal Powder
     '0x0F81', //Fertile Dirt
-    '0x26B7', //Zoogi Fungus
+    //'0x26B7', //Zoogi Fungus
 ];
 
 var metalsList = ['0x1BF2']; //Ingots

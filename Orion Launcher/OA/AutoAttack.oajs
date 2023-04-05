@@ -35,7 +35,7 @@ function AutoAttack()
 			Orion.Wait(300);
 		}
 
-		var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '12', 'gray|criminal|orange|red');
+		var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '10', 'gray|criminal|orange|red');
 		//Orion.Wait(50);
 		
 		if (mob.length > 0)

@@ -4,7 +4,6 @@ function SkinCorpse()
 {
 	var lootBagID = '0x44DBAC77';
 	var corpseList = Orion.FindType(0x2006, any, ground, 'ignoreself|inlos', 1);
-	//Orion.Print('Props: ' + Orion.FindObject(foundList[0]).Properties());
 	
 	if (corpseList && corpseList.length > 0)
 	{
@@ -34,7 +33,15 @@ function SkinCorpse()
 				corpse === 'A Cow Corpse')
 			{
 				//Skin Corpse
+				Orion.ClearJournal();
+				Orion.Wait(200);
 				Orion.UseType('0x0EC4', any, backpack); //Skinning Knife
+				Orion.Wait(50);
+				while (Orion.InJournal('You must wait to perform', 'sys')) {
+					Orion.UseType('0x0EC4', any, backpack); //Skinning Knife
+					Orion.Wait(50);
+					Orion.ClearJournal();
+				}
 				Orion.WaitForTarget(4000);
 				Orion.TargetObject(corpseList[i]);
 				Orion.Wait(600);
@@ -54,31 +61,31 @@ function SkinCorpse()
 						item.Graphic() == '0x1BD1' || 
 						item.Graphic() == '0x1079' || //Hide
 						item.Graphic() == '0x26B4' || //Scales
-						item.Graphic() == '0x1081'))
+						item.Graphic() == '0x1081'))  //Leather
 					{
-						if (item.Graphic() == '0x1079') //Hide
-						{
-							Orion.Wait(100);
-							Orion.UseType('0x0F9F', any, backpack); //Scissors
-							Orion.Wait(300);
-							Orion.TargetObject(item.Serial());
-							Orion.Wait(500);
-							item = Orion.FindType('0x1081', any, corpseList[i])[0]; //Switch Obj from Hide to the Leather
-						}
+						// if (item.Graphic() == '0x1079') { //Hide
+						// 	Orion.UseType('0x0F9F', any, backpack); //Scissors
+						// 	Orion.WaitForTarget(2000);
+						// 	Orion.TargetObject(item.Serial());
+						// 	Orion.Wait(500);
+						// 	item = Orion.FindType('0x1081', any, corpseList[i])[0]; //Switch Obj from Hide to the Leather
+						// }
 						
 						Orion.MoveItem(serial, 0, lootBagID);
-						Orion.Wait(800);
+						Orion.Wait(600);
 					}
 				});
 				
-				if (Orion.InJournal('You see nothing useful'))
+				if (Orion.InJournal('You see nothing useful', 'sys') || 
+					Orion.InJournal('You carve some meat', 'sys') ||
+					Orion.InJournal('You shear it, and', 'sys'))
 				{
 					Orion.Say('[claim');
 					Orion.WaitForTarget(4000);
 					Orion.TargetObject(corpseList[i]);
 					Orion.Wait(500);
 					Orion.CancelTarget();
-					Orion.ClearJournal();
+					Orion.ClearJournal(); //Race condition for other macros :o
 				}
 			}
 		}

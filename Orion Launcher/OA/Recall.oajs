@@ -2,7 +2,7 @@
 
 function UseRunebook(runeIndex, bookID)
 {
-	Orion.Print('Book Number: ' + (runeIndex + 3) / 10);
+	//Orion.Print(28, 'Book Number: ' + (runeIndex + 3) / 10 + ' at index: ' + runeIndex);
 	
 	Orion.UseObject(bookID);
 	Orion.Wait(100);
@@ -10,9 +10,9 @@ function UseRunebook(runeIndex, bookID)
 	while (Orion.InJournal('needs time to recharge', 'sys') || Orion.InJournal('You must wait to', 'sys'))
 	{
 		Orion.ClearJournal();
-		Orion.Wait(500);
+		Orion.Wait(200);
 	    Orion.UseObject(bookID);
-	    Orion.Wait(300);
+	    Orion.Wait(100);
     }
 
 	GumpAction('0x554B87F3', runeIndex, 200, false);

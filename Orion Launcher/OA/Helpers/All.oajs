@@ -125,7 +125,8 @@ function StoreItemWithKeys(keysID, gumpID, gumpHookID, itemGfx, amt)
 		//Cancel targetting and close the gump
 		Orion.CancelTarget();
 		Orion.Wait(200);
-		GumpAction(gumpID, 0, 500, true);
+		GumpAction(gumpID, 0, 200, true);
+		GumpAction(gumpID, 0, 200, true);
 	}
 }
 

@@ -11,22 +11,24 @@ function KeyStorage()
     StoreWithKeys(metalsList, metalKeys, '0xFB1E68CB', 60015, 20);
     StoreWithKeys(woodList, woodKeys, '0x0A57934D', 60023, 20);
 
-    var itemList = Orion.FindType('0x1079', any, backpack);
-    if (itemList != null && itemList.length > 0) {
-        for (var i = 0; i <= itemList.length; i++)
-        {
-            var item = Orion.FindObject(itemList[i]);
-            if (item && item.Graphic() == '0x1079') { //Hide
-                Orion.UseType('0x0F9F', any, backpack); //Scissors
-                Orion.WaitForTarget(2000);
-                
-                Orion.TargetObject(item.Serial());
-                Orion.Wait(500);
+    if (Orion.Count('0x1079', any, backpack) > 3 || Player.Weight() > Player.MaxWeight() * 0.7) {
+        var itemList = Orion.FindType('0x1079', any, backpack);
+        if (itemList != null && itemList.length > 0) {
+            for (var i = 0; i <= itemList.length; i++)
+            {
+                var item = Orion.FindObject(itemList[i]);
+                if (item && item.Graphic() == '0x1079') { //Hide
+                    Orion.UseType('0x0F9F', any, backpack); //Scissors
+                    Orion.WaitForTarget(2000);
+                    
+                    Orion.TargetObject(item.Serial());
+                    Orion.Wait(500);
+                }
             }
         }
     }
 
-    StoreWithKeys(tailoringList, tailorKeys, '0x41F8FC19', 60029, 10);
+    StoreWithKeys(tailoringList, tailorKeys, '0x41F8FC19', 60029, 6);
 }
 
 var regList = [
@@ -78,7 +80,7 @@ var tailoringList = [
 
 function StoreWithKeys(list, keySerial, gumpID, gumpHookID, amt)
 {
-    var mobSerials = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+    var mobSerials = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '10', 'gray|criminal|orange|red');
 
     if (mobSerials.length < 2 && Player.Weight() > (Player.MaxWeight() * 0.5) && !Orion.Dragging())
     {
@@ -87,7 +89,15 @@ function StoreWithKeys(list, keySerial, gumpID, gumpHookID, amt)
             if (list[i] == '0x0F3F') //Arrows - Don't store unless we have a lot
                 amt = 300;
 
-            StoreItemWithKeys(keySerial, gumpID, gumpHookID, list[i], amt);
+            var safeExit = 0;
+            while (Orion.Count(list[i], any, backpack) > amt) {
+                StoreItemWithKeys(keySerial, gumpID, gumpHookID, list[i], amt);
+                Orion.Wait(50);
+                
+                safeExit++;
+                if (safeExit > 10)
+                    return;
+            }
         }
     }
 }

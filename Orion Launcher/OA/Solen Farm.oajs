@@ -36,7 +36,7 @@ function KillSolen()
 			FindTargetsToKill(); //Double check to make sure there are no targets left
 			ClaimCorpses();
 			
-			while (Orion.Timer('RecallTimer') < 5000) {
+			while (Orion.Timer('RecallTimer') < 5500) {
 				Orion.Wait(100);
 			}
 
@@ -347,8 +347,9 @@ function TurnInQuest()
 		TurnInQuest();
 	}
 	
-	while (Orion.Count(0x0EED, any, backpack) > 1)
+	while (Orion.Count(0x26B8, any, backpack) > 1)
 	{
+		Orion.Wait(50);
 		Orion.Print('26', 'Store Transloc');
 		StoreItemWithKeys(_casterKeysID, '0x0EBCD833', 60030, '0x26B8', 0);
 	}

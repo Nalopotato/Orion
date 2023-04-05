@@ -1,6 +1,6 @@
 //#include Autoload.oajs
 
-var autoSkin = true; //Set true if you want to skin mobs and loot leather/wool/etc.
+var autoSkin = false; //Set true if you want to skin mobs and loot leather/wool/etc.
 
 var lootBagID = '0x44DBAC77';
 var ethMountID = '0x467FC830';

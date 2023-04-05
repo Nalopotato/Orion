@@ -2,7 +2,10 @@
 
 function UseRunebook(runeIndex, bookID)
 {
-	//Orion.Print(28, 'Book Number: ' + (runeIndex + 3) / 10 + ' at index: ' + runeIndex);
+	Orion.Print(28, 'Book Number: ' + (runeIndex + 3) / 10 + ' at index: ' + runeIndex);
+
+	var x = Player.X();
+	var y = Player.Y();
 	
 	Orion.UseObject(bookID);
 	Orion.Wait(100);
@@ -10,13 +13,18 @@ function UseRunebook(runeIndex, bookID)
 	while (Orion.InJournal('needs time to recharge', 'sys') || Orion.InJournal('You must wait to', 'sys'))
 	{
 		Orion.ClearJournal();
-		Orion.Wait(200);
+		Orion.Wait(100);
 	    Orion.UseObject(bookID);
 	    Orion.Wait(100);
     }
 
 	GumpAction('0x554B87F3', runeIndex, 200, false);
 	GumpAction('0x554B87F3', 0, 200, true);
+
+	if (Player.X() == x && Player.Y() == y) {
+		Orion.Print(26, 'Attempting to Recall again...');
+		UseRunebook(runeIndex, bookID);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

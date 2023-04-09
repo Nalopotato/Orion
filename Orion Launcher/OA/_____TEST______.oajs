@@ -1,24 +1,25 @@
 
 function TEST()
 {
-	var runeBooks = [
-		['0x40C01DBE', 17, 117], //Solen
-		['0x40D17D00', 7, 157],  //XP Farm
-		['0x47A8D815', 7, 27]    //Sheep
-	];
+	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself', 10);
 
-	Orion.Print(runeBooks[0][1]);
-	Orion.Print(runeBooks[1]);
-	Orion.Print(runeBooks[2]);
+	for (var i=0; i < corpseList.length; i++) {
+		var itemList = Orion.FindList('Autoloot', corpseList[i]);
+		// for (var j=0; j < itemList.length; j++) {
+		// 	Orion.Print(Orion.FindObject(itemList[j]).Properties());
+		// }
+		//Orion.Print(89, Orion.FindObject(mobList[i]).Properties() + '\n');
+	}
 }
 
 function HealPet()
 {
+	var herp = '0x001DC91C';
 	var derp = '0x0076DF69';
 	while (!Player.Dead()) {
 		Orion.UseType('0x0E21', any);
 		Orion.WaitForTarget(1000);
-		Orion.TargetObject('0x0076DF69');
+		Orion.TargetObject(derp);
 		Orion.Wait(2100);
 	}
 }
@@ -26,10 +27,11 @@ function HealPet()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function GetProperties()
 {
-	var props = Orion.FindObject('0x423892B0').Properties();
+	Orion.WaitForAddObject('Target');;
+	var props = Orion.FindObject('Target').Properties();
 	var result = '';
 	
-	Orion.Print('PROPS: ' + props + ' ...END PROPS');
+	Orion.Print('_____ Properties _____ \n' + props + '\n ________________');
 	
 	for (var i = props.length - 3; i < props.length; i++)
 	{

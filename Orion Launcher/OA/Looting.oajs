@@ -80,12 +80,12 @@ function SkinCorpse()
 					Orion.InJournal('You carve some meat', 'sys') ||
 					Orion.InJournal('You shear it, and', 'sys'))
 				{
-					Orion.Say('[claim');
-					Orion.WaitForTarget(4000);
-					Orion.TargetObject(corpseList[i]);
-					Orion.Wait(500);
+					ClaimSingle(corpseList[i]);
 					Orion.CancelTarget();
-					Orion.ClearJournal(); //Race condition for other macros :o
+					
+					Orion.ClearJournal('You see nothing useful');
+					Orion.ClearJournal('You carve some meat');
+					Orion.ClearJournal('You shear it, and');
 				}
 			}
 		}

@@ -1,6 +1,15 @@
 //#include C:/Orion Launcher/OA/Autoload.oajs
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+function GetPlayerNames() {
+	var mobList = Orion.FindType(any, any, ground, 'human|live|ignoreself', '15', 'blue|green|gray');
+	for (var i=0; i < mobList.length; i++) {
+		Orion.Print('------------------ ' + i + ' ------------------');
+		Orion.Print(89, Orion.FindObject(mobList[i]).Properties() + '\n');
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 function GumpAction(gumpID, hookID, waitTime, closeGump)
 {
 	if (Orion.WaitForGump(1000))

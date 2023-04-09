@@ -4,31 +4,37 @@
 
 function RedPortal()
 {
-	if (Player.X() != '1823')
+	if (Player.Map() != 0)
 	{
-		UseRunebook(7, '0x41059D8B'); //Go Trinsic
-	}
+		if (Player.X() != '1823')
+		{
+			UseRunebook(7, '0x41059D8B'); //Go Trinsic
+		}
+		
+		PathTo('any', 1828, 2815); //Walk to pad
 	
-	PathTo('any', 1828, 2815); //Walk to pad
-
-	//Gump Responses to Fel
-	GumpAction('0x0180A162', 60002, 100, false);
-	GumpAction('0x0180A162', 60010, 100, true);
-	Orion.Wait(1000);
-
-	PathTo('any', 5327, 1816, 0); //Run to portal
+		//Gump Responses to Fel
+		GumpAction('0x0180A162', 60002, 100, false);
+		GumpAction('0x0180A162', 60010, 100, true);
+		Orion.Wait(1000);
+	
+		PathTo('any', 5327, 1816, 0); //Run to portal
+	}
 }
 
 //////////////////////////////////////////////////////////////////
 
 function Xroads()
 {
+	RedPortal();
 	PathTo('any', 896, 1874, 1);
 }
 
 function Destard() //Run this during Xroads?
 {
 	PathTo('any', 1176, 2635, 0);
+	Orion.Wait(100);
+	Orion.Print(15, 'Attempting to run to Champ platform');
 	PathTo('any', 5248, 959, 0);
 }
 

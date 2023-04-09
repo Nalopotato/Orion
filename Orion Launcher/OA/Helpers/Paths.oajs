@@ -5,7 +5,7 @@ function PathTo(startX, x, y, offset)
 	//Check player is where they should be
 	if (startX != 'any' && startX > 0 && Player.X() != startX)
 	{
-		Orion.Print(33, 'Pathing Failed');
+		Orion.Print(15, 'Pathing Failed');
 		return false;
 	}
 

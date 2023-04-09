@@ -30,28 +30,32 @@ function GetStats()
 	    'Luck' ];
                         
     var sumStats = [];
+    var totalStats = 0;
     
     for (var i=0; i < stats.length; i++){
         sumStats[i] = parseInt(0);
     }
     
     TextWindow.Clear();
-    Orion.Print('Select a person');
+
+    Orion.Print(15, 'Select a person');
     Orion.WaitForAddObject('Person');
+    serial = Orion.GetSerial('Person');
     
-    var serial = Orion.GetSerial('Person');
+    for (var i = 1; i < stats.length; i++) {
+        getSingleProperties(serial, i, stats, sumStats);
+    }
     
-     for (var i = 1; i < 25; i++){
-         getSingleProperties(serial, i, stats, sumStats);
-     }
-     
-     var person = Orion.FindObject(serial);
-     TextWindow.Print('Player: ' + person.Name());
-     
-     for (var i = 0; i < stats.length; i++){
-         TextWindow.Print(stats[i] + ': ' + sumStats[i]);
-     }
-     
+    var person = Orion.FindObject(serial);
+    TextWindow.Print('Player: ' + person.Name());
+
+    for (var i = 0; i < stats.length; i++) {
+        TextWindow.Print(stats[i] + ': ' + sumStats[i]);
+        totalStats += sumStats[i];
+    }
+
+    Orion.Print(15, 'Total Stats: ' + totalStats);
+
     TextWindow.Open();
     TextWindow.SaveToFile('properties.txt');
 }
@@ -60,21 +64,16 @@ function GetStats()
 function getSingleProperties(serialPerson, layer, stats, sumStats)
 {
     var obj = Orion.ObjAtLayer(layer, serialPerson);
-    if (obj)
-    {
+    if (obj) {
         obj = obj.Properties();
         var objLine = Orion.Split(obj, '\n');
         
-        for (var i = 0; i < objLine.length; i++)
-        {
+        for (var i = 0; i < objLine.length; i++) {
             var matches = /([a-zA-Z ]+)(-?\d+)/gi.exec(objLine[i]);
-            if (matches)
-            {
-                for (var j = 1; j < matches.length; j++)
-                {
+            if (matches) {
+                for (var j = 1; j < matches.length; j++) {
                 	var idx = stats.indexOf(matches[j].trim());
-	                if (idx >= 0)
-	                {
+	                if (idx >= 0) {
 	                    sumStats[idx] += parseInt(matches[j+1]);
 	                }
             	}

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data version="0" size="10">
+<data version="0" size="11">
     <findlist name="AAAAAA">
         <item graphic="0x0EF3" color="0x0000" comment="blank scroll" count="0" enabled="true"/>
     </findlist>
     <findlist name="Autoloot">
-        <item graphic="0x0EED" color="0x0000" comment="Gold" count="0" enabled="true"/>
-        <item graphic="0x0F3F" color="0x0000" comment="Arrows" count="0" enabled="true"/>
-        <item graphic="0x0F85" color="0x0000" comment="Ginseng" count="0" enabled="true"/>
+        <item graphic="0x0EED" color="0x0000" comment="Gold (DISABLED FOR SOLEN SCRIPT)" count="0" enabled="false"/>
+        <item graphic="0x0F3F" color="0x0000" comment="Arrows (DISABLED FOR SOLEN SCRIPT)" count="0" enabled="false"/>
+        <item graphic="0x0F85" color="0x0000" comment="Ginseng (DISABLED FOR SOLEN SCRIPT)" count="0" enabled="false"/>
         <item graphic="0x0F80" color="0x0000" comment="Daemon Bone" count="0" enabled="true"/>
-        <item graphic="0x26B7" color="0x0000" comment="Zoogi" count="0" enabled="true"/>
-        <item graphic="0x0E24" color="0x0000" comment="Ointment" count="0" enabled="true"/>
+        <item graphic="0x1081" color="any" comment="Leather" count="0" enabled="true"/>
+        <item graphic="0x1079" color="any" comment="Pile Of Hides" count="0" enabled="true"/>
+        <item graphic="0x26B7" color="any" comment="Zoogi" count="0" enabled="true"/>
+        <item graphic="0x0E24" color="any" comment="Ointment" count="0" enabled="true"/>
         <item graphic="0x1BD1" color="0x0000" comment="Feathers" count="0" enabled="true"/>
         <item graphic="0x0F8F" color="0x0829" comment="Ethereal Powder" count="0" enabled="true"/>
         <item graphic="0x1BD1" color="0x0000" comment="Feathers" count="0" enabled="true"/>
@@ -259,6 +261,8 @@
         <item graphic="0x0F88" color="0x0000" comment="NS" count="0" enabled="true"/>
         <item graphic="0x0F8C" color="0x0000" comment="SA" count="0" enabled="true"/>
         <item graphic="0x0F8D" color="0x0000" comment="SS" count="0" enabled="true"/>
+    </findlist>
+    <findlist name="Necro Regs">
         <item graphic="0x0F78" color="0x0000" comment="Batwing" count="0" enabled="true"/>
         <item graphic="0x0F8A" color="0x0000" comment="Pig Iron" count="0" enabled="true"/>
         <item graphic="0x0F7D" color="0x0000" comment="Daemon Blood" count="0" enabled="true"/>

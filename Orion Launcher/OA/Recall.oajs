@@ -2,27 +2,30 @@
 
 function UseRunebook(runeIndex, bookID)
 {
-	Orion.Print(28, 'Book Number: ' + (runeIndex + 3) / 10 + ' at index: ' + runeIndex);
+	//Orion.Print(15, 'Book Number: ' + (runeIndex + 3) / 10 + ' at index: ' + runeIndex);
 
 	var x = Player.X();
 	var y = Player.Y();
+
+	if (runeIndex < 7) //safeguard
+		runeIndex = 7
 	
 	Orion.UseObject(bookID);
-	Orion.Wait(100);
+	Orion.Wait(50);
 
 	while (Orion.InJournal('needs time to recharge', 'sys') || Orion.InJournal('You must wait to', 'sys'))
 	{
 		Orion.ClearJournal();
-		Orion.Wait(100);
+		Orion.Wait(50);
 	    Orion.UseObject(bookID);
-	    Orion.Wait(100);
+	    Orion.Wait(50);
     }
 
 	GumpAction('0x554B87F3', runeIndex, 200, false);
-	GumpAction('0x554B87F3', 0, 200, true);
+	GumpAction('0x554B87F3', 0, 20, true);
 
 	if (Player.X() == x && Player.Y() == y) {
-		Orion.Print(26, 'Attempting to Recall again...');
+		Orion.Print(15, 'Attempting to Recall again...');
 		UseRunebook(runeIndex, bookID);
 	}
 }
@@ -39,29 +42,32 @@ function Recall(bookID, runeNum) {
 
 function RecallToBank()
 {
-	Recall('0x41059D8B', 7);
+	//Recall('0x41059D8B', 7);
+	UseRunebook(7, '0x41059D8B');
 }
 
 function RecallHome()
 {
-	Recall('0x41059D8B', 27);
+	//Recall('0x41059D8B', 27);
+	UseRunebook(27, '0x41059D8B');
 }
 
 function RecallSoT()
 {
-	Recall('0x41059D8B', 47);
+	//Recall('0x41059D8B', 47);
+	UseRunebook(47, '0x41059D8B');
 }
 
 function RecallBuyWater(tavern, bookID) {
 	if (tavern == 1) {
 		Orion.Print('26', 'Recalling to Brit');
-		Recall(bookID, 7); //Brit
+		UseRunebook(7, bookID); //Brit
 	} else {
 		Orion.Print('26', 'Recalling to Minoc');
-		Recall(bookID, 137); //Minoc
+		UseRunebook(137, bookID); //Minoc
 	}
 }
 
 function RecallRunSolen(bookID) {
-	Recall(bookID, 127);
+	UseRunebook(127, bookID);
 }

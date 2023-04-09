@@ -2,7 +2,7 @@
 
 //var TwoHmelee = '0x42464720';
 var TwoHmelee = '0x4DD16CBB';
-var OneHmelee = '0x424686E3';
+var OneHmelee = '0x4C53BC1A'; //'0x424686E3';
 var shield = '0x488E2D82';
 var bow = '0x4022045E';
 var playerContainerID = '0x005CFF32';

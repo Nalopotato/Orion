@@ -1,15 +1,31 @@
+//#include Helpers/Paths.oajs
 
 function TEST()
 {
-	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself', 10);
+	Orion.UseObject('0x474E827D');
+	Orion.Wait(500);
+	GumpAction('0x41F8FC19', 60025, 1000, true);
+	Orion.Wait(500);
 
-	for (var i=0; i < corpseList.length; i++) {
-		var itemList = Orion.FindList('Autoloot', corpseList[i]);
-		// for (var j=0; j < itemList.length; j++) {
-		// 	Orion.Print(Orion.FindObject(itemList[j]).Properties());
-		// }
-		//Orion.Print(89, Orion.FindObject(mobList[i]).Properties() + '\n');
+	Orion.UseType('0x0DF8');
+	Orion.Wait(500);
+	if (Orion.WaitForGump(1000))
+	{
+		var gump0 = Orion.GetGump('last');
+		if ((gump0 !== null) && (!gump0.Replayed()) && (gump0.ID() === '0x46A8C897'))
+		{
+			var gumpHook0 = Orion.CreateGumpHook(60000);
+			gumpHook0.AddEntry(20000, "");
+			gump0.Select(gumpHook0);
+			Orion.Wait(100);
+		}
 	}
+
+	Orion.Wait(90000);
+
+	GumpAction('0x41F8FC19', 60029, 1000, true);
+	if (Orion.WaitForTarget(1000))
+		Orion.TargetType('0x0FA0', '0xFFFF');
 }
 
 function HealPet()

@@ -6,9 +6,9 @@ const _lootBagID = '0x44DBAC77';
 const _casterKeysID = '0x466B92BD';
 const _bagOfSendingID = '0x40D1225F';
 const _runeBooks = [
-	['0x40C01DBE', 7, 117], //Solen
-	['0x40D17D00', 7, 127],  //XP Farm
-	['0x47A8D815', -3, 27]    //Sheep
+	['0x40C01DBE', 7, 117],  //Solen
+	['0x40D17D00', 7, 157],  //XP Farm
+	['0x47A8D815', 17, 127]  //Sheep -3
 ];
 const skinableCorpseList = [
 	'A Sheep Corpse',
@@ -44,6 +44,8 @@ var _currentBookInt = 0;
 
 function KillSolen()
 {
+	Orion.ClearJournal();
+	
 	while (!Player.Dead())
 	{
 		if (Orion.ScriptRunning('AutoAttack') < 1) { Orion.ToggleScript('AutoAttack', true); }
@@ -66,22 +68,25 @@ function KillSolen()
 
 			_bookIndex += 10;
 			UseRunebook(_bookIndex, _runebookID); //Recall to next spawn
-			RunebookRouter(_currentBookInt); //Route to a new Runebook if ready
 			CheckForPlayers(); //GTFO if we find a player
+			RunebookRouter(_currentBookInt); //Route to a new Runebook if ready
 			
-			if (Orion.Count('0x0EED', any, backpack, any, false) > 0) {
+			var goldAmt = Orion.Count('0x0EED', any, backpack, any, false);
+			Orion.SetTimer('MoveGold');
+			while (goldAmt > 0) {
 				Orion.MoveItemType('0x0EED', any, backpack, 0, _lootBagID);
 				Orion.Wait(600);
+				if (Orion.Timer('MoveGold') > 1500)
+					break;
 			}
 			if (Orion.Count('0x26B7', any, backpack, any, false) > 0) {
 				Orion.MoveItemType('0x26B7', any, backpack, 0, _lootBagID);
 				Orion.Wait(600);
 			}
 
-			SendGold(_bagOfSendingID, _lootBagID);
+			//SendGold(_bagOfSendingID, _lootBagID); //Also happens in AutoAttack
 
 			if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > (Player.MaxWeight() * 0.7)) {
-				KeyStorage();
 				BankUnload();
 			}
 		}
@@ -112,7 +117,7 @@ function RunebookRouter(bookNum) {
 function FindTargetsToKill() {
 
 	var mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', '8', 'gray|criminal|orange|red');
-	Orion.Wait(100);
+	Orion.Wait(1000);
 	
 	if (mobList.length > 0) { //Orion.Print(15, '# of mobs: ' + mobList.length);
 		Orion.SetTimer('KillTimer');
@@ -127,10 +132,10 @@ function FindTargetsToKill() {
 		{
 			var mobObj = Orion.FindObject(mobList[0]);
 			if (mobObj)
-				PathTo('any', mobObj.X(), mobObj.Y(), 1);
+				PathTo('any', mobObj.X(), mobObj.Y(), 0);
 			
-			if (Orion.Timer('KillTimer') > 25000) {
-				Orion.Print('BREAK');
+			if (Orion.Timer('KillTimer') > 50000) {
+				Orion.Print(33, 'TIMEOUT');
 				break;
 			}
 
@@ -146,7 +151,7 @@ function FindTargetsToKill() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function ClaimCorpses() {
-	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself', 10);
+	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself', 12);
 	
 	if (corpseList.length > 0)
 	{
@@ -226,9 +231,6 @@ function ClaimCorpses() {
 function BankSolen() {
 	Orion.Print(26, 'BankSolen');
 
-	if (Orion.ScriptRunning('AutoAttack') > 0)
-		Orion.ToggleScript('AutoAttack', true);
-
 	BankUnload();
 	
 	if (Orion.Count('0x1F9D', 0, backpack) > 7)
@@ -281,6 +283,8 @@ function BankSolen() {
 function RunToVat() 
 {
 	Orion.Print(26, 'RunToVat');
+
+	if (Orion.ScriptRunning('AutoAttack') > 0) { Orion.ToggleScript('AutoAttack', true); }
 	
 	while (Player.X() != '2609')
 	{
@@ -303,7 +307,7 @@ function RunToVat()
 	Orion.Wait(300);
 	
 	//Floor 3
-	if (!PathTo(5774, 5805, 1919, 0))
+	if (!PathTo('any', 5805, 1919, 0))
 		RunToVat();
 	Orion.Wait(300);
 
@@ -320,6 +324,7 @@ function RunToVat()
 		if (breakOut >= 10) {break;}
 	}
 	
+	//Trash pitchers
 	while (Orion.Count('0x0FF6', any, backpack) > 0)
 	{
 		Orion.MoveItemType('0x0FF6', 0, backpack, 0, 0x45E995AD);
@@ -335,7 +340,7 @@ function TurnInQuest()
 {
 	Orion.Print(15, 'TurnInQuest');
 
-	PathTo(5805, 5776, 1899, 1);
+	PathTo(5805, 5779, 1901, 1);
 
 	var matriarch = Orion.FindObject('0x001D0274');
 	if (matriarch)
@@ -391,6 +396,7 @@ function TurnInQuest()
 }
 
 function BankUnload() {
+	Orion.Print(15, 'Bank Unload');
 	Recall(_runeBooks[0][0], 147);
 	Orion.Wait(3500);
 	
@@ -412,7 +418,14 @@ function CheckForPlayers() {
 	var mobList = Orion.FindType(any, any, ground, 'human|live|ignoreself|ignoreenemies', '8', 'blue|green|gray');
 	if (mobList.length > 0) {
 		Orion.Print(33, 'G T F O');
+
 		RecallToBank();
+
+		Orion.Say('bank');
+		Orion.Wait(300);
+		OrganizeGoldGems(backpack);
+		OrganizeGoldGems(_lootBagID);
+
 		return;
 	}
 }

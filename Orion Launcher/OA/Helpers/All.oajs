@@ -23,6 +23,7 @@ function GumpAction(gumpID, hookID, waitTime, closeGump)
 			if (closeGump)
 			{
 				gump.Select(Orion.CreateGumpHook(0)); //Close Gump
+				gump.Select(Orion.CreateGumpHook(0)); //Close Gump
 				Orion.Wait(300);
 				Orion.CancelTarget();
 			}
@@ -108,7 +109,15 @@ function GetToolUsesRemaining()
 //////////////////////////////////////////////////////////////////////////////////////////////////
 function SendGold(bagOfSendingID, lootBagID)
 {
-	if (Orion.Count(0x0EED, any, lootBagID) > 12000 || (Orion.Count(0x0EED, any, lootBagID) > 3000 && Player.Weight() > (Player.MaxWeight() * 0.7)))
+	var goldAmt = Orion.Count('0x0EED', any, backpack, any, false);
+	Orion.SetTimer('MoveGold');
+	while (goldAmt > 0) {
+		Orion.MoveItemType('0x0EED', any, backpack, 0, _lootBagID);
+		Orion.Wait(600);
+		if (Orion.Timer('MoveGold') > 1850)
+			break;
+	}
+	if (Orion.Count('0x0EED', any, lootBagID) > 9000 || (Orion.Count('0x0EED', any, lootBagID) > 3000 && Player.Weight() > (Player.MaxWeight() * 0.7)))
 	{
 		Orion.Print('26', 'Sending Gold...');
 		Orion.UseObject(bagOfSendingID);

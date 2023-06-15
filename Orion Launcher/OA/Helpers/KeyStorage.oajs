@@ -11,7 +11,8 @@ function KeyStorage()
     StoreWithKeys(metalsList, metalKeys, '0xFB1E68CB', 60015, 20);
     StoreWithKeys(woodList, woodKeys, '0x0A57934D', 60023, 20);
 
-    if (Orion.Count('0x1079', any, backpack) > 3 || Player.Weight() > Player.MaxWeight() * 0.7) {
+    //Handle hide/leather
+    if (Orion.Count('0x1079', any, backpack) > 3 || Player.Weight() > Player.MaxWeight() * 0.65) {
         var itemList = Orion.FindType('0x1079', any, backpack);
         if (itemList != null && itemList.length > 0) {
             for (var i = 0; i <= itemList.length; i++)

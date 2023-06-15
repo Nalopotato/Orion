@@ -1,0 +1,136 @@
+//Check journal for "Warren" message and dissect
+//
+
+const _rocks = [
+    0x136B, //SmallRock
+    0x136C, //SmallRock
+    0x1364, //SmallRock
+    0x1365, //SmallRock
+    0x1366, //SmallRock
+    0x1367, //SmallRock
+    0x1368, //SmallRock
+    0x1369, //SmallRock
+    0x1777, //SmallRock
+    0x1362, //MediumRock
+    0x1363, //MediumRock
+    0x1771, //MediumRock
+    0x1775, //MediumRock
+    0x1779, //MediumRock
+    0x177A, //LargeRock
+    0x1772, //LargeRock
+    0x1776 //LargeRock
+];
+const _wood = [
+	//Logs:
+    '0x1BE0',
+    '0x1BE1',
+    '0x1BE2',
+    '0x1BDD',
+    '0x1BDE',
+    '0x1BDF',
+    //Boards:
+    '0x1BDB',
+    '0x1BDC',
+    '0x1BD8',
+    '0x1BD9'
+];
+const _metal = [
+    0x1BEF,
+    0x1BF0,
+    0x1BF1,
+    0x1BF2,
+    0x1BF3,
+    0x1BF4,
+    0x1BF5,
+    0x1BF6,
+    0x1BF7,
+    0x1BF8,
+    0x1BF9
+];
+
+const _colors = [
+    [0x08BF, "black"], // BlackEth
+    [0x0497, "black"], // Black
+    [0x0854, "white"], // WhiteEth
+    [0x0481, "white"], // White
+    [0x047E, "white"], // White
+    [0x0764, "grey"],  // Grey
+    [0x0765, "grey"],  // Grey
+    [0x03E9, "grey"],  // Grey
+    [0x0763, "dgrey"], // DarkGrey
+    [0x0766, "dgrey"], // DarkGrey
+    [0x0497, "dgrey"], // DarkGrey
+    [0x03E5, "dgrey"], // DarkGrey
+    [0x03E6, "dgrey"], // DarkGrey
+    [0x03E7, "dgrey"]  // DarkGrey
+];
+
+//Path loop coords - always offset by 1 - WALK ONLY
+const _pathCoords = [
+    [6082, 449],
+    [6086, 422],
+    [6104, 422], //8x8
+    [6107, 457],
+    [6126, 457],
+    [6126, 434],
+    [6122, 405],
+    [6091, 400],
+    [6068, 404],
+    [6064, 432],
+    [6037, 437],
+    [6032, 459],
+    [6037, 489],
+    [6067, 494],
+    [6090, 493],
+    [6088, 475],
+    [6062, 475],
+    [6054, 454]
+];
+
+function JailHelper() {
+    var colorList = [0x08BF, 0x0497];
+
+    for (var p = 0; p < _pathCoords.length; p++) { 
+        //while (Player.X() != _pathCoords[p][0] || Player.Y() != _pathCoords[p][1]) {
+            Orion.Print(24, 'loop - ' + p + ' X: ' + _pathCoords[p][0] + ' Y: ' + _pathCoords[p][1]);
+            Orion.WalkTo(_pathCoords[p][0], _pathCoords[p][1], 0, 1, 255, 0);
+            Orion.Wait(5000);
+        //}
+        
+        var objList = []; 
+        for (var i = 0; i < _wood.length; i++) {
+            var obj1 = Orion.FindType(_wood[i], colorList[0], any, '', 10);
+            var obj2 = Orion.FindType(_wood[i], colorList[1], any, '', 10);
+
+            if (obj1 > '') {
+                objList.push(obj1);
+            }
+            if (obj2 > '') {
+                objList.push(obj2);
+            }
+        }
+        
+        for (var j = 0; j < objList.length; j++) {
+            var item = Orion.FindObject(objList[j]);
+            Orion.WalkTo(item.X(), item.Y(), 0, 1, 255, 0);
+            Orion.Wait(3000);
+            //Orion.UseObject(item);
+            Orion.UseFromGround(item.Graphic());
+            Orion.Wait(500);
+            Orion.Print(15, 'Got Item');
+        }
+
+        //if injournal "you have all the resources for this task"
+            //Path all the way back (slowly) - Might not need the llama??
+    }
+
+    Orion.Print(24, 'end');
+}
+
+//black wood
+//large black boulders
+//grey wood
+//black big rocks
+//black metal
+//black wood
+

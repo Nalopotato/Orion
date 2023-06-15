@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data cast_spells_from_book_if_not_scrolls="false">
     <macro name="AAAAA" looped="true" delay="2.5">
-        <action type="1" convert_type="0" waiting_time="1000" serial="0x44DB91A1" graphic="0x0E21" color="0x0000"/>
-        <action type="3" convert_type="0" waiting_time="1000" serial="0x001DC910" graphic="0x00C8" color="0x0485"/>
-        <action type="1000" convert_type="0" waiting_time="300"/>
+        <action type="15" convert_type="0" waiting_time="1000" serial="0x0728FA68" id="0x46A8C897" button="60001">
+            <entries id="-20000" text=""/>
+        </action>
     </macro>
     <macro name="Spell Heal" looped="false" delay="1">
         <action type="9" convert_type="0" waiting_time="1000" value="[cs touchoflife"/>

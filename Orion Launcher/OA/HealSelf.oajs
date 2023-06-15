@@ -1,5 +1,10 @@
 //#include Autoload.oajs
 
+var bow = '0x4022045E';
+var playerContainerID = '0x005CFF32';
+
+//TODO: Heal immediately if poisoned
+
 function HealSelf()
 {
 	Orion.Exec('Refill', true);
@@ -7,11 +12,12 @@ function HealSelf()
 	while (!Player.Dead()) 
 	{
 		//Orion.Print('Hits/Max: ' + Player.Hits() + '/' + Player.MaxHits());
+
 		//Calculate the bandage speed based on player dex
 		var waitTime = (8000 - (Math.ceil((Player.Dex() - 80) / 20)) * 1000);
 		if (Orion.Timer('Heal') == -1) { Orion.SetTimer('Heal'); }
 
-		if (Player.Hits() < (Player.MaxHits() * 0.82) && Orion.Timer('Heal') > waitTime)
+		if ((Player.Hits() < (Player.MaxHits() * 0.90) || Player.Poisoned()) && Orion.Timer('Heal') > waitTime)
 		{
 			Orion.Say('[bandself');
 			Orion.SetTimer('Heal');
@@ -26,11 +32,13 @@ function Refill()
 {
 	while (!Player.Dead()) 
 	{
+		Orion.Wait(50);
+	
 		//Refill Bandages
-		if (Orion.Count('0x0E21', 'any', backpack) < 10)
+		if (Orion.Count('0x0E21', 'any', backpack) < 20 && Player.Weight() < 450)
 		{
 			Orion.ControlAgent('autoloot', 'Main', 'stop'); //Stop Autoloot
-			Orion.Print('26', 'Cutting Cloth');
+			Orion.Print('26', '*****Cutting Cloth*****');
 			if (Orion.Count('0x1766', 'any', backpack) < 25)
 			{
 				Orion.UseObject(tailorKeys);
@@ -38,24 +46,27 @@ function Refill()
 				GumpAction('0x41F8FC19', 0, 500, true);
 			}
 			
-			Orion.UseObject('0x4672D08D');
-			if (Orion.WaitForTarget(1000))
+			Orion.UseType('0x0F9F');
+			if (Orion.WaitForTarget(5000))
 				Orion.TargetType('0x1766');
 				
-			Orion.Wait(500);
 			Orion.ControlAgent('autoloot', 'Main', 'start'); //Start Autoloot
+			Orion.Wait(5000);
 		}
 		
 		//Refill Arrows
-		if (Orion.Count('0x0F3F', 'any', backpack) < 5 && Player.Weight() < (Player.MaxWeight() * 0.75))
+		if ((Orion.ObjAtLayer(2) != null && Orion.FindObject(bow)))// && Orion.FindObject(bow).Container() != playerContainerID))
 		{
-			Orion.ControlAgent('autoloot', 'Main', 'stop'); //Stop Autoloot
-			Orion.Print('Arrows');
-			Orion.UseObject(woodWorkerKeys);
-			GumpAction('0x0A57934D', 60013, 500, false);
-			GumpAction('0x0A57934D', 0, 500, true);
-			Orion.ControlAgent('autoloot', 'Main', 'start'); //Start Autoloot
+			if (Orion.Count('0x0F3F', 'any', backpack) < 8 && Player.Weight() < (Player.MaxWeight() * 0.75))
+			{
+				Orion.ControlAgent('autoloot', 'Main', 'stop'); //Stop Autoloot
+				Orion.Print('Arrows');
+				Orion.UseObject(woodWorkerKeys);
+				GumpAction('0x0A57934D', 60013, 500, false);
+				GumpAction('0x0A57934D', 0, 500, true);
+				Orion.ControlAgent('autoloot', 'Main', 'start'); //Start Autoloot
+			}
+			Orion.Wait(100);
 		}
-		Orion.Wait(100);
 	}
 }

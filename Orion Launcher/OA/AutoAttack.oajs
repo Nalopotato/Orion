@@ -1,14 +1,14 @@
 //#include Autoload.oajs
 
-var autoSkin = false; //Set true if you want to skin mobs and loot leather/wool/etc.
+var autoSkin = false;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
 
-var lootBagID = '0x44DBAC77';
+var lootBagID = '0x4266ADBA';
 var ethMountID = '0x467FC830';
 var casterKeys = '0x466B92BD';
 var tailorKeys = '0x474E827D';
 var woodWorkerKeys = '0x447CBF38';
-var bagOfSendingID = '0x40D1225F';
-var vamp = true;
+var bagOfSendingID = '0x42F8FCE3';
+var vamp = true;  // Vampiric Embrace check
 
 function AutoAttack()
 {

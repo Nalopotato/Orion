@@ -2,9 +2,9 @@
 
 //Asante sana, squash banana
 
-const _lootBagID = '0x44DBAC77';
+const _lootBagID = '0x4266ADBA';
 const _casterKeysID = '0x466B92BD';
-const _bagOfSendingID = '0x40D1225F';
+const _bagOfSendingID = '0x42F8FCE3';
 const _runeBooks = [
 	['0x40C01DBE', 7, 117],  //Solen
 	['0x40D17D00', 7, 157],  //XP Farm
@@ -67,6 +67,7 @@ function KillSolen()
 			}
 
 			_bookIndex += 10;
+
 			UseRunebook(_bookIndex, _runebookID); //Recall to next spawn
 			CheckForPlayers(); //GTFO if we find a player
 			RunebookRouter(_currentBookInt); //Route to a new Runebook if ready
@@ -419,7 +420,12 @@ function CheckForPlayers() {
 	if (mobList.length > 0) {
 		Orion.Print(33, 'G T F O');
 
-		RecallToBank();
+		var x = Player.X();
+		var y = Player.Y();
+
+		while ((Player.X() == x && Player.Y() == y)) {
+			RecallToBank();
+		}
 
 		Orion.Say('bank');
 		Orion.Wait(300);

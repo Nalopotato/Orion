@@ -24,7 +24,7 @@ function GumpAction(gumpID, hookID, waitTime, closeGump)
 			{
 				gump.Select(Orion.CreateGumpHook(0)); //Close Gump
 				gump.Select(Orion.CreateGumpHook(0)); //Close Gump
-				Orion.Wait(300);
+				Orion.Wait(50);
 				Orion.CancelTarget();
 			}
 		}
@@ -135,16 +135,21 @@ function StoreItemWithKeys(keysID, gumpID, gumpHookID, itemGfx, amt)
 	{
 		//Orion.Print('26', 'Storing: ' + itemGfx);
 		Orion.UseObject(keysID);
-		GumpAction(gumpID, gumpHookID, 500, false); 	//Clicking "Add resource" button
-		
-		if (Orion.WaitForTarget(1000))
-			Orion.TargetType(itemGfx, 'any', backpack);
+		GumpAction(gumpID, gumpHookID, 100, false); 	//Clicking "Add resource" button
+
+		itemCount = Orion.Count(itemGfx, any, backpack);
+		if (Orion.WaitForTarget(1000)) {
+			while (itemCount > 0) {
+				Orion.TargetType(itemGfx, any, backpack);
+				Orion.Wait(50);
+			}
+		}
 		
 		//Cancel targetting and close the gump
 		Orion.CancelTarget();
-		Orion.Wait(200);
-		GumpAction(gumpID, 0, 200, true);
-		GumpAction(gumpID, 0, 200, true);
+		Orion.Wait(50);
+		GumpAction(gumpID, 0, 50, true);
+		GumpAction(gumpID, 0, 50, true);
 	}
 }
 
@@ -159,6 +164,7 @@ function GetGold(amt)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
 function GetZoogi(keysID)
 {
 	while (Orion.Count('0x26B7', any, backpack) < 200)

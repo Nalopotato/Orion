@@ -48,7 +48,7 @@ function Forget()
 	PathTo(2322, 2218, 844, 1); //Run to Forget Champ
 	//Check for mobs and send alerts?
 
-	//Baracoon();
+	Baracoon();
 }
 
 function Baracoon() //Run this during Forget()
@@ -56,17 +56,3 @@ function Baracoon() //Run this during Forget()
 	PathTo(any, 1322, 973, 1);
 }
 
-function Doom()
-{
-	
-}
-
-function Tokuno() //Serado
-{
-	
-}
-
-function Kronus()
-{
-	
-}

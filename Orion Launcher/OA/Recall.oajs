@@ -1,5 +1,7 @@
 //#include Autoload.oajs
 
+_recallAttempts = 0;
+
 function UseRunebook(runeIndex, bookID)
 {
 	Orion.Print(15, 'Rune Number: ' + (runeIndex + 3) / 10 + ' at index: ' + runeIndex);
@@ -31,8 +33,15 @@ function UseRunebook(runeIndex, bookID)
 		if (Orion.InJournal('location is blocked', 'sys')) {
 			Orion.ClearJournal('location is blocked', 'sys');
 			Orion.Print(33, 'BLOCKED');
-			runeIndex += 7;
+			runeIndex += 10;
 		}
+
+		if (_recallAttempts > 4) { //If we've tried to recall more than twice, move on to next rune
+			//runeIndex += 10;
+			_recallAttempts = 0;
+			return
+		}
+		_recallAttempts++;
 
 		Orion.Print(15, 'Attempting to Recall again...');
 		UseRunebook(runeIndex, bookID);

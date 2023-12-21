@@ -1,9 +1,12 @@
 //#include Autoload.oajs
 
+var oggLootBagID = '0x4266ADBA'; //ID of your extra lootbag
+var oggBankBagID = '0x4652DA38'; //ID of the bag in your bank box
+
 function Organize_GoldGems()
 {
 	OrganizeGoldGems(backpack);
-	OrganizeGoldGems('0x44DBAC77');
+	OrganizeGoldGems(oggLootBagID); //Comment this out if you don't have an extra lootbag in your backpack
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -12,10 +15,10 @@ function OrganizeGoldGems(fromContainer)
 	Orion.SetTimer('BreakTimer');
 	var found = true;
 	
-	if (Orion.FindObject('0x4652DA38')) {
+	if (Orion.FindObject(oggBankBagID)) {
 		while (found)
 		{
-			found = Orion.MoveItemList('Gold+Gems', fromContainer, 0, '0x4652DA38'); //ID of the bag in your bank box
+			found = Orion.MoveItemList('Gold+Gems', fromContainer, 0, oggBankBagID);
 			Orion.Wait(600);
 			
 			if (Orion.InJournal('place it there, item remains'))
@@ -25,6 +28,6 @@ function OrganizeGoldGems(fromContainer)
 			}
 			if (Orion.Timer('BreakTimer') > 30000)
 				break;
-	}
+		}
 	}
 }

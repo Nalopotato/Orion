@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data version="0" size="1">
-    <autoloot name="Main" container="0x44DBAC77" find_list="Autoloot|Gold+Gems" ignore_list="Not use" check_los="true" check_weight_limit="true" started="true" selected="true"/>
+    <autoloot name="Main" container="0x4266ADBA" find_list="Autoloot|Gold+Gems" ignore_list="Not use" check_los="true" check_weight_limit="true" started="true" selected="true"/>
 </data>

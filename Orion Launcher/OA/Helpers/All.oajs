@@ -137,11 +137,16 @@ function StoreItemWithKeys(keysID, gumpID, gumpHookID, itemGfx, amt)
 		Orion.UseObject(keysID);
 		GumpAction(gumpID, gumpHookID, 100, false); 	//Clicking "Add resource" button
 
+		breaker = 0;
 		itemCount = Orion.Count(itemGfx, any, backpack);
 		if (Orion.WaitForTarget(1000)) {
 			while (itemCount > 0) {
 				Orion.TargetType(itemGfx, any, backpack);
 				Orion.Wait(50);
+				breaker++;
+
+				if (breaker > 10)
+					break;
 			}
 		}
 		

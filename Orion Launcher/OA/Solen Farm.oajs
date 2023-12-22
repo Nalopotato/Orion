@@ -8,7 +8,7 @@ const _bagOfSendingID = '0x42F8FCE3';
 const _runeBooks = [
 	['0x40C01DBE', 7, 117],  //Solen
 	['0x40D17D00', 7, 157],  //XP Farm
-	['0x47A8D815', 17, 127]  //Sheep -3
+	['0x47A8D815', 27, 137]  //Sheep
 ];
 const skinableCorpseList = [
 	'A Sheep Corpse',
@@ -36,7 +36,7 @@ const skinableCorpseList = [
 
 var _runebookID = _runeBooks[0][0];
 var _bookIndex = 17;
-var _currentBookInt = 0;
+var _currentBookIdx = 0;
 
 //TODO:  Skip area if there is a player
 //TODO:  Auto-stop when weapon/armor needs repair
@@ -70,7 +70,7 @@ function KillSolen()
 
 			UseRunebook(_bookIndex, _runebookID); //Recall to next spawn
 			CheckForPlayers(); //GTFO if we find a player
-			RunebookRouter(_currentBookInt); //Route to a new Runebook if ready
+			RunebookRouter(_currentBookIdx); //Route to a new Runebook if ready
 			
 			var goldAmt = Orion.Count('0x0EED', any, backpack, any, false);
 			Orion.SetTimer('MoveGold');
@@ -104,13 +104,13 @@ function RunebookRouter(bookNum) {
 		if (bookNum == _runeBooks.length - 1) { //Start over when we reach the last Runebook
 			_runebookID = _runeBooks[0][0];
 			_bookIndex = _runeBooks[0][1];
-			_currentBookInt = 0;
+			_currentBookIdx = 0;
 			return;
 		}
 
 		_runebookID = _runeBooks[bookNum + 1][0];
 		_bookIndex = _runeBooks[bookNum + 1][1];
-		_currentBookInt++;
+		_currentBookIdx++;
 	}
 }
 
@@ -133,7 +133,7 @@ function FindTargetsToKill() {
 		{
 			var mobObj = Orion.FindObject(mobList[0]);
 			if (mobObj)
-				PathTo('any', mobObj.X(), mobObj.Y(), 0);
+				PathTo('any', mobObj.X(), mobObj.Y(), 1);
 			
 			if (Orion.Timer('KillTimer') > 50000) {
 				Orion.Print(33, 'TIMEOUT');

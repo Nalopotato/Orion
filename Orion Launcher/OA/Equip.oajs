@@ -1,7 +1,7 @@
 //#include Autoload.oajs
 
-var TwoHmelee = '0x42464720'; //BoD
-//var TwoHmelee = '0x4794431C'; //SoP
+//var TwoHmelee = '0x42464720'; //BoD
+var TwoHmelee = '0x42C09524'; //SoP
 var OneHmelee = '0x497553F8';
 var shield = '0x488E2D82';
 var bow = '0x4022045E';

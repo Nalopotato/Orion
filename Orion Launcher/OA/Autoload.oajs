@@ -19,6 +19,7 @@ const _woodKeys = '0x447CBF38';
 const _metalKeys = '0x45CDBF39';
 
 const _lootBagID = '0x4266ADBA';
+const _ethMountID = '0x467FC830';
 const _bagOfSendingID = '0x42F8FCE3';
 
 const _bow = '0x4022045E';

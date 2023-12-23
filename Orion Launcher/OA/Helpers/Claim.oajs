@@ -1,5 +1,29 @@
 //#include Autoload.oajs
 
+const _skinableCorpseList = [
+	'A Sheep Corpse',
+	'A Bird Corpse',
+	'An Eagle Corpse',
+	'A Bear Corpse',
+	'A Grizzly Bear Corpse',
+	'A Polar Bear Corpse',
+	'A Deer Corpse',
+	'A Bull Corpse',
+	'A Horse Corpse',
+	'A Goat Corpse',
+	'A Panther Corpse',
+	'A Cougar Corpse',
+	'A Llama Corpse',
+	'A Giant Ice Serpent',
+	'A Daemon Corpse',
+	'A Drake Corpse',
+	'A Dragon Corpse',
+	'A White Wyrm Corpse',
+	'An Ice Fiend Corpse',
+	'A Shadow Wyrm Corpse',
+	'A Cow Corpse'
+];
+
 function QuickClaim() {
 	var corpseList = Orion.FindType('0x2006', any, ground, 'inlos|ignoreself', 12);
 	
@@ -39,9 +63,9 @@ var claimCorpses = function() {
 				lootOrSkinCount++;
 			}
 			var corpseName = Orion.FindObject(corpseList[i]) && Orion.FindObject(corpseList[i]).Properties();
-			for (var j = 0; j < skinableCorpseList.length; j++)
+			for (var j = 0; j < _skinableCorpseList.length; j++)
 			{
-				if (skinableCorpseList[j] == corpseName)
+				if (_skinableCorpseList[j] == corpseName)
 					lootOrSkinCount++;
 			}
 		}

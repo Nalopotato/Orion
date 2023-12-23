@@ -1,38 +1,47 @@
+//#include Autoload.oajs
+
+const _stats = [
+    'Strength Bonus',
+    'Intelligence Bonus',
+    'Dexterity Bonus',
+    
+    'Faster Casting',
+    'Faster Cast Recovery',
+    
+    'Hit Point Increase',
+    'Hit Point Regeneration',
+    'Mana Increase',
+    'Mana Regeneration',
+    'Stamina Increase',
+    'Stamina Regeneration',
+
+    'Lower Reagent Cost',
+    'Lower Mana Cost',
+    
+    'Damage Increase',
+    'Swing Speed Increase',
+    'Defense Chance Increase',
+    'Hit Chance Increase',
+    'Spell Damage Increase',
+    
+    'Reflect Physical Damage',
+    'Enhance Potions',
+    'Luck',
+
+    'Physical Resist',
+    'Fire Resist',
+    'Cold Resist',
+    'Poison Resist',
+    'Energy Resist'
+];
+
 //For other mobiles, this is proximity based.  Make sure you are close enough to the other player!
 function GetStats()
-{
-    var stats = [
-	    'Strength Bonus',
-	    'Intelligence Bonus',
-	    'Dexterity Bonus',
-	    
-	    'Faster Casting',
-	    'Faster Cast Recovery',
-	    
-	    'Hit Point Increase',
-	    'Hit Point Regeneration',
-	    'Mana Increase',
-	    'Mana Regeneration',
-	    'Stamina Increase',
-	    'Stamina Regeneration',
-	
-	    'Lower Reagent Cost',
-	    'Lower Mana Cost',
-	    
-	    'Damage Increase',
-	    'Swing Speed Increase',
-	    'Defense Chance Increase',
-	    'Hit Chance Increase',
-	    'Spell Damage Increase',
-	    
-	    'Reflect Physical Damage',
-	    'Enhance Potions',
-	    'Luck' ];
-                        
+{    
     var sumStats = [];
     var totalStats = 0;
     
-    for (var i=0; i < stats.length; i++){
+    for (var i=0; i < _stats.length; i++){
         sumStats[i] = parseInt(0);
     }
     
@@ -42,15 +51,18 @@ function GetStats()
     Orion.WaitForAddObject('Person');
     serial = Orion.GetSerial('Person');
     
-    for (var i = 1; i < stats.length; i++) {
-        getSingleProperties(serial, i, stats, sumStats);
+    for (var i = 1; i < 24; i++) { //24 is the last equipable layer, out of 29 layers
+        getSingleProperties(i, sumStats);
     }
     
     var person = Orion.FindObject(serial);
     TextWindow.Print('Player: ' + person.Name());
 
-    for (var i = 0; i < stats.length; i++) {
-        TextWindow.Print(stats[i] + ': ' + sumStats[i]);
+    for (var i = 0; i < _stats.length; i++) {
+        TextWindow.Print(_stats[i] + ': ' + sumStats[i]);
+        if (i == 2 || i == 4 || i == 10 || i == 12 || i == 17 || i == 20) {
+            TextWindow.Print('');
+        }
         totalStats += sumStats[i];
     }
 
@@ -61,18 +73,18 @@ function GetStats()
 }
 
 
-function getSingleProperties(serialPerson, layer, stats, sumStats)
+function getSingleProperties(layer, sumStats)
 {
-    var obj = Orion.ObjAtLayer(layer, serialPerson);
+    var obj = Orion.ObjAtLayer(layer);
     if (obj) {
         obj = obj.Properties();
         var objLine = Orion.Split(obj, '\n');
-        
+
         for (var i = 0; i < objLine.length; i++) {
             var matches = /([a-zA-Z ]+)(-?\d+)/gi.exec(objLine[i]);
             if (matches) {
                 for (var j = 1; j < matches.length; j++) {
-                	var idx = stats.indexOf(matches[j].trim());
+                	var idx = _stats.indexOf(matches[j].trim());
 	                if (idx >= 0) {
 	                    sumStats[idx] += parseInt(matches[j+1]);
 	                }

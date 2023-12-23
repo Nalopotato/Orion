@@ -44,23 +44,27 @@ function Refill()
 		Orion.Wait(50);
 	
 		//Refill Bandages
-		if (Orion.Count('0x0E21', 'any', backpack) < 20 && Player.Weight() < 450)
+		if (Orion.Count('0x0E21', 'any', backpack) < 20)
 		{
-			Orion.ControlAgent('autoloot', 'Main', 'stop'); //Stop Autoloot
-			Orion.Print('26', '***** Cutting Cloth *****');
-			if (Orion.Count('0x1766', 'any', backpack) < 25)
-			{
-				Orion.UseObject(_tailorKeys);
-				GumpAction('0x41F8FC19', 60020, 500, false);
-				GumpAction('0x41F8FC19', 0, 500, true);
-			}
-			
-			Orion.UseType('0x0F9F');
-			if (Orion.WaitForTarget(5000))
-				Orion.TargetType('0x1766');
+			if (Player.Weight() < 400) {
+				Orion.ControlAgent('autoloot', 'Main', 'stop'); //Stop Autoloot
+				Orion.Print('26', '***** Cutting Cloth *****');
+				if (Orion.Count('0x1766', 'any', backpack) < 25)
+				{
+					Orion.UseObject(_tailorKeys);
+					GumpAction('0x41F8FC19', 60020, 500, false);
+					GumpAction('0x41F8FC19', 0, 500, true);
+				}
 				
-			Orion.ControlAgent('autoloot', 'Main', 'start'); //Start Autoloot
-			Orion.Wait(5000);
+				Orion.UseType('0x0F9F');
+				if (Orion.WaitForTarget(5000))
+					Orion.TargetType('0x1766');
+					
+				Orion.ControlAgent('autoloot', 'Main', 'start'); //Start Autoloot
+				Orion.Wait(5000);
+			} else {
+				Orion.Print('34', 'OVERWEIGHT - CANNOT GET BANDAGES');
+			}
 		}
 		
 		//Refill Arrows

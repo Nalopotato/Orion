@@ -11,29 +11,6 @@ const _runeBooks = [
 	['0x47A8D815', 27, 137], //Sheep
 	['0x49A819EF', 7, 87]  	 //XP
 ];
-const skinableCorpseList = [
-	'A Sheep Corpse',
-	'A Bird Corpse',
-	'An Eagle Corpse',
-	'A Bear Corpse',
-	'A Grizzly Bear Corpse',
-	'A Polar Bear Corpse',
-	'A Deer Corpse',
-	'A Bull Corpse',
-	'A Horse Corpse',
-	'A Goat Corpse',
-	'A Panther Corpse',
-	'A Cougar Corpse',
-	'A Llama Corpse',
-	'A Giant Ice Serpent',
-	'A Daemon Corpse',
-	'A Drake Corpse',
-	'A Dragon Corpse',
-	'A White Wyrm Corpse',
-	'An Ice Fiend Corpse',
-	'A Shadow Wyrm Corpse',
-	'A Cow Corpse'
-];
 
 var _runebookID = _runeBooks[0][0];
 var _bookIndex = 17;

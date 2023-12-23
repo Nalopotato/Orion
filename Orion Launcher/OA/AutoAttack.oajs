@@ -1,8 +1,5 @@
 //#include Autoload.oajs
 
-const _lootBagID = '0x4266ADBA';
-const _ethMountID = '0x467FC830';
-const _bagOfSendingID = '0x42F8FCE3';
 const _autoSkin = false;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
 const _vamp = true;  // Vampiric Embrace check
 

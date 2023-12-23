@@ -2,13 +2,14 @@
 
 //Asante sana, squash banana
 
-const _lootBagID = '0x4266ADBA';
-const _casterKeysID = '0x466B92BD';
-const _bagOfSendingID = '0x42F8FCE3';
+//const _lootBagID = '0x4266ADBA';
+//const _casterKeysID = '0x466B92BD';
+//const _bagOfSendingID = '0x42F8FCE3';
 const _runeBooks = [
 	['0x40C01DBE', 7, 117],  //Solen
 	['0x40D17D00', 7, 157],  //XP Farm
-	['0x47A8D815', 27, 137]  //Sheep
+	['0x47A8D815', 27, 137], //Sheep
+	['0x49A819EF', 7, 87]  	 //XP
 ];
 const skinableCorpseList = [
 	'A Sheep Corpse',
@@ -51,16 +52,16 @@ function KillSolen()
 		if (Orion.ScriptRunning('AutoAttack') < 1) { Orion.ToggleScript('AutoAttack', true); }
 		if (Orion.ScriptRunning('HealSelf') < 1) { Orion.ToggleScript('HealSelf', true); }
 		
-		UseRunebook(_bookIndex, _runebookID);
+		useRunebook(_bookIndex, _runebookID);
 		
 		while (Orion.Count('0x26B7', any, _lootBagID) < 200) //Fungi in loot bag
 		{
 			Orion.SetTimer('RecallTimer');
 
-			FindTargetsToKill();
-			ClaimCorpses();
-			FindTargetsToKill(); //Double check to make sure there are no targets left
-			ClaimCorpses();
+			findTargetsToKill(50000);
+			claimCorpses();
+			findTargetsToKill(50000); //Double check to make sure there are no targets left
+			claimCorpses();
 			
 			while (Orion.Timer('RecallTimer') < 5500) {
 				Orion.Wait(100);
@@ -68,9 +69,9 @@ function KillSolen()
 
 			_bookIndex += 10;
 
-			UseRunebook(_bookIndex, _runebookID); //Recall to next spawn
-			CheckForPlayers(); //GTFO if we find a player
-			RunebookRouter(_currentBookIdx); //Route to a new Runebook if ready
+			useRunebook(_bookIndex, _runebookID); //Recall to next spawn
+			checkForPlayers(); //GTFO if we find a player
+			runebookRouter(_currentBookIdx); //Route to a new Runebook if ready
 			
 			var goldAmt = Orion.Count('0x0EED', any, backpack, any, false);
 			Orion.SetTimer('MoveGold');
@@ -85,21 +86,21 @@ function KillSolen()
 				Orion.Wait(600);
 			}
 
-			//SendGold(_bagOfSendingID, _lootBagID); //Also happens in AutoAttack
+			//sendGold(_bagOfSendingID, _lootBagID, 9000); //Also happens in AutoAttack
 
 			if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > (Player.MaxWeight() * 0.7)) {
-				BankUnload();
+				bankUnload();
 			}
 		}
 		
-		BankSolen();
-		RunToVat();
-		TurnInQuest();
+		bankSolen();
+		runToVat();
+		turnInSolenQuest();
 	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function RunebookRouter(bookNum) {
+var runebookRouter = function(bookNum) {
 	if (_runebookID == _runeBooks[bookNum][0] && _bookIndex == _runeBooks[bookNum][2]) {
 		if (bookNum == _runeBooks.length - 1) { //Start over when we reach the last Runebook
 			_runebookID = _runeBooks[0][0];
@@ -115,124 +116,10 @@ function RunebookRouter(bookNum) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function FindTargetsToKill() {
+var bankSolen = function() {
+	Orion.Print(26, 'bankSolen');
 
-	var mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', '8', 'gray|criminal|orange|red');
-	Orion.Wait(1000);
-	
-	if (mobList.length > 0) { //Orion.Print(15, '# of mobs: ' + mobList.length);
-		Orion.SetTimer('KillTimer');
-
-		if (Orion.CheckAgent('autoloot', 'Main')) {
-			Orion.ControlAgent('autoloot', 'Main', 'stop');
-		}
-
-		//var mobObj = Orion.FindObject(mobList[0]);
-		
-		while (mobList.length > 0)
-		{
-			var mobObj = Orion.FindObject(mobList[0]);
-			if (mobObj)
-				PathTo('any', mobObj.X(), mobObj.Y(), 1);
-			
-			if (Orion.Timer('KillTimer') > 50000) {
-				Orion.Print(33, 'TIMEOUT');
-				break;
-			}
-
-			mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', '8', 'gray|criminal|orange|red');
-			mobObj = Orion.FindObject(mobList[0]);
-			
-			Orion.Wait(100);
-		}
-	} else {
-		return;
-	}
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function ClaimCorpses() {
-	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself', 12);
-	
-	if (corpseList.length > 0)
-	{
-		//Check if the corpseList names are in the list of skinnable corpses
-		var lootOrSkinCount = 0;
-		for (var i = 0; i < corpseList.length; i++)
-		{
-			if (Orion.FindList('Autoloot', corpseList[i]).length > 0) {
-				lootOrSkinCount++;
-			}
-			var corpseName = Orion.FindObject(corpseList[i]) && Orion.FindObject(corpseList[i]).Properties();
-			for (var j = 0; j < skinableCorpseList.length; j++)
-			{
-				if (skinableCorpseList[j] == corpseName)
-					lootOrSkinCount++;
-			}
-		}
-		if (lootOrSkinCount == 0) {
-			QuickClaim();
-			Orion.Wait(50);
-			return;
-		}
-
-		//Orion.Print(15, '# Corpses: ' + corpseList.length);
-		for (var i = corpseList.length; i > -1; i--)
-		{
-			while (Orion.Dragging()) { 
-				Orion.Wait(100);
-			}
-			
-			var corpse = Orion.FindObject(corpseList[i]);
-
-			if (corpse != null) //Bad to loop here, since the corpse might not be ours
-			{
-				var corpseName = Orion.FindObject(corpseList[i]) && Orion.FindObject(corpseList[i]).Properties();
-
-				PathTo('any', corpse.X(), corpse.Y(), 1);
-				
-				if (!Orion.CheckAgent('autoloot', 'Main')) {
-					Orion.ControlAgent('autoloot', 'Main', 'start');
-				}
-				
-				Orion.Wait(300);
-				Orion.UseObject(corpseList[i]); //Make sure the corpse is open, first
-				Orion.Wait(300);
-				
-				var itemcount = corpseList[i] && Orion.FindListEx('Autoloot', corpseList[i]);
-				Orion.Wait(itemcount.length * 800); //Multiply the item count by 800ms to wait for looting
-
-				//Orion.Print(15, 'Corpse Name: ' + corpseName);
-				if (corpseName === 'A Daemon Corpse') {
-					SkinCorpse();
-				} else if (corpseName === 'A Sheep Corpse') {
-					SkinCorpse();
-				}
-			}
-			
-			ClaimSingle(corpseList[i]);
-			Orion.CancelTarget();
-
-			if (Orion.InJournal('You did not earn the right'))
-			{
-				//Orion.Print(15, 'CANNOT LOOT');
-				//Orion.ClearJournal();
-				break;
-			}
-		}
-		//ClaimCorpses();
-	} else {
-		//Orion.Print(15, 'end ClaimCorpses()');
-		Orion.CancelTarget();
-		return;
-	}
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function BankSolen() {
-	Orion.Print(26, 'BankSolen');
-
-	BankUnload();
+	bankUnload();
 	
 	if (Orion.Count('0x1F9D', 0, backpack) > 7)
 		return;
@@ -281,8 +168,7 @@ function BankSolen() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function RunToVat() 
-{
+var runToVat = function() {
 	Orion.Print(26, 'RunToVat');
 
 	if (Orion.ScriptRunning('AutoAttack') > 0) { Orion.ToggleScript('AutoAttack', true); }
@@ -297,19 +183,19 @@ function RunToVat()
 
 	//Floor 1	
 	if (!PathTo(5921, 5900, 1876, 0))
-		RunToVat();
+		runToVat();
 	Orion.UseObject('0x40010277');
 	Orion.Wait(300);
 	
 	//Floor 2
 	if (!PathTo(5874, 5855, 1851, 0))
-		RunToVat();
+		runToVat();
 	Orion.UseObject('0x4001028C');
 	Orion.Wait(300);
 	
 	//Floor 3
 	if (!PathTo('any', 5805, 1919, 0))
-		RunToVat();
+		runToVat();
 	Orion.Wait(300);
 
 	//Pour Water
@@ -337,9 +223,8 @@ function RunToVat()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function TurnInQuest()
-{
-	Orion.Print(15, 'TurnInQuest');
+var turnInSolenQuest = function() {
+	Orion.Print(15, 'turnInSolenQuest');
 
 	PathTo(5805, 5779, 1901, 1);
 
@@ -349,7 +234,7 @@ function TurnInQuest()
 		PathTo('any', matriarch.X(), matriarch.Y(), 1);
 	}
 		
-	GetZoogi(_casterKeysID);
+	GetZoogi(_casterKeys);
 	
 	//Turn in Kill quest, and get new quest
 	Orion.RequestContextMenu('0x001D0274');
@@ -383,27 +268,27 @@ function TurnInQuest()
 	if (Orion.Count('0x26B8') < 1)
 	{
 		Orion.Print('26', '*** FAILED ***');
-		TurnInQuest();
+		turnInSolenQuest();
 	}
 	
 	while (Orion.Count(0x26B8, any, backpack) > 1)
 	{
 		Orion.Wait(50);
 		Orion.Print('26', 'Store Transloc');
-		StoreItemWithKeys(_casterKeysID, '0x0EBCD833', 60030, '0x26B8', 0);
+		storeItemWithKeys(_casterKeys, '0x0EBCD833', 60030, '0x26B8', 0);
 	}
 	
 	Orion.Wait(2000);
 }
 
-function BankUnload() {
+var bankUnload = function() {
 	Orion.Print(15, 'Bank Unload');
 	Recall(_runeBooks[0][0], 147);
 	Orion.Wait(3500);
 	
 	if (Player.X() != 1450)
 	{
-		return BankSolen();
+		return bankSolen();
 	}
 	
 	Orion.Say('faxon sell');
@@ -411,27 +296,6 @@ function BankUnload() {
 
 	Orion.Say('bank');
 	Orion.Wait(300);
-	OrganizeGoldGems(backpack);
-	OrganizeGoldGems(_lootBagID);
-}
-
-function CheckForPlayers() {
-	var mobList = Orion.FindType(any, any, ground, 'human|live|ignoreself|ignoreenemies', '8', 'blue|green|gray');
-	if (mobList.length > 0) {
-		Orion.Print(33, 'G T F O');
-
-		var x = Player.X();
-		var y = Player.Y();
-
-		while ((Player.X() == x && Player.Y() == y)) {
-			RecallToBank();
-		}
-
-		Orion.Say('bank');
-		Orion.Wait(300);
-		OrganizeGoldGems(backpack);
-		OrganizeGoldGems(_lootBagID);
-
-		return;
-	}
+	organizeGoldGems(backpack);
+	organizeGoldGems(_lootBagID);
 }

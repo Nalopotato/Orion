@@ -1,0 +1,81 @@
+//#include C:/Orion Launcher/OA/Autoload.oajs
+
+//https://www.uoex.net/wiki/Doom_Gauntlet
+
+var runebookID = '0x41059D8B';
+var bookIndex = 147;
+
+function GoldenSkull()
+{
+	Orion.ClearJournal();
+	
+	if (!Player.Dead())
+	{
+		if (Orion.ScriptRunning('AutoAttack') > 0) { Orion.ToggleScript('AutoAttack', true); }
+		//if (Orion.ScriptRunning('HealSelf') > 0) { Orion.ToggleScript('HealSelf', true); }
+		
+		useRunebook(bookIndex, runebookID);
+        checkForPlayers();
+
+        PathTo('any', 423, 196); //Walk to Victoria
+        sendGold(_bagOfSendingID, _lootBagID, 2000);
+        getQuest();
+        giveBones();
+
+        if (Orion.InJournal('You have completed The Summoning')) {
+            PathTo('any', 439, 205); //Walk to the Devourer
+
+            if (Orion.ScriptRunning('AutoAttack') < 1) { Orion.ToggleScript('AutoAttack', true); }
+            findTargetsToKill(500000);
+            claimCorpses();
+        }
+    }
+}
+
+var getQuest = function() {
+    Orion.RequestContextMenu('0x000025CC');
+    Orion.Wait(50);
+    Orion.WaitContextMenuID('0x000025CC', 3);
+
+    GumpAction('0x08DB94B0', 60000, 100, false);
+    GumpAction('0x23C255E7', 60009, 100, false);
+}
+
+var giveBones = function() {
+    for (var i = 0; i < 20; i++) {
+        Orion.RequestContextMenu('0x000025CC');
+        Orion.Wait(200);
+        Orion.WaitContextMenuID('0x000025CC', 3);
+        Orion.Wait(200);
+
+        var gump = Orion.GetGump('lastgump');
+        var text = gump.TextList();
+
+        //Orion.Print(i + 'Gump string contains result: ' + Orion.Contains(text[1], 'The Daemon Bones'));
+        if (!Orion.Contains(text[1], 'The Daemon Bones')) {
+            //Get bones from keys
+            while (Orion.Count('0x0F80', 'any', backpack) < 100)
+            {
+                if (Player.Weight() < 400) {
+                    Orion.UseObject(_casterKeys);
+                    Orion.Wait(300);
+                    GumpAction('0x0EBCD833', 60016, 300, false);
+                }
+            }
+        
+            GumpAction('0x08DB94B0', 60000, 300, false); GumpAction('0x08DB94B0', 60000, 300, false);
+            GumpAction('0x23C255E7', 60009, 300, false); GumpAction('0x23C255E7', 60007, 300, false);
+            GumpAction('0x80C56F6E', 60001, 300, false); GumpAction('0x80C56F6E', 60003, 300, false);
+            GumpAction('0x23C255E7', 60001, 300, false); GumpAction('0x80C56F6E', 60003, 300, false);
+        } else {
+            Orion.Print(i + 'Final dialogue');
+            GumpAction('0x23C255E7', 60007, 300, false);
+            GumpAction('0x23C255E7', 60007, 300, false);
+            break;
+        }
+
+        if (Orion.InJournal('You have completed The Summoning')) {
+            break;
+        }
+    }
+}

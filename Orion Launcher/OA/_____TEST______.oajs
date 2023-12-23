@@ -2,46 +2,25 @@
 
 function TEST()
 {
-	Orion.UseObject('0x474E827D');
-	Orion.Wait(500);
-	GumpAction('0x41F8FC19', 60025, 1000, true);
-	Orion.Wait(500);
+	Orion.Print(Orion.Contains('string', 'str'));
+	Orion.Print(Orion.Contains('str', 'string'));
 
-	Orion.UseType('0x0DF8');
-	Orion.Wait(500);
-	if (Orion.WaitForGump(1000))
-	{
-		var gump0 = Orion.GetGump('last');
-		if ((gump0 !== null) && (!gump0.Replayed()) && (gump0.ID() === '0x46A8C897'))
-		{
-			var gumpHook0 = Orion.CreateGumpHook(60000);
-			gumpHook0.AddEntry(20000, "");
-			gump0.Select(gumpHook0);
-			Orion.Wait(100);
-		}
-	}
-
-	Orion.Wait(90000);
-
-	GumpAction('0x41F8FC19', 60029, 1000, true);
-	if (Orion.WaitForTarget(1000))
-		Orion.TargetType('0x0FA0', '0xFFFF');
+	Orion.QuestsGump();
+	GumpAction('0x42E5C2A4', 60000, 300, false);
+	GumpAction('0x6C5EFD3F', 60014, 300, false);
+	
+	var gump = Orion.GetGump('lastgump');
+	var text = gump.TextList();
+	Orion.Print(text[7].substring(61, 64));
 }
 
-function HealPet()
+function TEST2() 
 {
-	var herp = '0x001DC91C';
-	var derp = '0x0076DF69';
-	while (!Player.Dead()) {
-		Orion.UseType('0x0E21', any);
-		Orion.WaitForTarget(1000);
-		Orion.TargetObject(derp);
-		Orion.Wait(2100);
-	}
+	getPlayerNames();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function GetProperties()
+var getProperties = function()
 {
 	Orion.WaitForAddObject('Target');;
 	var props = Orion.FindObject('Target').Properties();
@@ -59,11 +38,14 @@ function GetProperties()
 	return result;
 }
 
-
-
-
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var getPlayerNames = function() {
+	var mobList = Orion.FindType(any, any, ground, 'human|live|ignoreself', '15', 'blue|green|gray');
+	for (var i=0; i < mobList.length; i++) {
+		Orion.Print('------------------ ' + i + ' ------------------');
+		Orion.Print(89, Orion.FindObject(mobList[i]).Properties() + '\n');
+	}
+}
 
 
 

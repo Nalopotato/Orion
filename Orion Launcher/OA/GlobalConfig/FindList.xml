@@ -150,6 +150,9 @@
         <item graphic="0x0E86" color="0x0973" comment="A Gargoyle's Pickaxe " count="0" enabled="false"/>
         <item graphic="0x13F6" color="0x0973" comment="Gargoyles Knife" count="0" enabled="true"/>
         <item graphic="0x14EC" color="0x0000" comment="Treasure Map" count="0" enabled="false"/>
+        <item graphic="0x1AE4" color="0x08A5" comment="A Golden Skull" count="0" enabled="true"/>
+        <item graphic="0x1AE2" color="0x08A5" comment="A Golden Skull" count="0" enabled="true"/>
+        <item graphic="0x1AE3" color="0x08A5" comment="A Golden Skull" count="0" enabled="true"/>
     </findlist>
     <findlist name="Gold+Gems">
         <item graphic="0x0EED" color="0x0000" comment="Gold" count="0" enabled="true"/>
@@ -170,6 +173,7 @@
         <item graphic="0x3199" color="0x0000" comment="Brilliant Amber" count="0" enabled="true"/>
         <item graphic="0x3195" color="0x0000" comment="Ecru Citrine" count="0" enabled="true"/>
         <item graphic="0x3194" color="0x0000" comment="Perfect Emerald" count="0" enabled="true"/>
+        <item graphic="0x0F8F" color="0x0829" comment="Eth Powder" count="0" enabled="true"/>
     </findlist>
     <findlist name="Gems">
         <item graphic="0x0F13" color="0x0000" comment="Ruby" count="0" enabled="true"/>

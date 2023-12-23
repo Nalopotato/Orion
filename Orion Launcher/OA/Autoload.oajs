@@ -1,17 +1,27 @@
 //#include AutoAttack.oajs
+//#include Crafting/Lumberjacking.oajs
+//#include Crafting/Mining.oajs
 //#include Equip.oajs
 //#include HealSelf.oajs
 //#include Helpers/All.oajs
 //#include Helpers/Claim.oajs
 //#include Helpers/GetStats.oajs
 //#include Helpers/KeyStorage.oajs
+//#include Helpers/Organize_GoldGems.oajs
 //#include Helpers/Paths.oajs
 //#include Looting.oajs
-//#include Lumberjacking.oajs
-//#include Mining.oajs
-//#include Organize_GoldGems.oajs
 //#include Recall.oajs
 //#include Solen Farm.oajs
+
+const _casterKeys = '0x466B92BD';
+const _tailorKeys = '0x474E827D';
+const _woodKeys = '0x447CBF38';
+const _metalKeys = '0x45CDBF39';
+
+const _lootBagID = '0x4266ADBA';
+const _bagOfSendingID = '0x42F8FCE3';
+
+const _bow = '0x4022045E';
 
 function AutoStart()
 {

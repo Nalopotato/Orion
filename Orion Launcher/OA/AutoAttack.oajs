@@ -1,14 +1,10 @@
 //#include Autoload.oajs
 
-var autoSkin = false;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
-
-var lootBagID = '0x4266ADBA';
-var ethMountID = '0x467FC830';
-var casterKeys = '0x466B92BD';
-var tailorKeys = '0x474E827D';
-var woodWorkerKeys = '0x447CBF38';
-var bagOfSendingID = '0x42F8FCE3';
-var vamp = true;  // Vampiric Embrace check
+const _lootBagID = '0x4266ADBA';
+const _ethMountID = '0x467FC830';
+const _bagOfSendingID = '0x42F8FCE3';
+const _autoSkin = false;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
+const _vamp = true;  // Vampiric Embrace check
 
 function AutoAttack()
 {
@@ -25,7 +21,7 @@ function AutoAttack()
 		//Stay mounted
 		if (!Orion.ObjAtLayer('Mount')) 
 		{
-			Orion.UseObject(ethMountID);
+			Orion.UseObject(_ethMountID);
 			Orion.Wait(300);
 		}
 		
@@ -69,7 +65,7 @@ function AutoAttack()
 		}
 		else //Chill - no enemies
 		{
-			if (vamp && Player.Color() != '0x847E')
+			if (_vamp && Player.Color() != '0x847E')
 			{
 				Orion.Print('Vampiric Embrace');
 				Orion.Say('[cs vampiricembrace');
@@ -80,17 +76,53 @@ function AutoAttack()
 			Orion.Wait(200);
 		}
 		
-		if (autoSkin && !Orion.ScriptRunning('Looting')) { 
+		if (_autoSkin && !Orion.ScriptRunning('Looting')) { 
 			Orion.Exec('SkinCorpse', true);
 		}
 
 		if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > (Player.MaxWeight() * 0.6)) {
 			Orion.Print(24, 'Storage Mgmt');
 
-			SendGold(bagOfSendingID, lootBagID);
+			sendGold(_bagOfSendingID, _lootBagID, 9000);
 			Orion.Wait(100);
-			KeyStorage();
+			keyStorage();
 			Orion.ClearJournal('That container cannot hold more', 'sys');
 		}
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var findTargetsToKill = function(timeout) {
+
+	var mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', '8', 'gray|criminal|orange|red');
+	Orion.Wait(1000);
+	
+	if (mobList.length > 0) { //Orion.Print(15, '# of mobs: ' + mobList.length);
+		Orion.SetTimer('KillTimer');
+
+		if (Orion.CheckAgent('autoloot', 'Main')) {
+			Orion.ControlAgent('autoloot', 'Main', 'stop');
+		}
+
+		//var mobObj = Orion.FindObject(mobList[0]);
+		
+		while (mobList.length > 0)
+		{
+			var mobObj = Orion.FindObject(mobList[0]);
+			if (mobObj)
+				PathTo('any', mobObj.X(), mobObj.Y(), 1);
+			
+			if (Orion.Timer('KillTimer') > timeout) {
+				Orion.Print(33, 'TIMEOUT');
+				break;
+			}
+
+			mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', '8', 'gray|criminal|orange|red');
+			mobObj = Orion.FindObject(mobList[0]);
+			
+			Orion.Wait(100);
+		}
+	} else {
+		return;
 	}
 }

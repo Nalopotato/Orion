@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data version="2">
+    <hotkey type="2" action="1" key="101" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Organize_GoldGems&quot;,&#10;    &quot;run_once&quot;: 0,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
+    <hotkey type="29" action="256" key="97" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="29" action="259" key="96" modifiers="0" override_pass_key_to_client="0"/>
     <hotkey type="29" action="262" key="99" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="8" action="0" key="120" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="16" action="32" key="121" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="16" action="22" key="122" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="16" action="9" key="123" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="24" action="0" key="116" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="16" action="47" key="113" modifiers="2" override_pass_key_to_client="0"/>
-    <hotkey type="0" action="1" key="117" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Spell Heal&quot;&#10;}&#10;"/>
-    <hotkey type="0" action="1" key="118" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Spell Res&quot;&#10;}&#10;"/>
-    <hotkey type="2" action="2" key="189" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;HealSelf&quot;,&#10;    &quot;run_once&quot;: 0,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
-    <hotkey type="7" action="0" key="119" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="16" action="21" key="113" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="16" action="35" key="114" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="16" action="15" key="122" modifiers="4" override_pass_key_to_client="0"/>
-    <hotkey type="16" action="46" key="115" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="2" action="2" key="187" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;AutoAttack&quot;,&#10;    &quot;run_once&quot;: 0,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
-    <hotkey type="26" action="2" key="144" modifiers="16" override_pass_key_to_client="0" meta="{&#10;    &quot;name&quot;: &quot;&quot;&#10;}&#10;"/>
-    <hotkey type="2" action="1" key="70" modifiers="4" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;RecallToBank&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
-    <hotkey type="4" action="0" key="45" modifiers="16" override_pass_key_to_client="0"/>
-    <hotkey type="2" action="2" key="76" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Lumberjacking&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
-    <hotkey type="2" action="1" key="46" modifiers="16" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;RecallHome&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
-    <hotkey type="2" action="2" key="77" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Mining&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
-    <hotkey type="2" action="1" key="76" modifiers="4" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;RecallSoT&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
-    <hotkey type="0" action="1" key="65" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Spell Heal Self&quot;&#10;}&#10;"/>
-    <hotkey type="9" action="28" key="70" modifiers="2" override_pass_key_to_client="0"/>
-    <hotkey type="2" action="1" key="1" modifiers="3" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Equip1HMelee&quot;,&#10;    &quot;run_once&quot;: 1&#10;}&#10;"/>
-    <hotkey type="0" action="1" key="192" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Dagger&quot;&#10;}&#10;"/>
-    <hotkey type="2" action="1" key="2" modifiers="1" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;EquipBow&quot;,&#10;    &quot;run_once&quot;: 1&#10;}&#10;"/>
-    <hotkey type="9" action="22" key="84" modifiers="4" override_pass_key_to_client="0"/>
-    <hotkey type="0" action="1" key="192" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Scissors&quot;&#10;}&#10;"/>
-    <hotkey type="2" action="1" key="1" modifiers="1" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Equip2HMelee&quot;,&#10;    &quot;run_once&quot;: 1,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
+    <hotkey type="29" action="261" key="98" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="2" action="1" key="109" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;WritePlayerCoords&quot;,&#10;    &quot;run_once&quot;: 0,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
+    <hotkey type="2" action="1" key="145" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;GetStats&quot;,&#10;    &quot;run_once&quot;: 0,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
+    <hotkey type="52" action="1" key="20" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;name&quot;: &quot;&quot;&#10;}&#10;"/>
     <hotkey type="2" action="1" key="221" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;QuickClaim&quot;,&#10;    &quot;run_once&quot;: 0,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
     <hotkey type="0" action="1" key="83" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Spell Purge&quot;&#10;}&#10;"/>
-    <hotkey type="52" action="1" key="20" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;name&quot;: &quot;&quot;&#10;}&#10;"/>
     <hotkey type="0" action="1" key="87" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Spell Smite&quot;&#10;}&#10;"/>
-    <hotkey type="2" action="1" key="109" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;WritePlayerCoords&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
-    <hotkey type="2" action="1" key="145" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;GetStats&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
-    <hotkey type="2" action="1" key="101" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Organize_GoldGems&quot;,&#10;    &quot;run_once&quot;: 0,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
-    <hotkey type="29" action="259" key="96" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="29" action="256" key="97" modifiers="0" override_pass_key_to_client="0"/>
-    <hotkey type="29" action="261" key="98" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="9" action="22" key="84" modifiers="4" override_pass_key_to_client="0"/>
+    <hotkey type="0" action="1" key="192" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Dagger&quot;&#10;}&#10;"/>
+    <hotkey type="0" action="1" key="192" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Scissors&quot;&#10;}&#10;"/>
+    <hotkey type="2" action="1" key="1" modifiers="3" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Equip1HMelee&quot;,&#10;    &quot;run_once&quot;: 1&#10;}&#10;"/>
+    <hotkey type="0" action="1" key="65" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Spell Heal Self&quot;&#10;}&#10;"/>
+    <hotkey type="2" action="1" key="76" modifiers="4" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;RecallSoT&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
+    <hotkey type="2" action="1" key="2" modifiers="1" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;EquipBow&quot;,&#10;    &quot;run_once&quot;: 1&#10;}&#10;"/>
+    <hotkey type="2" action="1" key="1" modifiers="1" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Equip2HMelee&quot;,&#10;    &quot;run_once&quot;: 1,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
+    <hotkey type="4" action="0" key="45" modifiers="16" override_pass_key_to_client="0"/>
+    <hotkey type="9" action="28" key="70" modifiers="2" override_pass_key_to_client="0"/>
+    <hotkey type="2" action="1" key="46" modifiers="16" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;RecallHome&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
+    <hotkey type="2" action="1" key="70" modifiers="4" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;RecallToBank&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
+    <hotkey type="2" action="2" key="77" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Mining&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
+    <hotkey type="2" action="2" key="76" modifiers="2" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;Lumberjacking&quot;,&#10;    &quot;run_once&quot;: 0&#10;}&#10;"/>
+    <hotkey type="26" action="2" key="144" modifiers="16" override_pass_key_to_client="0" meta="{&#10;    &quot;name&quot;: &quot;&quot;&#10;}&#10;"/>
+    <hotkey type="2" action="2" key="189" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;HealSelf&quot;,&#10;    &quot;run_once&quot;: 0,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
+    <hotkey type="16" action="47" key="113" modifiers="2" override_pass_key_to_client="0"/>
+    <hotkey type="0" action="1" key="117" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Spell Heal&quot;&#10;}&#10;"/>
+    <hotkey type="24" action="0" key="116" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="7" action="0" key="119" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="0" action="1" key="118" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;can_be_looped&quot;: 0,&#10;    &quot;do_not_interrupt&quot;: 0,&#10;    &quot;name&quot;: &quot;Spell Res&quot;&#10;}&#10;"/>
+    <hotkey type="16" action="21" key="113" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="2" action="2" key="187" modifiers="0" override_pass_key_to_client="0" meta="{&#10;    &quot;external_code&quot;: &quot;&quot;,&#10;    &quot;name&quot;: &quot;AutoAttack&quot;,&#10;    &quot;run_once&quot;: 0,&#10;    &quot;script_file_path&quot;: &quot;&quot;,&#10;    &quot;use_script_file&quot;: 0&#10;}&#10;"/>
+    <hotkey type="16" action="46" key="115" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="16" action="35" key="114" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="16" action="15" key="122" modifiers="4" override_pass_key_to_client="0"/>
+    <hotkey type="16" action="32" key="121" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="8" action="0" key="120" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="16" action="9" key="123" modifiers="0" override_pass_key_to_client="0"/>
+    <hotkey type="16" action="22" key="122" modifiers="0" override_pass_key_to_client="0"/>
 </data>

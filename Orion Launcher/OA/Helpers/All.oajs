@@ -1,21 +1,13 @@
 //#include C:/Orion Launcher/OA/Autoload.oajs
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-function GetPlayerNames() {
-	var mobList = Orion.FindType(any, any, ground, 'human|live|ignoreself', '15', 'blue|green|gray');
-	for (var i=0; i < mobList.length; i++) {
-		Orion.Print('------------------ ' + i + ' ------------------');
-		Orion.Print(89, Orion.FindObject(mobList[i]).Properties() + '\n');
-	}
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 function GumpAction(gumpID, hookID, waitTime, closeGump)
 {
 	if (Orion.WaitForGump(1000))
 	{
-		var gump = Orion.GetGump('last');
-		if ((gump !== null) && (!gump.Replayed()) && (gump.ID() === gumpID))
+		var gump = Orion.GetLastGump();
+		if (gump !== null && !gump.Replayed() && gump.ID() === gumpID)
 		{
 			gump.Select(Orion.CreateGumpHook(hookID));
 			Orion.Wait(waitTime);
@@ -32,8 +24,8 @@ function GumpAction(gumpID, hookID, waitTime, closeGump)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function CreateNewTools(toolType, toolAmt, keys, hookID)
-{
+// Used in the various crafting/resource-gathering scripts
+var createNewTools = function(toolType, toolAmt, keys, hookID) {
 	if (Orion.FindObject(keys).Name < '')
 	{
 		Orion.Print('No Metal Keys - cant craft');
@@ -47,7 +39,7 @@ function CreateNewTools(toolType, toolAmt, keys, hookID)
 		
 	if (Orion.FindType(toolType).length <= 1)
 	{
-		var uses = GetToolUsesRemaining();
+		var uses = getToolUsesRemaining();
 		
 		//Do we have Tinker's tools?
 		if	(Orion.FindType('0x1EB8').length == 1 && uses <= toolAmt)
@@ -91,7 +83,7 @@ function CreateNewTools(toolType, toolAmt, keys, hookID)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function GetToolUsesRemaining()
+var getToolUsesRemaining = function()
 {
 	var props = Orion.FindObject(Orion.FindType('0x1EB8')[0]).Properties();
 	var result = '';
@@ -107,8 +99,7 @@ function GetToolUsesRemaining()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function SendGold(bagOfSendingID, lootBagID)
-{
+var sendGold = function(bagOfSendingID, lootBagID, amt) {
 	var goldAmt = Orion.Count('0x0EED', any, backpack, any, false);
 	Orion.SetTimer('MoveGold');
 	while (goldAmt > 0) {
@@ -117,7 +108,7 @@ function SendGold(bagOfSendingID, lootBagID)
 		if (Orion.Timer('MoveGold') > 1850)
 			break;
 	}
-	if (Orion.Count('0x0EED', any, lootBagID) > 9000 || (Orion.Count('0x0EED', any, lootBagID) > 3000 && Player.Weight() > (Player.MaxWeight() * 0.7)))
+	if (Orion.Count('0x0EED', any, lootBagID) > amt || (Orion.Count('0x0EED', any, lootBagID) > (amt / 3) && Player.Weight() > (Player.MaxWeight() * 0.7)))
 	{
 		Orion.Print('26', 'Sending Gold...');
 		Orion.UseObject(bagOfSendingID);
@@ -125,36 +116,6 @@ function SendGold(bagOfSendingID, lootBagID)
 			Orion.TargetType(0x0EED, any, lootBagID);
 		Orion.Wait(100);
 		Orion.CancelTarget();
-	}
-}
-
-////
-function StoreItemWithKeys(keysID, gumpID, gumpHookID, itemGfx, amt)
-{
-	if (Orion.Count(itemGfx, any, backpack) > amt)
-	{
-		//Orion.Print('26', 'Storing: ' + itemGfx);
-		Orion.UseObject(keysID);
-		GumpAction(gumpID, gumpHookID, 100, false); 	//Clicking "Add resource" button
-
-		breaker = 0;
-		itemCount = Orion.Count(itemGfx, any, backpack);
-		if (Orion.WaitForTarget(1000)) {
-			while (itemCount > 0) {
-				Orion.TargetType(itemGfx, any, backpack);
-				Orion.Wait(50);
-				breaker++;
-
-				if (breaker > 10)
-					break;
-			}
-		}
-		
-		//Cancel targetting and close the gump
-		Orion.CancelTarget();
-		Orion.Wait(50);
-		GumpAction(gumpID, 0, 50, true);
-		GumpAction(gumpID, 0, 50, true);
 	}
 }
 
@@ -187,7 +148,7 @@ function GetZoogi(keysID)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function StoreBlankRune() //Open your Keys gump first
+var storeBlankRune = function() //Open your Keys gump first
 {
 	while (Orion.FindType('0x1F14') > '')
 	{
@@ -197,5 +158,27 @@ function StoreBlankRune() //Open your Keys gump first
 
 		if (Orion.WaitForTarget(1000))
 			Orion.TargetType('0x1F14');
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var checkForPlayers = function() {
+	var mobList = Orion.FindType(any, any, ground, 'human|live|ignoreself|ignoreenemies', '8', 'blue|green|gray');
+	if (mobList.length > 0) {
+		Orion.Print(33, 'G T F O');
+
+		var x = Player.X();
+		var y = Player.Y();
+
+		while ((Player.X() == x && Player.Y() == y)) {
+			RecallToBank();
+		}
+
+		Orion.Say('bank');
+		Orion.Wait(300);
+		organizeGoldGems(backpack);
+		organizeGoldGems(_lootBagID);
+
+		return;
 	}
 }

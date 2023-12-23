@@ -8,7 +8,7 @@ function RedPortal()
 	{
 		if (Player.X() != '1823')
 		{
-			UseRunebook(7, '0x41059D8B'); //Go Trinsic
+			useRunebook(7, '0x41059D8B'); //Go Trinsic
 		}
 		
 		PathTo('any', 1828, 2815); //Walk to pad
@@ -40,7 +40,7 @@ function Destard() //Run this during Xroads?
 
 function Forget()
 {
-	UseRunebook(17, '0x41059D8B');
+	useRunebook(17, '0x41059D8B');
 	PathTo('any', 2368, 823, 0); //Run to sparkles
 	Orion.Say('forget');
 	Orion.Wait(300);

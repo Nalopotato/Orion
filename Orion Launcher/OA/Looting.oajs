@@ -1,7 +1,6 @@
 //#include Autoload.oajs
 
-function SkinCorpse()
-{
+function SkinCorpse() {
 	var lootBagID = '0x4266ADBA';
 	var corpseList = Orion.FindType(0x2006, any, ground, 'ignoreself|inlos', 1);
 	
@@ -80,7 +79,7 @@ function SkinCorpse()
 					Orion.InJournal('You carve some meat', 'sys') ||
 					Orion.InJournal('You shear it, and', 'sys'))
 				{
-					ClaimSingle(corpseList[i]);
+					claimSingle(corpseList[i]);
 					Orion.CancelTarget();
 					
 					Orion.ClearJournal('You see nothing useful');

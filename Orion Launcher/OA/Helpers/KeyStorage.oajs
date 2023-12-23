@@ -1,15 +1,9 @@
 //#include C:/Orion Launcher/OA/Autoload.oajs
 
-var casterKeys = '0x466B92BD';
-var metalKeys = '0x45CDBF39';
-var woodKeys = '0x447CBF38';
-var tailorKeys = '0x474E827D';
-
-function KeyStorage()
-{
-    StoreWithKeys(regList, casterKeys, '0x0EBCD833', 60030, 20);
-    StoreWithKeys(metalsList, metalKeys, '0xFB1E68CB', 60015, 20);
-    StoreWithKeys(woodList, woodKeys, '0x0A57934D', 60023, 20);
+var keyStorage = function() {
+    storeWithKeys(regList, _casterKeys, '0x0EBCD833', 60030, 20);
+    storeWithKeys(metalsList, _metalKeys, '0xFB1E68CB', 60015, 20);
+    storeWithKeys(woodList, _woodKeys, '0x0A57934D', 60023, 20);
 
     //Handle hide cutting
     if (Orion.Count('0x1079', any, backpack) > 3 || Player.Weight() > Player.MaxWeight() * 0.65) {
@@ -29,7 +23,7 @@ function KeyStorage()
         }
     }
 
-    StoreWithKeys(tailoringList, tailorKeys, '0x41F8FC19', 60029, 6);
+    storeWithKeys(tailoringList, _tailorKeys, '0x41F8FC19', 60029, 6);
 }
 
 var regList = [
@@ -79,8 +73,7 @@ var tailoringList = [
     '0x0DF8', //Wool
 ];
 
-function StoreWithKeys(list, keySerial, gumpID, gumpHookID, amt)
-{
+var storeWithKeys = function(list, keySerial, gumpID, gumpHookID, amt) {
     var mobSerials = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '10', 'gray|criminal|orange|red');
 
     if (mobSerials.length < 2 && Player.Weight() > (Player.MaxWeight() * 0.5) && !Orion.Dragging())
@@ -92,7 +85,7 @@ function StoreWithKeys(list, keySerial, gumpID, gumpHookID, amt)
 
             var safeExit = 0;
             while (Orion.Count(list[i], any, backpack) > amt) {
-                StoreItemWithKeys(keySerial, gumpID, gumpHookID, list[i], amt);
+                storeItemWithKeys(keySerial, gumpID, gumpHookID, list[i], amt);
                 Orion.Wait(10);
                 
                 safeExit++;
@@ -101,4 +94,33 @@ function StoreWithKeys(list, keySerial, gumpID, gumpHookID, amt)
             }
         }
     }
+}
+
+////
+var storeItemWithKeys = function(keysID, gumpID, gumpHookID, itemGfx, amt) {
+	if (Orion.Count(itemGfx, any, backpack) > amt)
+	{
+		//Orion.Print('26', 'Storing: ' + itemGfx);
+		Orion.UseObject(keysID);
+		GumpAction(gumpID, gumpHookID, 100, false); 	//Clicking "Add resource" button
+
+		breaker = 0;
+		itemCount = Orion.Count(itemGfx, any, backpack);
+		if (Orion.WaitForTarget(1000)) {
+			while (itemCount > 0) {
+				Orion.TargetType(itemGfx, any, backpack);
+				Orion.Wait(50);
+				breaker++;
+
+				if (breaker > 10)
+					break;
+			}
+		}
+		
+		//Cancel targetting and close the gump
+		Orion.CancelTarget();
+		Orion.Wait(50);
+		GumpAction(gumpID, 0, 50, true);
+		GumpAction(gumpID, 0, 50, true);
+	}
 }

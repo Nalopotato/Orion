@@ -1,24 +1,21 @@
 //#include Autoload.oajs
 
-var metalKeys = '0x45CDBF39'; //Serial of your metal keys, loaded with Iron
-var woodKeys = '0x447CBF38'; //Serial of Wood Workers keys
-var toolKit = '0x1EB8';
-var iron = '0x1BF2';
-var boards = '0x1BD7';
-var tool = '0x1034';
-var item = '';
-//
-var mediumCrate = '0x0E3F';
-var ballotBox = '0x14F0';
-var bokuto = '0x27A8';
-var quarterStaff = '0x0E89';
-var gnarledStaff = '0x13F8';
-var tetsubo = '0x27A6';
-var ornateChest = '0x280D';
-var decorativeBox = '0x2DF3';
+const iron = '0x1BF2';
+const boards = '0x1BD7';
+const tool = '0x1034';
+const mediumCrate = '0x0E3F';
+const ballotBox = '0x14F0';
+const bokuto = '0x27A8';
+const quarterStaff = '0x0E89';
+const gnarledStaff = '0x13F8';
+const tetsubo = '0x27A6';
+const ornateChest = '0x280D';
+const decorativeBox = '0x2DF3';
 
 function Carpentry()
 {
+	var item = '';
+
 	while (!Player.Dead())
 	{
 		Orion.ClearJournal();
@@ -123,8 +120,8 @@ function Carpentry()
 			}
 		}
 		
-		RefillBoards();
-		CreateNewTools(tool, 4, metalKeys, 51);
+		refillBoardsCarp();
+		createNewTools(tool, 4, _metalKeys, 51);
 		
 		if (Orion.Count(boards) < 20)
 		{
@@ -134,14 +131,14 @@ function Carpentry()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function RefillBoards()
+function refillBoardsCarp()
 {
 	if (Orion.Count(boards) <= 35)
 	{
 		Orion.Print('Getting Wood');
 		while (Orion.Count(boards) < 300)
 		{
-			Orion.UseObject(woodKeys);
+			Orion.UseObject(_woodKeys);
  			Orion.Wait(300);
 
 			GumpAction('0x0A57934D', 60000, 200, false);
@@ -152,7 +149,7 @@ function RefillBoards()
 		Orion.Print('Getting Iron');
 		while (Orion.Count(iron) < 100)
 		{
-			Orion.UseObject(metalKeys);
+			Orion.UseObject(_metalKeys);
  			Orion.Wait(300);
 
 			GumpAction('0xFB1E68CB', 60000, 200, true);

@@ -7,13 +7,14 @@ function QuickClaim() {
 	{
 		for (var i = 0; i < corpseList.length; i++)
 		{
-			ClaimSingle(corpseList[i]);
+			claimSingle(corpseList[i]);
 		}
 	}
 	Orion.CancelTarget();
 }
 
-function ClaimSingle(serial) {
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var claimSingle = function(serial) {
 	while (Orion.Dragging()) { 
 		Orion.Wait(100);
 	}
@@ -22,4 +23,81 @@ function ClaimSingle(serial) {
 	Orion.WaitForTarget(2000);
 	Orion.TargetObject(serial);
 	Orion.Wait(200);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var claimCorpses = function() {
+	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself', 12);
+	
+	if (corpseList.length > 0)
+	{
+		//Check if the corpseList names are in the list of skinnable corpses
+		var lootOrSkinCount = 0;
+		for (var i = 0; i < corpseList.length; i++)
+		{
+			if (Orion.FindList('Autoloot', corpseList[i]).length > 0) {
+				lootOrSkinCount++;
+			}
+			var corpseName = Orion.FindObject(corpseList[i]) && Orion.FindObject(corpseList[i]).Properties();
+			for (var j = 0; j < skinableCorpseList.length; j++)
+			{
+				if (skinableCorpseList[j] == corpseName)
+					lootOrSkinCount++;
+			}
+		}
+		if (lootOrSkinCount == 0) {
+			QuickClaim();
+			Orion.Wait(50);
+			return;
+		}
+
+		//Orion.Print(15, '# Corpses: ' + corpseList.length);
+		for (var i = corpseList.length; i > -1; i--)
+		{
+			while (Orion.Dragging()) { 
+				Orion.Wait(100);
+			}
+			
+			var corpse = Orion.FindObject(corpseList[i]);
+
+			if (corpse != null) //Bad to loop here, since the corpse might not be ours
+			{
+				var corpseName = Orion.FindObject(corpseList[i]) && Orion.FindObject(corpseList[i]).Properties();
+
+				PathTo('any', corpse.X(), corpse.Y(), 1);
+				
+				if (!Orion.CheckAgent('autoloot', 'Main')) {
+					Orion.ControlAgent('autoloot', 'Main', 'start');
+				}
+				
+				Orion.Wait(300);
+				Orion.UseObject(corpseList[i]); //Make sure the corpse is open, first
+				Orion.Wait(300);
+				
+				var itemcount = corpseList[i] && Orion.FindListEx('Autoloot', corpseList[i]);
+				Orion.Wait(itemcount.length * 800); //Multiply the item count by 800ms to wait for L00ting
+
+				//Orion.Print(15, 'Corpse Name: ' + corpseName);
+				if (corpseName === 'A Daemon Corpse') {
+					SkinCorpse();
+				} else if (corpseName === 'A Sheep Corpse') {
+					SkinCorpse();
+				}
+			}
+			
+			claimSingle(corpseList[i]);
+			Orion.CancelTarget();
+
+			if (Orion.InJournal('You did not earn the right'))
+			{
+				//Orion.Print(15, 'CANNOT LOOT');
+				//Orion.ClearJournal();
+				break;
+			}
+		}
+	} else {
+		//Orion.Print(15, 'end ClaimCorpses()');
+		Orion.CancelTarget();
+		return;
+	}
 }

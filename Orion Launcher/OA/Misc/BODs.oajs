@@ -2,7 +2,7 @@
 
 function CollectBODs()
 {
-	UseRunebook(127, '0x41059D8B');
+	useRunebook(127, '0x41059D8B');
 	
 	//Tailor
 	Orion.RequestContextMenu('0x0024B98F');

@@ -1,0 +1,139 @@
+//#include Autoload.oajs
+
+// ***************************** Main Config *****************************
+const _autoMove = true;  //Change to false if you want to move manually
+const _forge = '0x4290B27D';  //Serial of your Mobile Forge
+//
+// *************************** Craft tool config ****************************
+const _createNewTools = true;
+const _toolAmt = 4; //Amount of tools to create per iteration
+const _hookID = 114; //The Gump ID of the tool you want to create.  Pickaxe is 114.  Hatchet is 30
+// ********************************************************************
+
+function Mining() 
+{
+	if (_autoMove)
+	{
+		Orion.WaitForAddObject('Runebook', 20000);
+		var bookSerial = Orion.GetSerial('Runebook');
+	}
+
+	var runeIndex = 7;
+
+	while (!Player.Dead())
+	{
+		Orion.ClearJournal();
+		var tool = Orion.FindType(_toolType, any, self);
+		
+		if (_autoMove && tool > '')
+		{
+			useRunebook(runeIndex, bookSerial);
+			runeIndex += 10;
+		}
+
+		if (tool <= '')
+		{
+			tool = Orion.FindType(_toolType);
+			if (tool <= '')
+			{
+				Orion.Print('No more axes...');
+				if (_createNewTools)
+					createNewTools(_toolType, _toolAmt, _metalKeys, _hookID);
+			}
+				
+			equipTool(tool);
+		}
+
+		if 	(Orion.ObjAtLayer(1) == null) 
+			equipTool(tool);
+
+		//Mining
+		while (!Orion.InJournal('is no metal here') && 
+				!Orion.InJournal('t mine there') && 
+				!Orion.InJournal('t mine that') && 
+				!Orion.InJournal('cannot be seen') && 
+				!Orion.InJournal('worn out your tool'))
+		{
+			//Un-mount
+			if (Orion.ObjAtLayer('Mount')) 
+			{
+				Orion.UseObject(self);
+				Orion.Wait(600);
+			}
+	
+			Orion.UseObject(tool);
+			Orion.Wait('200');
+			Orion.TargetTileRelative('any', -1, 0, 0);
+			Orion.Wait('1100');
+			
+			if (Orion.InJournal('must be equipped'))
+				equipTool(tool);
+			if (Player.Weight() > Player.MaxWeight() * 0.8)
+				smeltOre(tool, _forge);
+		}
+		
+		smeltOre(tool, _forge);
+		if (_createNewTools)
+			createNewTools(_toolType, _toolAmt, _metalKeys, _hookID);
+		storeIngots(_metalKeys);
+		
+		//Wait until player moves or Runebook is done.  157 is rune #16
+		if (runeIndex >= 167)
+		{
+			Orion.Print('Get new Runebook');
+			
+			runeIndex = 7;
+			Orion.WaitForAddObject('Runebook');
+			Orion.Wait(100);
+			bookSerial = Orion.GetSerial('Runebook');
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var smeltOre = function(tool, forge) {	
+	while (Orion.FindType('0x19B9') > '')
+	{
+		Orion.UseType('0x19B9');
+		Orion.Wait('200');
+		Orion.TargetObject(forge);
+		Orion.Wait('600');
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var storeIngots = function(k) {
+	//Boards
+	while (Orion.FindType('0x1BF2') > '')
+	{
+		useKeysForIngots(k, '0x1BF2');
+	}
+
+	//Close Gump
+	GumpAction('0xFB1E68CB', 0, 200, true);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var useKeysForIngots = function(serial, item) {
+	if (Orion.FindType(item) > '')
+	{
+		Orion.UseObject(serial); //Use Keys
+		Orion.Wait('300');
+		
+		GumpAction('0xFB1E68CB', 60015, 200, false);
+		
+		Orion.WaitForTarget(1000)
+		Orion.TargetType(item);
+		Orion.Wait('600');
+		
+		Orion.CancelTarget();
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var equipTool = function(serial) {
+	Orion.Disarm();
+	Orion.Wait('300');
+	Orion.Equip(serial);
+	Orion.Wait('500');
+}

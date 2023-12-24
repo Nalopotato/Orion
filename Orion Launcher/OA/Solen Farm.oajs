@@ -18,7 +18,7 @@ var _currentBookIdx = 0;
 
 //TODO:  Skip area if there is a player
 //TODO:  Auto-stop when weapon/armor needs repair
-//TODO:  When opening a corpse, QUICKLY scan items and compare to the AutoLoot Find list, and if nothing matches, CLAIM it right away
+//TODO:  When opening a corpse, QUICKLY scan items and compare to the AutoL00t Find list, and if nothing matches, CLAIM it right away
 
 function KillSolen()
 {
@@ -94,7 +94,7 @@ var runebookRouter = function(bookNum) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var bankSolen = function() {
-	Orion.Print(26, 'bankSolen');
+	if (_debugMode) {Orion.Print(26, 'bankSolen');}
 
 	bankUnload();
 	
@@ -146,7 +146,7 @@ var bankSolen = function() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var runToVat = function() {
-	Orion.Print(26, 'RunToVat');
+	if (_debugMode) {Orion.Print(26, 'RunToVat');}
 
 	if (Orion.ScriptRunning('AutoAttack') > 0) { Orion.ToggleScript('AutoAttack', true); }
 	
@@ -201,7 +201,7 @@ var runToVat = function() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var turnInSolenQuest = function() {
-	Orion.Print(15, 'turnInSolenQuest');
+	if (_debugMode) {Orion.Print(15, 'turnInSolenQuest');}
 
 	PathTo(5805, 5779, 1901, 1);
 
@@ -251,7 +251,7 @@ var turnInSolenQuest = function() {
 	while (Orion.Count(0x26B8, any, backpack) > 1)
 	{
 		Orion.Wait(50);
-		Orion.Print('26', 'Store Transloc');
+		if (_debugMode) {Orion.Print('26', 'Store Transloc');}
 		storeItemWithKeys(_casterKeys, '0x0EBCD833', 60030, '0x26B8', 0);
 	}
 	
@@ -259,7 +259,7 @@ var turnInSolenQuest = function() {
 }
 
 var bankUnload = function() {
-	Orion.Print(15, 'Bank Unload');
+	if (_debugMode) {Orion.Print(15, 'Bank Unload');}
 	Recall(_runeBooks[0][0], 147);
 	Orion.Wait(3500);
 	

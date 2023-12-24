@@ -1,0 +1,78 @@
+//#include Autoload.oajs
+
+function SkinCorpse() {
+	var lootBagID = '0x4266ADBA';
+	var corpseList = Orion.FindType(0x2006, any, ground, 'ignoreself|inlos', 1);
+	
+	if (corpseList && corpseList.length > 0)
+	{
+		for (var i = 0; i <= corpseList.length; i++)
+		{
+			var corpse = Orion.FindObject(corpseList[i]) && Orion.FindObject(corpseList[i]).Properties();
+			for (var j = 0; j < _skinableCorpseList.length; j++)
+			{
+				if (_skinableCorpseList[j] === corpse) {
+					//Skin Corpse
+					Orion.ClearJournal();
+					Orion.Wait(200);
+					Orion.UseType('0x0EC4', any, backpack); //Skinning Knife
+					Orion.Wait(50);
+					while (Orion.InJournal('You must wait to perform', 'sys')) {
+						Orion.UseType('0x0EC4', any, backpack); //Skinning Knife
+						Orion.Wait(50);
+						Orion.ClearJournal();
+					}
+					Orion.WaitForTarget(6000);
+					Orion.TargetObject(corpseList[i]);
+					Orion.Wait(600);
+					
+					//Open Corpse and Loot
+					if (_debugMode) {Orion.Print('26', 'Opening Skinned Corpse');}
+					if (Orion.CheckAgent('autoloot', 'Main', 'stopped')) {Orion.ControlAgent('autoloot', 'Main', 'start');}
+					Orion.UseObject(corpseList[i]);
+					Orion.Wait(600);
+					
+					Orion.FindType(any, any, corpseList[i]).forEach(function(serial)
+					{
+						var item = Orion.FindObject(serial);
+						
+						//Wool/feathers/hide/leather
+						if (item && (
+							item.Graphic() == '0x0DF8' || //Wool
+							item.Graphic() == '0x1BD1' || 
+							item.Graphic() == '0x1079' || //Hide
+							item.Graphic() == '0x26B4' || //Scales
+							item.Graphic() == '0x1081'))  //Leather
+						{
+							// if (item.Graphic() == '0x1079') { //Hide
+							// 	Orion.UseType('0x0F9F', any, backpack); //Scissors
+							// 	Orion.WaitForTarget(6000);
+							// 	Orion.TargetObject(item.Serial());
+							// 	Orion.Wait(500);
+							// 	item = Orion.FindType('0x1081', any, corpseList[i])[0]; //Switch Obj from Hide to the Leather
+							// }
+							
+							Orion.MoveItem(serial, 0, lootBagID);
+							while (Orion.Dragging()) { Orion.Wait(30); }
+						}
+					});
+					
+					if (Orion.InJournal('You see nothing useful', 'sys') || 
+						Orion.InJournal('You carve some meat', 'sys') ||
+						Orion.InJournal('You shear it, and', 'sys'))
+					{
+						if (!Orion.Dragging()) {
+							claimSingle(corpseList[i]);
+						    Orion.CancelTarget();
+							//keyStorage();
+						}
+						
+						Orion.ClearJournal('You see nothing useful');
+						Orion.ClearJournal('You carve some meat');
+						Orion.ClearJournal('You shear it, and');
+					}
+				}
+			}
+		}
+	}
+}

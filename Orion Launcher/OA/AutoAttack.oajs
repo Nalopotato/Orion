@@ -1,12 +1,12 @@
 //#include Autoload.oajs
 
-const _autoSkin = false;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
+const _autoSkin = true;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
 const _vamp = true;  // Vampiric Embrace check
 
 function AutoAttack()
 {
 	if (Orion.ScriptRunning('HealSelf') < 1) { Orion.ToggleScript('HealSelf', true); }
-	if (!Orion.CheckAgent('autoloot', 'Main')) {Orion.ControlAgent('autoloot', 'Main', 'stop');}
+	if (Orion.CheckAgent('autoloot', 'Main', 'stopped')) {Orion.ControlAgent('autoloot', 'Main', 'start');}
 	
 	while(!Player.Dead())
 	{
@@ -64,25 +64,28 @@ function AutoAttack()
 		{
 			if (_vamp && Player.Color() != '0x847E')
 			{
-				Orion.Print('Vampiric Embrace');
 				Orion.Say('[cs vampiricembrace');
 				Orion.SetTimer('DF');
 				Orion.Wait(2500);
 			}
 			
-			Orion.Wait(200);
+			Orion.Wait(50);
 		}
 		
-		if (_autoSkin && !Orion.ScriptRunning('Looting')) { 
+		if (_autoSkin && !Orion.ScriptRunning('SkinCorpse')) { 
 			Orion.Exec('SkinCorpse', true);
 		}
 
-		if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > (Player.MaxWeight() * 0.6)) {
-			Orion.Print(24, 'Storage Mgmt');
-
-			sendGold(_bagOfSendingID, _lootBagID, 9000);
-			Orion.Wait(100);
+		if (Player.Weight() > 350) {
 			keyStorage();
+		}
+
+		//if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > (Player.MaxWeight() * 0.5)) {
+		if (Orion.InJournal('That container cannot hold more', 'sys')) {
+			if (_debugMode) {Orion.Print(24, 'Storage Mgmt');}
+
+			sendGold(_bagOfSendingID, _lootBagID, 8000);
+			Orion.Wait(50);
 			Orion.ClearJournal('That container cannot hold more', 'sys');
 		}
 	}
@@ -97,7 +100,7 @@ var findTargetsToKill = function(timeout) {
 	if (mobList.length > 0) { //Orion.Print(15, '# of mobs: ' + mobList.length);
 		Orion.SetTimer('KillTimer');
 
-		if (Orion.CheckAgent('autoloot', 'Main')) {
+		if (Orion.CheckAgent('autoloot', 'Main', 'started')) {
 			Orion.ControlAgent('autoloot', 'Main', 'stop');
 		}
 

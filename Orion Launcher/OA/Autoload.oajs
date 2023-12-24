@@ -9,9 +9,11 @@
 //#include Helpers/KeyStorage.oajs
 //#include Helpers/Organize_GoldGems.oajs
 //#include Helpers/Paths.oajs
-//#include Looting.oajs
+//#include Skinning.oajs
 //#include Recall.oajs
 //#include Solen Farm.oajs
+
+const _debugMode = false;
 
 const _casterKeys = '0x466B92BD';
 const _tailorKeys = '0x474E827D';

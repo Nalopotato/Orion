@@ -56,26 +56,25 @@ var claimCorpses = function() {
 	if (corpseList.length > 0)
 	{
 		//Check if the corpseList names are in the list of skinnable corpses
-		var lootOrSkinCount = 0;
+		var quickClaim = true;
 		for (var i = 0; i < corpseList.length; i++)
 		{
-			if (Orion.FindList('Autoloot', corpseList[i]).length > 0) {
-				lootOrSkinCount++;
-			}
+			quickClaim = !lootCheck(corpseList[i]);
+
 			var corpseName = Orion.FindObject(corpseList[i]) && Orion.FindObject(corpseList[i]).Properties();
 			for (var j = 0; j < _skinableCorpseList.length; j++)
 			{
 				if (_skinableCorpseList[j] == corpseName)
-					lootOrSkinCount++;
+					quickClaim = false;
 			}
 		}
-		if (lootOrSkinCount == 0) {
+		if (quickClaim == 0) {
 			QuickClaim();
-			Orion.Wait(50);
+			Orion.Wait(100);
 			return;
 		}
 
-		//Orion.Print(15, '# Corpses: ' + corpseList.length);
+		if (_debugMode) {Orion.Print(15, '# Corpses: ' + corpseList.length);}
 		for (var i = corpseList.length; i > -1; i--)
 		{
 			while (Orion.Dragging()) { 
@@ -90,7 +89,7 @@ var claimCorpses = function() {
 
 				PathTo('any', corpse.X(), corpse.Y(), 1);
 				
-				if (!Orion.CheckAgent('autoloot', 'Main')) {
+				if (Orion.CheckAgent('autoloot', 'Main', 'stopped')) {
 					Orion.ControlAgent('autoloot', 'Main', 'start');
 				}
 				
@@ -102,9 +101,7 @@ var claimCorpses = function() {
 				Orion.Wait(itemcount.length * 800); //Multiply the item count by 800ms to wait for L00ting
 
 				//Orion.Print(15, 'Corpse Name: ' + corpseName);
-				if (corpseName === 'A Daemon Corpse') {
-					SkinCorpse();
-				} else if (corpseName === 'A Sheep Corpse') {
+				if (corpseName === 'A Daemon Corpse' || corpseName === 'A Sheep Corpse') {
 					SkinCorpse();
 				}
 			}
@@ -114,8 +111,8 @@ var claimCorpses = function() {
 
 			if (Orion.InJournal('You did not earn the right'))
 			{
-				//Orion.Print(15, 'CANNOT LOOT');
-				//Orion.ClearJournal();
+				if (_debugMode) {Orion.Print(15, 'CANNOT LOOT');}
+				//Orion.ClearJournal('You did not earn the right');
 				break;
 			}
 		}
@@ -124,4 +121,12 @@ var claimCorpses = function() {
 		Orion.CancelTarget();
 		return;
 	}
+}
+
+var lootCheck = function(corpseSerial) {
+	//Searches the corpse container for items in the given list
+	if (Orion.FindList('Autoloot', corpseSerial).length > 0) {
+		return true;
+	}
+	return false;
 }

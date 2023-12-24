@@ -6,21 +6,21 @@ var keyStorage = function() {
     storeWithKeys(woodList, _woodKeys, '0x0A57934D', 60023, 20);
 
     //Handle hide cutting
-    if (Orion.Count('0x1079', any, backpack) > 3 || Player.Weight() > Player.MaxWeight() * 0.65) {
+    if (Orion.Count('0x1079', any, backpack) > 3 || Player.Weight() > 375) {
+        Orion.ControlAgent('autoloot', 'Main', 'stop');
         var itemList = Orion.FindType('0x1079', any, backpack);
-        if (itemList != null && itemList.length > 0) {
-            for (var i = 0; i <= itemList.length; i++)
-            {
-                var item = Orion.FindObject(itemList[i]);
-                if (item && item.Graphic() == '0x1079') { //Hide
-                    Orion.UseType('0x0F9F', any, backpack); //Scissors
-                    Orion.WaitForTarget(2000);
-                    
-                    Orion.TargetObject(item.Serial());
-                    Orion.Wait(500);
-                }
-            }
+        for (var i = 0; i <= itemList.length; i++)
+        {
+            Orion.UseType('0x0F9F', any, backpack); //Scissors
+            Orion.WaitForTarget(6000);
+            
+            Orion.TargetObject(itemList[i]);
+            Orion.Wait(600);
         }
+        if (_debugMode) {Orion.Print(35, 'KeyStorage: Cutting hide complete');}
+        cutLeatherArmors();
+        if (_debugMode) {Orion.Print(35, 'KeyStorage: cutLeatherArmors complete');}
+        Orion.ControlAgent('autoloot', 'Main', 'start');
     }
 
     storeWithKeys(tailoringList, _tailorKeys, '0x41F8FC19', 60029, 6);
@@ -76,7 +76,8 @@ var tailoringList = [
 var storeWithKeys = function(list, keySerial, gumpID, gumpHookID, amt) {
     var mobSerials = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '10', 'gray|criminal|orange|red');
 
-    if (mobSerials.length < 2 && Player.Weight() > (Player.MaxWeight() * 0.5) && !Orion.Dragging())
+    //if (mobSerials.length <= 1 && Player.Weight() > (Player.MaxWeight() * 0.5) && !Orion.Dragging())
+    if (mobSerials.length <= 1 && !Orion.Dragging())
     {
         for (var i = 0; i <= list.length; i++)
         {
@@ -122,5 +123,18 @@ var storeItemWithKeys = function(keysID, gumpID, gumpHookID, itemGfx, amt) {
 		Orion.Wait(50);
 		GumpAction(gumpID, 0, 50, true);
 		GumpAction(gumpID, 0, 50, true);
+
+        if (_debugMode) {Orion.Print(35, 'KeyStorage: storeItemWithKeys complete');}
 	}
+}
+
+var cutLeatherArmors = function() {
+    var found = Orion.FindList('LeatherArmors', _lootBagID)
+    for (var i = 0; i <= found.length; i++) {
+        Orion.UseType('0x0F9F', any, backpack); //Scissors
+        Orion.WaitForTarget(6000);
+        
+        Orion.TargetObject(found[i]);
+        Orion.Wait(600);
+    }
 }

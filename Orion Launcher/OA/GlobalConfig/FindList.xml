@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data version="0" size="10">
+<data version="0" size="11">
     <findlist name="Autoloot">
         <item graphic="0x0EED" color="0x0000" comment="Gold (DISABLED FOR SOLEN SCRIPT)" count="0" enabled="false"/>
         <item graphic="0x0F3F" color="0x0000" comment="Arrows (DISABLED FOR SOLEN SCRIPT)" count="0" enabled="false"/>
@@ -153,6 +153,8 @@
         <item graphic="0x1AE4" color="0x08A5" comment="A Golden Skull" count="0" enabled="true"/>
         <item graphic="0x1AE2" color="0x08A5" comment="A Golden Skull" count="0" enabled="true"/>
         <item graphic="0x1AE3" color="0x08A5" comment="A Golden Skull" count="0" enabled="true"/>
+        <item graphic="0x3737" color="any" comment="Corrupted Spirit" count="0" enabled="true"/>
+        <item graphic="0x1CED" color="0x0A0E" comment="Frozen Heart" count="0" enabled="false"/>
     </findlist>
     <findlist name="Gold+Gems">
         <item graphic="0x0EED" color="0x0000" comment="Gold" count="0" enabled="true"/>
@@ -174,6 +176,93 @@
         <item graphic="0x3195" color="0x0000" comment="Ecru Citrine" count="0" enabled="true"/>
         <item graphic="0x3194" color="0x0000" comment="Perfect Emerald" count="0" enabled="true"/>
         <item graphic="0x0F8F" color="0x0829" comment="Eth Powder" count="0" enabled="true"/>
+    </findlist>
+    <findlist name="LeatherArmors">
+        <item graphic="0x13C7" color="0x0487" comment="Ethereal Gorget" count="0" enabled="true"/>
+        <item graphic="0x1DB9" color="0x0487" comment="Ethereal Cap" count="0" enabled="true"/>
+        <item graphic="0x13C6" color="0x0487" comment="Ethereal Leather Gloves" count="0" enabled="true"/>
+        <item graphic="0x13CD" color="0x0487" comment="Ethereal Arms" count="0" enabled="true"/>
+        <item graphic="0x13CB" color="0x0487" comment="Ethereal Leggings" count="0" enabled="true"/>
+        <item graphic="0x13CC" color="0x0487" comment="Ethereal Tunic" count="0" enabled="true"/>
+        <item graphic="0x1C08" color="0x0487" comment="Ethereal Leather Skirt " count="0" enabled="true"/>
+        <item graphic="0x1C0A" color="0x0487" comment="Ethereal Leather Bustier " count="0" enabled="true"/>
+        <item graphic="0x1C00" color="0x0487" comment="Ethereal Leather Shorts " count="0" enabled="true"/>
+        <item graphic="0x1C06" color="0x0487" comment="Ethereal Female Leather Armor " count="0" enabled="true"/>
+        <item graphic="0x13D6" color="0x0487" comment="Ethereal Studded Gorget " count="0" enabled="true"/>
+        <item graphic="0x13D5" color="0x0487" comment="Ethereal Studded Gloves" count="0" enabled="true"/>
+        <item graphic="0x13DC" color="0x0487" comment="Ethereal Studded Sleeves " count="0" enabled="true"/>
+        <item graphic="0x13DA" color="0x0487" comment="Ethereal Studded Leggings " count="0" enabled="true"/>
+        <item graphic="0x1C02" color="0x0487" comment="Ethereal Studded Armor " count="0" enabled="true"/>
+        <item graphic="0x1C0C" color="0x0487" comment="Ethereal Studded Bustier " count="0" enabled="true"/>
+        <item graphic="0x13DB" color="0x0487" comment="Ethereal Studded Tunic" count="0" enabled="true"/>
+        <item graphic="0x13C7" color="0x04EC" comment="Blaze Leather Gorget" count="0" enabled="true"/>
+        <item graphic="0x1DB9" color="0x04EC" comment="Blaze Leather Cap " count="0" enabled="true"/>
+        <item graphic="0x13C6" color="0x04EC" comment="Blaze Leather Gloves " count="0" enabled="true"/>
+        <item graphic="0x13CD" color="0x04EC" comment="Blaze Leather Sleeves " count="0" enabled="true"/>
+        <item graphic="0x13CB" color="0x04EC" comment="Blaze Leather Leggings " count="0" enabled="true"/>
+        <item graphic="0x13CC" color="0x04EC" comment="Blaze Leather Tunic " count="0" enabled="true"/>
+        <item graphic="0x1C08" color="0x04EC" comment="Blaze Leather Skirt " count="0" enabled="true"/>
+        <item graphic="0x1C0A" color="0x04EC" comment="Blaze Leather Bustier " count="0" enabled="true"/>
+        <item graphic="0x1C00" color="0x04EC" comment="Blaze Leather Shorts " count="0" enabled="true"/>
+        <item graphic="0x1C06" color="0x04EC" comment="Blaze Female Leather Armor " count="0" enabled="true"/>
+        <item graphic="0x13D6" color="0x04EC" comment="Blaze Studded Gorget " count="0" enabled="true"/>
+        <item graphic="0x13D5" color="0x04EC" comment="Blaze Studded Gloves" count="0" enabled="true"/>
+        <item graphic="0x13DC" color="0x04EC" comment="Blaze Studded Sleeves " count="0" enabled="true"/>
+        <item graphic="0x13DA" color="0x04EC" comment="Blaze Studded Leggings " count="0" enabled="true"/>
+        <item graphic="0x1C0C" color="0x04EC" comment="Blaze Studded Bustier " count="0" enabled="true"/>
+        <item graphic="0x1C02" color="0x04EC" comment="Blaze Studded Armor " count="0" enabled="true"/>
+        <item graphic="0x13DB" color="0x04EC" comment="Blaze Studded Tunic " count="0" enabled="true"/>
+        <item graphic="0x13C7" color="0x0020" comment="Daemonic Leather Gorget " count="0" enabled="true"/>
+        <item graphic="0x1DB9" color="0x0020" comment="Daemonic Leather Cap " count="0" enabled="true"/>
+        <item graphic="0x13C6" color="0x0020" comment="Daemonioc Leather Gloves " count="0" enabled="true"/>
+        <item graphic="0x13CD" color="0x0020" comment="Daemonic Leather Sleeves " count="0" enabled="true"/>
+        <item graphic="0x13CB" color="0x0020" comment="Daemonic Leather Leggings " count="0" enabled="true"/>
+        <item graphic="0x13CC" color="0x0020" comment="Daemonic Leather Tunic " count="0" enabled="true"/>
+        <item graphic="0x1C08" color="0x0020" comment="Daemonic Leather Skirt " count="0" enabled="true"/>
+        <item graphic="0x1C0A" color="0x0020" comment="Daemonic Leather Bustier " count="0" enabled="true"/>
+        <item graphic="0x1C00" color="0x0020" comment="Daemonic Leather Shorts " count="0" enabled="true"/>
+        <item graphic="0x1C06" color="0x0020" comment="Daemonic Female Leather Armor " count="0" enabled="true"/>
+        <item graphic="0x13D6" color="0x0020" comment="Daemonic Studded Gorget " count="0" enabled="true"/>
+        <item graphic="0x13D5" color="0x0020" comment="Daemonic Studded Gloves " count="0" enabled="true"/>
+        <item graphic="0x13DC" color="0x0020" comment="Daemonic Studded Sleeves " count="0" enabled="true"/>
+        <item graphic="0x13DA" color="0x0020" comment="Daemonic Studded Leggings " count="0" enabled="true"/>
+        <item graphic="0x1C0C" color="0x0020" comment="Daemonic Studded Bustier " count="0" enabled="true"/>
+        <item graphic="0x1C02" color="0x0020" comment="Daemonic Studded Armor " count="0" enabled="true"/>
+        <item graphic="0x13DB" color="0x0020" comment="Daemonic Studded Tunic " count="0" enabled="true"/>
+        <item graphic="0x13C7" color="0x0966" comment="Shadow Leather Gorget " count="0" enabled="true"/>
+        <item graphic="0x1DB9" color="0x0966" comment="Shadow Leather Cap " count="0" enabled="true"/>
+        <item graphic="0x13C6" color="0x0966" comment="Shadow Leather Gloves " count="0" enabled="true"/>
+        <item graphic="0x13CD" color="0x0966" comment="Shadow Leather Sleeves " count="0" enabled="true"/>
+        <item graphic="0x13CB" color="0x0966" comment="Shadow Leather Leggings " count="0" enabled="true"/>
+        <item graphic="0x13CC" color="0x0966" comment="Shadow Leather Tunic " count="0" enabled="true"/>
+        <item graphic="0x1C08" color="0x0966" comment="Shadow Leather Skirt " count="0" enabled="true"/>
+        <item graphic="0x1C0A" color="0x0966" comment="Shadow Leather Bustier " count="0" enabled="true"/>
+        <item graphic="0x1C00" color="0x0966" comment="Shadow Leather Shorts " count="0" enabled="true"/>
+        <item graphic="0x1C06" color="0x0966" comment="Shadow Female Leather Armor " count="0" enabled="true"/>
+        <item graphic="0x13D6" color="0x0966" comment="Shadow Studded Gorget " count="0" enabled="true"/>
+        <item graphic="0x13D5" color="0x0966" comment="Shadow Studded Gloves " count="0" enabled="true"/>
+        <item graphic="0x13DC" color="0x0966" comment="Shadow Studded Sleeves " count="0" enabled="true"/>
+        <item graphic="0x13DA" color="0x0966" comment="Shadow Studded Leggings " count="0" enabled="true"/>
+        <item graphic="0x1C0C" color="0x0966" comment="Shadow Studded Bustier " count="0" enabled="true"/>
+        <item graphic="0x1C02" color="0x0966" comment="Shadow Studded Armor " count="0" enabled="true"/>
+        <item graphic="0x13DB" color="0x0966" comment="Shadow Studded Tunic " count="0" enabled="true"/>
+        <item graphic="0x13C7" color="0x005D" comment="Frost Leather Gorget " count="0" enabled="true"/>
+        <item graphic="0x1DB9" color="0x005D" comment="Frost Leather Cap " count="0" enabled="true"/>
+        <item graphic="0x13C6" color="0x005D" comment="Frost Leather Gloves " count="0" enabled="true"/>
+        <item graphic="0x13CD" color="0x005D" comment="Frost Leather Sleeves " count="0" enabled="true"/>
+        <item graphic="0x13CB" color="0x005D" comment="Frost Leather Leggings " count="0" enabled="true"/>
+        <item graphic="0x13CC" color="0x005D" comment="Frost Leather Tunic " count="0" enabled="true"/>
+        <item graphic="0x1C08" color="0x005D" comment="Frost Leather Skirt " count="0" enabled="true"/>
+        <item graphic="0x1C0A" color="0x005D" comment="Frost Leather Bustier " count="0" enabled="true"/>
+        <item graphic="0x1C00" color="0x005D" comment="Frost Leather Shorts " count="0" enabled="true"/>
+        <item graphic="0x1C06" color="0x005D" comment="Frost Female Leather Armor " count="0" enabled="true"/>
+        <item graphic="0x13D6" color="0x005D" comment="Frost Studded Gorget " count="0" enabled="true"/>
+        <item graphic="0x13D5" color="0x005D" comment="Frost Studded Gloves " count="0" enabled="true"/>
+        <item graphic="0x13DC" color="0x005D" comment="Frost Studded Sleeves " count="0" enabled="true"/>
+        <item graphic="0x13DA" color="0x005D" comment="Frost Studded Leggings " count="0" enabled="true"/>
+        <item graphic="0x1C0C" color="0x005D" comment="Frost Studded Bustier " count="0" enabled="true"/>
+        <item graphic="0x1C02" color="0x005D" comment="Frost Studded Armor " count="0" enabled="true"/>
+        <item graphic="0x13DB" color="0x005D" comment="Frost Studded Tunic " count="0" enabled="true"/>
     </findlist>
     <findlist name="Gems">
         <item graphic="0x0F13" color="0x0000" comment="Ruby" count="0" enabled="true"/>

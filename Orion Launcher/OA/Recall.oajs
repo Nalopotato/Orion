@@ -3,7 +3,7 @@
 _recallAttempts = 0;
 
 var useRunebook = function(runeIndex, bookID) {
-	Orion.Print(15, 'Rune Number: ' + (runeIndex + 3) / 10 + ' at index: ' + runeIndex);
+	if (_debugMode) {Orion.Print(15, 'Rune Number: ' + (runeIndex + 3) / 10 + ' at index: ' + runeIndex);}
 
 	var x = Player.X();
 	var y = Player.Y();
@@ -42,7 +42,7 @@ var useRunebook = function(runeIndex, bookID) {
 		}
 		_recallAttempts++;
 
-		Orion.Print(15, 'Attempting to Recall again...');
+		if (_debugMode) {Orion.Print(15, 'Attempting to Recall again...');}
 		useRunebook(runeIndex, bookID);
 	}
 }
@@ -77,10 +77,10 @@ function RecallSoT()
 
 function RecallBuyWater(tavern, bookID) {
 	if (tavern == 1) {
-		Orion.Print('26', 'Recalling to Brit');
+		if (_debugMode) {Orion.Print('26', 'Recalling to Brit');}
 		useRunebook(7, bookID); //Brit
 	} else {
-		Orion.Print('26', 'Recalling to Minoc');
+		if (_debugMode) {Orion.Print('26', 'Recalling to Minoc');}
 		useRunebook(137, bookID); //Minoc
 	}
 }

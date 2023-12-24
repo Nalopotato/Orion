@@ -105,7 +105,7 @@ var sendGold = function(bagOfSendingID, lootBagID, amt) {
 	while (goldAmt > 0) {
 		Orion.MoveItemType('0x0EED', any, backpack, 0, _lootBagID);
 		Orion.Wait(600);
-		if (Orion.Timer('MoveGold') > 1850)
+		if (Orion.Timer('MoveGold') > 1200)
 			break;
 	}
 	if (Orion.Count('0x0EED', any, lootBagID) > amt || (Orion.Count('0x0EED', any, lootBagID) > (amt / 3) && Player.Weight() > (Player.MaxWeight() * 0.7)))

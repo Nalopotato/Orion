@@ -2,9 +2,9 @@
 
 const _TwoHmelee = '0x4DD16CBB'; //BoD
 //const TwoHmelee = '0x42C09524'; //SoP
-const _OneHmelee = '0x497553F8';
-const _shield = '0x488E2D82';
-const _playerContainerID = '0x005CFF32';
+const _OneHmelee = '0x41F09443';
+const _shield = '0x4B9FC2ED';
+const _playerContainerID = '0x005CFF32'; //Ensures it isn't equipped already
 
 function Equip2HMelee()
 {

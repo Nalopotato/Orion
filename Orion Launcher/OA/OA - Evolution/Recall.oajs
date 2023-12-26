@@ -1,0 +1,87 @@
+//#include Autoload.oajs
+
+_recallAttempts = 0;
+
+var useRunebook = function(runeIndex, bookID) {
+	if (_debugMode) {Orion.Print(15, 'Rune Number: ' + (runeIndex + 3) / 10 + ' at index: ' + runeIndex);}
+
+	var x = Player.X();
+	var y = Player.Y();
+
+	if (runeIndex < 7) //safeguard
+		runeIndex = 7
+	if (runeIndex > 97)
+		return
+	
+	Orion.UseObject(bookID);
+	Orion.Wait(50);
+
+	while (Orion.InJournal('needs time to recharge', 'sys') || Orion.InJournal('You must wait to', 'sys'))
+	{
+		Orion.ClearJournal('needs time to recharge', 'sys');
+		Orion.ClearJournal('You must wait to', 'sys');
+		Orion.Wait(50);
+	    Orion.UseObject(bookID);
+	    Orion.Wait(50);
+    }
+
+	GumpAction('0x554B87F3', runeIndex, 200, false);
+	GumpAction('0x554B87F3', 0, 20, true);
+
+	if ((Player.X() == x && Player.Y() == y)) {
+		if (Orion.InJournal('location is blocked', 'sys')) {
+			Orion.ClearJournal('location is blocked', 'sys');
+			Orion.Print(33, 'BLOCKED');
+			runeIndex += 10;
+		}
+
+		if (_recallAttempts > 4) { //If we've tried to recall more than twice, move on to next rune
+			//runeIndex += 10;
+			_recallAttempts = 0;
+			return
+		}
+		_recallAttempts++;
+
+		if (_debugMode) {Orion.Print(15, 'Attempting to Recall again...');}
+		useRunebook(runeIndex, bookID);
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+function Recall(bookID, runeNum) {
+	Orion.UseObject(bookID);
+	Orion.Wait(200);
+	GumpAction('0x554B87F3', runeNum, 200, false);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+function RecallToBank()
+{
+	useRunebook(13, '0x477B3761');
+}
+
+function RecallHome()
+{
+	useRunebook(7, '0x477B3761');
+}
+
+function RecallSoT()
+{
+	useRunebook(13, '0x477B3761');
+}
+
+function RecallBuyWater(tavern, bookID) {
+	if (tavern == 1) {
+		if (_debugMode) {Orion.Print('26', 'Recalling to Brit');}
+		useRunebook(7, bookID); //Brit
+	} else {
+		if (_debugMode) {Orion.Print('26', 'Recalling to Minoc');}
+		useRunebook(137, bookID); //Minoc
+	}
+}
+
+function RecallRunSolen(bookID) {
+	useRunebook(127, bookID);
+}

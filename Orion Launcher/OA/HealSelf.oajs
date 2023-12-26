@@ -64,6 +64,15 @@ function Refill()
 				Orion.Wait(5000);
 			} else {
 				Orion.Print('34', 'OVERWEIGHT - CANNOT GET BANDAGES');
+				keyStorage();
+				if (Orion.Count('0x1766', 'any', backpack) > 0) //Uncut cloth
+				{
+					Orion.ControlAgent('autoloot', 'Main', 'stop'); //Stop Autoloot
+					Orion.UseType('0x0F9F');
+					if (Orion.WaitForTarget(5000))
+						Orion.TargetType('0x1766');
+					Orion.ControlAgent('autoloot', 'Main', 'start'); //Start Autoloot
+				}
 			}
 		}
 		

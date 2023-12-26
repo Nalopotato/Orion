@@ -1,6 +1,6 @@
 //#include Autoload.oajs
 
-const _autoSkin = true;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
+const _autoSkin = false;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
 const _vamp = true;  // Vampiric Embrace check
 
 function AutoAttack()
@@ -29,7 +29,7 @@ function AutoAttack()
 		}
 
 		var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
-		Orion.Wait(50);
+		Orion.Wait(25);
 		
 		if (mob.length > 0)
 		{
@@ -57,7 +57,7 @@ function AutoAttack()
 					Orion.UseAbility('primary');
 				//if (!Orion.AbilityStatus('secondary'))
 					//Orion.UseAbility('secondary');
-				Orion.Wait(100);
+				Orion.Wait(25);
 			}
 		}
 		else //Chill - no enemies
@@ -69,7 +69,7 @@ function AutoAttack()
 				Orion.Wait(2500);
 			}
 			
-			Orion.Wait(50);
+			Orion.Wait(25);
 		}
 		
 		if (_autoSkin && !Orion.ScriptRunning('SkinCorpse')) { 
@@ -81,11 +81,11 @@ function AutoAttack()
 		}
 
 		//if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > (Player.MaxWeight() * 0.5)) {
-		if (Orion.InJournal('That container cannot hold more', 'sys')) {
+		if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > 375) {
 			if (_debugMode) {Orion.Print(24, 'Storage Mgmt');}
 
 			sendGold(_bagOfSendingID, _lootBagID, 8000);
-			Orion.Wait(50);
+			Orion.Wait(25);
 			Orion.ClearJournal('That container cannot hold more', 'sys');
 		}
 	}

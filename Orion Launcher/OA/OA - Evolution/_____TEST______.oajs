@@ -1,0 +1,121 @@
+//#include Autoload.oajs
+
+function TEST()
+{
+	while (!Player.Dead()) 
+	{
+		if (Player.Hits() > Player.MaxHits() * 0.4 && Player.Mana() > Player.MaxMana() * 0.25)
+		{
+			Orion.UseSkill('Hiding');
+
+			if (Orion.SkillValue('Magery') <= 485) {
+				Orion.Cast(18); //FB
+				if (Orion.WaitForTarget(5000))
+					Orion.TargetObject('self');
+				Orion.Wait(2000);
+			} else if (Orion.SkillValue('Magery') <= 600) {
+				Orion.Cast(29); //GH
+				if (Orion.WaitForTarget(5000))
+					Orion.TargetObject('self');
+				Orion.Wait(2500);
+			} else if (Orion.SkillValue('Magery') <= 800) {
+				Orion.Cast(48); //Reveal
+				if (Orion.WaitForTarget(5000))
+					Orion.TargetObject('self');
+				Orion.Wait(2500);
+			} else if (Orion.SkillValue('Magery') < Orion.SkillValue('Magery', 'cap')) {
+				Orion.Cast(54); //Mass Dispel
+				if (Orion.WaitForTarget(5000))
+					Orion.TargetObject('self');
+				Orion.Wait(2500);
+			}
+
+			if (Orion.SkillValue('Chivalry') <= 500) {
+				Orion.Cast(204);
+				Orion.Wait(1200);
+			} else if (Orion.SkillValue('Chivalry') <= 600) {
+				Orion.Cast(206);
+				Orion.Wait(1200);
+			} else if (Orion.SkillValue('Chivalry') <= 700) {
+				Orion.Cast(207);
+				if (Orion.WaitForTarget(5000))
+					Orion.TargetObject('self');
+				Orion.Wait(1200);
+			} else if (Orion.SkillValue('Chivalry') < Orion.SkillValue('Chivalry', 'cap')) {
+				Orion.Cast(208);
+				Orion.Wait(1200);
+			}
+
+			if (Orion.SkillValue('Necromancy') <= 500) {
+				Orion.Cast(108); //Mind Rot
+				if (Orion.WaitForTarget(5000))
+					Orion.TargetObject('self');
+				Orion.Wait(2500);
+			} else if (Orion.SkillValue('Necromancy') <= 650) {
+				Orion.Cast(110); //Poison Strike
+				if (Orion.WaitForTarget(5000))
+					Orion.TargetObject('self');
+				Orion.Wait(2500);
+			} else if (Orion.SkillValue('Necromancy') <= 800) {
+				Orion.Cast(115); //Wither
+				Orion.Wait(2500);
+			} else if (Orion.SkillValue('Necromancy') < Orion.SkillValue('Necromancy', 'cap')) {
+				Orion.Cast(107); //Lich Form
+				Orion.Wait(2500);
+			}
+		}
+		Orion.Wait(20);
+	}
+}
+
+function TEST2() 
+{
+	while (1 > 0) {
+		woolToCloth();
+	}
+}
+
+var findCasterKeyQuestItems = function(graphic, color) {
+	var itemSerial = Orion.FindType(graphic, color, ground, 'item|notblockedontile', 24);
+	var itemObj = Orion.FindObject(itemSerial);
+	if (itemSerial > '') {
+		Orion.Print(35, 'Quest Item nearby: ' + itemObj.X() + ' | ' + itemObj.Y());
+	}
+	Orion.Wait(100);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var getProperties = function()
+{
+	Orion.WaitForAddObject('Target');;
+	var props = Orion.FindObject('Target').Properties();
+	var result = '';
+	
+	Orion.Print('_____ Properties _____ \n' + props + '\n ________________');
+	
+	for (var i = props.length - 3; i < props.length; i++)
+	{
+		if (parseInt(props[i]))
+			result += props[i];
+		Orion.Print(result);
+	}
+	
+	return result;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var getPlayerNames = function() {
+	var mobList = Orion.FindType(any, any, ground, 'human|live|ignoreself', '15', 'blue|green|gray');
+	for (var i=0; i < mobList.length; i++) {
+		Orion.Print('------------------ ' + i + ' ------------------');
+		Orion.Print(89, Orion.FindObject(mobList[i]).Properties() + '\n');
+	}
+}
+
+
+
+
+
+
+
+

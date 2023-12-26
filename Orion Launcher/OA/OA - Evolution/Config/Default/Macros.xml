@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data cast_spells_from_book_if_not_scrolls="false">
+    <macro name="AAAAA" looped="true" delay="0.2">
+        <action type="5" convert_type="0" waiting_time="1000" value="32"/>
+    </macro>
+    <macro name="Spell Heal" looped="false" delay="1">
+        <action type="9" convert_type="0" waiting_time="1000" value="[cs touchoflife"/>
+    </macro>
+    <macro name="Spell Res" looped="false" delay="1">
+        <action type="9" convert_type="0" waiting_time="1000" value="[cs restoration"/>
+        <action type="16" convert_type="0" waiting_time="1000" serial="0x001B5D5C" graphic="0x0000" color="0x0000"/>
+    </macro>
+    <macro name="Spell Heal Self" looped="false" delay="1">
+        <action type="9" convert_type="0" waiting_time="1000" value="[cs touchoflife"/>
+        <action type="3" convert_type="9" waiting_time="1000" serial="0x005CFF32" graphic="0x0190" color="0x847E"/>
+    </macro>
+    <macro name="Spell Purge" looped="false" delay="1">
+        <action type="9" convert_type="0" waiting_time="1000" value="[cs purge"/>
+    </macro>
+    <macro name="Spell Smite" looped="false" delay="1">
+        <action type="9" convert_type="0" waiting_time="1000" value="[cs smite"/>
+    </macro>
+    <macro name="Scissors" looped="false" delay="1">
+        <action type="1" convert_type="0" waiting_time="1000" serial="0x4672D08D" graphic="0x0F9F" color="0x0000"/>
+    </macro>
+    <macro name="Dagger" looped="false" delay="1">
+        <action type="1" convert_type="0" waiting_time="1000" serial="0x400ECEC5" graphic="0x0EC4" color="0x0000"/>
+    </macro>
+</data>

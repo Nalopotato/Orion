@@ -6,7 +6,7 @@ var keyStorage = function() {
     storeWithKeys(woodList, _woodKeys, '0x0A57934D', 60023, 20);
 
     //Handle hide cutting
-    if (Orion.Count('0x1079', any, backpack) > 3 || Player.Weight() > 375) {
+    if (Orion.Count('0x1079', any, backpack) > 3 || Player.Weight() > 350) {
         Orion.ControlAgent('autoloot', 'Main', 'stop');
         var itemList = Orion.FindType('0x1079', any, backpack);
         for (var i = 0; i <= itemList.length; i++)

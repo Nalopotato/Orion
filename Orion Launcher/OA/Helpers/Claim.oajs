@@ -68,7 +68,7 @@ var claimCorpses = function() {
 					quickClaim = false;
 			}
 		}
-		if (quickClaim == 0) {
+		if (quickClaim) {
 			QuickClaim();
 			Orion.Wait(100);
 			return;

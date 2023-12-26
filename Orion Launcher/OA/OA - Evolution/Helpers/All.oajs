@@ -1,0 +1,206 @@
+//#include C:/Orion Evolution/Orion Launcher/OA/Autoload.oajs
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function GumpAction(gumpID, hookID, waitTime, closeGump)
+{
+	if (Orion.WaitForGump(1000))
+	{
+		var gump = Orion.GetLastGump();
+		if (gump !== null && !gump.Replayed() && gump.ID() === gumpID)
+		{
+			gump.Select(Orion.CreateGumpHook(hookID));
+			Orion.Wait(waitTime);
+			
+			if (closeGump)
+			{
+				gump.Select(Orion.CreateGumpHook(0)); //Close Gump
+				gump.Select(Orion.CreateGumpHook(0)); //Close Gump
+				Orion.Wait(50);
+				Orion.CancelTarget();
+			}
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Used in the various crafting/resource-gathering scripts
+var createNewTools = function(toolType, toolAmt, keys, hookID) {
+	if (Orion.FindObject(keys).Name < '')
+	{
+		Orion.Print('No Metal Keys - cant craft');
+		return;
+	}
+	if (Orion.FindType('0x1EB8').length < 1)
+	{
+		Orion.Print('No Tinkers Tools.  Cant make new tools.');
+		return;
+	}
+		
+	if (Orion.FindType(toolType).length <= 1)
+	{
+		var uses = getToolUsesRemaining();
+		
+		//Do we have Tinker's tools?
+		if	(Orion.FindType('0x1EB8').length == 1 && uses <= toolAmt)
+		{
+			Orion.Print('Crafting new Tinkers Tools');
+			Orion.UseType('0x1EB8');
+			Orion.Wait(300);
+
+			GumpAction('0x38920ABD', 8, 200, false);
+			GumpAction('0x38920ABD', 23, 1800, false);
+			GumpAction('0x38920ABD', 0, 200, true);
+		}
+		else
+		{
+			//Get Iron
+			while (Orion.Count('0x1BF2') < toolAmt * 5)
+			{
+				Orion.Print('Get Iron');
+				Orion.UseObject(keys);
+    			Orion.Wait(200);
+    			
+    			GumpAction('0xFB1E68CB', 60000, 200, false);
+    			GumpAction('0xFB1E68CB', 0, 200, true);
+			}
+			
+			//Craft Tool
+			Orion.Print('Crafting tool');
+			Orion.UseType('0x1EB8');
+			Orion.Wait(300);
+			
+			GumpAction('0x38920ABD', 8, 300, false);
+
+			for (var i = 0; i < toolAmt; i++)
+			{
+				GumpAction('0x38920ABD', hookID, 1800, false);
+			}
+			
+			GumpAction('0x38920ABD', 0, 200, true);
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var getToolUsesRemaining = function()
+{
+	var props = Orion.FindObject(Orion.FindType('0x1EB8')[0]).Properties();
+	var result = '';
+	
+	for (var i = props.length - 3; i < props.length; i++)
+	{
+		if (parseInt(props[i]))
+			result += props[i];
+	}
+	
+	Orion.Print('Uses Remaining: ' + result);
+	return result;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var sendGold = function(bagOfSendingID, lootBagID, amt) {
+	var goldAmt = Orion.Count('0x0EED', any, backpack, any, false);
+	Orion.SetTimer('MoveGold');
+	while (goldAmt > 0) {
+		Orion.MoveItemType('0x0EED', any, backpack, 0, _lootBagID);
+		Orion.Wait(600);
+		if (Orion.Timer('MoveGold') > 1200)
+			break;
+	}
+	if (Orion.Count('0x0EED', any, lootBagID) > amt || (Orion.Count('0x0EED', any, lootBagID) > (amt / 3) && Player.Weight() > (Player.MaxWeight() * 0.7)))
+	{
+		Orion.Print('26', 'Sending Gold...');
+		Orion.UseObject(bagOfSendingID);
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetType(0x0EED, any, lootBagID);
+		Orion.Wait(100);
+		Orion.CancelTarget();
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function GetGold(amt)
+{
+	if (Orion.Count('0x0EED', any, backpack) < amt)
+	{
+		Orion.OpenContainer('0x4652DA38');
+		Orion.Wait(600);
+		Orion.MoveItemType('0x0EED', any, '0x4652DA38', amt, backpack);
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function GetZoogi(keysID)
+{
+	while (Orion.Count('0x26B7', any, backpack) < 200)
+	{
+		Orion.UseObject(keysID);
+		Orion.Wait(100);
+		GumpAction('0x0EBCD833', 60028, 300, false);
+	}
+		
+	//Cancel targetting, and close the gump
+	Orion.Wait(200);
+	Orion.CancelTarget();
+	Orion.Wait(200);
+	GumpAction('0x0EBCD833', 0, 500, true);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var storeBlankRune = function() //Open your Keys gump first
+{
+	while (Orion.FindType('0x1F14') > '')
+	{
+		var gump0 = Orion.GetGump('last');
+		gump0.Select(Orion.CreateGumpHook(60030));
+		Orion.Wait(100);
+
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetType('0x1F14');
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var checkForPlayers = function() 
+{
+	var mobList = Orion.FindType(any, any, ground, 'human|live|ignoreself|ignoreenemies', '8', 'blue|green|gray');
+	if (mobList.length > 0) {
+		Orion.Print(33, 'G T F O');
+
+		var x = Player.X();
+		var y = Player.Y();
+
+		while ((Player.X() == x && Player.Y() == y)) {
+			RecallToBank();
+		}
+
+		Orion.Say('bank');
+		Orion.Wait(300);
+		organizeGoldGems(backpack);
+		organizeGoldGems(_lootBagID);
+
+		return;
+	}
+}
+
+var woolToCloth = function() 
+{
+	//Wool to Wheel
+	var woolCount = Orion.FindType('0x0DF8').length;
+	if (woolCount > 0) {
+		Orion.UseType('0x0DF8', '0xFFFF');
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetObject('0x447DF8EA');
+		Orion.UseType('0x0DF8', '0xFFFF');
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetObject('0x447E18C7');
+	}
+
+	//Yarn to Loom
+	Orion.UseType('0x0E1D', '0xFFFF');
+	if (Orion.WaitForTarget(1000))
+		Orion.TargetObject('0x40002B85');
+	
+	Orion.Wait(25);
+}

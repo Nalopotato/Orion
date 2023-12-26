@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data version="0" size="4">
+    <organizer name="BankGoldRegs" from="0x44DBAC77" to="0x4652DA38" find_list="Gold+Gems" ignore_list="Not use" restock="false" stack_items="true"/>
+    <organizer name="Tmaps Regs/Gems" from="0x4CEAF006" to="0x45E995AE" find_list="Gems" ignore_list="Not use" restock="false" stack_items="true"/>
+    <organizer name="Tmaps Scrolls/Armor/Weps" from="0x4BD379C9" to="0x45E995AD" find_list="Armors" ignore_list="Not use" restock="false" stack_items="true"/>
+    <organizer name="GetDaemonBones" from="0x44DBAC77" to="0x4652DA38" find_list="All items" ignore_list="" restock="false" stack_items="true"/>
+</data>

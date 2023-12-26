@@ -1,0 +1,21 @@
+//This file is no long needed, but good for reference
+
+//For other mobiles, this is proximity based.  Make sure you are close enough to the other player!
+function PrintPlayerCoords()
+{
+    Orion.Print('X: ' + Player.X() + ' ' + 'Y: ' + Player.Y() + ' ' + 'Z: ' + Player.Z()); 
+}
+
+function WritePlayerCoords()
+{
+    var coords = Player.X() + '-' + Player.Y(); //+ '.' + Player.Z();
+    var file = Orion.NewFile();
+    var path = 'a_scriptlogs.txt';
+    
+    Orion.Print(coords);
+
+    //file.Open(path);
+    file.Append(path);
+    file.WriteLine(coords);
+    file.Close(path);
+}

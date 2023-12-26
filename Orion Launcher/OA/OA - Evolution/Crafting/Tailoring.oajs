@@ -1,0 +1,32 @@
+//#include Autoload.oajs
+
+function Tailoring()
+{
+	while (!Player.Dead()) 
+	{
+		if (Orion.SkillValue('Tailoring') <= 490) {
+			Orion.UseType('0x0F9D', '0xFFFF', self, true);
+			GumpAction('0x38920ABD', 15, 300, false);
+			GumpAction('0x38920ABD', 2, 1000, false);
+
+			Orion.UseType('0x0F9F', '0xFFFF');
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetType('0x152E', 0, backpack);
+		} else if (Orion.SkillValue('Tailoring') <= 560) {
+			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
+			GumpAction('0x38920ABD', 8, 300, false);
+			GumpAction('0x38920ABD', 72, 1000, false);
+
+			Orion.UseType('0x0F9F', '0xFFFF', backpack, true);
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetType('0x230A', 0, backpack);
+		}
+		Orion.Wait(25);
+	}
+}
+
+function Wool() {
+	while (1 > 0) {
+		woolToCloth();
+	}
+}

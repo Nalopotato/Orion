@@ -1,0 +1,136 @@
+//#include Autoload.oajs
+
+const _autoSkin = true;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
+const _vamp = true;  // Vampiric Embrace check
+const _bagFacet = 0;
+
+function AutoAttack()
+{
+	if (Orion.ScriptRunning('HealSelf') < 1) { Orion.ToggleScript('HealSelf', true); }
+	if (Orion.CheckAgent('autoloot', 'Main', 'stopped')) {Orion.ControlAgent('autoloot', 'Main', 'start');}
+	
+	while(!Player.Dead())
+	{
+		var lootBag = Orion.FindObject(_lootBagID, any, backpack);
+		if (lootBag.Map() != _bagFacet) {
+			if (_debugMode) {Orion.Print('26', 'lootBag: ' + lootBag + ' | ' + _bagFacet);}
+			Orion.UseObject(lootBag.Serial());
+			_bagFacet = lootBag.Map();
+		}
+
+		if (Orion.Timer('CW') == -1) { Orion.SetTimer('CW'); }
+		if (Orion.Timer('EoO') == -1) { Orion.SetTimer('EoO'); }
+		if (Orion.Timer('DF') == -1) { Orion.SetTimer('DF'); }
+		//if (Orion.Timer('Ninjitsu') == -1) { Orion.SetTimer('Ninjitsu'); }
+		
+		//Stay mounted
+		// if (!Orion.ObjAtLayer('Mount')) 
+		// {
+		// 	Orion.UseObject(_ethMountID);
+		// 	Orion.Wait(300);
+		// }
+		
+		if (Player.Stam() < (Player.MaxStam() * 0.75) && Orion.Timer('DF') > 1000 && Player.Mana() > 30) {
+			Orion.Say('[cs divinefury');
+			Orion.SetTimer('DF');
+			Orion.Wait(300);
+		}
+
+		var mob = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
+		Orion.Wait(25);
+		
+		if (mob.length > 0)
+		{
+			Orion.Attack(mob);
+
+			if (mob && mob.length == 1 && Orion.Timer('EoO') > 100000 && Player.Mana() > 40) {
+				Orion.Say('[cs enemyofone');
+				Orion.SetTimer('EoO');
+				Orion.Wait(300);
+			}
+			if (Orion.Timer('CW') > 8000 && Player.Mana() > 40) {
+				Orion.Say('[cs consecrateweapon');
+			    Orion.SetTimer('CW');
+			    Orion.Wait(300);
+			}
+			
+			if (Player.Mana() > (Player.MaxMana() * 0.6))
+			{
+				//if (Orion.Timer('Ninjitsu') > 3000) {
+					//Orion.Cast('502');
+					//Orion.SetTimer('Ninjitsu');
+					//Orion.Wait(100);
+				//}
+				if (!Orion.AbilityStatus('primary'))
+					Orion.UseAbility('primary');
+				//if (!Orion.AbilityStatus('secondary'))
+					//Orion.UseAbility('secondary');
+				Orion.Wait(25);
+			}
+		}
+		else //Chill - no enemies
+		{
+			if (_vamp && Player.Color() != '0x847E')
+			{
+				Orion.Say('[cs vampiricembrace');
+				Orion.SetTimer('DF');
+				Orion.Wait(2500);
+			}
+			
+			Orion.Wait(25);
+		}
+		
+		if (_autoSkin && !Orion.ScriptRunning('SkinCorpse')) { 
+			Orion.Exec('SkinCorpse', true);
+		}
+
+		if (Player.Weight() > 350) {
+			//keyStorage();
+		}
+
+		//if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > (Player.MaxWeight() * 0.5)) {
+		// if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > 375) {
+		// 	if (_debugMode) {Orion.Print(24, 'Storage Mgmt');}
+
+		// 	sendGold(_bagOfSendingID, _lootBagID, 8000);
+		// 	Orion.Wait(25);
+		// 	Orion.ClearJournal('That container cannot hold more', 'sys');
+		// }
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var findTargetsToKill = function(timeout) {
+
+	var mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', '8', 'gray|criminal|orange|red');
+	Orion.Wait(1000);
+	
+	if (mobList.length > 0) { //Orion.Print(15, '# of mobs: ' + mobList.length);
+		Orion.SetTimer('KillTimer');
+
+		if (Orion.CheckAgent('autoloot', 'Main', 'started')) {
+			Orion.ControlAgent('autoloot', 'Main', 'stop');
+		}
+
+		//var mobObj = Orion.FindObject(mobList[0]);
+		
+		while (mobList.length > 0)
+		{
+			var mobObj = Orion.FindObject(mobList[0]);
+			if (mobObj)
+				PathTo('any', mobObj.X(), mobObj.Y(), 1);
+			
+			if (Orion.Timer('KillTimer') > timeout) {
+				Orion.Print(33, 'TIMEOUT');
+				break;
+			}
+
+			mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', '8', 'gray|criminal|orange|red');
+			mobObj = Orion.FindObject(mobList[0]);
+			
+			Orion.Wait(100);
+		}
+	} else {
+		return;
+	}
+}

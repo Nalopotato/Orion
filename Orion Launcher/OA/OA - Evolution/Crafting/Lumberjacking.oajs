@@ -1,139 +1,526 @@
 //#include Autoload.oajs
 
-// ********************************************************************
-const _toolType = '0x0F43'; //Graphic of your Axe type
-const _autoMove = true;  //Change to false if you want to run around manually
-//
-// *************************** Craft tool config ****************************
-const _createNewTools = true;
-const _toolAmt = 2; //Amount of tools to create per iteration
-const _hookID = 30; //The Gump ID of the tool you want to create.  Pickaxe is 114.  Hatchet is 30
-// ********************************************************************
+/* Script   : Altiric's Amazing Arborist
+ * Author   : Altiric
+ * Created  : May 20, 2022
+ * Revised  : Jul 31, 2023
+ * Version  : 1.1
+ * Comments, Updates, Support: http://www.scriptuo.com/index.php?topic=16718.0
+ * 
+ * Usage:
+ * -Run Autostart()
+ * -Target a secure container, unless done previously
+ * -Enjoy
+ * 
+ * Setup:
+ * -Have a secure container in an accessible location of your main floor.
+ * -If axes break on your shard, have extras in a pouch inside the secure.
+ * -run Autostart()
+ * -You don't even need any skills to get started!
+ * 
+ */
 
-function Lumberjacking() 
+const debugLevel = 1; // debugLevel 0 = none, 1 = actions, 2 = debug
+const maxRangeFromSecure = 150; // Max scan distance from secure
+const axesBreak = false; // Automatically true on Siege/Mugen
+
+const items = {
+    logs    : '0x1BDD',
+    boards  : '0x1BD7',
+    ingots  : '0x1BF2',
+    tinkTool: '0x1EB9',
+    axes    : '0xF47|0xF4B|0xF45|0xF43|0x13FB|0x1443|0x13B0|0xF49',
+    harvest : '0x3191|0x2F5F|0x318F|0x3190|0x5738' // fungi, switch, bark, plant, shards
+};
+
+const harvestTypes = [
+    {Name: 'ordinary',          Color: 0x0000, Graphic: items['logs']},
+    {Name: 'pine',              Color: 0x04EE, Graphic: items['logs']},
+    {Name: 'ash',               Color: 0x03C1, Graphic: items['logs']},
+    {Name: 'mahogany',          Color: 0x0163, Graphic: items['logs']},
+    {Name: 'yew',               Color: 0x0501, Graphic: items['logs']},
+    {Name: 'oak',               Color: 0x01E8, Graphic: items['logs']},
+    {Name: 'zircote',           Color: 0x04F7, Graphic: items['logs']},
+    {Name: 'ebony',             Color: 0x002B, Graphic: items['logs']},
+    {Name: 'bamboo',            Color: 0x0480, Graphic: items['logs']},
+    {Name: 'heartwood',         Color: 0x0072, Graphic: items['logs']},
+    {Name: 'bloodwood',         Color: 0x0025, Graphic: items['logs']},
+    {Name: 'frostwood',         Color: 0x0481, Graphic: items['logs']},
+
+    {Name: 'switch',            Color: 0x0000, Graphic: 0x2F5F},
+    {Name: 'parasitic plant',   Color: 0x0000, Graphic: 0x3190},
+    {Name: 'bark fragment',     Color: 0x0000, Graphic: 0x318F},
+    {Name: 'luminescent fungi', Color: 0x0000, Graphic: 0x3191},
+    {Name: 'crystal shards',    Color: 0x0000, Graphic: 0x5738},
+    {Name: 'brilliant amber',   Color: 0x0035, Graphic: 0x3199},
+];
+
+const color = {
+    green 	: {light: '0x0046', norm: '0x0044', dark: '0x00A7'},
+    blue	: {light: '0x0064', norm: '0x0062', dark: '0x00C5'},
+    red		: {light: '0x0028', norm: '0x0026', dark: '0x0089'},
+    orange	: {light: '0x002D', norm: '0x002B', dark: '0x008E'},
+    purple	: {light: '0x001E', norm: '0x0017', dark: '0x007A'},
+    yellow	: {light: '0x0037', norm: '0x0035', dark: '0x0098'},
+    white	: {light: '0x7FA',  norm: '0x7EE',  dark: '0x7E2' }
+};
+
+var chopped = [], history = [], lastTree = null, currentTree = null, destination = null;
+
+
+function Lumberjacking()
 {
-	if (_autoMove)
-	{
-		Orion.WaitForAddObject('Runebook', 20000);
-		var bookSerial = Orion.GetSerial('Runebook');
-	}
-	
-	var runeIndex = 7;
+    log(1, "Starting Script");
+    setup();
+    var secure = Orion.FindObject('secure');
 
-	while (!Player.Dead())
-	{
-		Orion.ClearJournal();
-		var tool = Orion.FindType(_toolType, any, self);
-		
-		if (_autoMove && tool > '')
-		{
-			useRunebook(runeIndex, bookSerial);
-			runeIndex += 10;
-		}
+    while(true){
+        log(2, "beginning main loop");
 
-		if (tool <= '')
-		{
-			tool = Orion.FindType(_toolType);
-			if (tool <= '')
-			{
-				Orion.Print('No more axes...');
-				if (_createNewTools)
-					createNewTools(_toolType, _toolAmt, _metalKeys, _hookID);
-			}
-				
-			equipTool(tool);
-		}
+        if(Orion.GetDistance(secure.X(), secure.Y()) > maxRangeFromSecure){
+            log(2, "secure out of range, approaching");
+            walkTo(secure.X(), secure.Y(), 5, 60000, true);
+        }
 
-		if 	(Orion.ObjAtLayer(2) == null) 
-			equipTool(tool);
+        var trees = getTrees();
 
-		//Chop Tree
-		while (!Orion.InJournal('not enough wood here') && 
-				!Orion.InJournal('use an axe on that') && 
-				!Orion.InJournal('broke your axe'))
-		{
-			//Orion.Print('Chop');
-			Orion.UseObject(tool);
-			Orion.Wait('200');
-			Orion.TargetTileRelative('any', -1, 0, 0);
-			
-			if (!Orion.InJournal('not enough wood here'))
-				Orion.Wait('3500');
-			
-			if (Orion.InJournal('axe must be equipped'))
-				equipTool(tool);
-			if (Player.Weight() > Player.MaxWeight() * 0.8)
-				cutLogs(tool);
-		}
-		
-		if (_createNewTools)
-			createNewTools(_toolType, _toolAmt, _metalKeys, _hookID);
-		cutLogs(tool);
-		storeBoards(_woodKeys);
-		
-		//Wait until player moves or Runebook is done.  157 is rune #16
-		if (runeIndex >= 167)
-		{
-			Orion.Print('Get new Runebook');
-			
-			runeIndex = 7;
-			Orion.WaitForAddObject('Runebook');
-			Orion.Wait(100);
-			bookSerial = Orion.GetSerial('Runebook');
-		}
-	}
+        if(trees.length < 1){
+            log(2, "no trees found");
+        	if(Orion.GetDistance(secure.X(), secure.Y()) > 100){
+                log(2, "returning to secure");
+	            walkTo(secure.X(), secure.Y(), 2, 60000, true);
+    	        Orion.Wait(100);
+    	    }
+            trees = getTrees();
+            if(trees.length < 1){
+                log(2, "resetting chopped list");
+                Orion.RemoveHighlightArea('all');
+                chopped = [];
+                continue;
+            }
+        }
+
+        log(2, "entering harvest loop");
+        while((trees && trees.length) && !Player.Dead())
+            trees = harvest(trees);
+        
+        Orion.Wait(250);
+    }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-var cutLogs = function(axe) {
-	//While there are logs, and left hand is equipped
-	while (Orion.FindType('0x1BDD') > '' && Orion.ObjAtLayer(2) != null)
-	{
-		//Orion.Print('Cut Logs');
-		Orion.UseObject(axe);
-		Orion.Wait('500');
-		Orion.TargetType('0x1BDD');
-		Orion.Wait('600');
-	}
+function setup(_internal)
+{
+    Orion.ClientOptionSet('BlockWalkingOnMultiStairsInWarMode', true);
+    Orion.RemoveHighlightArea('all');
+    Orion.ClearJournal();
+
+    var testSecure = Orion.FindObject('secure');
+    if(!testSecure || !Object.keys(testSecure).length)
+    {
+        log(2, "Selecting secure");
+        do {
+            Orion.CharPrint(self, color.yellow.norm, "Select Secure Container");
+            Orion.WaitForAddObject('secure');
+    
+            var secure = Orion.FindObject('secure');
+            if(!secure){
+                log(2, "No secure targeted");
+                Orion.Print("A valid secure is required");
+            }
+        } while(!secure);
+
+        log(2, "secure set");
+    } else {
+        log(2, "Using previous secure");
+    }
+
+    var secure = Orion.FindObject('secure');
+    Shared.AddVar('secureX', secure.X());
+    Shared.AddVar('secureY', secure.Y());
+    
+    //dismount();
+    var animal = Orion.FindTypeEx(0x0317, any, ground, 'mobile', 3, 'innocent|friendly')[0];
+
+    if(animal){
+        log(2, "animal found");
+        Orion.AddObject('animal', animal.Serial());
+    }
+    
+    checkWeight();
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-var storeBoards = function(k) {
-	//Boards
-	while (Orion.FindType('0x1BD7') > '')
-	{
-		Orion.Print('Store Boards');
-		useKeysForWood(k, '0x1BD7');
-	}
-	//Bark Fragments
-	useKeysForWood(k, '0x318F');
-	
-	//Switches
-	useKeysForWood(k, '0x2F5F');
-	
-	//Fungi
-	useKeysForWood(k, '0x3191');
-	
-	//Parasitic Plants
-	useKeysForWood(k, '0x3190');
-	
-	//Close Gump
-	GumpAction('0x554B87F3', 0, 200, true);
-	Orion.CancelTarget();
+function harvest(trees)
+{
+    var noWood = "There's not enough wood";
+    var tooFar = "That is too far";
+    var cantSee= "Cannot see";
+    var cantUse= "You can't use an axe on that";
+    var messages = [noWood, tooFar, cantSee, cantUse].join('|');
+
+    trees.sort(function(a, b){ return Orion.GetDistance(a.X(), a.Y()) - Orion.GetDistance(b.X(), b.Y()) });
+    var minDistance = Orion.GetDistance(trees[0].X(), trees[0].Y());
+    var closestTrees = trees.filter(function(tree){ 
+        return Orion.GetDistance(tree.X(), tree.Y()) === minDistance });
+
+    var tree = closestTrees[Math.floor(Math.random() * closestTrees.length)];
+    currentTree = tree;
+    trees = trees.filter(function(t){ return t.X() !== tree.X() || t.Y() !== tree.Y() });
+    chopped.push([tree.X(), tree.Y()]);
+    log(2, "tree selected");
+
+    Orion.AddHighlightArea(tree.X()+tree.Y(), -1, 'pos', color.white.light, 0, 0, 'static', tree.X(), tree.Y());
+
+    walkTo(tree.X(), tree.Y(), Orion.Random(1,2), 10000);
+    if(Orion.GetDistance(tree.X(), tree.Y()) > 2)
+        return;
+
+    log(1, "Chopping");
+    do {
+        useAxe(tree.X(), tree.Y());
+        Orion.SetTimer('chop');
+        while(!Orion.InJournal("You chop|You hack|There's not enough wood") && Orion.Timer('chop') < 800)
+            Orion.Wait(50);            
+        Orion.ClearJournal("You chop|You hack");
+    } while(!Orion.InJournal(messages) && !Player.Dead() && !Player.WarMode());
+    log(2, "tree out of wood");
+    
+    lastTree = tree;
+    trees = trees.filter(function(t){ 
+        var remove = Orion.GetDistance(t.X(), t.Y()) < 3 || Orion.GetDistance(t.X(), t.Y()) > 12;
+        if(remove){
+            Orion.RemoveHighlightArea(t.X()+t.Y());
+            return false;
+        } else {
+            return true;
+        }
+    });
+    Orion.AddHighlightArea(tree.X()+tree.Y(), -1, 'pos', color.red.dark, 0, 0, 'static', tree.X(), tree.Y());
+    Orion.ClearJournal(messages);
+    Orion.Wait(100);
+    return trees;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-var useKeysForWood = function(keys, item) {
-	Orion.Print('Use Keys: ' + Orion.Count(item, any, backpack, 0, false));
-	if (Orion.Count(item, any, backpack, 0, false) > 0)
-	{
-		Orion.UseObject(keys);
-		Orion.Wait('300');
-		
-		GumpAction('0x0A57934D', 60023, 200, false);
-		
-		//Orion.WaitForTarget(1000)
-		Orion.TargetType(item);
-		Orion.Wait('600');
-	}
+function log(level, text)
+{
+    if(level == 1 && (debugLevel == 1 || debugLevel == 2) || level == 2 && debugLevel == 2)
+    {
+        Orion.Print(color.yellow.norm, Orion.Time('hh:mm:ss') +": " +text);
+        if(debugLevel == 2){
+            if(!TextWindow.IsOpened()){
+                TextWindow.Open();
+                TextWindow.Clear();
+            }
+            TextWindow.Print(level == 2 ? Orion.Time('hh:mm:ss')  +": " +text : text);
+            TextWindow.SaveToFile('debug.log');
+        }
+    }
+}
+
+function useAxe(x, y)
+{
+    log(2, "chopping x" +x +" y" +y);
+    if(Orion.HaveTarget())
+        Orion.CancelTarget();
+    Orion.CancelWaitTarget();
+
+    checkWeight();
+    handleHostiles();
+    
+    // if(Orion.ObjAtLayer('Mount') !== null)
+    //     dismount();
+    // if(Orion.FindObject('animal'))
+    //     checkAnimal();
+
+    var held = Orion.ObjAtLayer('LeftHand') ? Orion.ObjAtLayer('LeftHand') : Orion.ObjAtLayer('RightHand');
+	if(!held){
+        log(2, "no axes held");
+        if(Orion.FindType(items['axes'], any, backpack).length){
+            log(2, "found axe in pack");
+            Orion.EquipT(items['axes'], any, backpack);
+            Orion.Wait('moveitemdelay');
+            held = Orion.ObjAtLayer('LeftHand') ? Orion.ObjAtLayer('LeftHand') : Orion.ObjAtLayer('RightHand');
+        }
+    }
+
+	if(Orion.UseType(items['axes'], any, self))
+    {
+        Orion.WarMode(false);
+        Orion.WaitTargetTile('tree', x, y, 0);
+        Orion.Wait('useitemdelay');
+    } else {
+        log(2, "unable to use axe");
+        Orion.Print(color.yellow.norm, "Could not find an Axe");
+        secureDrop();
+        returnTree();
+    }
+}
+
+function getTrees(_internal)
+{
+    log(2, "loading trees");
+    var trees = Orion.GetTilesInRect('tree', Player.X()-24, Player.Y()-24, Player.X()+24, Player.Y()+24)
+        .filter(function(tree){ return isReachable(tree) })
+        .filter(function(tree){
+            return !chopped.some(function(choppedTree){
+                return choppedTree[0] === tree.X() && choppedTree[1] === tree.Y() });
+        });
+
+    trees.forEach(function(tree){
+        Orion.AddHighlightArea(tree.X()+tree.Y(), -1, 'pos', color.green.dark, 0, 0, 'static', tree.X(), tree.Y());
+    });
+    log(2, Object.keys(trees).length +" trees found");
+    return trees;
+}
+
+function isReachable(tree)
+{
+    return Orion.GetTilesInRect('tree', tree.X() - 2, tree.Y() - 2, tree.X() + 2, tree.Y() + 2).length < 16;
+}
+
+function checkWeight(_internal)
+{
+    Shared.AddVar('lastX', Player.X());
+    Shared.AddVar('lastY', Player.Y());
+
+    storeLogs();
+
+    if(Player.Weight("%") > 90){
+        log(2, "logs2boards");
+        Orion.FindTypeEx(items['logs'], any, backpack).forEach(function(log){
+            Orion.AddWaitTargetObject(log.Serial());
+            Orion.UseType(items['axes']);
+            Orion.Wait('useitemdelay');
+        });
+
+        if(Player.Weight("%") > 70){
+            var animal = Orion.FindObject('animal');
+            if(animal){
+                log(2, "moving items to animal");
+                var weight = ((animal.Properties().match(/Weight:\s(\d*)/i) || [])[1] || 0);
+                var space = 1600 - weight;
+                if(Orion.Count(items['boards']) > space){
+                    log(1, "Animal full, unloading at secure");
+                    secureDrop();
+                    returnTree();
+                } else {
+                    log(1, "Loading " +animal.Name());
+                    while(Orion.Count(items['boards']) > 0){
+                        Orion.MoveItemType(items['boards'], any, backpack, 0, animal.Serial());
+                        Orion.Wait('moveitemdelay');
+                    }
+                }
+            } else {
+                log(1, "Backpack full, unloading at secure");
+                secureDrop();
+                returnTree();
+            }
+        }
+    }
+}
+
+var storeLogs = function() 
+{
+    Orion.UseObject('0x51DE25C2');
+    Orion.Wait(100);
+    GumpAction('0x06ABCE12', 33, 100, false);
+}
+
+function secureDrop(_internal)
+{
+    log(2, "Going to Secure");
+
+    walkTo(Shared.GetVar('secureX'), Shared.GetVar('secureY'), 1, 60000, true);
+
+    var secure = Orion.FindObject('secure');
+    if(secure.Distance() > 2){
+        Orion.WarMode(false);
+        walkTo(secure.X(), secure.Y(), 1);
+    }
+
+    if(Player.Name() == "Tweedle Dee"){
+        var woodStack = Orion.FindTypeEx(0x1BD7, any, ground)[0];
+        Orion.MoveItemType(0x1BD7, any, backpack, 0, woodStack.Serial());
+        return;
+    }
+
+    Orion.UseSkill('Hiding');
+    Orion.Wait('useitemdelay');
+    //dismount();
+
+    var animal = Orion.FindObject('animal');
+    if(animal){
+        log(2, "unloading animal");
+        Orion.RequestContextMenu(animal.Serial());
+        Orion.WaitContextMenuID(animal.Serial(), 508);
+        Orion.WaitForContainerGump();
+        Orion.Wait('useitemdelay');
+        Orion.FindTypeEx(any, any, lastcontainer).forEach(function(item){
+            Orion.MoveItem(item.Serial(), 0, secure.Serial());
+            Orion.Wait('moveitemdelay');
+        });
+    }
+
+    log(2, "unloading pack");
+    Orion.FindTypeEx(items['harvest']+'|'+items['boards'], any, backpack).forEach(function(item){
+        Orion.MoveItem(item.Serial(), 0, secure.Serial());
+        Orion.Wait('useitemdelay');
+    });
+}
+
+function returnTree(_internal)
+{
+    log(2, "returning to last tree");
+    walkTo(currentTree.X(), currentTree.Y(), 1, 60000, true);
+    Orion.Wait(500);
+}
+
+function walkTo(x, y, distance, timeout, ride)
+{
+    var attempts = 0;
+    do {
+        var result = walkToAction(x, y, distance, timeout, ride);
+        attempts++;
+    } while(!result && attempts < 4);
+}
+
+function walkToAction(x, y, distance, timeout, ride)
+{
+    distance = distance ? distance : 2;
+    timeout = timeout ? timeout : 10000;
+    ride = ride ? true : false;
+    if(Number(x)){ destination = {x: x, y: y, distance: distance, timeout: timeout, ride: ride} }
+
+    if(!destination) return;
+    if(destination && destination.ride)
+        mount();
+    
+    Orion.Exec('walkWatch', true);
+    log(2, "Walking to: x" +destination.x +" y" +destination.y);
+    if(Orion.WalkTo(destination.x, destination.y, Player.Z(), destination.distance, 255, Orion.ObjAtLayer('Mount') ? 2 : 1, 1, destination.timeout)){
+        log(2, "Arrived");
+        Orion.Wait(100);
+        Orion.WarMode(false);
+        return true;
+    } else {
+        log(2, "failed to reach destination");
+        return false;
+    }
+}
+
+function walkWatch(_internal)
+{
+    Orion.Wait(500);
+    do {
+        handleHostiles();
+        checkAnimal();
+        var cx = Player.X(), cy = Player.Y();
+        Orion.Wait(2000);
+        if(Orion.GetDistance(cx, cy) < 2 && Orion.IsWalking()){
+            log(1, "Path blocked, warmode active");
+            Orion.WarMode(true);
+        }
+        Orion.Wait(50);
+    } while(Orion.IsWalking());
+}
+
+function mount(_internal)
+{
+    checkAnimal();
+    var animal = Orion.FindObject('animal');
+    if(!animal){ 
+        log(2, "no mount saved");
+        return false;
+    }
+    if(animal.Distance() < 3 && !animal.Poisoned()){
+        log(2, "mounting");
+        Orion.UseObject(animal.Serial());
+        Orion.Wait('useitemdelay');
+    } else {
+        secureDrop();
+        Orion.Relogin();
+    }
+}
+
+function dismount(_internal)
+{
+    if(Orion.ObjAtLayer('Mount') !== null){
+        log(2, "dismounting");
+        Orion.UseObject(Player.Serial());
+        Orion.Wait('useitemdelay');
+    }
+}
+
+function endScript(_internal)
+{
+    log(2, "end script function");
+    Orion.WalkTo(982, 3428, Player.Z(), 0, 255, 1);
+    Orion.Wait(100);
+    Orion.PauseScript();
+}
+
+function distance(point1, point2)
+{
+    var dx = point1.X() - point2.X();
+    var dy = point1.Y() - point2.Y();
+    return Math.sqrt(dx*dx + dy*dy);
+}
+
+function convertTime(ms) 
+{
+    var hours = Math.floor(ms / 3600000);
+    var minutes = Math.floor((ms % 3600000) / 60000);
+    var seconds = Math.floor((ms % 60000) / 1000);
+  
+    // Format the time with leading zeros if necessary
+    var formattedHours = (hours < 10) ? "0" + hours : hours.toString();
+    var formattedMinutes = (minutes < 10) ? "0" + minutes : minutes.toString();
+    var formattedSeconds = (seconds < 10) ? "0" + seconds : seconds.toString();
+  
+    return formattedHours + ":" + formattedMinutes + ":" + formattedSeconds;
+}
+
+function handleHostiles(_internal)
+{
+    var enemies = Orion.FindTypeEx(any, any, ground, 'mobile|live|ignoreself|human', 24, 'criminal|enemy|murderer');
+    var hostile = enemies.length ? enemies[0].Name() : Player.Hits('%') < 90 ? "Low Health" : false;
+    if(hostile === "Low Health"){
+        secureDrop();
+        while(Player.Hits("%") < 90)
+            Orion.Wait(1000);
+    } else if(hostile){
+        if(Orion.IsWalking())
+            Orion.StopWalking();
+        secureDrop();
+        Orion.Wait(300000);
+        handleHostiles();
+    }
+}
+
+function checkAnimal(_internal)
+{
+    var pet = Orion.FindObject('animal'), finishWalk = false;
+    if(!pet) return;
+    if(pet.Distance() > 3 || pet.WarMode()){
+        if(Orion.IsWalking()){
+            finishWalk = true;
+            Orion.StopWalking();
+        }
+        var distance = pet.Distance();
+        log(2, "pet falling behind");
+        Orion.Wait(2000);
+        if(pet.Distance() < distance){
+            log(2, "pet is following");
+            if(finishWalk)
+                walkTo('return');
+            return;
+        }
+        
+        Orion.Say("All follow me");
+        Orion.Wait(5000);
+        if(pet && pet.Distance() == distance){
+            log(2, "pet cant follow, approaching");
+            walkTo(pet.X(), pet.Y(), 1, 20000);
+            mount();
+        }
+    }
 }

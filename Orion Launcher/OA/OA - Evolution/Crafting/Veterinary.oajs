@@ -1,0 +1,48 @@
+function TrainVet()
+{
+    //Replaces these serials with your two pet IDs, and hold plenty of bandages
+	var serial1 = '0x001E5C7E';
+	var serial2 = '0x001E5DE0';
+	var pet1 = Orion.FindObject(serial1);
+	var pet2 = Orion.FindObject(serial2);
+
+	while (Orion.SkillValue('Veterinary') < 1000) {
+		if (pet1.Hits() < pet2.Hits()) {
+			Orion.Print('Healing Pet1: ' + pet1.Hits());
+
+			Orion.UseType('0x0E21', any);
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject(serial1);
+			Orion.Wait(2100);
+		} else if (pet2.Hits() < pet2.MaxHits()) {
+			Orion.Print('Healing Pet2: ' + pet2.Hits());
+
+			Orion.UseType('0x0E21', any);
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject(serial2);
+			Orion.Wait(2100);
+		}
+
+		Orion.Wait(300);
+	}
+	
+    //Arms Lore
+	while (Orion.SkillValue(4) < 1000) {
+		Orion.UseSkill(4);
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetObject('0x4B9E37A0'); //Replace this with a weapon to ID
+		
+		Orion.Wait(25);
+	}
+
+    //Item ID
+	while (Orion.SkillValue(3) < 1000) {
+		Orion.UseSkill(3);
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetObject('0x4B9E37A0'); //Replace this with any item to ID
+		
+		Orion.Wait(25);
+	}
+
+	Orion.Wait(25);
+}

@@ -60,6 +60,6 @@
     <item name="sa" type="1000" text="sa:" id="0x0F8C" hue="0x0000" mincolor="#00FFFFFF" midcolor="#00000001" color="#00000001" background="true" bgmincolor="#0000007F" bgmidcolor="#0000FFFF" bgcolor="#00000000" minvalue="10" midvalue="20" percents="false"/>
     <item name="ss" type="1000" text="ss:" id="0x0F8D" hue="0x0000" mincolor="#00FFFFFF" midcolor="#00000001" color="#00000001" background="true" bgmincolor="#0000007F" bgmidcolor="#0000FFFF" bgcolor="#00000000" minvalue="10" midvalue="20" percents="false"/>
     <item name="en" type="1000" text="en:" id="0x0F87" hue="0x0000" mincolor="#00FFFFFF" midcolor="#00000001" color="#00000001" background="true" bgmincolor="#0000007F" bgmidcolor="#0000FFFF" bgcolor="#00000000" minvalue="10" midvalue="20" percents="false"/>
-    <item name="bandage" type="1000" text="b:" id="0x0E21" hue="0x0000" mincolor="#00FFFFFF" midcolor="#00000001" color="#00000001" background="true" bgmincolor="#0000007F" bgmidcolor="#0000FFFF" bgcolor="#00000000" minvalue="10" midvalue="20" percents="false"/>
+    <item name="bandage" type="1000" text="b:" id="0x0E21" hue="0xFFFF" mincolor="#00FFFFFF" midcolor="#00000001" color="#00000001" background="true" bgmincolor="#0000007F" bgmidcolor="#0000FFFF" bgcolor="#00000000" minvalue="10" midvalue="20" percents="false"/>
     <item name="arrows" type="1000" text="" id="0x0F3F" hue="0x0000" mincolor="#00FFFFFF" midcolor="#00000001" color="#00000001" background="true" bgmincolor="#0000007F" bgmidcolor="#0000FFFF" bgcolor="#00000000" minvalue="10" midvalue="20" percents="false"/>
 </data>

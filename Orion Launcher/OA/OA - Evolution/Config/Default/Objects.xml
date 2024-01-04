@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data version="0" size="5" dressbag="0x00000000" catchbag="0x00000000">
+<data version="0" size="7" dressbag="0x00000000" catchbag="0x00000000">
     <object name="bow" id="0x000027A5"/>
     <object name="Persona" id="0x005CFF32"/>
     <object name="internal_mm_model" id="0x46E300A6"/>
     <object name="internal_mm_receiver" id="0x45E995A6"/>
     <object name="Target" id="0x001DC91C"/>
+    <object name="Person" id="0x00185A05"/>
+    <object name="secure" id="0x4B9E379C"/>
 </data>

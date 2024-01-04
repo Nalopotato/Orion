@@ -1,4 +1,3 @@
-FindType
 AbilityStatus
 Abyss
 Acquire
@@ -25,6 +24,7 @@ AddFriend
 AddGlobalColor
 AddGroup
 AddGumpPic
+AddHighlightArea
 AddHighlightCharacter
 AddHitBox
 AddHtmlGump
@@ -135,6 +135,7 @@ CreateClientMacro
 CreateCustomGump
 CreateGumpHook
 CreateUdpServer
+CurrentScriptDirPath
 CustomGumpResponse
 DI
 Date
@@ -192,6 +193,7 @@ FindListEx
 FindListItem
 FindObject
 FindTextID
+FindType
 FindTypeEx
 FindWand
 FireResistance
@@ -209,6 +211,7 @@ GetCharactersFontColor
 GetCharactersFontColorValue
 GetCliLocString
 GetContainer
+GetContextMenu
 GetCurrentAbilityNames
 GetCurrentVendorList
 GetDistance
@@ -265,6 +268,7 @@ Height
 HelpGump
 Hidden
 Hide
+HighlightAreaTimer
 Hits
 HttpGet
 HttpPost
@@ -305,15 +309,18 @@ IsReplayed
 IsShopping
 IsStaticTile
 IsWalking
+ItemClilocID
 ItemColor
 ItemGraphic
 ItemID
 ItemName
+ItemText
 Items
 ItemsCount
 JournalCount
 JournalIgnoreCase
 JournalLine
+JournalSaveName
 KeyPress
 LMC
 LRC
@@ -421,6 +428,7 @@ RemoveDisplayTimer
 RemoveEnemy
 RemoveFakeMapObject
 RemoveFriend
+RemoveHighlightArea
 RemoveHighlightCharacter
 RemoveObject
 RemoveTimer
@@ -687,11 +695,3 @@ true
 undefined
 var
 while
-JournalSaveName
-AddHighlightArea
-CurrentScriptDirPath
-GetContextMenu
-HighlightAreaTimer
-ItemClilocID
-ItemText
-RemoveHighlightArea

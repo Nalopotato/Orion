@@ -1,8 +1,10 @@
 //#include Autoload.oajs
 
+const trashBag = '0x4B9E379D';
 const iron = '0x1BF2';
 const boards = '0x1BD7';
 const tool = '0x1034';
+const woodenBox = '0x09AA';
 const mediumCrate = '0x0E3F';
 const ballotBox = '0x14F0';
 const bokuto = '0x27A8';
@@ -20,113 +22,103 @@ function Carpentry()
 	{
 		Orion.ClearJournal();
 		
-		if (Orion.Count(boards) > 20 && Orion.Count(tool) > 0)
+		if (Orion.Count(tool) > 0)
 		{
 			Orion.UseType(tool);
 			
-			if (Orion.SkillValue('Carpentry') <= 480)
+			if (Orion.SkillValue('Carpentry') <= 450)
+			{
+				item = woodenBox;
+				GumpAction('0x38920ABD', 15, 100, false);
+				GumpAction('0x38920ABD', 2, 1600, false);
+			}
+			else if (Orion.SkillValue('Carpentry') <= 480)
 			{
 				item = mediumCrate;
-				
 				GumpAction('0x38920ABD', 15, 100, false);
-				GumpAction('0x38920ABD', 15, 100, false);
-				GumpAction('0x38920ABD', 16, 1500, false);
+				GumpAction('0x38920ABD', 16, 1600, false);
 			}
-			else if (Orion.SkillValue('Carpentry') < 700)
+			else if (Orion.SkillValue('Carpentry') < 720)
 			{
 				item = ballotBox;
-				
 				GumpAction('0x38920ABD', 43, 100, false);
-				GumpAction('0x38920ABD', 43, 100, false);
-				GumpAction('0x38920ABD', 79, 1500, false);
+				GumpAction('0x38920ABD', 128, 1600, false);
 			}
-			else if (Orion.SkillValue('Carpentry') < 736)
+			else if (Orion.SkillValue('Carpentry') < 850)
 			{
 				item = bokuto;
-				
 				GumpAction('0x38920ABD', 22, 100, false);
-				GumpAction('0x38920ABD', 22, 100, false);
-				GumpAction('0x38920ABD', 30, 1500, false);
+				GumpAction('0x38920ABD', 30, 1600, false);
 			}
-			else if (Orion.SkillValue('Carpentry') < 789)
+			else if (Orion.SkillValue('Carpentry') < 980)
 			{
 				item = quarterStaff;
 				
 				GumpAction('0x38920ABD', 22, 100, false);
-				GumpAction('0x38920ABD', 22, 100, false);
-				GumpAction('0x38920ABD', 16, 1500, false);
+				GumpAction('0x38920ABD', 9, 1600, false);
 			}
 			else if (Orion.SkillValue('Carpentry') < 1039) //1039
 			{
 				item = gnarledStaff;
 				
 				GumpAction('0x38920ABD', 22, 100, false);
-				GumpAction('0x38920ABD', 22, 100, false);
-				GumpAction('0x38920ABD', 23, 1500, false);
+				GumpAction('0x38920ABD', 16, 1600, false);
 			}
 			else if (Orion.SkillValue('Carpentry') < 1100)
 			{
 				item = tetsubo;
 				
 				GumpAction('0x38920ABD', 22, 100, false);
-				GumpAction('0x38920ABD', 22, 100, false);
-				GumpAction('0x38920ABD', 44, 1500, false);
+				GumpAction('0x38920ABD', 44, 1600, false);
 			}
 			else if (Orion.SkillValue('Carpentry') < 1150)
 			{
 				item = ornateChest;
 				
 				GumpAction('0x38920ABD', 15, 100, false);
-				GumpAction('0x38920ABD', 15, 100, false);
-				GumpAction('0x38920ABD', 65, 1500, false);
+				GumpAction('0x38920ABD', 65, 1800, false);
 			}
 			else if (Orion.SkillValue('Carpentry') < 1200)
 			{
 				item = decorativeBox;
 				
-				GumpAction('0x38920ABD', 15, 100, false);
-				GumpAction('0x38920ABD', 15, 100, false);
-				GumpAction('0x38920ABD', 191, 1500, false);
+				GumpAction('0x38920ABD', 15, 300, false);
+				GumpAction('0x38920ABD', 191, 1800, false);
 			}
 			else
 				return;
 			
 			//Recyle Item
-			for (var i = 0; i <= Orion.Count(item); i++)
-			{
-				if (Orion.InJournal('worn out your tool') || item === ballotBox)
-					break;
+			// for (var i = 0; i <= Orion.Count(item); i++)
+			// {
+			// 	if (Orion.InJournal('worn out your tool') || item === ballotBox)
+			// 		break;
 					
-				GumpAction('0x38920ABD', 14, 200, false);
+			// 	GumpAction('0x38920ABD', 14, 200, false);
 				
-				Orion.WaitForTarget(1000)
-				Orion.TargetType(item, 0, backpack, '', false);
-				Orion.Wait(300);
-			}
+			// 	Orion.WaitForTarget(1000)
+			// 	Orion.TargetType(item, 0, backpack, '', false);
+			// 	Orion.Wait(300);
+			// }
 
 			// Trash Item
-			if (item === ballotBox && Orion.Count(item, any, backpack, 0, false) > 5)
+			if (Orion.Count(item, any, backpack, 0, false) > 5)
 			{
-				Orion.FindType(ballotBox, any, backpack).forEach(function(serial)
+				Orion.FindType(item, any, backpack).forEach(function()
 				{
-					if (Orion.FindObject(serial).Properties() === 'Ballot Box')
-					{
-						Orion.DragItem(serial);
-						Orion.Wait('100');
-						Orion.DropDraggedItem('0x45E995AD');
-						Orion.Wait('500');
-					}
+					Orion.DragItemType(item);
+					Orion.Wait('100');
+					Orion.DropDraggedItem(trashBag);
+					Orion.Wait('500');
 				});
+
+				Orion.RequestContextMenu('0x4B9E379D');
+				Orion.WaitContextMenuID('0x4B9E379D', 0);
 			}
 		}
 		
-		refillBoardsCarp();
-		createNewTools(tool, 4, _metalKeys, 51);
-		
-		if (Orion.Count(boards) < 20)
-		{
-			return;
-		}
+		//refillBoardsCarp();
+		//createNewTools(tool, 4, _metalKeys, 51);
 	}
 }
 

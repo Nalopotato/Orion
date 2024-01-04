@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data version="0" show_shopping_progress_bar="true" max_shop_items="0" max_sell_price="0" shop_delay="450" shop_timeout="5" buy_command="buy" sell_command="sell">
+<data version="0" show_shopping_progress_bar="false" max_shop_items="0" max_sell_price="0" shop_delay="450" shop_timeout="5" buy_command="buy" sell_command="sell">
     <shoplist name="Gems">
         <shopitem enabled="true" graphic="0x0F26" color="any" name="Diamond" count="0" price="0" comment=""/>
         <shopitem enabled="true" graphic="0x0F19" color="any" name="Sapphire" count="0" price="0" comment=""/>
@@ -12,7 +12,7 @@
         <shopitem enabled="true" graphic="0x0F16" color="any" name="Amethyst" count="0" price="0" comment=""/>
     </shoplist>
     <shoplist name="random">
-        <shopitem enabled="true" graphic="0x1EB8" color="any" name="" count="0" price="0" comment=""/>
+        <shopitem enabled="true" graphic="0x0F88" color="0x0000" name="Nightshade" count="9999" price="0" comment=""/>
     </shoplist>
     <shoplist name="Water">
         <shopitem enabled="true" graphic="0x1F9D" color="0x0000" name="A Pitcher Of Water" count="8" price="0" comment=""/>

@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data cast_spells_from_book_if_not_scrolls="false">
     <macro name="AAAAA" looped="true" delay="0.2">
-        <action type="5" convert_type="0" waiting_time="1000" value="32"/>
+        <action type="1" convert_type="0" waiting_time="1000" serial="0x50AA651C" graphic="0x1E22" color="0x04B9"/>
+        <action type="15" convert_type="0" waiting_time="1000" serial="0x0037BF14" id="0x4E40F75A" button="10000"/>
+        <action type="15" convert_type="0" waiting_time="1000" serial="0x0037BF20" id="0x3AF2018D" button="200"/>
+        <action type="3" convert_type="1" waiting_time="1000" serial="0x4588E77C" graphic="0x14F0" color="0x0000"/>
+    </macro>
+    <macro name="AAAAAA" looped="true" delay="0.3">
+        <action type="1" convert_type="1" waiting_time="1000" serial="0x5261BDED" graphic="0x0E9B" color="0x0000"/>
+        <action type="15" convert_type="0" waiting_time="1000" serial="0x006367FA" id="0x38920ABD" button="36"/>
+        <action type="15" convert_type="0" waiting_time="1000" serial="0x0063680E" id="0x38920ABD" button="16"/>
     </macro>
     <macro name="Spell Heal" looped="false" delay="1">
-        <action type="9" convert_type="0" waiting_time="1000" value="[cs touchoflife"/>
+        <action type="8" convert_type="0" waiting_time="1000" value="29"/>
     </macro>
     <macro name="Spell Res" looped="false" delay="1">
-        <action type="9" convert_type="0" waiting_time="1000" value="[cs restoration"/>
-        <action type="16" convert_type="0" waiting_time="1000" serial="0x001B5D5C" graphic="0x0000" color="0x0000"/>
+        <action type="8" convert_type="0" waiting_time="1000" value="11"/>
     </macro>
     <macro name="Spell Heal Self" looped="false" delay="1">
-        <action type="9" convert_type="0" waiting_time="1000" value="[cs touchoflife"/>
-        <action type="3" convert_type="9" waiting_time="1000" serial="0x005CFF32" graphic="0x0190" color="0x847E"/>
+        <action type="8" convert_type="0" waiting_time="1000" value="29"/>
+        <action type="3" convert_type="9" waiting_time="1000" serial="0x00185A05" graphic="0x0190" color="0x847E"/>
     </macro>
     <macro name="Spell Purge" looped="false" delay="1">
         <action type="9" convert_type="0" waiting_time="1000" value="[cs purge"/>
@@ -20,10 +27,10 @@
     <macro name="Spell Smite" looped="false" delay="1">
         <action type="9" convert_type="0" waiting_time="1000" value="[cs smite"/>
     </macro>
-    <macro name="Scissors" looped="false" delay="1">
-        <action type="1" convert_type="0" waiting_time="1000" serial="0x4672D08D" graphic="0x0F9F" color="0x0000"/>
+    <macro name="Scissors" looped="true" delay="0.4">
+        <action type="1" convert_type="0" waiting_time="1000" serial="0x50AA6769" graphic="0x0F9F" color="0x0000"/>
     </macro>
     <macro name="Dagger" looped="false" delay="1">
-        <action type="1" convert_type="0" waiting_time="1000" serial="0x400ECEC5" graphic="0x0EC4" color="0x0000"/>
+        <action type="1" convert_type="1" waiting_time="1000" serial="0x400ECEC5" graphic="0x0EC4" color="0x0000"/>
     </macro>
 </data>

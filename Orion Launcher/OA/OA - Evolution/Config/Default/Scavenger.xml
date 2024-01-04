@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data version="0" size="1">
-    <scavenger name="Scavenge" container="0x4266ADBA" find_list="Gold+Gems" ignore_list="Not use" check_weight_limit="true" started="true" selected="true"/>
+    <scavenger name="Scavenge" container="0x4B9E379C" find_list="Scavenger" ignore_list="Not use" check_weight_limit="true" started="false" selected="true"/>
 </data>

@@ -1,12 +1,11 @@
 //#include Autoload.oajs
 
-var oggLootBagID = '0x4266ADBA'; //ID of your extra lootbag
-var oggBankBagID = '0x4652DA38'; //ID of the bag in your bank box
+var oggBankBagID = '0x51346535'; //ID of the bag in your bank box
 
 function Organize_GoldGems()
 {
 	organizeGoldGems(backpack);
-	organizeGoldGems(oggLootBagID); //Comment this out if you don't have an extra lootbag in your backpack
+	organizeGoldGems(_lootBagID); //Comment this out if you don't have an extra lootbag in your backpack
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

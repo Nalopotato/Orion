@@ -186,21 +186,39 @@ var checkForPlayers = function()
 
 var woolToCloth = function() 
 {
-	//Wool to Wheel
-	var woolCount = Orion.FindType('0x0DF8').length;
-	if (woolCount > 0) {
-		Orion.UseType('0x0DF8', '0xFFFF');
-		if (Orion.WaitForTarget(1000))
-			Orion.TargetObject('0x447DF8EA');
-		Orion.UseType('0x0DF8', '0xFFFF');
-		if (Orion.WaitForTarget(1000))
-			Orion.TargetObject('0x447E18C7');
-	}
+	while (1 > 0) {
+		//Wool to Wheel
+		if (Orion.FindType('0x0DF8|0x0DF9').length > 0) {
+			Orion.UseType('0x0DF8|0x0DF9', '0xFFFF');
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject('0x447DF8EA');
+			Orion.UseType('0x0DF8|0x0DF9', '0xFFFF');
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject('0x447E18C7');
 
-	//Yarn to Loom
-	Orion.UseType('0x0E1D', '0xFFFF');
-	if (Orion.WaitForTarget(1000))
-		Orion.TargetObject('0x40002B85');
-	
-	Orion.Wait(25);
+			Orion.Wait(50);
+		}
+
+		//Yarn to Loom
+		if (Orion.FindType('0x0E1D|0x0FA0').length > 0) {
+			Orion.UseType('0x0E1D|0x0FA0', '0xFFFF');
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject('0x40002B85');
+		}
+		Orion.Wait(50);
+	}
+}
+
+var findCasterKeyQuestItems = function() {
+	//Staves: //882 1174 //653 1172
+
+	//Staff, Rock, Fine Cotton
+	var gfx = '0x1366|0x13F8|0x18DF|0x0DF8';
+	var itemSerial = Orion.FindType(gfx, any, ground, 'item|notblockedontile', 24);
+	var itemObj = Orion.FindObject(itemSerial);
+	if (itemSerial > '') {
+		Orion.Print(35, 'Quest Item nearby: ' + itemObj.X() + ' | ' + itemObj.Y());
+		Orion.AddHighlightArea(itemObj.X()+itemObj.Y(), -1, 'pos', '0x0026', 4, 4, 'static', itemObj.X(), itemObj.Y());
+	}
+	Orion.Wait(200);
 }

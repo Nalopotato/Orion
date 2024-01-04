@@ -1,95 +1,65 @@
 //#include Autoload.oajs
 
 //TODO: Heal immediately if poisoned
+const _bagFacet = -1;
 
 function HealSelf()
 {
-	//Orion.Exec('Refill', true);
-	
 	while (!Player.Dead()) 
 	{
-		//Orion.Print('Hits/Max: ' + Player.Hits() + '/' + Player.MaxHits());
+		// var lootBag = Orion.FindObject(_lootBagID, any, backpack);
+		// if (lootBag != null && lootBag.Map() != _bagFacet) {
+		// 	Orion.UseObject(lootBag.Serial());
+		// 	Orion.Wait(50);
+		// 	Orion.UseObject('0x4B9E37A3');
+		// 	_bagFacet = lootBag.Map();
+		// }
 
 		//Calculate the bandage speed based on player dex
 		var waitTime = (8000 - (Math.ceil((Player.Dex() - 80) / 20)) * 1000);
 		if (Orion.Timer('Heal') == -1) { Orion.SetTimer('Heal'); }
 
-		if ((Player.Hits() < (Player.MaxHits() * 0.95) || Player.Poisoned()) && Orion.Timer('Heal') > waitTime)
+		if ((Player.Hits() < (Player.MaxHits() * 0.98) || Player.Poisoned()) && Orion.Timer('Heal') > waitTime)
 		{
 			Orion.UseType('0x0E21', any);
 			Orion.WaitForTarget(1000);
 			Orion.TargetObject(self);
 			Orion.SetTimer('Heal');
 			Orion.Wait(waitTime);
+		} else {
+			HealPet(true);
 		}
+
+		//findCasterKeyQuestItems();
 		
-		Orion.Wait(100);
-	}
-}
-
-function HealPet()
-{
-	var herp = '0x001DC91C';
-	var derp = '0x0076DF69';
-	while (!Player.Dead()) {
-		Orion.UseType('0x0E21', any);
-		Orion.WaitForTarget(1000);
-		Orion.TargetObject(derp);
-		Orion.Wait(2100);
-	}
-}
-
-function Refill()
-{
-	while (!Player.Dead()) 
-	{
 		Orion.Wait(50);
+	}
+}
+
+function HealPet(runOnce)
+{
+	while (!runOnce) {
+		var serial1 = '0x001E5C7E';
+		var serial2 = '0x001E5DE0';
+		var pet1 = Orion.FindObject(serial1);
+		var pet2 = Orion.FindObject(serial2);
 	
-		//Refill Bandages
-		if (Orion.Count('0x0E21', 'any', backpack) < 20)
-		{
-			if (Player.Weight() < 400) {
-				Orion.ControlAgent('autoloot', 'Main', 'stop'); //Stop Autoloot
-				Orion.Print('26', '***** Cutting Cloth *****');
-				if (Orion.Count('0x1766', 'any', backpack) < 25)
-				{
-					Orion.UseObject(_tailorKeys);
-					GumpAction('0x41F8FC19', 60020, 500, false);
-					GumpAction('0x41F8FC19', 0, 500, true);
-				}
-				
-				Orion.UseType('0x0F9F');
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetType('0x1766');
-					
-				Orion.ControlAgent('autoloot', 'Main', 'start'); //Start Autoloot
-				Orion.Wait(5000);
-			} else {
-				Orion.Print('34', 'OVERWEIGHT - CANNOT GET BANDAGES');
-				if (Orion.Count('0x1766', 'any', backpack) > 0) //Uncut cloth
-				{
-					Orion.ControlAgent('autoloot', 'Main', 'stop'); //Stop Autoloot
-					Orion.UseType('0x0F9F');
-					if (Orion.WaitForTarget(5000))
-						Orion.TargetType('0x1766');
-					Orion.ControlAgent('autoloot', 'Main', 'start'); //Start Autoloot
-				}
-			}
+		if (pet1 != null && pet1.Hits() < pet2.Hits()) {
+			Orion.Print(15, 'Healing Pet1: ' + pet1.Hits());
+	
+			Orion.UseType('0x0E21', any);
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject(serial1);
+			Orion.Wait(2100);
+		} else if (pet2 != null && pet2.Hits() < pet2.MaxHits()) {
+			Orion.Print(15, 'Healing Pet2: ' + pet2.Hits());
+	
+			Orion.UseType('0x0E21', any);
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject(serial2);
+			Orion.Wait(2100);
 		}
-		
-		//Refill Arrows
-		if ((Orion.ObjAtLayer(2) != null && Orion.FindObject(_bow)))
-		{
-			if (Orion.Count('0x0F3F', 'any', backpack) < 8 && Player.Weight() < (Player.MaxWeight() * 0.75))
-			{
-				Orion.ControlAgent('autoloot', 'Main', 'stop'); //Stop Autoloot
-				Orion.Print('Arrows');
-				Orion.UseObject(_woodKeys);
-				GumpAction('0x0A57934D', 60013, 500, false);
-				GumpAction('0x0A57934D', 0, 500, true);
-				Orion.ControlAgent('autoloot', 'Main', 'start'); //Start Autoloot
-			}
-			Orion.Wait(100);
-		}
+	
+		Orion.Wait(25);
 	}
 }

@@ -25,7 +25,7 @@ const _skinableCorpseList = [
 ];
 
 function QuickClaim() {
-	var corpseList = Orion.FindType('0x2006', any, ground, 'inlos|ignoreself', 12);
+	var corpseList = Orion.FindType('0x2006', any, ground, 'inlos|ignoreself', 3);
 	
 	if (corpseList.length > 0)
 	{
@@ -51,7 +51,7 @@ var claimSingle = function(serial) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var claimCorpses = function() {
-	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself', 12);
+	var corpseList = Orion.FindType('0x2006', any, ground, 'ignoreself', 3);
 	
 	if (corpseList.length > 0)
 	{

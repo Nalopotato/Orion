@@ -2,7 +2,6 @@
 
 const _autoSkin = true;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
 const _vamp = true;  // Vampiric Embrace check
-const _bagFacet = 0;
 
 function AutoAttack()
 {
@@ -11,24 +10,10 @@ function AutoAttack()
 	
 	while(!Player.Dead())
 	{
-		var lootBag = Orion.FindObject(_lootBagID, any, backpack);
-		if (lootBag.Map() != _bagFacet) {
-			if (_debugMode) {Orion.Print('26', 'lootBag: ' + lootBag + ' | ' + _bagFacet);}
-			Orion.UseObject(lootBag.Serial());
-			_bagFacet = lootBag.Map();
-		}
-
 		if (Orion.Timer('CW') == -1) { Orion.SetTimer('CW'); }
 		if (Orion.Timer('EoO') == -1) { Orion.SetTimer('EoO'); }
 		if (Orion.Timer('DF') == -1) { Orion.SetTimer('DF'); }
 		//if (Orion.Timer('Ninjitsu') == -1) { Orion.SetTimer('Ninjitsu'); }
-		
-		//Stay mounted
-		// if (!Orion.ObjAtLayer('Mount')) 
-		// {
-		// 	Orion.UseObject(_ethMountID);
-		// 	Orion.Wait(300);
-		// }
 		
 		if (Player.Stam() < (Player.MaxStam() * 0.75) && Orion.Timer('DF') > 1000 && Player.Mana() > 30) {
 			Orion.Say('[cs divinefury');
@@ -61,10 +46,11 @@ function AutoAttack()
 					//Orion.SetTimer('Ninjitsu');
 					//Orion.Wait(100);
 				//}
-				if (!Orion.AbilityStatus('primary'))
-					Orion.UseAbility('primary');
-				//if (!Orion.AbilityStatus('secondary'))
-					//Orion.UseAbility('secondary');
+				if (Orion.ObjAtLayer(2) != null && Orion.ObjAtLayer(2).Serial() == _bow || Orion.GetCurrentAbilityNames()[0] == 'Whirlwind Attack') {
+					if (Orion.AbilityStatus('Primary') === false) { Orion.UseAbility('Primary'); }
+				} else {
+					if (Orion.AbilityStatus('Secondary') === false) { Orion.UseAbility('Secondary'); }
+				}
 				Orion.Wait(25);
 			}
 		}
@@ -77,7 +63,7 @@ function AutoAttack()
 				Orion.Wait(2500);
 			}
 			
-			Orion.Wait(25);
+			Orion.Wait(50);
 		}
 		
 		if (_autoSkin && !Orion.ScriptRunning('SkinCorpse')) { 

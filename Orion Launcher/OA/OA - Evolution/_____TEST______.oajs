@@ -4,84 +4,35 @@ function TEST()
 {
 	while (!Player.Dead()) 
 	{
-		if (Player.Hits() > Player.MaxHits() * 0.4 && Player.Mana() > Player.MaxMana() * 0.25)
-		{
-			Orion.UseSkill('Hiding');
+		Orion.UseType('0x0E9B', '0xFFFF');
+		GumpAction('0x38920ABD', 36, 100, false);
+		GumpAction('0x38920ABD', 16, 100, false);
 
-			if (Orion.SkillValue('Magery') <= 485) {
-				Orion.Cast(18); //FB
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2000);
-			} else if (Orion.SkillValue('Magery') <= 600) {
-				Orion.Cast(29); //GH
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2500);
-			} else if (Orion.SkillValue('Magery') <= 800) {
-				Orion.Cast(48); //Reveal
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2500);
-			} else if (Orion.SkillValue('Magery') < Orion.SkillValue('Magery', 'cap')) {
-				Orion.Cast(54); //Mass Dispel
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2500);
-			}
-
-			if (Orion.SkillValue('Chivalry') <= 500) {
-				Orion.Cast(204);
-				Orion.Wait(1200);
-			} else if (Orion.SkillValue('Chivalry') <= 600) {
-				Orion.Cast(206);
-				Orion.Wait(1200);
-			} else if (Orion.SkillValue('Chivalry') <= 700) {
-				Orion.Cast(207);
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(1200);
-			} else if (Orion.SkillValue('Chivalry') < Orion.SkillValue('Chivalry', 'cap')) {
-				Orion.Cast(208);
-				Orion.Wait(1200);
-			}
-
-			if (Orion.SkillValue('Necromancy') <= 500) {
-				Orion.Cast(108); //Mind Rot
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2500);
-			} else if (Orion.SkillValue('Necromancy') <= 650) {
-				Orion.Cast(110); //Poison Strike
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2500);
-			} else if (Orion.SkillValue('Necromancy') <= 800) {
-				Orion.Cast(115); //Wither
-				Orion.Wait(2500);
-			} else if (Orion.SkillValue('Necromancy') < Orion.SkillValue('Necromancy', 'cap')) {
-				Orion.Cast(107); //Lich Form
-				Orion.Wait(2500);
-			}
-		}
-		Orion.Wait(20);
+		Orion.UseSkill('30'); //Poisoning
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetType('0x0F0A', '0xFFFF');
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetObject('0x4B9E37A0');
 	}
 }
 
 function TEST2() 
 {
 	while (1 > 0) {
-		woolToCloth();
+		findCasterKeyQuestItems();
 	}
 }
 
-var findCasterKeyQuestItems = function(graphic, color) {
-	var itemSerial = Orion.FindType(graphic, color, ground, 'item|notblockedontile', 24);
-	var itemObj = Orion.FindObject(itemSerial);
-	if (itemSerial > '') {
-		Orion.Print(35, 'Quest Item nearby: ' + itemObj.X() + ' | ' + itemObj.Y());
+function TEST3() 
+{
+	while (1 > 0) {
+		for (var i = 0; i < 450; i++) {
+			Orion.UseSkill('9');
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject('self');
+		}
+		Orion.UseType('0x0E9D');
 	}
-	Orion.Wait(100);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,10 +63,12 @@ var getPlayerNames = function() {
 	}
 }
 
-
-
-
-
-
-
-
+var getGumpString = function() {
+	Orion.QuestsGump();
+	GumpAction('0x42E5C2A4', 60000, 300, false);
+	GumpAction('0x6C5EFD3F', 60014, 300, false);
+	
+	var gump = Orion.GetGump('lastgump');
+	var text = gump.TextList();
+	Orion.Print(text[7].substring(61, 64));
+}

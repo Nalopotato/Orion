@@ -24,7 +24,8 @@ const _lootBagID = '0x4B9E379C';
 //const _ethMountID = '0x467FC830';
 //const _bagOfSendingID = '0x42F8FCE3';
 
-const _bow = '0x4022045E';
+//const _bow = '0x4302B1D0';
+const _bow = '0x524C2D49';
 
 function AutoStart()
 {

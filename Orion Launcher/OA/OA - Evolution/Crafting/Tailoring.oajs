@@ -4,7 +4,7 @@ function Tailoring()
 {
 	while (!Player.Dead()) 
 	{
-		if (Orion.SkillValue('Tailoring') <= 490) {
+		if (Orion.SkillValue('Tailoring') <= 490) { //Short Pants
 			Orion.UseType('0x0F9D', '0xFFFF', self, true);
 			GumpAction('0x38920ABD', 15, 300, false);
 			GumpAction('0x38920ABD', 2, 1000, false);
@@ -12,7 +12,7 @@ function Tailoring()
 			Orion.UseType('0x0F9F', '0xFFFF');
 			if (Orion.WaitForTarget(1000))
 				Orion.TargetType('0x152E', 0, backpack);
-		} else if (Orion.SkillValue('Tailoring') <= 560) {
+		} else if (Orion.SkillValue('Tailoring') <= 600) { //Fur Cape
 			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
 			GumpAction('0x38920ABD', 8, 300, false);
 			GumpAction('0x38920ABD', 72, 1000, false);
@@ -20,13 +20,65 @@ function Tailoring()
 			Orion.UseType('0x0F9F', '0xFFFF', backpack, true);
 			if (Orion.WaitForTarget(1000))
 				Orion.TargetType('0x230A', 0, backpack);
+		} else if (Orion.SkillValue('Tailoring') < 750) { //Fur Boots
+			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
+			GumpAction('0x38920ABD', 29, 300, false);
+			GumpAction('0x38920ABD', 2, 1000, false);
+
+			Orion.UseType('0x0F9F', '0xFFFF', backpack, true);
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetType('0x2307', 0, backpack);
+		} else if (Orion.SkillValue('Tailoring') < 996) { //Oil Cloth
+			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
+			GumpAction('0x38920ABD', 22, 300, false);
+			GumpAction('0x38920ABD', 79, 1000, false);
+
+			Orion.UseType('0x0F9F', '0xFFFF', backpack, true);
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetType('0x175D', '0x07D1', backpack);
+		} else if (Orion.SkillValue('Tailoring') < Orion.SkillValue('Tailoring', 'cap')) { //Elven Shirt
+			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
+			GumpAction('0x38920ABD', 8, 300, false);
+			GumpAction('0x38920ABD', 142, 1000, false);
+
+			Orion.UseType('0x0F9F', '0xFFFF', backpack, true);
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetType('0x3176', 0, backpack);
+		} else {
+			Orion.ToggleScript('Tailoring'); //Stop the script
 		}
+
 		Orion.Wait(25);
 	}
 }
 
-function Wool() {
-	while (1 > 0) {
-		woolToCloth();
+function Wool() 
+{
+	woolToCloth();
+}
+
+function Cotton() {
+	while(!Player.Dead())
+	{
+		var gfx = '0x0C51|0x0C52|0x0C53|0x0C54';
+		var serial = Orion.FindType(gfx, any, ground, 'item|notblockedontile', 2);
+
+		var itemObj = Orion.FindObject(serial);
+		if (serial > '') {
+			Orion.UseObject(serial);
+			Orion.AddHighlightArea(itemObj.X()+itemObj.Y(), -1, 'pos', '0x0026', 0, 0);
+		}
+		Orion.Wait(200);
 	}
 }
+
+// var refillCloth = function() 
+// {
+// 	if (Orion.Count('0x1767') < 20 && Orion.Count('0x1766') < 20) { //Cloth and Cut Cloth
+// 		Orion.Print(15, 'Refill Cloth');
+
+// 		Orion.UseObject('0x51DE25C2');
+// 		Orion.Wait(250);
+// 		GumpAction('0x06ABCE12', 14, 1000, false);
+// 	}
+// }

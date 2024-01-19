@@ -2,13 +2,52 @@
 
 // ***************************** Main Config *****************************
 const _autoMove = true;  //Change to false if you want to move manually
-const _forge = '0x4290B27D';  //Serial of your Mobile Forge
+const _forge = '0x42096759';  //Serial of your Mobile Forge
 //
 // *************************** Craft tool config ****************************
 const _createNewTools = true;
 const _toolAmt = 4; //Amount of tools to create per iteration
 const _hookID = 114; //The Gump ID of the tool you want to create.  Pickaxe is 114.  Hatchet is 30
 // ********************************************************************
+
+function Mining2()
+{
+	while (!Player.Dead()) 
+	{
+		Orion.UseObject('0x46E69CD5');
+		if (Orion.WaitForTarget(1000))
+			Orion.TargetTileRelative('any', 0, 1, 'any');
+		Orion.Wait(100);
+		
+		//Smelt
+		Orion.UseType('0x19B9');
+		if (Orion.WaitForTarget(600))
+			Orion.TargetObject('0x42096759');
+		Orion.Wait(100);
+		
+		Orion.UseType('0x19B8');
+		if (Orion.WaitForTarget(600))
+			Orion.TargetObject('0x42096759');
+		Orion.Wait(100);
+		
+		Orion.UseType('0x19BA');
+		if (Orion.WaitForTarget(600))
+			Orion.TargetObject('0x42096759');
+		Orion.Wait(100);
+		
+		Orion.UseType('0x19B7');
+		if (Orion.WaitForTarget(600))
+			Orion.TargetObject('0x42096759');
+		Orion.Wait(100);
+		
+		//Storage
+		if (Player.Weight() > 450) {
+			Orion.UseObject('0x42087C61');
+			Orion.Wait(200);
+			GumpAction('0x06ABCE12', 31, 300, false);
+		}
+	}
+}
 
 function Mining() 
 {

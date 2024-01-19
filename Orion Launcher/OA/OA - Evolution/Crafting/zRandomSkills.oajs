@@ -4,44 +4,187 @@ function TrainSkill()
 {
 	while (!Player.Dead()) 
 	{
-		AlchemyPoisoning();
-		TrainCasting();
+		alchemyPoisoning();
+		Orion.Wait(5000);
 	}
 }
 
-function AlchemyPoisoning()
+var spellweaving = function()
 {
-	while (Orion.SkillValue('Poisoning') < Orion.SkillValue('Poisoning', 'cap') && Orion.SkillValue('Alchemy') < Orion.SkillValue('Alchemy', 'cap')) {
-		Orion.UseType('0x0E9B', '0xFFFF');
-		GumpAction('0x38920ABD', 36, 1000, false); //"Poison" type
+	while (Player.Mana() > 25) {
+		if (Orion.SkillValue('Spellweaving') < 670) { //Arcane Emp. and Gift of Life
+			Orion.Cast('616');
+			Orion.Wait(4100);
+			Orion.Cast('615');
+			if (Orion.WaitForTarget(5000))
+				Orion.TargetObject('self');
+		}
+		
+		if (Orion.SkillValue('Spellweaving') < 1035) { //Wildfire
+			Orion.Cast('610');
+			if (Orion.WaitForTarget(3000))
+				Orion.TargetObject('self');
+		}
+		
+		if (Orion.SkillValue('Spellweaving') < Orion.SkillValue('Spellweaving', 'cap')) { //WoD
+			Orion.Cast('614');
+			if (Orion.WaitForTarget(3000))
+				Orion.TargetObject('self');
+		}
+	}
+	
+	while (Player.Mana() < Player.MaxMana() * 0.95) {
+		Orion.UseSkill('Meditation');
+		Orion.Wait(2000);
+	}
+}
 
-		if (Orion.SkillValue('Poisoning') < 400) { //Lesser Poison
-			GumpAction('0x38920ABD', 2, 1000, false);
-		} else if (Orion.SkillValue('Poisoning') < 700) { //Poison
-			GumpAction('0x38920ABD', 9, 1000, false);
-		} else if (Orion.SkillValue('Poisoning') < 925) { //Greater Poison
-			GumpAction('0x38920ABD', 16, 1000, false);
-		} else if (Orion.SkillValue('Poisoning') < Orion.SkillValue('Poisoning', 'cap')) { //Deadly Poison
-			GumpAction('0x38920ABD', 23, 1000, false);
-		} else {
-			Orion.ToggleScript('AlchemyPoisoning');
+var inscription = function()
+{
+	while (Orion.SkillValue('Inscription') < 535) { //Poison
+		Orion.UseType('0x0FBF', '0xFFFF');
+		Orion.Wait(200);
+		GumpAction('0x38920ABD', 15, 200, false);
+		GumpAction('0x38920ABD', 23, 200, false);
+		Orion.Wait(1400);
+		
+		if (Player.Mana() < 20) {
+			while (Player.Mana() < Player.MaxMana() * 0.9) {
+				Orion.UseSkill('Meditation');
+				Orion.Wait(4000);
+			}
+		}
+	}
+	while (Orion.SkillValue('Inscription') < 960) { //Reveal
+		Orion.UseType('0x0FBF', '0xFFFF');
+		Orion.Wait(200);
+		GumpAction('0x38920ABD', 36, 200, false);
+		GumpAction('0x38920ABD', 51, 200, false);
+		Orion.Wait(1400);
+		
+		if (Player.Mana() < 20) {
+			while (Player.Mana() < Player.MaxMana() * 0.9) {
+				Orion.UseSkill('Meditation');
+				Orion.Wait(4000);
+			}
+		}
+	}
+	while (Orion.SkillValue('Inscription') < 1050) { //FS
+		Orion.UseType('0x0FBF', '0xFFFF');
+		Orion.Wait(200);
+		GumpAction('0x38920ABD', 43, 200, false);
+		GumpAction('0x38920ABD', 16, 200, false);
+		Orion.Wait(1400);
+		
+		if (Player.Mana() < 25) {
+			while (Player.Mana() < Player.MaxMana() * 0.9) {
+				Orion.UseSkill('Meditation');
+				Orion.Wait(4000);
+			}
+		}
+	}
+	while (Orion.SkillValue('Inscription') < 1100) { //Res
+		Orion.UseType('0x0FBF', '0xFFFF');
+		Orion.Wait(200);
+		GumpAction('0x38920ABD', 50, 200, false);
+		GumpAction('0x38920ABD', 16, 200, false);
+		Orion.Wait(1400);
+		
+		if (Player.Mana() < 25) {
+			while (Player.Mana() < Player.MaxMana() * 0.9) {
+				Orion.UseSkill('Meditation');
+				Orion.Wait(4000);
+			}
+		}
+	}
+}
+
+var tinkering = function()
+{
+	//Tongs
+	while (Orion.SkillValue('Tinkering') < 850) {
+		Orion.UseType('0x1EB8', '0xFFFF');
+		Orion.Wait(100);
+		GumpAction('0x38920ABD', 86, 100, false);
+		Orion.Wait(1400);
+	
+		var findItems0 = Orion.FindType('0x0FBB', '0xFFFF', 'backpack', 'item|fast');
+		if (Orion.Count('0x0FBB') > 0)
+		{
+			Orion.DragItem(findItems0[0], 1);
+			Orion.Wait('200');
+		}
+		Orion.DropDraggedItem('0x4B9E379D');
+		Orion.Wait('200');
+	}
+	
+	//Lockpick
+	while (Orion.SkillValue('Tinkering') < 950) {
+		Orion.UseType('0x1EB8', '0xFFFF');
+		Orion.Wait(100);
+		GumpAction('0x38920ABD', 121, 100, false);
+		Orion.Wait(1400);
+	}
+	
+	Orion.UseType('0x1EB8', '0xFFFF');
+	Orion.Wait(100);
+	GumpAction('0x38920ABD', 29, 100, false); //Get to Misc menu
+	
+	//Spyglass
+	while (Orion.SkillValue('Tinkering') < Orion.SkillValue('Tinkering', 'cap')) {
+		GumpAction('0x38920ABD', 37, 100, false);
+		Orion.Wait(1350);
+		
+		var findItems0 = Orion.FindType('0x14F5', '0xFFFF', 'backpack', 'item|fast');
+		if (Orion.Count('0x14F5') > 0)
+		{
+			Orion.DragItem(findItems0[0], 1);
+			Orion.Wait('200');
+		}
+		Orion.DropDraggedItem('0x4B9E379D');
+		Orion.Wait('200');
+	}
+}
+
+var alchemyPoisoning = function()
+{
+	while (Orion.SkillValue('Poisoning', 'base') < Orion.SkillValue('Poisoning', 'cap') || Orion.SkillValue('Alchemy', 'base') < Orion.SkillValue('Alchemy', 'cap')) {
+		if (Orion.Count('0x0F0A') < 1)
+		{
+			Orion.UseType('0x0E9B', '0xFFFF');
+			GumpAction('0x38920ABD', 36, 1000, false); //"Poison" type
+	
+			if (Orion.SkillValue('Poisoning', 'base') < 400) { //Lesser Poison
+				GumpAction('0x38920ABD', 2, 1000, false);
+			} else if (Orion.SkillValue('Poisoning', 'base') < 700) { //Poison
+				GumpAction('0x38920ABD', 9, 1000, false);
+			} else if (Orion.SkillValue('Poisoning', 'base') < 960 || Orion.SkillValue('Alchemy', 'base') < 1040) { //Greater Poison
+				GumpAction('0x38920ABD', 16, 1000, false);
+			} else if (Orion.SkillValue('Poisoning', 'base') < Orion.SkillValue('Poisoning', 'cap')) { //Deadly Poison
+				GumpAction('0x38920ABD', 23, 1000, false);
+			} else {
+				Orion.ToggleScript('AlchemyPoisoning');
+			}
+	
+			Orion.Wait(3000);
 		}
 
-		Orion.Wait(3000);
-
-		while (Orion.Count('0x0F0A') > 0) {
+		while (Orion.Count('0x0F0A') > 0 && Orion.SkillValue('Poisoning', 'base') < 1200) {
+			Orion.Print(15, 'Poisoning');
 			Orion.UseSkill('Poisoning');
-			if (Orion.WaitForTarget(300))
-				Orion.TargetType('0x0F0A', '0xFFFF'); //Potion
-			if (Orion.WaitForTarget(300))
-				Orion.TargetType('0x0F52', '0xFFFF'); //Dagger
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetType('0x0F0A', 'any'); //Potion
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetType('0x0F51', '0x0455'); //Dagger
 			
 			Orion.Wait(50);
 		}
+		
+		Orion.Wait(50);
 	}
 }
 
-var stealthTracking = function() 
+var stealthTracking = function()
 {
 	while (Orion.SkillValue('Stealth') < Orion.SkillValue('Stealth', 'cap')) {
 		Orion.UseSkill('21');
@@ -49,8 +192,9 @@ var stealthTracking = function()
 		Orion.SetTimer('Stealth');
 		
 		while (Player.Hidden()) {
-			Orion.WalkTo(286, 646, any, 0, 255, 0, 1);
+			Orion.WalkTo(285, 646, any, 0, 255, 0, 1);
 			Orion.WalkTo(281, 646, any, 0, 255, 0, 1);
+			Orion.Wait(20);
 		}
 
 		// if (Orion.SkillValue('Stealth') >= 590 && Orion.SkillValue('Stealth') < 650) {
@@ -71,55 +215,58 @@ var stealthTracking = function()
 	}
 }
 
-function TrainCasting()
+var trainCasting = function()
 {
 	// if (Orion.SkillValue('Hiding') < Orion.SkillValue('Hiding', 'cap')) {
 	// 	Orion.UseSkill('Hiding');
 	// }
 
-	while (Orion.SkillValue('Magery') < Orion.SkillValue('Magery', 'cap') &&
-	Orion.SkillValue('Chivalry') < Orion.SkillValue('Chivalry', 'cap') &&
-	Orion.SkillValue('Necromancy') < Orion.SkillValue('Necromancy', 'cap')) {
-
-		if (Player.Hits() > Player.MaxHits() * 0.4 && Player.Mana() > Player.MaxMana() * 0.25)
+	while (Orion.SkillValue('Magery') < Orion.SkillValue('Magery', 'cap') ||
+	Orion.SkillValue('Chivalry') < Orion.SkillValue('Chivalry', 'cap') ||
+	Orion.SkillValue('Necromancy') < Orion.SkillValue('Necromancy', 'cap'))
+	{
+		if (Player.Mana() > Player.MaxMana() * 0.25)
 		{
-			if (Orion.SkillValue('Magery') <= 485) {
-				Orion.Cast(18); //FB
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2000);
-			} else if (Orion.SkillValue('Magery') <= 600) {
-				Orion.Cast(29); //GH
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2500);
-			} else if (Orion.SkillValue('Magery') <= 800) {
-				Orion.Cast(48); //Reveal
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2500);
-			} else if (Orion.SkillValue('Magery') < Orion.SkillValue('Magery', 'cap')) {
-				Orion.Cast(54); //Mass Dispel
-				if (Orion.WaitForTarget(5000))
-					Orion.TargetObject('self');
-				Orion.Wait(2500);
-			}
-
-			// if (Orion.SkillValue('Chivalry') <= 500) {
-			// 	Orion.Cast(204);
-			// 	Orion.Wait(1200);
-			// } else if (Orion.SkillValue('Chivalry') <= 600) {
-			// 	Orion.Cast(206);
-			// 	Orion.Wait(1200);
-			// } else if (Orion.SkillValue('Chivalry') <= 700) {
-			// 	Orion.Cast(207);
+			// if (Orion.SkillValue('Magery') <= 485) {
+			// 	Orion.Cast(18); //FB
 			// 	if (Orion.WaitForTarget(5000))
 			// 		Orion.TargetObject('self');
-			// 	Orion.Wait(1200);
-			// } else if (Orion.SkillValue('Chivalry') < Orion.SkillValue('Chivalry', 'cap')) {
-			// 	Orion.Cast(208);
-			// 	Orion.Wait(1200);
+			// 	Orion.Wait(2000);
+			// } else if (Orion.SkillValue('Magery') <= 600) {
+			// 	Orion.Cast(29); //GH
+			// 	if (Orion.WaitForTarget(5000))
+			// 		Orion.TargetObject('self');
+			// 	Orion.Wait(2500);
+			// } else if (Orion.SkillValue('Magery') <= 800) {
+			// 	Orion.Cast(48); //Reveal
+			// 	if (Orion.WaitForTarget(5000))
+			// 		Orion.TargetObject('self');
+			// 	Orion.Wait(2500);
+			// } else if (Orion.SkillValue('Magery') < 1050) {
+			// 	Orion.Cast(54); //Mass Dispel
+			// 	if (Orion.WaitForTarget(5000))
+			// 		Orion.TargetObject('self');
+			// 	Orion.Wait(2500);
+			// } else if (Orion.SkillValue('Magery') < Orion.SkillValue('Magery', 'cap')) {
+			// 	Orion.Cast(57); //EQ
+			// 	Orion.Wait(2500);
 			// }
+
+			if (Orion.SkillValue('Chivalry') <= 500) {
+				Orion.Cast(204);
+				Orion.Wait(1200);
+			} else if (Orion.SkillValue('Chivalry') <= 600) {
+				Orion.Cast(206);
+				Orion.Wait(1200);
+			} else if (Orion.SkillValue('Chivalry') <= 700) {
+				Orion.Cast(207);
+				if (Orion.WaitForTarget(5000))
+					Orion.TargetObject('self');
+				Orion.Wait(1200);
+			} else if (Orion.SkillValue('Chivalry') < 1150) {
+				Orion.Cast(208); //Noble Sacrifice
+				Orion.Wait(1200);
+			}
 
 			// if (Orion.SkillValue('Necromancy') <= 500) {
 			// 	Orion.Cast(108); //Mind Rot
@@ -142,9 +289,9 @@ function TrainCasting()
 			// 	Orion.Wait(2500);
 			// }
 
-			if (Orion.SkillValue('Magery') < Orion.SkillValue('Magery', 'cap') &&
-			Orion.SkillValue('Chivalry') < Orion.SkillValue('Chivalry', 'cap') &&
-			Orion.SkillValue('Necromancy') < Orion.SkillValue('Necromancy', 'cap')) {
+			if (Orion.SkillValue('Magery') == Orion.SkillValue('Magery', 'cap') &&
+			Orion.SkillValue('Chivalry') == Orion.SkillValue('Chivalry', 'cap') &&
+			Orion.SkillValue('Necromancy') == Orion.SkillValue('Necromancy', 'cap')) {
 				Orion.ToggleScript('TrainSkill'); //Stop the script
 			}
 		} else {

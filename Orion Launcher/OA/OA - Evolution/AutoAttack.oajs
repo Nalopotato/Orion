@@ -1,7 +1,11 @@
 //#include Autoload.oajs
 
-const _autoSkin = true;  // Set true if you want to skin mobs (and loot leather/wool/etc.)
-const _vamp = true;  // Vampiric Embrace check
+const _autoSkin = true;
+const _findTargets = false;
+const _autoCleanup = false;
+const _vamp = true;
+
+const _findRange = 12;
 
 function AutoAttack()
 {
@@ -13,7 +17,7 @@ function AutoAttack()
 		if (Orion.Timer('CW') == -1) { Orion.SetTimer('CW'); }
 		if (Orion.Timer('EoO') == -1) { Orion.SetTimer('EoO'); }
 		if (Orion.Timer('DF') == -1) { Orion.SetTimer('DF'); }
-		//if (Orion.Timer('Ninjitsu') == -1) { Orion.SetTimer('Ninjitsu'); }
+		if (Orion.Timer('Ninjitsu') == -1) { Orion.SetTimer('Ninjitsu'); }
 		
 		if (Player.Stam() < (Player.MaxStam() * 0.75) && Orion.Timer('DF') > 1000 && Player.Mana() > 30) {
 			Orion.Say('[cs divinefury');
@@ -41,17 +45,21 @@ function AutoAttack()
 			
 			if (Player.Mana() > (Player.MaxMana() * 0.6))
 			{
-				//if (Orion.Timer('Ninjitsu') > 3000) {
-					//Orion.Cast('502');
-					//Orion.SetTimer('Ninjitsu');
-					//Orion.Wait(100);
-				//}
-				if (Orion.ObjAtLayer(2) != null && Orion.ObjAtLayer(2).Serial() == _bow || Orion.GetCurrentAbilityNames()[0] == 'Whirlwind Attack') {
+				if ((Orion.ObjAtLayer(2) != null && Orion.ObjAtLayer(2).Serial() == _bow) || Orion.GetCurrentAbilityNames()[0] == 'Whirlwind Attack') {
 					if (Orion.AbilityStatus('Primary') === false) { Orion.UseAbility('Primary'); }
 				} else {
 					if (Orion.AbilityStatus('Secondary') === false) { Orion.UseAbility('Secondary'); }
 				}
 				Orion.Wait(25);
+
+				if (Player.Mana() > (Player.MaxMana() * 0.8))
+				{
+					if (Orion.Timer('Ninjitsu') > 2000 && Orion.SpellStatus(502) == false) {
+						Orion.Cast('502'); //Deathstrike
+						Orion.SetTimer('Ninjitsu');
+						Orion.Wait(20);
+					}
+				}
 			}
 		}
 		else //Chill - no enemies
@@ -63,35 +71,37 @@ function AutoAttack()
 				Orion.Wait(2500);
 			}
 			
-			Orion.Wait(50);
+			Orion.Wait(100);
 		}
 		
-		if (_autoSkin && !Orion.ScriptRunning('SkinCorpse')) { 
+		if (_findTargets) {
+			Orion.Exec('FindTargetsToKill', true, 1500);
+		}
+		
+		if (_autoCleanup) {
+			Orion.Exec('QuickClaim', true);
+		}
+		
+		if (_autoSkin) { 
 			Orion.Exec('SkinCorpse', true);
 		}
 
-		if (Player.Weight() > 350) {
-			//keyStorage();
+		if (Player.Weight() > 380) {
+			keyStorage();
 		}
 
 		//if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > (Player.MaxWeight() * 0.5)) {
-		// if (Orion.InJournal('That container cannot hold more', 'sys') || Player.Weight() > 375) {
-		// 	if (_debugMode) {Orion.Print(24, 'Storage Mgmt');}
-
-		// 	sendGold(_bagOfSendingID, _lootBagID, 8000);
-		// 	Orion.Wait(25);
-		// 	Orion.ClearJournal('That container cannot hold more', 'sys');
 		// }
 	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var findTargetsToKill = function(timeout) {
-
-	var mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', '8', 'gray|criminal|orange|red');
-	Orion.Wait(1000);
+function FindTargetsToKill(timeout)
+{
+	var mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', _findRange, 'gray|criminal|orange|red');
+	Orion.Wait(2000);
 	
-	if (mobList.length > 0) { //Orion.Print(15, '# of mobs: ' + mobList.length);
+	if (mobList.length > 0) {
 		Orion.SetTimer('KillTimer');
 
 		if (Orion.CheckAgent('autoloot', 'Main', 'started')) {
@@ -107,14 +117,14 @@ var findTargetsToKill = function(timeout) {
 				PathTo('any', mobObj.X(), mobObj.Y(), 1);
 			
 			if (Orion.Timer('KillTimer') > timeout) {
-				Orion.Print(33, 'TIMEOUT');
+				//Orion.Print(33, 'TIMEOUT');
 				break;
 			}
 
-			mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', '8', 'gray|criminal|orange|red');
+			mobList = Orion.FindType(any, any, ground, 'near|mobile|live|ignorefriends|ignoreself', _findRange, 'gray|criminal|orange|red');
 			mobObj = Orion.FindObject(mobList[0]);
 			
-			Orion.Wait(100);
+			Orion.Wait(25);
 		}
 	} else {
 		return;

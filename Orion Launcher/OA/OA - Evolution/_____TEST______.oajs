@@ -2,37 +2,37 @@
 
 function TEST()
 {
-	while (!Player.Dead()) 
-	{
-		Orion.UseType('0x0E9B', '0xFFFF');
-		GumpAction('0x38920ABD', 36, 100, false);
-		GumpAction('0x38920ABD', 16, 100, false);
-
-		Orion.UseSkill('30'); //Poisoning
-		if (Orion.WaitForTarget(1000))
-			Orion.TargetType('0x0F0A', '0xFFFF');
-		if (Orion.WaitForTarget(1000))
-			Orion.TargetObject('0x4B9E37A0');
+	while (1 > 0) {
+		while (Player.Hits() > 50) {
+			Orion.Cast('13');
+			if (Orion.WaitForTarget(3000))
+				Orion.TargetObject('0x47148399');
+			Orion.Wait(100);
+			Orion.UseSkill('48');
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject('0x47148399');
+		}
+		Orion.Wait(5000);
 	}
 }
 
 function TEST2() 
 {
-	while (1 > 0) {
-		findCasterKeyQuestItems();
-	}
+	const one = "12";
+	const two = "2'S";
+	const three = "35";
+	const four = "5'W";
+
+	var coords = Orion.SextantToXY(one + 'o ' + two + ' ' +  three + 'o ' +  four, 1);
+	Orion.Print(15, 'Coords: ' + coords.X() + ' ' + coords.Y());
+	Orion.Wait(200);
+	
+	PathTo('any', coords.X(), coords.Y(), 1);
 }
 
 function TEST3() 
 {
-	while (1 > 0) {
-		for (var i = 0; i < 450; i++) {
-			Orion.UseSkill('9');
-			if (Orion.WaitForTarget(1000))
-				Orion.TargetObject('self');
-		}
-		Orion.UseType('0x0E9D');
-	}
+	
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////

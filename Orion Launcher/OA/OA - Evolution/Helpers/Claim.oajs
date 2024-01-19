@@ -2,11 +2,14 @@
 
 const _skinableCorpseList = [
 	'A Sheep Corpse',
-	'A Bird Corpse',
-	'An Eagle Corpse',
+	//'A Bird Corpse',
+	//'An Eagle Corpse',
 	'A Bear Corpse',
 	'A Grizzly Bear Corpse',
 	'A Polar Bear Corpse',
+	'A Grey Wolf Corpse',
+	'A Timber Wolf Corpse',
+	'A Dire Wolf Corpse',
 	'A Deer Corpse',
 	'A Bull Corpse',
 	'A Horse Corpse',
@@ -21,17 +24,20 @@ const _skinableCorpseList = [
 	'A White Wyrm Corpse',
 	'An Ice Fiend Corpse',
 	'A Shadow Wyrm Corpse',
-	'A Cow Corpse'
+	'A Cow Corpse',
+	'A Gorilla Corpse'
 ];
 
 function QuickClaim() {
 	var corpseList = Orion.FindType('0x2006', any, ground, 'inlos|ignoreself', 3);
+	var friend = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '8', 'gray|criminal|orange|red');
 	
 	if (corpseList.length > 0)
 	{
 		for (var i = 0; i < corpseList.length; i++)
 		{
 			claimSingle(corpseList[i]);
+			Orion.Wait(20);
 		}
 	}
 	Orion.CancelTarget();

@@ -5,6 +5,6 @@
     <object name="internal_mm_model" id="0x46E300A6"/>
     <object name="internal_mm_receiver" id="0x45E995A6"/>
     <object name="Target" id="0x001DC91C"/>
+    <object name="secure" id="0x4B9E3799"/>
     <object name="Person" id="0x00185A05"/>
-    <object name="secure" id="0x4B9E379C"/>
 </data>

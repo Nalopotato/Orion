@@ -1,0 +1,77 @@
+//#include Autoload.oajs
+
+const _questions = [
+    'What color is an Orange',
+    'What color is a Banana',
+    'How many moons circle the earth',
+    'What is the largest animal? cat, dog, unicorn, elephant',
+    'What type of damage is Flame Strike?',
+    'If you had 1000 gold and you gave 500 away how much would you have remaining?',
+    'How many quarters are there in a dollar?',
+    'Pick the number closest to 100?',
+    'What is the number eight?',
+    'How many months in a year?',
+    'What is the first letter in the word "ultima"',
+    'What game are you playing?',
+    'What is the shape of a stop sign?',
+    'What is the number three?',
+    'How many banks are in Britain?',
+    'If you were wandering in the woods, which creature could you tame and use as a mount?',
+    'Does UO Evolution have a WIKI?',
+    'How many seconds are there in a minute?',
+    'What is the third month of the year?',
+    'Which is largest?',
+    'are in this "6759253"?',
+    'How many fingers on one hand?',
+    'What is the number eight?',
+    'What is the last letter of the english alphabet?',
+    'What is the opposite of up?',
+    'What is two plus three?'
+];
+
+const _answers = [
+    'Orange',
+    'Yellow',
+    '1',
+    'elephant',
+    'Fire',
+    '500',
+    '4',
+    '99',
+    '8',
+    '12',
+    'u',
+    'Ultima',
+    'octagon',
+    '3',
+    '2',
+    'Horse',
+    'yes',
+    '60',
+    'March',
+    'ocean',
+    '2',
+    '5',
+    '8',
+    'z',
+    'down',
+    'Five'
+];
+
+const obj = {};
+
+function AFK_Check(){
+    for(var i = 0; i < _questions.length; i++){
+        obj[_questions[i]] = _answers[i];
+    }
+
+    //Detect a gump popup
+    //Validate that it's an AFK check
+    //Pause other running scripts
+
+    //Grab the gump text
+    //Do a text match on the list to find the question being asked
+    //Gump response on the button that needs to be clicked
+
+    //Activate paused scripts
+}

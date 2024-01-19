@@ -1,3 +1,6 @@
+PoisonResistance
+const
+InfoBuff
 AbilityStatus
 Abyss
 Acquire
@@ -286,7 +289,6 @@ InParty
 InRange
 Index
 Info
-InfoBuff
 InfoContextMenu
 InfoGump
 InfoMenu
@@ -395,7 +397,6 @@ Play
 PlayMacro
 PlayWav
 Player
-PoisonResistance
 Poisoned
 PrevMessage
 Price
@@ -663,7 +664,6 @@ backpack
 break
 case
 catchbag
-const
 continue
 dressbag
 else

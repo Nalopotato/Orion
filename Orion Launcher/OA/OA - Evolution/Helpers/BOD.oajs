@@ -1,0 +1,56 @@
+//#include C:/Orion Evolution/Orion Launcher/OA/Autoload.oajs
+
+function BOD_Check()
+{
+    Orion.UseObject('0x477B3761');
+    Orion.Wait(300);
+    GumpAction('0x554B87F3', 85, 1500, false);
+
+    PathTo(2037, 2041, 2900, 0);
+
+    Orion.RequestContextMenu('0x002E2F12');
+	Orion.WaitContextMenuID('0x002E2F12', 4); Orion.Wait(100);
+    GumpAction('0x307B71A8', 1, 600, false);
+    GumpAction('0xBE0DAD1E', 1, 600, false);
+    GumpAction('0x9BADE6EA', 1, 600, false);
+    GumpAction('0xD6BCF63A', 1, 600, false);
+
+    Orion.RequestContextMenu('0x002E2F20');
+    Orion.WaitContextMenuID('0x002E2F20', 3); Orion.Wait(100);
+    GumpAction('0x307B71A8', 1, 600, false);
+    GumpAction('0xBE0DAD1E', 1, 600, false);
+    GumpAction('0x9BADE6EA', 1, 600, false);
+    GumpAction('0xD6BCF63A', 1, 600, false);
+
+    Orion.RequestContextMenu('0x002E2F21');
+    Orion.WaitContextMenuID('0x002E2F21', 3); Orion.Wait(100);
+    GumpAction('0x307B71A8', 1, 600, false);
+    GumpAction('0xBE0DAD1E', 1, 600, false);
+    GumpAction('0x9BADE6EA', 1, 600, false);
+    GumpAction('0xD6BCF63A', 1, 600, false);
+
+    Orion.RequestContextMenu('0x002E2F25');
+    Orion.WaitContextMenuID('0x002E2F25', 3); Orion.Wait(100);
+    GumpAction('0x307B71A8', 1, 600, false);
+    GumpAction('0xBE0DAD1E', 1, 600, false);
+    GumpAction('0x9BADE6EA', 1, 600, false);
+    GumpAction('0xD6BCF63A', 1, 600, false);
+
+    Orion.RequestContextMenu('0x002E2F26');
+    Orion.WaitContextMenuID('0x002E2F26', 3); Orion.Wait(100);
+    GumpAction('0x307B71A8', 1, 600, false);
+    GumpAction('0xBE0DAD1E', 1, 600, false);
+    GumpAction('0x9BADE6EA', 1, 600, false);
+    GumpAction('0xD6BCF63A', 1, 600, false);
+
+    Orion.RequestContextMenu('0x002E2F38');
+    Orion.WaitContextMenuID('0x002E2F38', 3); Orion.Wait(100);
+    GumpAction('0x307B71A8', 1, 600, false);
+    GumpAction('0xBE0DAD1E', 1, 600, false);
+    GumpAction('0x9BADE6EA', 1, 600, false);
+    GumpAction('0xD6BCF63A', 1, 600, false);
+
+    Orion.UseObject('0x4173A30A');
+    Orion.Wait(300);
+    GumpAction('0x06ABCE12', 29, 300, true);
+}

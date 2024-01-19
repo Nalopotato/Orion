@@ -1,29 +1,10 @@
 //#include C:/Orion Evolution/Orion Launcher/OA/Autoload.oajs
 
 var keyStorage = function() {
-    storeWithKeys(regList, _casterKeys, '0x0EBCD833', 60030, 20);
-    storeWithKeys(metalsList, _metalKeys, '0xFB1E68CB', 60015, 20);
-    storeWithKeys(woodList, _woodKeys, '0x0A57934D', 60023, 20);
-
-    //Handle hide cutting
-    if (Orion.Count('0x1079', any, backpack) > 3 || Player.Weight() > 350) {
-        Orion.ControlAgent('autoloot', 'Main', 'stop');
-        var itemList = Orion.FindType('0x1079', any, backpack);
-        for (var i = 0; i <= itemList.length; i++)
-        {
-            Orion.UseType('0x0F9F', any, backpack); //Scissors
-            Orion.WaitForTarget(6000);
-            
-            Orion.TargetObject(itemList[i]);
-            Orion.Wait(600);
-        }
-        if (_debugMode) {Orion.Print(35, 'KeyStorage: Cutting hide complete');}
-        cutLeatherArmors();
-        if (_debugMode) {Orion.Print(35, 'KeyStorage: cutLeatherArmors complete');}
-        Orion.ControlAgent('autoloot', 'Main', 'start');
-    }
-
-    storeWithKeys(tailoringList, _tailorKeys, '0x41F8FC19', 60029, 6);
+    storeWithKeys(regList, _casterKeys, '0x06ABCE12', 55);
+    storeWithKeys(metalsList, _metalKeys, '0x06ABCE12', 31);
+    //storeWithKeys(woodList, _woodKeys, '0x0A57934D', 60023, 20);
+    storeWithKeys(tailoringList, _tailorKeys, '0x06ABCE12', 67);
 }
 
 var regList = [
@@ -51,6 +32,10 @@ var regList = [
     '0x0F0E', //Empty Bottle
     '0x0F8F', //Ethereal Powder
     '0x0F81', //Fertile Dirt
+    
+    '0x0E24', //Spring Water
+    '0x097A', //Petrified Wood
+    '0x0E1F', //Destroying Angel
     //'0x26B7', //Zoogi Fungus
 ];
 
@@ -71,61 +56,21 @@ var tailoringList = [
     '0x1081', //Leather
     '0x26B4', //Scales
     '0x0DF8', //Wool
+    '0x1079', //Hide
 ];
 
-var storeWithKeys = function(list, keySerial, gumpID, gumpHookID, amt) {
-    var mobSerials = Orion.FindType('any', 'any', ground, 'near|mobile|ignorefriends|ignoreself|inlos', '10', 'gray|criminal|orange|red');
-
-    //if (mobSerials.length <= 1 && Player.Weight() > (Player.MaxWeight() * 0.5) && !Orion.Dragging())
-    if (mobSerials.length <= 1 && !Orion.Dragging())
+var storeWithKeys = function(list, keySerial, gumpID, gumpHookID) {
+    if (!Orion.Dragging())
     {
         for (var i = 0; i <= list.length; i++)
         {
-            if (list[i] == '0x0F3F') //Arrows - Don't store unless we have a lot
-                amt = 300;
-
-            var safeExit = 0;
-            while (Orion.Count(list[i], any, backpack) > amt) {
-                storeItemWithKeys(keySerial, gumpID, gumpHookID, list[i], amt);
-                Orion.Wait(10);
-                
-                safeExit++;
-                if (safeExit > 10)
-                    return;
+            if (Orion.Count(list[i], any, backpack) > 0) {
+                Orion.UseObject(keySerial);
+                Orion.Wait(300);
+                GumpAction(gumpID, gumpHookID, 500, true);
             }
         }
     }
-}
-
-////
-var storeItemWithKeys = function(keysID, gumpID, gumpHookID, itemGfx, amt) {
-	if (Orion.Count(itemGfx, any, backpack) > amt)
-	{
-		//Orion.Print('26', 'Storing: ' + itemGfx);
-		Orion.UseObject(keysID);
-		GumpAction(gumpID, gumpHookID, 100, false); 	//Clicking "Add resource" button
-
-		breaker = 0;
-		itemCount = Orion.Count(itemGfx, any, backpack);
-		if (Orion.WaitForTarget(1000)) {
-			while (itemCount > 0) {
-				Orion.TargetType(itemGfx, any, backpack);
-				Orion.Wait(50);
-				breaker++;
-
-				if (breaker > 10)
-					break;
-			}
-		}
-		
-		//Cancel targetting and close the gump
-		Orion.CancelTarget();
-		Orion.Wait(50);
-		GumpAction(gumpID, 0, 50, true);
-		GumpAction(gumpID, 0, 50, true);
-
-        if (_debugMode) {Orion.Print(35, 'KeyStorage: storeItemWithKeys complete');}
-	}
 }
 
 var cutLeatherArmors = function() {

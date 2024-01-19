@@ -4,7 +4,8 @@ function Tailoring()
 {
 	while (!Player.Dead()) 
 	{
-		if (Orion.SkillValue('Tailoring') <= 490) { //Short Pants
+		if (Orion.SkillValue('Tailoring') <= 490)  //Short Pants
+		{
 			Orion.UseType('0x0F9D', '0xFFFF', self, true);
 			GumpAction('0x38920ABD', 15, 300, false);
 			GumpAction('0x38920ABD', 2, 1000, false);
@@ -12,7 +13,9 @@ function Tailoring()
 			Orion.UseType('0x0F9F', '0xFFFF');
 			if (Orion.WaitForTarget(1000))
 				Orion.TargetType('0x152E', 0, backpack);
-		} else if (Orion.SkillValue('Tailoring') <= 600) { //Fur Cape
+		} 
+		else if (Orion.SkillValue('Tailoring') <= 600)  //Fur Cape
+		{
 			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
 			GumpAction('0x38920ABD', 8, 300, false);
 			GumpAction('0x38920ABD', 72, 1000, false);
@@ -20,7 +23,9 @@ function Tailoring()
 			Orion.UseType('0x0F9F', '0xFFFF', backpack, true);
 			if (Orion.WaitForTarget(1000))
 				Orion.TargetType('0x230A', 0, backpack);
-		} else if (Orion.SkillValue('Tailoring') < 750) { //Fur Boots
+		} 
+		else if (Orion.SkillValue('Tailoring') < 750)  //Fur Boots
+		{
 			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
 			GumpAction('0x38920ABD', 29, 300, false);
 			GumpAction('0x38920ABD', 2, 1000, false);
@@ -28,7 +33,9 @@ function Tailoring()
 			Orion.UseType('0x0F9F', '0xFFFF', backpack, true);
 			if (Orion.WaitForTarget(1000))
 				Orion.TargetType('0x2307', 0, backpack);
-		} else if (Orion.SkillValue('Tailoring') < 996) { //Oil Cloth
+		} 
+		else if (Orion.SkillValue('Tailoring') < 996)  //Oil Cloth
+		{
 			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
 			GumpAction('0x38920ABD', 22, 300, false);
 			GumpAction('0x38920ABD', 79, 1000, false);
@@ -36,7 +43,19 @@ function Tailoring()
 			Orion.UseType('0x0F9F', '0xFFFF', backpack, true);
 			if (Orion.WaitForTarget(1000))
 				Orion.TargetType('0x175D', '0x07D1', backpack);
-		} else if (Orion.SkillValue('Tailoring') < Orion.SkillValue('Tailoring', 'cap')) { //Elven Shirt
+		} 
+		else if (Orion.SkillValue('Tailoring') < 1100)  //Elven Shirt
+		{
+			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
+			GumpAction('0x38920ABD', 8, 300, false);
+			GumpAction('0x38920ABD', 142, 1000, false);
+
+			Orion.UseType('0x0F9F', '0xFFFF', backpack, true);
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetType('0x3176', 0, backpack);
+		} 
+		else if (Orion.SkillValue('Tailoring') < Orion.SkillValue('Tailoring', 'cap'))  //Elven Shirt
+		{
 			Orion.UseType('0x0F9D', '0xFFFF', backpack, true);
 			GumpAction('0x38920ABD', 8, 300, false);
 			GumpAction('0x38920ABD', 142, 1000, false);
@@ -52,11 +71,6 @@ function Tailoring()
 	}
 }
 
-function Wool() 
-{
-	woolToCloth();
-}
-
 function Cotton() {
 	while(!Player.Dead())
 	{
@@ -69,6 +83,36 @@ function Cotton() {
 			Orion.AddHighlightArea(itemObj.X()+itemObj.Y(), -1, 'pos', '0x0026', 0, 0);
 		}
 		Orion.Wait(200);
+	}
+}
+
+function Wool()
+{
+	while (1 > 0) {
+		//Wool to Wheel
+		if (Orion.FindType('0x0DF8|0x0DF9').length > 0) {
+			Orion.UseType('0x0DF8|0x0DF9', '0xFFFF');
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject('0x447DF8EA');
+			Orion.UseType('0x0DF8|0x0DF9', '0xFFFF');
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject('0x447E18C7');
+
+			Orion.Wait(100);
+		}
+
+		//Yarn to Loom
+		if (Orion.FindType('0x0E1D|0x0FA0').length > 0) {
+			Orion.UseType('0x0E1D|0x0FA0', '0xFFFF');
+			if (Orion.WaitForTarget(1000))
+				Orion.TargetObject('0x40002B85');
+		}
+		Orion.Wait(100);
+		
+		// if (Orion.Count('0x0E1D|0x0FA0') < 1 && Orion.Count('0x0DF8|0x0DF9') < 1) {
+		// 	Orion.UseObject('0x4599635F');
+		// 	GumpAction('0x06ABCE12', 18, 100, false);
+		// }
 	}
 }
 

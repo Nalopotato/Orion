@@ -1,47 +1,46 @@
 //#include Autoload.oajs
 
-const _TwoHmelee = '0x4B1D29ED'; //BoD
-//const TwoHmelee = '0x42C09524'; //SoP
-const _OneHmelee = '0x4FE04604';
-const _shield = '0x5138B8AB';
-const _playerContainerID = '0x005CFF32';
+const _TwoHmelee = '0x4709EC7D'; //Valicious
+//const _TwoHmelee = '0x4B1D29ED'; //Double Axe
+const _OneHmelee = '0x4726BC54';
+const _shield = '0x44EDFF45';
+const _playerContainerID = '0x00185A05';
 
 function Equip2HMelee()
 {
-	//Orion.Print(Orion.FindObject('0x42464720').Container());
-	if (Orion.ObjAtLayer(2) == null || (Orion.ObjAtLayer(2) != null && !Orion.FindObject(_TwoHmelee).Container() != _playerContainerID))
+	if (Orion.ObjAtLayer(2) == null || Orion.FindObject(_TwoHmelee).Container() != _playerContainerID)
 	{
 		Orion.Disarm();
-		Orion.Wait('100');
+		Orion.Wait('50');
 	}
 	
 	if (Orion.ObjAtLayer(2) == null && Orion.ObjAtLayer(1) == null)
 	{
 		Orion.Equip(_TwoHmelee);
-		Orion.Wait('100');
+		Orion.Wait('50');
 	}
 }
 
 function Equip1HMelee()
-{	
-	if (Orion.ObjAtLayer(2) == null || (Orion.ObjAtLayer(2) != null && 
-		Orion.FindObject(_OneHmelee).Container() != _playerContainerID))
+{		
+	if (Orion.ObjAtLayer(2) != null)
 	{
-		Orion.Disarm();
-		Orion.Wait('100');
-		Orion.Equip(_OneHmelee);
+		if (Orion.FindObject(_shield).Container() != _playerContainerID && Orion.FindObject(_OneHmelee).Container() != _playerContainerID) {
+			Orion.Disarm();
+			Orion.Wait('50');
+		}
 	}
 	
-	//Shield
 	if (Orion.FindObject(_shield).Container() != _playerContainerID)
 	{
-		if (Orion.ObjAtLayer(1) != null)
-			Orion.Disarm();
-		Orion.Wait('620');
 		Orion.Equip(_shield);
+		Orion.Wait('550');
 	}
 	
-	Orion.Wait('100');
+	if (Orion.FindObject(_OneHmelee).Container() != _playerContainerID)
+	{
+		Orion.Equip(_OneHmelee);
+	}
 }
 
 function EquipBow()
@@ -49,12 +48,12 @@ function EquipBow()
 	if ((Orion.ObjAtLayer(2) != null && Orion.FindObject(_bow).Container() != _playerContainerID))
 	{
 		Orion.Disarm();
-		Orion.Wait('100');
+		Orion.Wait('50');
 	}
 	
 	if (Orion.ObjAtLayer(2) == null)
 	{
 		Orion.Equip(_bow);
-		Orion.Wait('100');
+		Orion.Wait('50');
 	}
 }

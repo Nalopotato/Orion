@@ -1,3 +1,5 @@
+//#include Autoload.oajs
+
 function TrainVet()
 {
     //Replaces these serials with your two pet IDs, and hold plenty of bandages

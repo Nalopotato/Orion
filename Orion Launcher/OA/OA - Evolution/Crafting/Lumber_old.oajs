@@ -10,7 +10,7 @@ const _toolAmt = 2; //Amount of tools to create per iteration
 const _hookID = 30; //The Gump ID of the tool you want to create.  Pickaxe is 114.  Hatchet is 30
 // ********************************************************************
 
-function LumberFarming() 
+function Lumber_old() 
 {
 	if (_autoMove)
 	{

@@ -14,53 +14,23 @@
         <item graphic="0x1BD1" color="0x0000" comment="Feathers" count="0" enabled="true"/>
         <item graphic="0x0DF8" color="0x0000" comment="Wool" count="0" enabled="true"/>
         <item graphic="0x0E29" color="0x0872" comment="Essences" count="0" enabled="true"/>
-        <item graphic="0x0F2D" color="any" comment="Tourmaline" count="0" enabled="true"/>
-        <item graphic="0x0F26" color="0x0000" comment="Diamond" count="0" enabled="true"/>
-        <item graphic="0x0F10" color="0x0000" comment="Emerald" count="0" enabled="true"/>
-        <item graphic="0x0F13" color="0x0000" comment="Ruby" count="0" enabled="true"/>
-        <item graphic="0x0F19" color="0x0000" comment="Sapphire" count="0" enabled="true"/>
-        <item graphic="0x0F16" color="0x0000" comment="Amethyst" count="0" enabled="true"/>
-        <item graphic="0x0F21" color="0x0000" comment="Star Sapph" count="0" enabled="true"/>
-        <item graphic="0x0F25" color="0x0000" comment="Amber" count="0" enabled="true"/>
-        <item graphic="0x0F15" color="0x0000" comment="Citrine" count="0" enabled="true"/>
+        <item graphic="0x0F2D" color="any" comment="Tourmaline" count="0" enabled="false"/>
+        <item graphic="0x0F26" color="0x0000" comment="Diamond" count="0" enabled="false"/>
+        <item graphic="0x0F10" color="0x0000" comment="Emerald" count="0" enabled="false"/>
+        <item graphic="0x0F13" color="0x0000" comment="Ruby" count="0" enabled="false"/>
+        <item graphic="0x0F19" color="0x0000" comment="Sapphire" count="0" enabled="false"/>
+        <item graphic="0x0F16" color="0x0000" comment="Amethyst" count="0" enabled="false"/>
+        <item graphic="0x0F21" color="0x0000" comment="Star Sapph" count="0" enabled="false"/>
+        <item graphic="0x0F25" color="0x0000" comment="Amber" count="0" enabled="false"/>
+        <item graphic="0x0F15" color="0x0000" comment="Citrine" count="0" enabled="false"/>
         <item graphic="0x3192" color="0x0000" comment="Dark Sapphire" count="0" enabled="true"/>
-        <item graphic="0x3199" color="0x0000" comment="Brilliant Amber" count="0" enabled="true"/>
         <item graphic="0x3195" color="0x0000" comment="Ecru Citrine" count="0" enabled="true"/>
         <item graphic="0x3198" color="0x0000" comment="Blue Diamond" count="0" enabled="true"/>
         <item graphic="0x3197" color="0x0000" comment="Fire Ruby" count="0" enabled="true"/>
         <item graphic="0x3193" color="0x0000" comment="Turquiose" count="0" enabled="true"/>
+        <item graphic="0x3199" color="0x0000" comment="Brilliant Amber" count="0" enabled="true"/>
         <item graphic="0x3196" color="0x0000" comment="White Pearl" count="0" enabled="true"/>
         <item graphic="0x3194" color="0x0000" comment="Perfect Emerald" count="0" enabled="true"/>
-        <item graphic="0x1086" color="any" comment="Dex Bracelet" count="0" enabled="true">
-            <property name="Dexterity Bonus" value_min="7" value_max="100"/>
-        </item>
-        <item graphic="0x1F06" color="any" comment="Dex Bracelet" count="0" enabled="true">
-            <property name="Dexterity Bonus" value_min="7" value_max="100"/>
-        </item>
-        <item graphic="0x108A" color="any" comment="Dex Ring" count="0" enabled="true">
-            <property name="Dexterity Bonus" value_min="7" value_max="100"/>
-        </item>
-        <item graphic="0x1F09" color="any" comment="Dex Ring" count="0" enabled="true">
-            <property name="Dexterity Bonus" value_min="7" value_max="100"/>
-        </item>
-        <item graphic="0x1087" color="any" comment="Dex Earring" count="0" enabled="true">
-            <property name="Dexterity Bonus" value_min="7" value_max="100"/>
-        </item>
-        <item graphic="0x1086" color="any" comment="LRC Bracelet" count="0" enabled="true">
-            <property name="Lower Reagent Cost" value_min="13" value_max="100"/>
-        </item>
-        <item graphic="0x1F06" color="any" comment="LRC Bracelet" count="0" enabled="true">
-            <property name="Lower Reagent Cost" value_min="13" value_max="100"/>
-        </item>
-        <item graphic="0x108A" color="any" comment="LRC Ring" count="0" enabled="true">
-            <property name="Lower Reagent Cost" value_min="13" value_max="100"/>
-        </item>
-        <item graphic="0x1F09" color="any" comment="LRC Ring" count="0" enabled="true">
-            <property name="Lower Reagent Cost" value_min="13" value_max="100"/>
-        </item>
-        <item graphic="0x1087" color="any" comment="LRC Earring" count="0" enabled="true">
-            <property name="Lower Reagent Cost" value_min="13" value_max="100"/>
-        </item>
         <item graphic="0x0E24" color="0x0679" comment="Essence" count="0" enabled="true"/>
         <item graphic="0x13C7" color="0x0487" comment="Ethereal Gorget" count="0" enabled="true"/>
         <item graphic="0x1DB9" color="0x0487" comment="Ethereal Cap" count="0" enabled="true"/>
@@ -76,26 +46,9 @@
         <item graphic="0x13D5" color="0x0487" comment="Ethereal Studded Gloves" count="0" enabled="true"/>
         <item graphic="0x13DC" color="0x0487" comment="Ethereal Studded Sleeves " count="0" enabled="true"/>
         <item graphic="0x13DA" color="0x0487" comment="Ethereal Studded Leggings " count="0" enabled="true"/>
-        <item graphic="0x1C02" color="0x0487" comment="Ethereal Studded Armor " count="0" enabled="true"/>
         <item graphic="0x1C0C" color="0x0487" comment="Ethereal Studded Bustier " count="0" enabled="true"/>
         <item graphic="0x13DB" color="0x0487" comment="Ethereal Studded Tunic" count="0" enabled="true"/>
-        <item graphic="0x13C7" color="0x04EC" comment="Blaze Leather Gorget" count="0" enabled="true"/>
-        <item graphic="0x1DB9" color="0x04EC" comment="Blaze Leather Cap " count="0" enabled="true"/>
-        <item graphic="0x13C6" color="0x04EC" comment="Blaze Leather Gloves " count="0" enabled="true"/>
-        <item graphic="0x13CD" color="0x04EC" comment="Blaze Leather Sleeves " count="0" enabled="true"/>
-        <item graphic="0x13CB" color="0x04EC" comment="Blaze Leather Leggings " count="0" enabled="true"/>
-        <item graphic="0x13CC" color="0x04EC" comment="Blaze Leather Tunic " count="0" enabled="true"/>
-        <item graphic="0x1C08" color="0x04EC" comment="Blaze Leather Skirt " count="0" enabled="true"/>
-        <item graphic="0x1C0A" color="0x04EC" comment="Blaze Leather Bustier " count="0" enabled="true"/>
-        <item graphic="0x1C00" color="0x04EC" comment="Blaze Leather Shorts " count="0" enabled="true"/>
-        <item graphic="0x1C06" color="0x04EC" comment="Blaze Female Leather Armor " count="0" enabled="true"/>
-        <item graphic="0x13D6" color="0x04EC" comment="Blaze Studded Gorget " count="0" enabled="true"/>
-        <item graphic="0x13D5" color="0x04EC" comment="Blaze Studded Gloves" count="0" enabled="true"/>
-        <item graphic="0x13DC" color="0x04EC" comment="Blaze Studded Sleeves " count="0" enabled="true"/>
-        <item graphic="0x13DA" color="0x04EC" comment="Blaze Studded Leggings " count="0" enabled="true"/>
-        <item graphic="0x1C0C" color="0x04EC" comment="Blaze Studded Bustier " count="0" enabled="true"/>
-        <item graphic="0x1C02" color="0x04EC" comment="Blaze Studded Armor " count="0" enabled="true"/>
-        <item graphic="0x13DB" color="0x04EC" comment="Blaze Studded Tunic " count="0" enabled="true"/>
+        <item graphic="0x1C02" color="0x0487" comment="Ethereal Studded Armor " count="0" enabled="true"/>
         <item graphic="0x13C7" color="0x0020" comment="Daemonic Leather Gorget " count="0" enabled="true"/>
         <item graphic="0x1DB9" color="0x0020" comment="Daemonic Leather Cap " count="0" enabled="true"/>
         <item graphic="0x13C6" color="0x0020" comment="Daemonioc Leather Gloves " count="0" enabled="true"/>
@@ -130,35 +83,25 @@
         <item graphic="0x1C0C" color="0x0966" comment="Shadow Studded Bustier " count="0" enabled="true"/>
         <item graphic="0x1C02" color="0x0966" comment="Shadow Studded Armor " count="0" enabled="true"/>
         <item graphic="0x13DB" color="0x0966" comment="Shadow Studded Tunic " count="0" enabled="true"/>
-        <item graphic="0x13C7" color="0x005D" comment="Frost Leather Gorget " count="0" enabled="true"/>
-        <item graphic="0x1DB9" color="0x005D" comment="Frost Leather Cap " count="0" enabled="true"/>
-        <item graphic="0x13C6" color="0x005D" comment="Frost Leather Gloves " count="0" enabled="true"/>
-        <item graphic="0x13CD" color="0x005D" comment="Frost Leather Sleeves " count="0" enabled="true"/>
-        <item graphic="0x13CB" color="0x005D" comment="Frost Leather Leggings " count="0" enabled="true"/>
-        <item graphic="0x13CC" color="0x005D" comment="Frost Leather Tunic " count="0" enabled="true"/>
-        <item graphic="0x1C08" color="0x005D" comment="Frost Leather Skirt " count="0" enabled="true"/>
-        <item graphic="0x1C0A" color="0x005D" comment="Frost Leather Bustier " count="0" enabled="true"/>
-        <item graphic="0x1C00" color="0x005D" comment="Frost Leather Shorts " count="0" enabled="true"/>
-        <item graphic="0x1C06" color="0x005D" comment="Frost Female Leather Armor " count="0" enabled="true"/>
-        <item graphic="0x13D6" color="0x005D" comment="Frost Studded Gorget " count="0" enabled="true"/>
-        <item graphic="0x13D5" color="0x005D" comment="Frost Studded Gloves " count="0" enabled="true"/>
-        <item graphic="0x13DC" color="0x005D" comment="Frost Studded Sleeves " count="0" enabled="true"/>
-        <item graphic="0x13DA" color="0x005D" comment="Frost Studded Leggings " count="0" enabled="true"/>
-        <item graphic="0x1C0C" color="0x005D" comment="Frost Studded Bustier " count="0" enabled="true"/>
-        <item graphic="0x1C02" color="0x005D" comment="Frost Studded Armor " count="0" enabled="true"/>
-        <item graphic="0x13DB" color="0x005D" comment="Frost Studded Tunic " count="0" enabled="true"/>
-        <item graphic="0x0E86" color="0x0973" comment="A Gargoyle's Pickaxe " count="0" enabled="false"/>
+        <item graphic="0x0E86" color="0x0973" comment="A Gargoyle's Pickaxe " count="0" enabled="true"/>
         <item graphic="0x13F6" color="0x0973" comment="Gargoyles Knife" count="0" enabled="true"/>
         <item graphic="0x14EC" color="0x0000" comment="Treasure Map" count="0" enabled="false"/>
         <item graphic="0x1AE4" color="0x08A5" comment="A Golden Skull" count="0" enabled="true"/>
         <item graphic="0x1AE2" color="0x08A5" comment="A Golden Skull" count="0" enabled="true"/>
         <item graphic="0x1AE3" color="0x08A5" comment="A Golden Skull" count="0" enabled="true"/>
-        <item graphic="0x1EA7" color="0x0039" comment="Armor Gem" count="0" enabled="true"/>
         <item graphic="0x4077" color="0x0000" comment="2 Dragon's Blood" count="0" enabled="true"/>
         <item graphic="0x5742" color="any" comment="Binding Leather" count="0" enabled="true"/>
+        <item graphic="0x0F26" color="0x047F" comment="Ancient Diamond" count="0" enabled="true"/>
+        <item graphic="0x0F26" color="0x0038" comment="Ancient Tourmaline" count="0" enabled="true"/>
+        <item graphic="0x1374" color="any" comment="Resolve's Bridle (Pet Leash)" count="0" enabled="true"/>
+        <item graphic="0x0E1F" color="0x021F" comment="Organic Material" count="0" enabled="true"/>
+        <item graphic="0x2B08" color="0x0226" comment="Breastplate Of Justice (Virtue Armor Set)" count="0" enabled="true"/>
+        <item graphic="0x2B06" color="0x0226" comment="Legs Of Honor (Virtue Armor Set)" count="0" enabled="true"/>
+        <item graphic="0x2B0E" color="0x0226" comment="Gorget Of Honesty (Virtue Armor Set)" count="0" enabled="true"/>
     </findlist>
     <findlist name="Gold+Gems">
-        <item graphic="0x0EED" color="0x0000" comment="Gold" count="0" enabled="true"/>
+        <item graphic="0x0EED" color="0x0000" comment="Gold" count="0" enabled="false"/>
+        <item graphic="0x0EED" color="0x0045" comment="Leprechaun Gold" count="0" enabled="true"/>
         <item graphic="0x0F26" color="0x0000" comment="Diamond" count="0" enabled="true"/>
         <item graphic="0x0F13" color="0x0000" comment="Ruby" count="0" enabled="true"/>
         <item graphic="0x0F10" color="0x0000" comment="Emerald" count="0" enabled="true"/>
@@ -177,6 +120,7 @@
         <item graphic="0x3195" color="0x0000" comment="Ecru Citrine" count="0" enabled="true"/>
         <item graphic="0x3194" color="0x0000" comment="Perfect Emerald" count="0" enabled="true"/>
         <item graphic="0x0F8F" color="0x0829" comment="Eth Powder" count="0" enabled="true"/>
+        <item graphic="0x0F8E" color="any" comment="Rho Crystal" count="0" enabled="true"/>
     </findlist>
     <findlist name="LeatherArmors">
         <item graphic="0x13C7" color="0x0487" comment="Ethereal Gorget" count="0" enabled="true"/>
@@ -266,17 +210,20 @@
         <item graphic="0x13DB" color="0x005D" comment="Frost Studded Tunic " count="0" enabled="true"/>
     </findlist>
     <findlist name="Gems">
-        <item graphic="0x0F13" color="0x0000" comment="Ruby" count="0" enabled="true"/>
-        <item graphic="0x0F10" color="0x0000" comment="Emerald" count="0" enabled="true"/>
-        <item graphic="0x0F21" color="0x0000" comment="Star Sapph" count="0" enabled="true"/>
-        <item graphic="0x0F19" color="0x0000" comment="Sapphire" count="0" enabled="true"/>
-        <item graphic="0x0F16" color="0x0000" comment="Amethyst" count="0" enabled="true"/>
-        <item graphic="0x0F15" color="0x0000" comment="Citrine" count="0" enabled="true"/>
-        <item graphic="0x0F25" color="0x0000" comment="Amber" count="0" enabled="true"/>
-        <item graphic="0x0F2D" color="0x0000" comment="Tourmaline" count="0" enabled="true"/>
-        <item graphic="0x0F26" color="0x0000" comment="Diamond" count="0" enabled="true"/>
+        <item graphic="0x0F13" color="any" comment="Ruby" count="0" enabled="true"/>
+        <item graphic="0x0F10" color="any" comment="Emerald" count="0" enabled="true"/>
+        <item graphic="0x0F21" color="any" comment="Star Sapph" count="0" enabled="true"/>
+        <item graphic="0x0F19" color="any" comment="Sapphire" count="0" enabled="true"/>
+        <item graphic="0x0F16" color="any" comment="Amethyst" count="0" enabled="true"/>
+        <item graphic="0x0F15" color="any" comment="Citrine" count="0" enabled="true"/>
+        <item graphic="0x0F25" color="any" comment="Amber" count="0" enabled="true"/>
+        <item graphic="0x0F2D" color="any" comment="Tourmaline" count="0" enabled="true"/>
+        <item graphic="0x0F26" color="any" comment="Diamond" count="0" enabled="true"/>
+        <item graphic="0x0F13" color="0x001E" comment="Ancient Ruby" count="0" enabled="true"/>
+        <item graphic="0x0F26" color="0x047F" comment="Ancient Diamond" count="0" enabled="true"/>
+        <item graphic="0x0F26" color="0x0038" comment="Ancient Tourmaline" count="0" enabled="true"/>
     </findlist>
-    <findlist name="Mage Scrolls">
+    <findlist name="MageScrolls">
         <item graphic="0x1F37" color="0x0000" comment="" count="0" enabled="true"/>
         <item graphic="0x1F5C" color="0x0000" comment="" count="0" enabled="true"/>
         <item graphic="0x1F5E" color="0x0000" comment="" count="0" enabled="true"/>
@@ -353,7 +300,7 @@
         <item graphic="0x0F8C" color="0x0000" comment="SA" count="0" enabled="false"/>
         <item graphic="0x0F8D" color="0x0000" comment="SS" count="0" enabled="false"/>
     </findlist>
-    <findlist name="Necro Regs">
+    <findlist name="NecroRegs">
         <item graphic="0x0F78" color="0x0000" comment="Batwing" count="0" enabled="true"/>
         <item graphic="0x0F8A" color="0x0000" comment="Pig Iron" count="0" enabled="true"/>
         <item graphic="0x0F7D" color="0x0000" comment="Daemon Blood" count="0" enabled="true"/>
@@ -474,6 +421,9 @@
         <item graphic="0x13DC" color="0x0000" comment="Myrmidon Arms" count="0" enabled="true">
             <property name="Strength Bonus" value_min="1" value_max="100"/>
         </item>
+        <item graphic="0x1408" color="0x0000" comment="Myrmidon Helm" count="0" enabled="true">
+            <property name="Strength Bonus" value_min="1" value_max="100"/>
+        </item>
         <item graphic="0x13C6" color="0x048D" comment="Hands Of Tabulature" count="0" enabled="true"/>
         <item graphic="0x1452" color="0x04F6" comment="Leggings Of The Harrower" count="0" enabled="true"/>
         <item graphic="0x1414" color="0x0554" comment="Gloves Of Insight" count="0" enabled="true"/>
@@ -482,12 +432,12 @@
         <item graphic="0x1415" color="0x0554" comment="Armor Of Insight" count="0" enabled="true"/>
         <item graphic="0x2684" color="0x056D" comment="Black Cult Robe" count="0" enabled="true"/>
         <item graphic="0x153B" color="0x05B9" comment="Tangle [Apron]" count="0" enabled="true"/>
-        <item graphic="0x1C02" color="0x0145" comment="Erotica [Chest]" count="0" enabled="true"/>
+        <item graphic="0x1C02" color="0x0145" comment="Erotica [Chest]" count="0" enabled="false"/>
         <item graphic="0x1C08" color="0x08E3" comment="La Femme [Skirt]" count="0" enabled="true"/>
-        <item graphic="0x1DB9" color="0x0556" comment="Arcane Cap" count="0" enabled="true"/>
-        <item graphic="0x13C7" color="0x0556" comment="Arcane Gorget" count="0" enabled="true"/>
+        <item graphic="0x1DB9" color="0x0556" comment="Arcane Cap" count="0" enabled="false"/>
+        <item graphic="0x13C7" color="0x0556" comment="Arcane Gorget" count="0" enabled="false"/>
         <item graphic="0x13C6" color="0x0556" comment="Arcane Gloves" count="0" enabled="true"/>
-        <item graphic="0x13CC" color="0x0556" comment="Arcane Tunic" count="0" enabled="true"/>
+        <item graphic="0x13CC" color="0x0556" comment="Arcane Tunic" count="0" enabled="false"/>
         <item graphic="0x13CD" color="0x0556" comment="Arcane Arms" count="0" enabled="true"/>
         <item graphic="0x13CB" color="0x0556" comment="Arcane Leggings" count="0" enabled="true"/>
         <item graphic="0x13CC" color="0x0594" comment="Hunter's Tunic" count="0" enabled="true"/>
@@ -501,9 +451,9 @@
         <item graphic="0x108A" color="0x04E9" comment="Ring Of The Elements" count="0" enabled="true"/>
         <item graphic="0x108A" color="0x0554" comment="Ring Of The Magician" count="0" enabled="true"/>
         <item graphic="0x1087" color="0x0554" comment="Earrings Of The Magician" count="0" enabled="true"/>
-        <item graphic="0x2779" color="0x081B" comment="Tactical Mask" count="0" enabled="true"/>
-        <item graphic="0x1BC4" color="0x04EC" comment="Fever Fall [Order Shield]" count="0" enabled="true"/>
-        <item graphic="0x2684" color="0x0B81" comment="Vampire's Robe" count="0" enabled="true"/>
+        <item graphic="0x2779" color="0x081B" comment="Tactical Mask" count="0" enabled="false"/>
+        <item graphic="0x1BC4" color="0x04EC" comment="Fever Fall [Order Shield]" count="0" enabled="false"/>
+        <item graphic="0x2684" color="0x0B81" comment="Vampire's Robe" count="0" enabled="false"/>
         <item graphic="0x277A" color="0x0501" comment="Leurocian's Mempo Of Fortune" count="0" enabled="true"/>
         <item graphic="0x1DB9" color="0x0501" comment="Cap Of Fortune" count="0" enabled="true"/>
         <item graphic="0x13D6" color="0x0501" comment="Gorget Of Fortune" count="0" enabled="true"/>
@@ -515,8 +465,6 @@
         <item graphic="0x1BC4" color="0x04F2" comment="Shield Of Invulnerability" count="0" enabled="true"/>
         <item graphic="0x1414" color="0x097F" comment="Gloves Of The Hard Worker" count="0" enabled="true"/>
         <item graphic="0x1414" color="0x097F" comment="Antiquity" count="0" enabled="true"/>
-        <item graphic="0x1B72" color="0x015B" comment="Deku Shield" count="0" enabled="true"/>
-        <item graphic="0x26CF" color="0x0835" comment="Zelda Sword" count="0" enabled="true"/>
         <item graphic="0x1411" color="0x0906" comment="Animated Legs Of The Insane Tinker" count="0" enabled="true"/>
         <item graphic="0x2D35" color="0x0284" comment="Righteous Anger" count="0" enabled="true"/>
         <item graphic="0x1086" color="0x0290" comment="Alchemist's Bauble [Brace]" count="0" enabled="true"/>
@@ -524,7 +472,6 @@
         <item graphic="0x1087" color="0x04F7" comment="Earrings Of The Vile" count="0" enabled="true"/>
         <item graphic="0x1087" color="0x0021" comment="Earrings Of Health" count="0" enabled="true"/>
         <item graphic="0x1711" color="0x06B7" comment="Boots Of The Trinsic Knights" count="0" enabled="true"/>
-        <item graphic="0x1BC4" color="0x04EC" comment="Fever Fall [Order Shield]" count="0" enabled="true"/>
         <item graphic="0x170D" color="0x0489" comment="Titan Warrior Sandals" count="0" enabled="true"/>
         <item graphic="0x1540" color="0x058C" comment="Burglar's Bandana" count="0" enabled="true"/>
         <item graphic="0x1B79" color="0x04F2" comment="Wizards Strong Arm [Shield]" count="0" enabled="true"/>
@@ -549,10 +496,10 @@
         <item graphic="0x0DF0" color="0x0481" comment="Staff Of The Magi" count="0" enabled="true"/>
         <item graphic="0x1515" color="0x047E" comment="Cloak Of The Magi" count="0" enabled="true"/>
         <item graphic="0x171B" color="0x0497" comment="Dread Pirate Hat" count="0" enabled="true"/>
-        <item graphic="0x0EB3" color="0x047E" comment="Iolo's Lute" count="0" enabled="true"/>
+        <item graphic="0x13FB" color="0x081B" comment="Valicious" count="0" enabled="true"/>
     </findlist>
     <findlist name="CatchAll">
-        <item graphic="any" color="any" comment="+10% Damage" count="0" enabled="true">
+        <item graphic="any" color="any" comment="+10% Damage" count="0" enabled="false">
             <property name="Damage Increase" value_min="10" value_max="1000"/>
         </item>
         <item graphic="any" color="any" comment="DCI" count="0" enabled="true">
@@ -561,7 +508,7 @@
         <item graphic="any" color="any" comment="HCI" count="0" enabled="true">
             <property name="Hit Chance Increase" value_min="20" value_max="1000"/>
         </item>
-        <item graphic="any" color="any" comment="Luck" count="0" enabled="true">
+        <item graphic="any" color="any" comment="Luck" count="0" enabled="false">
             <property name="Luck" value_min="100" value_max="2000"/>
         </item>
         <item graphic="any" color="any" comment="Strength" count="0" enabled="true">
@@ -573,7 +520,7 @@
         <item graphic="any" color="any" comment="Dex" count="0" enabled="true">
             <property name="Dexterity Bonus" value_min="8" value_max="100"/>
         </item>
-        <item graphic="any" color="any" comment="ML" count="0" enabled="true">
+        <item graphic="any" color="any" comment="Mana Leech" count="0" enabled="true">
             <property name="Hit Mana Leech" value_min="40" value_max="100"/>
         </item>
         <item graphic="any" color="any" comment="Legendary Arty" count="0" enabled="true">
@@ -586,11 +533,28 @@
             <property name="Greater Artifact" value_min="0" value_max="100"/>
         </item>
         <item graphic="any" color="any" comment="Major Magic Item" count="0" enabled="true">
-            <property name="Major Magic Item" value_min="0" value_max="100"/>
+            <property name="Major Magic Item" value_min="0" value_max="999"/>
         </item>
-        <item graphic="any" color="any" comment="LRC" count="0" enabled="true">
-            <property name="Lower Reagent Cost" value_min="15" value_max="100"/>
+        <item graphic="any" color="any" comment="LRC 25" count="0" enabled="true">
+            <property name="Lower Reagent Cost" value_min="25" value_max="999"/>
         </item>
+        <item graphic="any" color="any" comment="Elemental jewelry" count="0" enabled="true">
+            <property name="Cold Resist" value_min="12" value_max="100"/>
+            <property name="Fire Resist" value_min="12" value_max="100"/>
+        </item>
+        <item graphic="0x1F14" color="any" comment="Rune (Socketable)" count="0" enabled="true"/>
+        <item graphic="0x2F59" color="any" comment="Talisman [Snake]" count="0" enabled="true"/>
+        <item graphic="0x2F5A" color="any" comment="Talisman [Bird]" count="0" enabled="true"/>
+        <item graphic="0x2F5B" color="any" comment="Talisman [Triangle]" count="0" enabled="true"/>
+        <item graphic="0x2F58" color="any" comment="Talisman [Shield]" count="0" enabled="true"/>
+        <item graphic="any" color="any" comment="Shadow Dancer armor" count="0" enabled="true">
+            <property name="Poison Resist" value_min="14" value_max="100"/>
+            <property name="Energy Resist" value_min="14" value_max="100"/>
+            <property name="Physical Resist" value_min="14" value_max="100"/>
+        </item>
+        <item graphic="0x2D56" color="0x08FD" comment="Spellweaving Scrolls" count="0" enabled="true"/>
+        <item graphic="0x2D5F" color="0x08FD" comment="Gift Of Life" count="0" enabled="true"/>
+        <item graphic="0x1AE4" color="0x047E" comment="Ancient Skull" count="0" enabled="true"/>
     </findlist>
     <findlist name="Lumberjacking">
         <item graphic="0x1BD7" color="any" comment="Boards" count="0" enabled="true"/>
@@ -600,13 +564,39 @@
         <item graphic="0x2F5F" color="0x0000" comment="Switch" count="0" enabled="true"/>
         <item graphic="0x3199" color="0x0000" comment="Brilliant Amber" count="0" enabled="true"/>
     </findlist>
-    <findlist name="Quest Items">
+    <findlist name="QuestItems">
+        <item graphic="0x1EA7" color="0x0039" comment="Armor Gem" count="0" enabled="false"/>
         <item graphic="0x1B21" color="0x0000" comment="ImmotiTea Soaked Leaves" count="0" enabled="true"/>
         <item graphic="0x1B20" color="0x0000" comment="ImmotiTea Soaked Leaves" count="0" enabled="true"/>
         <item graphic="0x1B1F" color="0x0000" comment="ImmotiTea Soaked Leaves" count="0" enabled="true"/>
         <item graphic="0x1B22" color="0x0000" comment="ImmotiTea Soaked Leaves" count="0" enabled="true"/>
+        <item graphic="0x47E6" color="any" comment="Jeweled Egg" count="0" enabled="true"/>
         <item graphic="0x318B" color="0x056C" comment="Reaper Bark" count="0" enabled="true"/>
+        <item graphic="0x318B" color="0x0972" comment="Bark From The Bronze Dragon Tree" count="0" enabled="true"/>
+        <item graphic="0x318B" color="0x0B90" comment="Bark From The Silver Dragon Tree" count="0" enabled="true"/>
+        <item graphic="0x318F" color="any" comment="Bark From The Blue Dragon Tree" count="0" enabled="true"/>
+        <item graphic="0x318F" color="any" comment="Bark From The Red Dragon Tree" count="0" enabled="true"/>
         <item graphic="0x0F21" color="0x04E2" comment="Empty Vengence Gem" count="0" enabled="true"/>
+        <item graphic="0x09D2" color="0x0B7F" comment="Elen's Lost Button" count="0" enabled="true"/>
+        <item graphic="0x5742" color="any" comment="Binding Leather" count="0" enabled="true"/>
+        <item graphic="0x1C12" color="0x0415" comment="A Lost Artifact" count="0" enabled="true"/>
+        <item graphic="0x2D05" color="0x0415" comment="A Lost Artifact" count="0" enabled="true"/>
+        <item graphic="0x2AA9" color="0x0415" comment="A Lost Artifact" count="0" enabled="true"/>
+        <item graphic="0x2AA3" color="0x0415" comment="A Lost Artifact" count="0" enabled="true"/>
+        <item graphic="0x154B" color="0x0499" comment="Golden Tribal Mask" count="0" enabled="true"/>
+        <item graphic="0x144F" color="0x0499" comment="Golden Bone Armor" count="0" enabled="true"/>
+        <item graphic="0x0F62" color="0x0499" comment="Golden Spear" count="0" enabled="true"/>
+        <item graphic="0x18DF" color="0x071E" comment="Sandlewood Root" count="0" enabled="true"/>
+        <item graphic="0x0F83" color="0x062D" comment="The Head Of An Enchanted Shovel" count="0" enabled="true"/>
+        <item graphic="0x0F83" color="0x05BE" comment="Head Of An Enchanted Shovel" count="0" enabled="true"/>
+        <item graphic="0x0E89" color="0x05BE" comment="Arm Of An Enchanted Shovel" count="0" enabled="true"/>
+        <item graphic="0x0E89" color="0x062D" comment="Arm Of An Enchanted Shovel" count="0" enabled="true"/>
+        <item graphic="0x183A" color="0x05BE" comment="Handle Of An Enchanted Shovel" count="0" enabled="true"/>
+        <item graphic="0x1547" color="0x0846" comment="Blood Red Deer Mask" count="0" enabled="true"/>
+        <item graphic="0x223A" color="0x05A6" comment="Pyramid Pottery Fragments" count="0" enabled="true"/>
+        <item graphic="0x0C6A" color="any" comment="Bumpkin Pumpkin" count="0" enabled="true"/>
+        <item graphic="0x0EB2" color="0x047E" comment="Gwenno's Harp" count="0" enabled="true"/>
+        <item graphic="0x0EB3" color="0x047E" comment="Iolo's Lute" count="0" enabled="true"/>
     </findlist>
     <findlist name="Scavenger">
         <item graphic="0x0DF9" color="0x0000" comment="Bale Of Cotton" count="0" enabled="true"/>

@@ -69,7 +69,7 @@ function RecallHome()
 
 function RecallSoT()
 {
-	useRunebook(13, '0x477B3761');
+	useRunebook(19, '0x477B3761');
 }
 
 function RecallBuyWater(tavern, bookID) {

@@ -282,9 +282,10 @@ function checkWeight(_internal)
     Shared.AddVar('lastX', Player.X());
     Shared.AddVar('lastY', Player.Y());
 
-    storeLogs();
-
-    if(Player.Weight("%") > 90){
+    if(Player.Weight("%") > 90)
+    {
+        storeLogs();
+        
         log(2, "logs2boards");
         Orion.FindTypeEx(items['logs'], any, backpack).forEach(function(log){
             Orion.AddWaitTargetObject(log.Serial());

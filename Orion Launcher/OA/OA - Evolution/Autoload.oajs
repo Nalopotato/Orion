@@ -2,8 +2,9 @@
 //#include Crafting/Lumberjacking.oajs
 //#include Crafting/Mining.oajs
 //#include Equip.oajs
-//#include HealSelf.oajs
+//#include Heal.oajs
 //#include Helpers/All.oajs
+//#include Helpers/BOD.oajs
 //#include Helpers/Claim.oajs
 //#include Helpers/GetStats.oajs
 //#include Helpers/KeyStorage.oajs
@@ -16,18 +17,27 @@
 const _debugMode = false;
 
 const _casterKeys = '0x50AA07C8';
-// const _tailorKeys = '0x474E827D';
-// const _woodKeys = '0x447CBF38';
-// const _metalKeys = '0x45CDBF39';
+const _metalKeys = '0x42087C61';
+const _tailorKeys = '0x4599635F';
+const _gemKeys = '0x45E3878F';
 
 const _lootBagID = '0x4B9E379C';
 //const _ethMountID = '0x467FC830';
 //const _bagOfSendingID = '0x42F8FCE3';
 
-//const _bow = '0x4302B1D0';
-const _bow = '0x524C2D49';
+const _bow = '0x46FA23F7';
 
-function AutoStart()
+function Autostart()
 {
-	//Orion.Exec('BODs', true);
+	//Orion.Exec('BOD_Check', true);
+	Orion.Exec('HealSelf', true);
 }
+
+
+// Druid reagents
+// BODs
+// Contracts x3
+// Champs
+// Collect Buttons, Red Deer Mask
+// Collect Eggs
+// Lumberjacking / Mining

@@ -5,21 +5,25 @@ const _bagFacet = -1;
 
 function HealSelf()
 {
+	if (Orion.ScriptRunning('FindQuestItems') < 1) { Orion.ToggleScript('FindQuestItems', true); }
+	
 	while (!Player.Dead()) 
 	{
-		// var lootBag = Orion.FindObject(_lootBagID, any, backpack);
-		// if (lootBag != null && lootBag.Map() != _bagFacet) {
-		// 	Orion.UseObject(lootBag.Serial());
-		// 	Orion.Wait(50);
-		// 	Orion.UseObject('0x4B9E37A3');
-		// 	_bagFacet = lootBag.Map();
-		// }
+		var lootBag = Orion.FindObject(_lootBagID, any, backpack);
+		if (lootBag != null && lootBag.Map() != _bagFacet) {
+			Orion.UseObject(lootBag.Serial());
+			Orion.Wait(50);
+			Orion.UseObject('0x4B9E37A3'); //Inner bag
+			Orion.Wait(50);
+			Orion.UseObject('0x43D55485'); //Inner bag
+			_bagFacet = lootBag.Map();
+		}
 
 		//Calculate the bandage speed based on player dex
 		var waitTime = (8000 - (Math.ceil((Player.Dex() - 80) / 20)) * 1000);
 		if (Orion.Timer('Heal') == -1) { Orion.SetTimer('Heal'); }
 
-		if ((Player.Hits() < (Player.MaxHits() * 0.98) || Player.Poisoned()) && Orion.Timer('Heal') > waitTime)
+		if ((Player.Hits() < (Player.MaxHits() * 0.97) || Player.Poisoned()) && Orion.Timer('Heal') > waitTime)
 		{
 			Orion.UseType('0x0E21', any);
 			Orion.WaitForTarget(1000);
@@ -29,8 +33,6 @@ function HealSelf()
 		} else {
 			HealPet(true);
 		}
-
-		//findCasterKeyQuestItems();
 		
 		Orion.Wait(50);
 	}
@@ -38,13 +40,13 @@ function HealSelf()
 
 function HealPet(runOnce)
 {
-	while (!runOnce) {
-		var serial1 = '0x001E5C7E';
-		var serial2 = '0x001E5DE0';
+	//while (!runOnce) {
+		var serial1 = '0x0021D784';
+		var serial2 = '0x0021FC05';
 		var pet1 = Orion.FindObject(serial1);
 		var pet2 = Orion.FindObject(serial2);
 	
-		if (pet1 != null && pet1.Hits() < pet2.Hits()) {
+		if (pet1 != null && ((pet2 != null && pet1.Hits() < pet2.Hits()) || pet1.Hits() < pet1.MaxHits())) {
 			Orion.Print(15, 'Healing Pet1: ' + pet1.Hits());
 	
 			Orion.UseType('0x0E21', any);
@@ -61,5 +63,5 @@ function HealPet(runOnce)
 		}
 	
 		Orion.Wait(25);
-	}
+	//}
 }

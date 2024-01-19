@@ -13,6 +13,13 @@
     </shoplist>
     <shoplist name="random">
         <shopitem enabled="true" graphic="0x0F88" color="0x0000" name="Nightshade" count="9999" price="0" comment=""/>
+        <shopitem enabled="false" graphic="0x0F8D" color="0x0000" name="Spiders' Silk" count="9999" price="0" comment=""/>
+        <shopitem enabled="false" graphic="0x0F84" color="0x0000" name="Garlic" count="9999" price="0" comment=""/>
+        <shopitem enabled="false" graphic="0x0F0E" color="0x0000" name="Empty Bottle" count="999" price="0" comment=""/>
+        <shopitem enabled="true" graphic="0x0EF3" color="any" name="Blank Scroll" count="9999" price="0" comment=""/>
+        <shopitem enabled="false" graphic="0x1BF2" color="0x0000" name="Ingots" count="9999" price="0" comment=""/>
+        <shopitem enabled="true" graphic="0x0F7B" color="0x0000" name="Blood Moss" count="9999" price="0" comment=""/>
+        <shopitem enabled="false" graphic="0x0F85" color="0x0000" name="Ginseng" count="9999" price="0" comment=""/>
     </shoplist>
     <shoplist name="Water">
         <shopitem enabled="true" graphic="0x1F9D" color="0x0000" name="A Pitcher Of Water" count="8" price="0" comment=""/>
